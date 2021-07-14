@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Recruiter from "./Recruiter";
 import { useDispatch } from "react-redux";
-
-import { Grid, TextField, makeStyles } from "@material-ui/core";
+import { createRec } from "../../store/recruiter/actions";
+import { Grid, TextField, makeStyles, Button } from "@material-ui/core";
 
 /* 
 name  surname email country state bio img rating  favoriteArea1, 2 y 3 y seniority 
@@ -20,15 +20,17 @@ const useStyles = makeStyles((theme) => ({
 const initialFormValues = {
   name: "",
   surname: "",
+  email:"",
   country: "",
   state: "",
   bio: "",
   img: "",
-  rating: "",
   favoriteArea1: "",
   favoriteArea2: "",
   favoriteArea3: "",
-  seniority: "",
+  seniority1: "",
+  seniority2: "",
+  seniority3: ""
 };
 
 const AddRecruiter = () => {
@@ -38,15 +40,25 @@ const AddRecruiter = () => {
   const classes = useStyles();
 
   const handleInputChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setValues({
       ...values,
-      [name]: value
+      [name]: value,
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createRec(values));
+  };
+
   return (
-    <form className={classes.root}>
+    <form
+      className={classes.root}
+      onSubmit={(e) => {
+        handleSubmit(e);
+      }}
+    >
       <Grid container>
         <Grid item xs={6}>
           <TextField
@@ -62,6 +74,15 @@ const AddRecruiter = () => {
             label="Surname"
             name="surname"
             value={values.surname}
+            onChange={handleInputChange}
+          />
+
+            <TextField
+            variant="outlined"
+            label="Email"
+            type="email"
+            name="email"
+            value={values.email}
             onChange={handleInputChange}
           />
 
@@ -99,14 +120,6 @@ const AddRecruiter = () => {
 
           <TextField
             variant="outlined"
-            label="Rating"
-            name="rating"
-            value={values.rating}
-            onChange={handleInputChange}
-          />
-
-          <TextField
-            variant="outlined"
             label="favoriteArea1"
             name="favoriteArea1"
             value={values.favoriteArea1}
@@ -132,13 +145,44 @@ const AddRecruiter = () => {
           <TextField
             variant="outlined"
             label="Seniority"
-            name="seniority"
-            value={values.seniority}
+            name="seniority1"
+            value={values.seniority1}
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            variant="outlined"
+            label="Seniority"
+            name="seniority2"
+            value={values.seniority2}
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            variant="outlined"
+            label="Seniority"
+            name="seniority3"
+            value={values.seniority3}
             onChange={handleInputChange}
           />
         </Grid>
 
         <Grid item xs={6}></Grid>
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          label="Add"
+          style={{
+            border: "1px solid white",
+            borderRadius: "10px",
+            width: "10%",
+            margin: "10px auto",
+          }}
+        >
+          Add
+        </Button>
       </Grid>
     </form>
   );
@@ -165,3 +209,7 @@ name  surname email country state bio img rating  favoriteArea1, 2 y 3 y seniori
 
 
     </Container> */
+
+
+
+    

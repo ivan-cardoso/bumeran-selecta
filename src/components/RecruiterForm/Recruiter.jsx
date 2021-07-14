@@ -14,8 +14,6 @@ const Recruiter = () => {
 
     const classes = useStyles()
 
-
-
   return (
 
     <Paper className={classes.pageContent}>

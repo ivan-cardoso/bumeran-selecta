@@ -11,6 +11,6 @@ export const login = createAsyncthunk('LOGIN', (user) => {
         console.log(pass)
     })
     .catch((err) => res.send(err))
-
 })
+
 

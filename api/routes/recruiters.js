@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const recruitersController=require('../controllers/recruitersController')
+const recruitersController = require('../controllers/recruitersController')
 
 router.get('/', recruitersController.findAll)
 router.post('/', recruitersController.findOrCreateRecruiter)

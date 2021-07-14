@@ -12,6 +12,7 @@ const recruitersController = {
 
     async findOrCreateRecruiter(req, res, next) {
         try {
+            console.log(req.body)
             const { name, surname, email, country, state, bio, img, rating, favoriteArea1, favoriteArea2, favoriteArea3, seniority1, seniority2, seniority3 } = req.body
             
             const [recrutier, created] = await Recruiters.findOrCreate({

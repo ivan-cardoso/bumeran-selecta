@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.use('/auth', require('./auth'))
-router.use('/recuiters', require('./recuiters'))
+router.use('/recruiters', require('./recruiters'))
 router.use('/companies', require('./companies'))
 router.use('/jobs',require('./jobs'))
 
