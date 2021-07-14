@@ -20,6 +20,7 @@ app.use(cookieParser())
 app.use(express.json())
 
 //Routers
+
 app.use('/api', require('./routes'))
 
 db.sync({ force: false }).then(() => {
