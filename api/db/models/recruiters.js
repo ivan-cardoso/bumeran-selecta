@@ -1,65 +1,66 @@
-const S = require("sequelize");
+const S = require('sequelize')
 const db = require('../db')
 
-class Recruiters extends S.Model{}
+class Recruiters extends S.Model {}
 
 Recruiters.init(
-    {
-        name: {
-            type: S.STRING,
-            allowNull: false
-        },
+  {
+    name: {
+      type: S.STRING,
+      allowNull: false,
+    },
 
-        surname: {
-            type: S.STRING,
-            allowNull: false
-        },
-    
-        email: {
-            type: S.STRING,
-            allowNull: false
-        },
-        
-        country: {
-            type: S.STRING,
-            allowNull: false
-        },
-        
-        state: {
-            type: S.STRING,
-            allowNull: false
-        },
-        
-        bio: {
-            type: S.TEXT,
-            allowNull: false
-        },
-        
-        img: { type: S.STRING },
-        
-        rating: {
-            type: S.DOUBLE,
-            defaultValue: 0
-        },
-        
-        favoriteArea1: {
-            type: S.STRING,
-            allowNull: false
-        },
+    surname: {
+      type: S.STRING,
+      allowNull: false,
+    },
 
-        favoriteArea2: { type: S.STRING },
-        
-        favoriteArea3: { type: S.STRING },
-        
-        seniority1: {
-            type: S.STRING,
-            allowNull: false
-        },
-        
-        seniority2: {type: S.STRING},
+    email: {
+      type: S.STRING,
+      allowNull: false,
+    },
 
-        seniority3: {type: S.STRING},
+    country: {
+      type: S.STRING,
+      allowNull: false,
+    },
 
-    }, { sequelize: db, timestamps: false, modelName: "recruiters" })
+    state: {
+      type: S.STRING,
+      allowNull: false,
+    },
 
-    module.exports = Recruiters;
+    bio: {
+      type: S.TEXT,
+      allowNull: false,
+    },
+
+    img: { type: S.STRING },
+
+    rating: {
+      type: S.DOUBLE,
+      defaultValue: 0,
+    },
+
+    favoriteArea1: {
+      type: S.STRING,
+      allowNull: false,
+    },
+
+    favoriteArea2: { type: S.STRING },
+
+    favoriteArea3: { type: S.STRING },
+
+    seniority1: {
+      type: S.STRING,
+      allowNull: false,
+    },
+
+    seniority2: { type: S.STRING },
+
+    seniority3: { type: S.STRING },
+  },
+  { sequelize: db, timestamps: false, modelName: 'recruiters' }
+)
+
+module.exports = Recruiters
