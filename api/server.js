@@ -5,6 +5,9 @@ const port = 3001 //pasar a dotenv
 const cookieParser = require('cookie-parser')
 //routers
 const authRouter = require('./routes/auth')
+//import models / db
+const db = require('./db/db')
+const Models = require('./db/models/index')
 
 // app.use(
 //   sessions({
@@ -20,6 +23,8 @@ app.use(express.json())
 //Routers
 app.use('/api/auth', authRouter)
 
-app.listen(port, () => {
-  console.log(`server running on port ${port}`)
+db.sync({ force: true }).then(() => {
+  app.listen(port, () => {
+    console.log(`server running on port ${port}`)
+  })
 })
