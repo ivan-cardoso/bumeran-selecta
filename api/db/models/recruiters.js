@@ -60,6 +60,6 @@ Recruiters.init(
 
         seniority3: {type: S.STRING},
 
-    }, { sequelize: db, timestamps: false, modelName: "Recruiters" })
+    }, { sequelize: db, timestamps: false, modelName: "recruiters" })
 
     module.exports = Recruiters;
