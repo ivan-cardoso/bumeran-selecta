@@ -1,12 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit"
 
-
+import recruiterReducer from './recruiter/actions'
 
 
 const store = configureStore({
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    
     reducer: {
-
+        recruiter: recruiterReducer
 
     }
 })
