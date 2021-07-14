@@ -1,14 +1,15 @@
 import React from 'react'
 import style from './index.module.css'
 
-const index = () => {
+const Home = () => {
 
+    
     return (
-        
+
         <div>
             
         </div>
     )
 }
 
-export default index
+export default Home
