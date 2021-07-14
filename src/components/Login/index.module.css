@@ -1,0 +1,45 @@
+body {
+  background-color: white;
+  margin: 0;
+}
+.loginCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.loginCard h1 {
+  font-size: 40px;
+  padding: 80px 10px;
+}
+form {
+  border: 2px solid black;
+  width: 40%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.loginInput {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.loginInput label {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.loginInput input {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+}
+form button {
+  width: 70%;
+  padding: 15px;
+  border-radius: 5px;
+  background: black;
+  color: white;
+}
