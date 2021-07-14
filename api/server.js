@@ -3,8 +3,7 @@ const app = express()
 const port = 3001 //pasar a dotenv
 // const sessions = require('express-session')
 const cookieParser = require('cookie-parser')
-//routers
-const authRouter = require('./routes/auth')
+
 //import models / db
 const db = require('./db/db')
 const Models = require('./db/models/index')
@@ -21,9 +20,9 @@ app.use(cookieParser())
 app.use(express.json())
 
 //Routers
-app.use('/api/auth', authRouter)
+app.use('/api', require('./routes'))
 
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   app.listen(port, () => {
     console.log(`server running on port ${port}`)
   })
