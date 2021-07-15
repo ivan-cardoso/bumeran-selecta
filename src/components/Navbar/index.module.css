@@ -33,6 +33,11 @@
   margin-left: 2rem;
 }
 
+.buttonPerfil {
+  padding: 5px;
+  border-radius: 50%;
+  border: none;
+}
 
 h4 {
   color: red;
