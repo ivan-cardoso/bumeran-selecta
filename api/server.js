@@ -1,22 +1,18 @@
 const express = require('express')
 const app = express()
 const port = 3001 //pasar a dotenv
-// const sessions = require('express-session')
 const cookieParser = require('cookie-parser')
+const csrf = require('csurf')
+const bodyParser = require('body-parser')
+const admin = require('firebase-admin')
+
 //routers
 const authRouter = require('./routes/auth')
 //import models / db
 const db = require('./db/db')
 const Models = require('./db/models/index')
 
-// app.use(
-//   sessions({
-//     secret: 'navent',
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// )
-
+//auth
 app.use(cookieParser())
 app.use(express.json())
 

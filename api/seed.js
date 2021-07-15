@@ -368,5 +368,7 @@ const recruiters = [
 ]
 
 recruiters.map((recruiter) => {
-  Recruiters.create(recruiter).then((users) => console.log('usuarios creados'))
+  Recruiters.create(recruiter).then((user) =>
+    console.log('usuario creado: ', user)
+  )
 })
