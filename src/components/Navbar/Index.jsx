@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar'
-import style from './index.module.css'
+import s from './index.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { UserLogout } from '../../store/user/user'
 
@@ -15,15 +15,31 @@ const NavBar = () => {
   }
 
   return (
-    <div className='navbar-container'>
-      <p>HOME</p>
-      <p>Recruiters</p>
-      {user && (
+    <div className={s.navbarContainer}>
+
+      <Link to={"/"} >
+        <img src="https://www.bumeran.com.ar/selecta/wp-content/uploads/2021/06/logo-2.png" alt="bumeran-selecta-logo" />
+      </Link>
+
+      {user ? 
+        <div className={s.navbarButtonsContainer} >
+            <Avatar alt={user.email} src={user.photoURL} />
+            <button  className={s.loginButton} onClick={handleLogout}> Logout</button>
+            {console.log(user)}
+        </div> 
+      : <div>
+        <Link to={"/login"}>
+          <button className={s.loginButton}>Login</button>
+        </Link>
+        </div>
+      }
+
+      {/* {user && (
         <div>
           <Avatar alt={user.email} src={user.photoURL} />
           <button onClick={handleLogout}> Logout</button>
         </div>
-      )}
+      )} */}
     </div>
   )
 }
