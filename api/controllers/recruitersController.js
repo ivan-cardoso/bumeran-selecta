@@ -104,8 +104,9 @@ const recruitersController = {
 
   async destroyRecrutierByPk(req, res, next) {
     try {
+      const destroyedUser = await Recruiters.findByPk(req.params.id)
       await Recruiters.destroy({ where: { id: req.params.id } })
-      res.sendStatus(200)
+      res.status(200).send(destroyedUser)
     } catch (err) {
       next(err)
     }

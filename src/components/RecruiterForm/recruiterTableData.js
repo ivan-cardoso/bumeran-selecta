@@ -11,6 +11,7 @@ export const recruitersColums = [
   'Seniority',
   'edit',
   'delete',
+  'ver mas',
 ]
 
 export const getAllRecruiters = () => {

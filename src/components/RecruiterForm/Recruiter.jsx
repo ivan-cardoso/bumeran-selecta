@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import AddRecruiter from './RecruiterForm'
+import AddRecruiter from './AddRecruiter'
 import { Paper, makeStyles } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import DenseTable from './RecruiterTable'
@@ -25,15 +25,16 @@ const Recruiter = () => {
 
   return (
     <>
+      <AddRecruiter setRecruiters={setRecruiters} />
       <InputSearch setRecruiters={setRecruiters} />
       <Paper className={classes.pageContent}>
         {recruiters.length && (
           <DenseTable
             recruiters={recruiters}
+            setRecruiters={setRecruiters}
             recruitersColums={recruitersColums}
           />
         )}
-        {/* <AddRecruiter /> */}
         <button onClick={() => history.goBack()}>Go back</button>
       </Paper>
     </>

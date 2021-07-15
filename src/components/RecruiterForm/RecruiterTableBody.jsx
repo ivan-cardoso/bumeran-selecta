@@ -4,10 +4,36 @@ import TableCell from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { singleRecruiter } from '../../store/recruiter/actions'
 
-function RecruiterTableBody({ recruiters }) {
+function RecruiterTableBody({
+  recruiters,
+  setRecruiters,
+  setShowTable,
+  setUpdateInfo,
+}) {
   const handleDelete = (id) => {
-    console.log('hice click con id:', id)
+    axios
+      .delete(`/api/recruiters/${id}`)
+      .then((res) => res.data)
+      .then((recruiterDestroyed) => {
+        const recruitersWithoutElimiated = recruiters.filter(
+          (recruiter) => recruiter.id !== recruiterDestroyed.id
+        )
+        setRecruiters(recruitersWithoutElimiated)
+      })
+  }
+
+  const history = useHistory()
+  const dispatch = useDispatch()
+
+  const handleSingleView = (recruiter) => {
+    dispatch(singleRecruiter(recruiter))
+    history.push(`/recruiters/${recruiter.id}`)
   }
   return (
     <TableBody>
@@ -36,9 +62,14 @@ function RecruiterTableBody({ recruiters }) {
             <TableCell align='right'>{seniority1}</TableCell>
             <TableCell align='right'>
               {
-                <a href='#'>
+                <button
+                  onClick={() => {
+                    setShowTable(false)
+                    setUpdateInfo(recruiter)
+                  }}
+                >
                   <EditIcon />
-                </a>
+                </button>
               }
             </TableCell>
             <TableCell align='right'>
@@ -47,6 +78,11 @@ function RecruiterTableBody({ recruiters }) {
                   <DeleteIcon />
                 </button>
               }
+            </TableCell>
+            <TableCell align='right'>
+              <button onClick={() => handleSingleView(recruiter)}>
+                {<VisibilityIcon />}
+              </button>
             </TableCell>
           </TableRow>
         )
