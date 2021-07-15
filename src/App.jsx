@@ -9,7 +9,6 @@ import Recruiter from "./components/RecruiterForm/Recruiter";
 function App() {
   return (
     <div>
-      <NavBar />
       <Switch>
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
