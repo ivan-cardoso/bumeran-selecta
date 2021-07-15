@@ -15,7 +15,9 @@ function App() {
         <Route exact path='/login' component={Login} />
         <Route exact path="/recruiters" component={Recruiter} />
         <Redirect from='/' to='/home' />
+
       </Switch>
+      
     </div>
   )
 }
