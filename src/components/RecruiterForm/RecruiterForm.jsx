@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Recruiter from "./Recruiter";
-import { useDispatch } from "react-redux";
-import { createRec } from "../../store/recruiter/actions";
+
 import { Grid, TextField, makeStyles, Button } from "@material-ui/core";
 
 /* 
@@ -17,40 +14,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const initialFormValues = {
-  name: "",
-  surname: "",
-  email:"",
-  country: "",
-  state: "",
-  bio: "",
-  img: "",
-  favoriteArea1: "",
-  favoriteArea2: "",
-  favoriteArea3: "",
-  seniority1: "",
-  seniority2: "",
-  seniority3: ""
-};
 
-const AddRecruiter = () => {
-  const dispatch = useDispatch();
 
-  const [values, setValues] = useState(initialFormValues);
+const RecruiterForm = ({handleInputChange, handleSubmit,values}) => {
+  
   const classes = useStyles();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setValues({
-      ...values,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(createRec(values));
-  };
+  
 
   return (
     <form
@@ -188,7 +158,7 @@ const AddRecruiter = () => {
   );
 };
 
-export default AddRecruiter;
+export default RecruiterForm;
 /* 
 name  surname email country state bio img rating  favoriteArea1, 2 y 3 y seniority 
 */
