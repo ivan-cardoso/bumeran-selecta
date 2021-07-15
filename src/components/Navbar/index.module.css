@@ -12,6 +12,10 @@
   /* position: fixed;
   top: 0; */
 }
+.navbarContainer img {
+  height: auto;
+  width: 200px;
+}
 
 .navbarButtonsContainer{
   display: flex;
@@ -34,3 +38,4 @@ h4 {
   color: red;
   padding: 10px;
 }
+
