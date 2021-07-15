@@ -7,7 +7,7 @@ function LoginForm({ handleChange, handleSubmit, errorMessage, isLoading }) {
   return (
     <div className={styles.loginCard}>
       <h1>Login</h1>
-      <form onChange={handleChange} onSubmit={handleSubmit}>
+      <form onChange={handleChange} onSubmit={handleSubmit} className={styles.loginForm}>
         <div className={styles.loginInput}>
           <label>Email</label>
           <input type='text' placeholder='Your Email' name='email' />

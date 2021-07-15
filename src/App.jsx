@@ -5,6 +5,7 @@ import Login from './components/Login/Index'
 import NavBar from './components/Navbar/Index'
 import './App.css'
 import Recruiter from "./components/RecruiterForm/Recruiter";
+import Jobs from './components/JobForm/Jobs'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path="/recruiters" component={Recruiter} />
+        <Route exact path="/jobs" component={Jobs} />
         <Redirect from='/' to='/home' />
       </Switch>
     </div>
