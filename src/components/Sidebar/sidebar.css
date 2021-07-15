@@ -1,0 +1,55 @@
+.menubars   {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+  }
+  
+  .navmenu {
+    background-color: black;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    transition: 850ms;
+  }
+  
+  .navmenu.active {
+    left: 0;
+    transition: 350ms;
+  }
+  
+  .navtext  {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+  }
+  
+  .navtext a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+  }
+  
+  .navtext a:hover {
+    background: #1a83ff;
+  }
+  
+  .navbartoggle {
+    background-color: #060b26;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
