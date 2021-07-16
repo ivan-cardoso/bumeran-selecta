@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 function SingleView() {
+
+
   const history = useHistory()
   const { recruiter } = useSelector((state) => state)
   const {
@@ -42,6 +44,7 @@ function SingleView() {
           <p>Seniority 1: {seniority1}</p>
           <p>Seniority 2: {seniority2}</p>
           <p>Seniority 3: {seniority3}</p>
+          
         </div>
       ) : (
         history.push('/recruiters')

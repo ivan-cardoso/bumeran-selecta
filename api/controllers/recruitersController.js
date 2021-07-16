@@ -116,7 +116,7 @@ const recruitersController = {
       const recrutiers = await Recruiters.findAll({
         where: {
           name: {
-            [Op.iLike]: `%${req.params.name}%`,
+            [Op.iLike]: `%${req.params.name}%`, 
           },
         },
       })
