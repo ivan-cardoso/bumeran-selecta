@@ -11,3 +11,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.footer {
+  height: 12%;
+  background-color: cornflowerblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
