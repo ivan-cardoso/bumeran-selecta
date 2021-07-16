@@ -5,11 +5,14 @@ import logo from '../../utils/Navent-iso-blanco.svg'
 const Footer = () => {
   
   return (
-    <React.Fragment>
+    
+      <div className={style.footer}>
       <img 
+        className={style.imagen}
         src={logo}
       />
-    </React.Fragment>
+      </div>
+   
   )
 }
 
