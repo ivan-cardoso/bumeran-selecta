@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { getAllRecruiters } from './recruiterTableData'
+import styles from './index.module.css'
 
 function InputSearch({ setRecruiters }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -19,8 +20,7 @@ function InputSearch({ setRecruiters }) {
         .get(`/api/recruiters/search/${searchTerm}`)
         .then((res) => res.data)
         .then((recruiters) => {
-          if (!recruiters.length)
-            setRecruiters({ nombre: 'No hay resultados...' })
+          if (!recruiters.length) setRecruiters('')
           else setRecruiters([...recruiters])
         })
         .catch((err) => console.log(err))
@@ -28,9 +28,13 @@ function InputSearch({ setRecruiters }) {
   }
 
   return (
-    <div>
+    <div className={styles.inputSearchContainer}>
       <form onChange={handleChange} onSubmit={handleSubmit}>
-        <input type='text' placeholder='Buscar por nombre...' />
+        <input
+          className={styles.inputSearch}
+          type='text'
+          placeholder='Buscar por nombre...'
+        />
       </form>
     </div>
   )

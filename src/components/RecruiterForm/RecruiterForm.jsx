@@ -1,5 +1,17 @@
-import { Grid, TextField, makeStyles, Button } from '@material-ui/core'
+import {
+  Grid,
+  TextField,
+  Button,
+  makeStyles,
+  FormControl,
+  InputLabel,
+  Select,
+  Input,
+  MenuItem,
+  useTheme,
+} from '@material-ui/core'
 import React from 'react'
+import s from './index.module.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -8,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
     input: {
-      display: "none",
+      display: 'none',
     },
-    "& > *": {
+    '& > *': {
       margin: theme.spacing(1),
     },
     button: {
@@ -21,6 +33,19 @@ const useStyles = makeStyles((theme) => ({
 
 const RecruiterForm = ({ handleSubmit, values, setValues }) => {
   const classes = useStyles()
+  const seniorityArr = ['Senior', 'Semi-Senior', 'Junior', 'Trainee']
+  const favArea = [
+    'Ingenierías',
+    'Comercial, Ventas y Negocios',
+    'Gerencia y Dirección General',
+    'Administración, Contabilidad y Finanzas',
+    'Recursos Humanos y Capacitación',
+    'Minería, Petróleo y Gas',
+    'Seguros',
+    'Tecnología, Sistemas y Telecomunicaciones',
+    'Salud, Medicina, Enfermería y Farmacia',
+    'Marketing y Publicidad',
+  ]
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -28,7 +53,6 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
       ...values,
       [name]: value,
     })
-
     console.log(values)
   }
   return (
@@ -39,8 +63,8 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
         handleSubmit(e)
       }}
     >
-      <Grid container>
-        <Grid item xs={6}>
+      <Grid container spacing={12}>
+        <Grid item xs={4}>
           <TextField
             variant='outlined'
             label='Name'
@@ -49,7 +73,8 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             // defaultValue={values.name}
             // onChange={handleInputChange}
           />
-
+        </Grid>
+        <Grid item xs={4}>
           <TextField
             variant='outlined'
             label='Surname'
@@ -57,7 +82,8 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             value={values.surname}
             // onChange={handleInputChange}
           />
-
+        </Grid>
+        <Grid item xs={4}>
           <TextField
             variant='outlined'
             label='Email'
@@ -66,7 +92,8 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             value={values.email}
             // onChange={handleInputChange}
           />
-
+        </Grid>
+        <Grid item xs={4}>
           <TextField
             variant='outlined'
             label='Country'
@@ -74,81 +101,135 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             value={values.country}
             // onChange={handleInputChange}
           />
+        </Grid>
 
+        <Grid item xs={4}>
           <TextField
             variant='outlined'
             label='State'
             name='state'
             value={values.state}
             // onChange={handleInputChange}
-          />
+          />{' '}
+        </Grid>
 
-          <TextField
-            variant='outlined'
-            label='Bio'
-            name='bio'
-            value={values.bio}
-            // onChange={handleInputChange}
-          />
-
+        <Grid item xs={4}>
           <TextField
             variant='outlined'
             label='Img'
             name='img'
             value={values.img}
             // onChange={handleInputChange}
-          />
+          />{' '}
+        </Grid>
 
-          <TextField
-            variant='outlined'
-            label='favoriteArea1'
-            name='favoriteArea1'
-            value={values.favoriteArea1}
-            // onChange={handleInputChange}
-          />
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Favourite Area
+            </InputLabel>
+            <Select
+              name='favoriteArea1'
+              required
+              label='Favourite Area'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {favArea.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
 
-          <TextField
-            variant='outlined'
-            label='favoriteArea2'
-            name='favoriteArea2'
-            value={values.favoriteArea2}
-            // onChange={handleInputChange}
-          />
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Favourite Area
+            </InputLabel>
+            <Select
+              name='favoriteArea2'
+              required
+              label='Favourite Area'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {favArea.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
 
-          <TextField
-            variant='outlined'
-            label='favoriteArea3'
-            name='favoriteArea3'
-            value={values.favoriteArea3}
-            // onChange={handleInputChange}
-          />
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Favourite Area
+            </InputLabel>
+            <Select
+              name='favoriteArea3'
+              required
+              label='Favourite Area'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {favArea.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
 
-          <TextField
-            variant='outlined'
-            label='Seniority'
-            name='seniority1'
-            value={values.seniority1}
-            // onChange={handleInputChange}
-          />
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Seniority
+            </InputLabel>
+            <Select
+              name='seniority1'
+              required
+              label='Seniority'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {seniorityArr.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Seniority
+            </InputLabel>
+            <Select
+              name='seniority2'
+              required
+              label='Seniority'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {seniorityArr.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Seniority
+            </InputLabel>
+            <Select
+              name='seniority3'
+              required
+              label='Seniority'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {seniorityArr.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
 
-          <TextField
-            variant='outlined'
-            label='Seniority'
-            name='seniority2'
-            value={values.seniority2}
-            // onChange={handleInputChange}
-          />
-
-          <TextField
-            variant='outlined'
-            label='Seniority'
-            name='seniority3'
-            value={values.seniority3}
-            // onChange={handleInputChange}
-          />
-  
-      
-         {/*  <TextField
+        {/*  <TextField
             variant="outlined"
             label="Img"
             name="img"
@@ -156,26 +237,33 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             onChange={handleInputChange}
           /> */}
 
-          <input
-            style={{ display: "none" }}
-            id="contained-button-file"
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
+        <input
+          style={{ display: 'none' }}
+          id='contained-button-file'
+          type='file'
+        />
+        {/* <label htmlFor="contained-button-file">
             <Button variant="contained" color="primary" component="span" value={values.img}
             onChange={handleInputChange}>
               Upload Image
             </Button>
-          </label>
+          </label> */}
 
-          <div className={classes.root}></div>
+        <Grid item xs={12}>
+          <TextField
+            variant='outlined'
+            label='Bio'
+            name='bio'
+            value={values.bio}
+            // onChange={handleInputChange}
+          />{' '}
         </Grid>
-        <Grid item xs={6}></Grid>
+        {/* <div className={classes.root}></div> */}
 
         <Button
           type='submit'
           variant='contained'
-          color='secondary'
+          color='primary'
           label='Add'
           style={{
             border: '1px solid white',

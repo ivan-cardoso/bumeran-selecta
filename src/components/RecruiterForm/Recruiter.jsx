@@ -28,14 +28,16 @@ const Recruiter = () => {
       <AddRecruiter setRecruiters={setRecruiters} />
       <InputSearch setRecruiters={setRecruiters} />
       <Paper className={classes.pageContent}>
-        {recruiters.length && (
+        {recruiters ? (
           <DenseTable
             recruiters={recruiters}
             setRecruiters={setRecruiters}
             recruitersColums={recruitersColums}
           />
+        ) : (
+          <h1>No hay resultados...</h1>
         )}
-        <button onClick={() => history.goBack()}>Go back</button>
+        {/* <button onClick={() => history.goBack()}>Go back</button> */}
       </Paper>
     </>
   )
