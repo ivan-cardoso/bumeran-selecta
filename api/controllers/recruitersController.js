@@ -115,9 +115,23 @@ const recruitersController = {
     try {
       const recruiters = await Recruiters.findAll({
         where: {
-          name: {
-            [Op.iLike]: `%${req.params.name}%`,
-          },
+          [Op.or]: [
+            {
+              name: {
+                [Op.iLike]: `%${req.params.name}%`,
+              },
+            },
+            {
+              surname: {
+                [Op.iLike]: `%${req.params.name}%`,
+              },
+            },
+            {
+              email: {
+                [Op.iLike]: `%${req.params.name}%`,
+              },
+            },
+          ],
         },
       })
       res.status(200).json(recruiters)
@@ -128,3 +142,11 @@ const recruitersController = {
 }
 
 module.exports = recruitersController
+
+// {
+//   where: {
+//     name: {
+//       [Op.iLike]: `%${req.params.name}%`,
+//     },
+//   },
+// }
