@@ -1,4 +1,12 @@
-img {
+.imagen {
   width: 15%;
   height: 90%;
+}
+
+.footer {
+  height: 10%;
+  background-color: cornflowerblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

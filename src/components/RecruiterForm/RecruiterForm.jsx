@@ -1,215 +1,282 @@
-import React, { useState, useEffect } from "react";
-import Recruiter from "./Recruiter";
-import { useDispatch } from "react-redux";
-import { createRec } from "../../store/recruiter/actions";
-import { Grid, TextField, makeStyles, Button } from "@material-ui/core";
-
-/* 
-name  surname email country state bio img rating  favoriteArea1, 2 y 3 y seniority 
-*/
+import {
+  Grid,
+  TextField,
+  Button,
+  makeStyles,
+  FormControl,
+  InputLabel,
+  Select,
+  Input,
+  MenuItem,
+  useTheme,
+} from '@material-ui/core'
+import React from 'react'
+import s from './index.module.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& .MuiFormControl-root": {
-      width: "80%",
+    '& .MuiFormControl-root': {
+      width: '80%',
+      margin: theme.spacing(1),
+    },
+    input: {
+      display: 'none',
+    },
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+    button: {
       margin: theme.spacing(1),
     },
   },
-}));
+}))
 
-const initialFormValues = {
-  name: "",
-  surname: "",
-  email:"",
-  country: "",
-  state: "",
-  bio: "",
-  img: "",
-  favoriteArea1: "",
-  favoriteArea2: "",
-  favoriteArea3: "",
-  seniority1: "",
-  seniority2: "",
-  seniority3: ""
-};
-
-const AddRecruiter = () => {
-  const dispatch = useDispatch();
-
-  const [values, setValues] = useState(initialFormValues);
-  const classes = useStyles();
+const RecruiterForm = ({ handleSubmit, values, setValues }) => {
+  const classes = useStyles()
+  const seniorityArr = ['Senior', 'Semi-Senior', 'Junior', 'Trainee']
+  const favArea = [
+    'Ingenierías',
+    'Comercial, Ventas y Negocios',
+    'Gerencia y Dirección General',
+    'Administración, Contabilidad y Finanzas',
+    'Recursos Humanos y Capacitación',
+    'Minería, Petróleo y Gas',
+    'Seguros',
+    'Tecnología, Sistemas y Telecomunicaciones',
+    'Salud, Medicina, Enfermería y Farmacia',
+    'Marketing y Publicidad',
+  ]
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setValues({
       ...values,
       [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(createRec(values));
-  };
-
+    })
+    console.log(values)
+  }
   return (
     <form
+      onChange={(e) => handleInputChange(e)}
       className={classes.root}
       onSubmit={(e) => {
-        handleSubmit(e);
+        handleSubmit(e)
       }}
     >
-      <Grid container>
-        <Grid item xs={6}>
+      <Grid container spacing={12}>
+        <Grid item xs={4}>
           <TextField
-            variant="outlined"
-            label="Name"
-            name="name"
+            variant='outlined'
+            label='Name'
+            name='name'
             value={values.name}
-            onChange={handleInputChange}
+            // defaultValue={values.name}
+            // onChange={handleInputChange}
           />
-
+        </Grid>
+        <Grid item xs={4}>
           <TextField
-            variant="outlined"
-            label="Surname"
-            name="surname"
+            variant='outlined'
+            label='Surname'
+            name='surname'
             value={values.surname}
-            onChange={handleInputChange}
+            // onChange={handleInputChange}
           />
-
-            <TextField
-            variant="outlined"
-            label="Email"
-            type="email"
-            name="email"
+        </Grid>
+        <Grid item xs={4}>
+          <TextField
+            variant='outlined'
+            label='Email'
+            type='email'
+            name='email'
             value={values.email}
-            onChange={handleInputChange}
+            // onChange={handleInputChange}
           />
-
+        </Grid>
+        <Grid item xs={4}>
           <TextField
-            variant="outlined"
-            label="Country"
-            name="country"
+            variant='outlined'
+            label='Country'
+            name='country'
             value={values.country}
-            onChange={handleInputChange}
+            // onChange={handleInputChange}
           />
+        </Grid>
 
+        <Grid item xs={4}>
           <TextField
-            variant="outlined"
-            label="State"
-            name="state"
+            variant='outlined'
+            label='State'
+            name='state'
             value={values.state}
-            onChange={handleInputChange}
-          />
+            // onChange={handleInputChange}
+          />{' '}
+        </Grid>
 
+        <Grid item xs={4}>
           <TextField
-            variant="outlined"
-            label="Bio"
-            name="bio"
-            value={values.bio}
-            onChange={handleInputChange}
-          />
+            variant='outlined'
+            label='Img'
+            name='img'
+            value={values.img}
+            // onChange={handleInputChange}
+          />{' '}
+        </Grid>
 
-          <TextField
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Favourite Area
+            </InputLabel>
+            <Select
+              name='favoriteArea1'
+              required
+              label='Favourite Area'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {favArea.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Favourite Area
+            </InputLabel>
+            <Select
+              name='favoriteArea2'
+              required
+              label='Favourite Area'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {favArea.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Favourite Area
+            </InputLabel>
+            <Select
+              name='favoriteArea3'
+              required
+              label='Favourite Area'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {favArea.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Seniority
+            </InputLabel>
+            <Select
+              name='seniority1'
+              required
+              label='Seniority'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {seniorityArr.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Seniority
+            </InputLabel>
+            <Select
+              name='seniority2'
+              required
+              label='Seniority'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {seniorityArr.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={4}>
+          <FormControl variant='outlined' className={classes.formControl}>
+            <InputLabel id='demo-simple-select-outlined-label'>
+              Seniority
+            </InputLabel>
+            <Select
+              name='seniority3'
+              required
+              label='Seniority'
+              onChange={(e) => handleInputChange(e)}
+            >
+              {seniorityArr.map((seniority) => {
+                return <MenuItem value={seniority}>{seniority}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        {/*  <TextField
             variant="outlined"
             label="Img"
             name="img"
             value={values.img}
             onChange={handleInputChange}
-          />
+          /> */}
 
-          <TextField
-            variant="outlined"
-            label="favoriteArea1"
-            name="favoriteArea1"
-            value={values.favoriteArea1}
-            onChange={handleInputChange}
-          />
+        <input
+          style={{ display: 'none' }}
+          id='contained-button-file'
+          type='file'
+        />
+        {/* <label htmlFor="contained-button-file">
+            <Button variant="contained" color="primary" component="span" value={values.img}
+            onChange={handleInputChange}>
+              Upload Image
+            </Button>
+          </label> */}
 
+        <Grid item xs={12}>
           <TextField
-            variant="outlined"
-            label="favoriteArea2"
-            name="favoriteArea2"
-            value={values.favoriteArea2}
-            onChange={handleInputChange}
-          />
-
-          <TextField
-            variant="outlined"
-            label="favoriteArea3"
-            name="favoriteArea3"
-            value={values.favoriteArea3}
-            onChange={handleInputChange}
-          />
-
-          <TextField
-            variant="outlined"
-            label="Seniority"
-            name="seniority1"
-            value={values.seniority1}
-            onChange={handleInputChange}
-          />
-
-          <TextField
-            variant="outlined"
-            label="Seniority"
-            name="seniority2"
-            value={values.seniority2}
-            onChange={handleInputChange}
-          />
-
-          <TextField
-            variant="outlined"
-            label="Seniority"
-            name="seniority3"
-            value={values.seniority3}
-            onChange={handleInputChange}
-          />
+            variant='outlined'
+            label='Bio'
+            name='bio'
+            value={values.bio}
+            // onChange={handleInputChange}
+          />{' '}
         </Grid>
-
-        <Grid item xs={6}></Grid>
+        {/* <div className={classes.root}></div> */}
 
         <Button
-          type="submit"
-          variant="contained"
-          color="secondary"
-          label="Add"
+          type='submit'
+          variant='contained'
+          color='primary'
+          label='Add'
           style={{
-            border: "1px solid white",
-            borderRadius: "10px",
-            width: "10%",
-            margin: "10px auto",
+            border: '1px solid white',
+            borderRadius: '10px',
+            width: '10%',
+            margin: '10px auto',
           }}
         >
-          Add
+          Confirm
         </Button>
       </Grid>
     </form>
-  );
-};
+  )
+}
 
-export default AddRecruiter;
-/* 
-name  surname email country state bio img rating  favoriteArea1, 2 y 3 y seniority 
-*/
-
-/* <Container>
-
-      <FormControl>
-        <InputLabel htmlFor="email">Email address</InputLabel>
-        <Input id="email" type="email" aria-describedby="email-helper" />
-        <FormHelperText id="email-helper">We'll never share your email.</FormHelperText>
-      </FormControl>
-
-      <FormControl>
-        <InputLabel htmlFor="email">Editar </InputLabel>
-        <Input id="email" type="email" aria-describedby="email-helper" />
-        <FormHelperText id="email-helper">We'll never share your email.</FormHelperText>
-      </FormControl>
-
-
-    </Container> */
-
-
-
-    
+export default RecruiterForm

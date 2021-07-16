@@ -1,4 +1,8 @@
 const { Recruiters, Companies } = require('./db/models/index')
+<<<<<<< HEAD
+=======
+
+>>>>>>> c388bb7e814b378482cde9a63dd720a36fb0aedc
 
 const recruiters = [
   {
@@ -8,6 +12,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/men/18.jpg',
     favoriteArea1: 'Ingenierías',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Recursos Humanos y Capacitación',
@@ -22,6 +27,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Cordoba',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/84.jpg',
     favoriteArea1: 'Comercial, Ventas y Negocios',
     favoriteArea2: 'Atención al Cliente, Call Center y Telemarketing',
     favoriteArea3: 'Seguros',
@@ -36,6 +42,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Vicente Lopez',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/79.jpg',
     favoriteArea1: 'Gerencia y Dirección General',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Administración, Contabilidad y Finanzas',
@@ -50,6 +57,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/men/62.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Atención al Cliente, Call Center y Telemarketing',
     favoriteArea3: 'Legales',
@@ -64,6 +72,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/37.jpg',
     favoriteArea1: 'Recursos Humanos y Capacitación',
     favoriteArea2: 'Secretarias y Recepción',
     favoriteArea3: 'Administración, Contabilidad y Finanzas',
@@ -78,6 +87,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Comodoro Rivadavia',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/men/0.jpg',
     favoriteArea1: 'Minería, Petróleo y Gas',
     favoriteArea2: 'Ingenierías',
     favoriteArea3: 'Ingeniería Civil y Construcción',
@@ -92,6 +102,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/78.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Atención al Cliente, Call Center y Telemarketing',
@@ -106,6 +117,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/56.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Secretarias y Recepción',
     favoriteArea3: 'Salud, Medicina, Enfermería y Farmacia',
@@ -120,6 +132,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'GBA SUR',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/31.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Comunicación, Relaciones Institucionales y Públicas',
@@ -134,6 +147,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'GBA SUR',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/54.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Ingenierías',
@@ -148,6 +162,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'GBA NORTE',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/87.jpg',
     favoriteArea1: 'Seguros',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Marketing y Publicidad',
@@ -162,6 +177,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/23.jpg',
     favoriteArea1: 'Comercial, Ventas y Negocios',
     favoriteArea2: 'Gerencia y Dirección General',
     favoriteArea3: 'Gastronomía y Turismo',
@@ -176,6 +192,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/men/74.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Producción y Manufactura',
@@ -190,6 +207,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Mendoza',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/men/14.jpg',
     favoriteArea1: 'Comercial, Ventas y Negocios',
     favoriteArea2: 'Administración, Contabilidad y Finanzas',
     favoriteArea3: 'Seguros',
@@ -204,6 +222,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/4.jpg',
     favoriteArea1: 'Gerencia y Dirección General',
     favoriteArea2: 'Salud, Medicina, Enfermería y Farmacia',
     favoriteArea3: 'Comercial, Ventas y Negocios',
@@ -218,6 +237,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Cordoba',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/men/32.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Ingenierías',
@@ -232,6 +252,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Cordoba',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/83.jpg',
     favoriteArea1: 'Tecnología, Sistemas y Telecomunicaciones',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Administración, Contabilidad y Finanzas',
@@ -246,6 +267,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Mendoza',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/83.jpg',
     favoriteArea1: 'Salud, Medicina, Enfermería y Farmacia',
     favoriteArea2: 'Ingeniería Civil y Construcción',
     favoriteArea3: 'Aduana y Comercio Exterior',
@@ -260,6 +282,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Cordoba',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/68.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Secretarias y Recepción',
@@ -274,6 +297,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Cordoba',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/men/29.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Recursos Humanos y Capacitación',
@@ -288,6 +312,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Santa Fe',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/78.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Secretarias y Recepción',
@@ -302,6 +327,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/1.jpg',
     favoriteArea1: 'Tecnología, Sistemas y Telecomunicaciones',
     favoriteArea2: 'Administración, Contabilidad y Finanzas',
     favoriteArea3: 'Comercial, Ventas y Negocios',
@@ -316,6 +342,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/17.jpg',
     favoriteArea1: 'Marketing y Publicidad',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Gerencia y Dirección General',
@@ -330,6 +357,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/77.jpg',
     favoriteArea1: 'Tecnología, Sistemas y Telecomunicaciones',
     favoriteArea2: 'Administración, Contabilidad y Finanzas',
     favoriteArea3: 'Recursos Humanos y Capacitación',
@@ -344,6 +372,7 @@ const recruiters = [
     country: 'Argentina',
     state: 'Buenos Aires',
     bio: 'Soy una descripcion de ejemplo',
+    img: 'https://randomuser.me/api/portraits/women/43.jpg',
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Producción y Manufactura',
@@ -353,6 +382,7 @@ const recruiters = [
   },
   {
     name: 'Anabella',
+    img: 'https://randomuser.me/api/portraits/women/63.jpg',
     surname: 'Albornoz',
     email: 'Anabella@Albornoz.com',
     country: 'Argentina',
@@ -367,9 +397,15 @@ const recruiters = [
   },
 ]
 
+<<<<<<< HEAD
 
 const companies = [
   { name: 'DSNTEC', address: 'Av. Santa Fe 4010,', email: 'dsntec@dsntec.com', img: 'https://media-exp1.licdn.com/dms/image/C4D0BAQG7z3D-htOC7A/company-logo_200_200/0/1518870857507?e=2159024400&v=beta&t=Kd7mQszqqmrQO3_LQxqCXpQY7qRvFW7ODQ0XfreeJSM', bio: 'Our company combines know-how and a deep domain understanding of technology to provide a range of IT outsourcing services from Product Development, custom application programming, to IT consulting services to enterprises all over the world.' }, { name: 'Swiss Medical Group', address: 'Av. Maipú 1139', email: 'swissmedicalgroup@swissmedicalgroup.com', img: 'https://prepagas-precios.com.ar/wp-content/uploads/2020/06/swissmedical-precios-1038x572.jpg', bio: 'Swiss Medical Group es uno de los principales grupos empresarios de Argentina que se dedica a la protección de personas y es líder en el mercado de la salud.' }, { name: 'Camuzzi Gas', address: 'Mitre 1260', email: 'camuzzigas@camuzzigas.com', img: 'https://www.camuzzigas.com/wp-content/uploads/2019/06/generica-logo-camuzzi-gas-2019.jpg', bio: 'Somos la mayor distribuidora de gas natural de la Argentina en términos de volumen, cubriendo el 45% del paísen dos regiones contiguas a través de Camuzzi Gas Pampeana y Camuzzi Gas del Sur.' }, { name: 'Accusys Technology', address: 'Av. Córdoba 673', email: 'accusystechnology@accusystechnology.com', img: 'https://media-exp3.licdn.com/dms/image/C4D0BAQGYiIk7JYRxLg/company-logo_200_200/0/1519928788078?e=2159024400&v=beta&t=KSSqWoV1IGQdMyOd8mp8ns-DdDED57nqHceS7989C0o', bio: 'Accusys Technology, Compañía Líder regional en desarrollo y mantenimiento de soluciones informáticas ' }]
+=======
+const companies = [
+  { name: 'DSNTEC', address: 'Av. Santa Fe 4010,', email: 'dsntec@dsntec.com', img: 'https://media-exp1.licdn.com/dms/image/C4D0BAQG7z3D-htOC7A/company-logo_200_200/0/1518870857507?e=2159024400&v=beta&t=Kd7mQszqqmrQO3_LQxqCXpQY7qRvFW7ODQ0XfreeJSM', bio: 'Our company combines know-how and a deep domain understanding of technology to provide a range of IT outsourcing services from Product Development, custom application programming, to IT consulting services to enterprises all over the world.' },{ name: 'Swiss Medical Group', address:'Av. Maipú 1139', email:'swissmedicalgroup@swissmedicalgroup.com', img:'https://prepagas-precios.com.ar/wp-content/uploads/2020/06/swissmedical-precios-1038x572.jpg', bio: 'Swiss Medical Group es uno de los principales grupos empresarios de Argentina que se dedica a la protección de personas y es líder en el mercado de la salud.' },{ name:'Camuzzi Gas', address:'Mitre 1260', email:'camuzzigas@camuzzigas.com', img:'https://www.camuzzigas.com/wp-content/uploads/2019/06/generica-logo-camuzzi-gas-2019.jpg', bio:'Somos la mayor distribuidora de gas natural de la Argentina en términos de volumen, cubriendo el 45% del paísen dos regiones contiguas a través de Camuzzi Gas Pampeana y Camuzzi Gas del Sur.'},{name: 'Accusys Technology', address:'Av. Córdoba 673', email:'accusystechnology@accusystechnology.com', img:'https://media-exp3.licdn.com/dms/image/C4D0BAQGYiIk7JYRxLg/company-logo_200_200/0/1519928788078?e=2159024400&v=beta&t=KSSqWoV1IGQdMyOd8mp8ns-DdDED57nqHceS7989C0o', bio:'Accusys Technology, Compañía Líder regional en desarrollo y mantenimiento de soluciones informáticas '}]
+
+>>>>>>> c388bb7e814b378482cde9a63dd720a36fb0aedc
 
 
 recruiters.map((recruiter) => {
@@ -383,3 +419,7 @@ companies.map((Company) => {
     console.log('Company creada: ', Company)
   )
 })
+<<<<<<< HEAD
+=======
+
+>>>>>>> c388bb7e814b378482cde9a63dd720a36fb0aedc
