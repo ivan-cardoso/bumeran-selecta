@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { UserLogout } from '../../store/user/user'
@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
 
 /* End Functions */
 
+
 const NavBar = () => {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
@@ -62,8 +63,15 @@ const NavBar = () => {
     dispatch(UserLogout(user))
   }
 
+ 
+
   return (
-    <div className={s.navbarContainer}>
+    
+      <div className={s.navbarContainer}>
+
+      
+     
+
 
       <Link to={"/"} >
         <img src="https://www.bumeran.com.ar/selecta/wp-content/uploads/2021/06/logo-2.png" alt="bumeran-selecta-logo" />
