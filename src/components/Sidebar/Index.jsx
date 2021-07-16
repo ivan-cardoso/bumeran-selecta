@@ -1,53 +1,41 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
-import * as IoIcons from 'react-icons/io'
-import * as FaIcons from 'react-icons/fa'
-import * as AiIcons from 'react-icons/ai'
-import SidebarData from './SidebarData'
-import s from './sidebar.css'
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import * as IoIcons from "react-icons/io";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import SidebarData from "./SidebarData";
+import s from "./sidebar.css";
 
 const Sidebar = () => {
+  const [showSidebar, setShowSidebar] = useState(true);
 
-    const [sidebar, setSidebar] = useState(false)
-    const showSidebar = () => {
-      return setSidebar(!sidebar)
-    }
-
-    return (
+  return (
 
 
-        <div>
-            <Link to='#'>
-      <FaIcons.FaBars onClick={showSidebar}/>
-      </Link>
+    <div>
+      <FaIcons.FaBars 
+      onClick={() => setShowSidebar(!showSidebar)}
       
-      <nav className={sidebar ? s.navmenuactive : s.navmenu }>
-        <ul className={s.navmenuitems}>
-          <li className={s.navbartoggle}>
-            <Link to='#' className={s.menubars}>
-             <AiIcons.AiOutlineClose />
-            </Link>
-          </li>
-        
+      className={s.iconImage}
+      />
+      <div className={showSidebar ? "sidebarContainer" : "hideSidebar"}>
+        <nav className={s.navmenu}>
+          <ul className={s.navmenuitems}>
+            {SidebarData?.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span className={s.names}>{item.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  );
+};
 
-          {SidebarData?.map((item, index) => {
-            return (
-
-              <li key={index} className={item.cName}>
-                <Link to={item.path}>
-                  {item.icon}
-                  <span>{item.title}</span>
-                </Link>
-              </li>
-            )
-
-          })}
-        </ul>
-      </nav>
-        </div>
-    )
-}
-
-export default Sidebar
-
+export default Sidebar;

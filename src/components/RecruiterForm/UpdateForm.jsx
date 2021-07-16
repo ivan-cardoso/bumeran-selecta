@@ -1,5 +1,9 @@
 import { Grid, TextField, makeStyles, Button } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
+
+/* 
+name  surname email country state bio img rating  favoriteArea1, 2 y 3 y seniority 
+*/
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -7,36 +11,27 @@ const useStyles = makeStyles((theme) => ({
       width: '80%',
       margin: theme.spacing(1),
     },
-    input: {
-      display: "none",
-    },
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-    button: {
-      margin: theme.spacing(1),
-    },
   },
 }))
 
-const RecruiterForm = ({ handleSubmit, values, setValues }) => {
+const UpdateForm = ({ handleSubmit, values }) => {
   const classes = useStyles()
+
+  const [updateValues, setUpdateValues] = useState(values)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setValues({
-      ...values,
+    setUpdateValues({
+      ...updateValues,
       [name]: value,
     })
-
-    console.log(values)
   }
   return (
     <form
       onChange={(e) => handleInputChange(e)}
       className={classes.root}
       onSubmit={(e) => {
-        handleSubmit(e)
+        handleSubmit(e, updateValues)
       }}
     >
       <Grid container>
@@ -45,17 +40,14 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             variant='outlined'
             label='Name'
             name='name'
-            value={values.name}
-            // defaultValue={values.name}
-            // onChange={handleInputChange}
+            defaultValue={values.name}
           />
 
           <TextField
             variant='outlined'
             label='Surname'
             name='surname'
-            value={values.surname}
-            // onChange={handleInputChange}
+            defaultValue={values.surname}
           />
 
           <TextField
@@ -63,113 +55,80 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             label='Email'
             type='email'
             name='email'
-            value={values.email}
-            // onChange={handleInputChange}
+            defaultValue={values.email}
           />
 
           <TextField
             variant='outlined'
             label='Country'
             name='country'
-            value={values.country}
-            // onChange={handleInputChange}
+            defaultValue={values.country}
           />
 
           <TextField
             variant='outlined'
             label='State'
             name='state'
-            value={values.state}
-            // onChange={handleInputChange}
+            defaultValue={values.state}
           />
 
           <TextField
             variant='outlined'
             label='Bio'
             name='bio'
-            value={values.bio}
-            // onChange={handleInputChange}
+            defaultValue={values.bio}
           />
 
           <TextField
             variant='outlined'
             label='Img'
             name='img'
-            value={values.img}
-            // onChange={handleInputChange}
+            defaultValue={values.img}
           />
 
           <TextField
             variant='outlined'
             label='favoriteArea1'
             name='favoriteArea1'
-            value={values.favoriteArea1}
-            // onChange={handleInputChange}
+            defaultValue={values.favoriteArea1}
           />
 
           <TextField
             variant='outlined'
             label='favoriteArea2'
             name='favoriteArea2'
-            value={values.favoriteArea2}
-            // onChange={handleInputChange}
+            defaultValue={values.favoriteArea2}
           />
 
           <TextField
             variant='outlined'
             label='favoriteArea3'
             name='favoriteArea3'
-            value={values.favoriteArea3}
-            // onChange={handleInputChange}
+            defaultValue={values.favoriteArea3}
           />
 
           <TextField
             variant='outlined'
             label='Seniority'
             name='seniority1'
-            value={values.seniority1}
-            // onChange={handleInputChange}
+            defaultValue={values.seniority1}
           />
 
           <TextField
             variant='outlined'
             label='Seniority'
             name='seniority2'
-            value={values.seniority2}
-            // onChange={handleInputChange}
+            defaultValue={values.seniority2}
           />
 
           <TextField
             variant='outlined'
             label='Seniority'
             name='seniority3'
-            value={values.seniority3}
-            // onChange={handleInputChange}
+            defaultValue={values.seniority3}
           />
-  
-      
-         {/*  <TextField
-            variant="outlined"
-            label="Img"
-            name="img"
-            value={values.img}
-            onChange={handleInputChange}
-          /> */}
-
-          <input
-            style={{ display: "none" }}
-            id="contained-button-file"
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button variant="contained" color="primary" component="span" value={values.img}
-            onChange={handleInputChange}>
-              Upload Image
-            </Button>
-          </label>
-
-          <div className={classes.root}></div>
         </Grid>
+
         <Grid item xs={6}></Grid>
 
         <Button
@@ -191,4 +150,4 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
   )
 }
 
-export default RecruiterForm
+export default UpdateForm
