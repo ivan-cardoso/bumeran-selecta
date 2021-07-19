@@ -1,53 +1,157 @@
-import React, { useState } from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom'
-import * as IoIcons from 'react-icons/io'
-import * as FaIcons from 'react-icons/fa'
-import * as AiIcons from 'react-icons/ai'
-import SidebarData from './SidebarData'
-import s from './sidebar.css'
 import { useSelector } from 'react-redux'
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
-const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(true)
+
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: 36,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9) + 1,
+    },
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+}));
+
+export default function MiniDrawer() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   const { user } = useSelector((state) => state)
 
   return (
-    <div className='div-icon'>
-      <FaIcons.FaBars
-        onClick={() => setShowSidebar(!showSidebar)}
-        className='iconImage'
-      />
-      <div className={showSidebar ? 'sidebarContainer' : 'hideSidebar'}>
-        {SidebarData?.map((item, index) => {
-          return (
-            <div key={index} className={item.cName}>
-              <Link to={user.uid ? item.path : '/login'}>
-                <h1 className='icon-container'>
-                  {item.icon}
-                  <span className={s.names}>{item.title}</span>
-                </h1>
-              </Link>
-            </div>
-          )
+    <div className={classes.root}>
+      <CssBaseline />
+      
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
         })}
-
-        {/* <nav className={s.navmenu}>
-          <ul className='navmenuitems'>
-            {SidebarData?.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={user.uid ? item.path : '/login'}>
-                    {item.icon}
-                    <span className={s.names}>{item.title}</span>
-                  </Link>
-                </li>
-              )
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
             })}
-          </ul>
-        </nav> */}
-      </div>
+          >
+            <ChevronRightIcon />
+          </IconButton>
+        </Toolbar>
+        <div className={classes.toolbar}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          {['Recruiters', 'Lorem', 'Lorem', 'Lorem'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <Link to= '/recruiters'><PeopleAltIcon /></Link> : <PeopleAltIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))} */}
+        </List>
+      </Drawer>
+      
     </div>
-  )
+  );
 }
-
-export default Sidebar
