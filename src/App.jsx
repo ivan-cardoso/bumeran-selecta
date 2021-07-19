@@ -19,7 +19,6 @@ function App() {
         <Route exact path='/recruiters' component={Recruiter} />
         <Route path='/recruiters/:id' component={SingleView} />
         <Redirect from='/' to='/home' />
-
       </Switch>
       <Footer />
     </div>
