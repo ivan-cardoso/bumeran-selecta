@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styles from './index.module.css'
 
 function SingleView() {
 
@@ -24,33 +25,69 @@ function SingleView() {
     seniority3,
   } = recruiter
 
-
   return (
-    
     <div>
       {recruiter.id ? (
-        <div>
-          <img src={img} alt={surname} />
-          <p>Nombre: {name}</p>
-          <p>Apellido: {surname}</p>
-          <p>email: {email}</p>
-          <p>Pais: {country}</p>
-          <p>Provincia: {state}</p>
-          <p>bio: {bio}</p>
-          <p>Rating: {rating}</p>
-          <p>Area Favorita 1: {favoriteArea1}</p>
-          <p>Area Favorita 2:{favoriteArea2}</p>
-          <p>Area Favorita 3:{favoriteArea3}</p>
-          <p>Seniority 1: {seniority1}</p>
-          <p>Seniority 2: {seniority2}</p>
-          <p>Seniority 3: {seniority3}</p>
-          
+        <div className={styles.container}>
+          <div className={styles.picture}>
+            <h2>
+              Rating: <span>{rating}</span>
+            </h2>
+            <img src={img} alt={surname} />
+            <div className={styles.bio}>
+              <h2>
+                <span>{bio}</span>
+              </h2>
+            </div>
+          </div>
+          <div className={styles.info}>
+            <p>
+              Nombre: <span>{name}</span>
+            </p>
+            <p>
+              Apellido: <span>{surname}</span>
+            </p>
+            <p>
+              Email: <span>{email}</span>
+            </p>
+            <p>
+              Pais: <span>{country}</span>
+            </p>
+            <p>
+              Provincia: <span>{state}</span>
+            </p>
+            <p>
+              Area Favorita 1: <span>{favoriteArea1}</span>
+            </p>
+            <p>
+              Area Favorita 2: <span>{favoriteArea2}</span>
+            </p>
+            <p>
+              Area Favorita 3: <span>{favoriteArea3}</span>
+            </p>
+            <p>
+              Seniority 1: <span>{seniority1}</span>
+            </p>
+            <p>
+              Seniority 2: <span>{seniority2}</span>
+            </p>
+            <p>
+              Seniority 3: <span>{seniority3}</span>
+            </p>
+          </div>
         </div>
       ) : (
         history.push('/recruiters')
       )}
 
-      <button onClick={() => history.goBack()}>go Back</button>
+      <div className={styles.btnCointainer}>
+        <button
+          className={styles.btnInfopersonal}
+          onClick={() => history.goBack()}
+        >
+          go Back
+        </button>
+      </div>
     </div>
   )
 }

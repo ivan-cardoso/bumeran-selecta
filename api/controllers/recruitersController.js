@@ -113,14 +113,28 @@ const recruitersController = {
   },
   async SearchByName(req, res, next) {
     try {
-      const recrutiers = await Recruiters.findAll({
+      const recruiters = await Recruiters.findAll({
         where: {
-          name: {
-            [Op.iLike]: `%${req.params.name}%`, 
-          },
+          [Op.or]: [
+            {
+              name: {
+                [Op.iLike]: `%${req.params.name}%`,
+              },
+            },
+            {
+              surname: {
+                [Op.iLike]: `%${req.params.name}%`,
+              },
+            },
+            {
+              email: {
+                [Op.iLike]: `%${req.params.name}%`,
+              },
+            },
+          ],
         },
       })
-      res.status(200).json(recrutiers)
+      res.status(200).json(recruiters)
     } catch (err) {
       return next(err)
     }
@@ -128,3 +142,11 @@ const recruitersController = {
 }
 
 module.exports = recruitersController
+
+// {
+//   where: {
+//     name: {
+//       [Op.iLike]: `%${req.params.name}%`,
+//     },
+//   },
+// }

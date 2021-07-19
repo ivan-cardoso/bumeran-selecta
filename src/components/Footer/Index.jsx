@@ -6,10 +6,11 @@ const Footer = () => {
   
   return (
     
-      <div className={style.footer}>
+      <div  className={style.footer}>
       <img 
         className={style.imagen}
         src={logo}
+        alt=""
       />
       </div>
    

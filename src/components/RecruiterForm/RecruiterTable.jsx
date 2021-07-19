@@ -94,6 +94,7 @@ export default function DenseTable({
       ) : (
         <UpdateForm
           values={updateInfo}
+          setShowTable={setShowTable}
           setValues={setUpdateValues}
           handleSubmit={handleSubmit}
         />

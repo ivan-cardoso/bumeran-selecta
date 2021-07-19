@@ -1,6 +1,7 @@
 .imagen {
   width: 15%;
   height: 90%;
+  margin: auto;
 }
 
 .footer {
@@ -9,4 +10,4 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+} 

@@ -7,7 +7,6 @@ const csrf = require('csurf')
 const bodyParser = require('body-parser')
 const admin = require('firebase-admin')
 
-
 //import models / db
 const db = require('./db/db')
 const Models = require('./db/models/index')

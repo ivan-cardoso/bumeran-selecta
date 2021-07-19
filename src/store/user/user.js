@@ -41,7 +41,7 @@ export const userCookie = createAction('userCookie', (user) => ({
 export const userReducer = createReducer(initialState, {
   [UserRegister.fulfilled]: (state, action) => action.payload,
   [UserLogin.fulfilled]: (state, action) => action.payload,
-  [UserLogin.rejected]: (state, action) => 'pass o email incorrectos',
+  [UserLogin.rejected]: (state, action) => '',
   [UserLogout.fulfilled]: (state, action) => action.payload,
   [userCookie]: (state, action) => action.payload,
 })

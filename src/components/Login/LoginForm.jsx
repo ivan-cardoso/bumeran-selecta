@@ -4,12 +4,24 @@ import { Alert } from 'antd'
 import styles from './index.module.css'
 
 function LoginForm({ handleChange, handleSubmit, errorMessage, isLoading }) {
+
+
   return (
+
+
+    <div >
     <div className={styles.loginCard}>
-      <h1>Login</h1>
-      <form onChange={handleChange} onSubmit={handleSubmit}>
+
+      <h1 color="white">Enter you Account</h1>
+      
+      <form
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        className={styles.loginform}
+        
+      >
         <div className={styles.loginInput}>
-          <label>Email</label>
+          <label text-align="center">Email</label>
           <input type='text' placeholder='Your Email' name='email' />
           {errorMessage.type === 'email' && (
             <Alert message={errorMessage.message} type='error' />
@@ -23,12 +35,14 @@ function LoginForm({ handleChange, handleSubmit, errorMessage, isLoading }) {
           )}
         </div>
         {!isLoading ? (
-          <button type='submit'> Login </button>
+          <button type='submit' > Ingresar </button>
         ) : (
           <CircularProgress />
         )}
       </form>
-    </div>
+      </div>
+      </div>
+    
   )
 }
 

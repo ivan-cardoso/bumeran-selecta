@@ -1,28 +1,28 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { UserLogout } from '../../store/user/user'
 import s from './index.module.css'
 /* Imports Material-UI */
-import Modal from '@material-ui/core/Modal';
-import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal'
+import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import Backdrop from '@material-ui/core/Backdrop'
+import Fade from '@material-ui/core/Fade'
 
 /* Functions Material-UI */
 function getModalStyle() {
-  const top = 50 ;
-  const left = 50;
+  const top = 50
+  const left = 50
 
   return {
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
-  };
+  }
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -35,20 +35,23 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
-}));
+}))
 
 /* End Functions */
 
-
 const NavBar = () => {
+
   const user = useSelector((state) => state.user)
+  console.log(user)
   const dispatch = useDispatch()
 
   /* Material-UI state and functions */
   const [modalStyle] = React.useState(getModalStyle)
   const [open, setOpen] = React.useState(false)
+  
 
-  const classes = useStyles();
+
+  const classes = useStyles()
 
   const handleOpen = () => {
     setOpen(true)
@@ -63,56 +66,73 @@ const NavBar = () => {
     dispatch(UserLogout(user))
   }
 
- 
-
   return (
-    
-      <div className={s.navbarContainer}>
-
-      
-     
-
-
-      <Link to={"/"} >
-        <img src="https://www.bumeran.com.ar/selecta/wp-content/uploads/2021/06/logo-2.png" alt="bumeran-selecta-logo" />
+    <div className={s.navbarContainer}>
+      <Link to={'/'}>
+        <img
+          src='https://www.bumeran.com.ar/selecta/wp-content/uploads/2021/06/logo-2.png'
+          alt='bumeran-selecta-logo'
+        />
       </Link>
 
-      {user ? 
-        <div className={s.navbarButtonsContainer} >
-            <button className={s.buttonPerfil} type='button' onClick={() => handleOpen()}>
-              <Avatar alt={user.email} src={user.photoURL} />
-            </button>
-            <button  className={s.loginButton} onClick={handleLogout}> Logout</button>
-            {console.log(user)}
-        </div> 
-      : <div>
-        <Link to={"/login"}>
-          <button className={s.loginButton}>Login</button>
-        </Link>
+      {user.uid ? (
+        <div className={s.navbarButtonsContainer}>
+          <button
+            className={s.buttonPerfil}
+            type='button'
+            onClick={() => handleOpen()}
+          >
+            <Avatar alt={user.email} src={user.photoURL} />
+          </button>
+          <button className={s.loginButton} onClick={handleLogout}>
+            {' '}
+            Logout
+          </button>
+          {console.log(user)}
         </div>
-      }
+      ) : (
+        <div>
+          <Link to={'/login'}>
+            <button className={s.loginButton}>Login</button>
+          </Link>
+        </div>
+      )}
       {/* Material-UI animation */}
       <Modal
         open={open}
-        onClose={() => { handleClose() }}
+        onClose={() => {
+          handleClose()
+        }}
         className={classes.modal}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-            timeout: 500,
-          }}
+          timeout: 500,
+        }}
       >
-        <Fade in={open} >
-          <div style={modalStyle} className={classes.paper}>
+        <Fade in={open}>  
+          <div style={modalStyle} className={classes.paper}> 
+          <div className={s.profileUser}>
             <h1>Personal information</h1>
-            <h3>Name : <span>{user.displayName}</span></h3>
-            <h3> Email : <span>{user.email}</span> </h3>
-            <h3>ETC...</h3>
+            <h3 className={s.stylePersonalInfo}>
+
+              Name : <span>{user.displayName}</span>
+
+            </h3>
+            <h3 className={s.stylePersonalInfo}>
+              {' '}
+              Email : <span>{user.email}</span>{' '}
+            </h3>
+
+            <Link to="/forgotpassword"><h3><button
+             className={s.buttonChangePassword}
+             onClick={() => handleClose()}
+             >Change Password</button></h3></Link>
+            </div>
           </div>
         </Fade>
       </Modal>
-      {/* End Material-UI animation */}    
-
+      {/* End Material-UI animation */}
 
       {/* {user && (
         <div>
