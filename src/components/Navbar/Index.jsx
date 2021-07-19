@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
+import BtnLogin from '../UX/Buttons/BtnLogin'
+import BtnLogout from '../UX/Buttons/BtnLogout'
 
 /* Functions Material-UI */
 function getModalStyle() {
@@ -80,16 +82,13 @@ const NavBar = () => {
           >
             <Avatar alt={user.email} src={user.photoURL} />
           </button>
-          <button className={s.loginButton} onClick={handleLogout}>
-            {' '}
-            Logout
-          </button>
+          <BtnLogout name='Logout' onClick={handleLogout}></BtnLogout>
           {console.log(user)}
         </div>
       ) : (
         <div>
           <Link to={'/login'}>
-            <button className={s.loginButton}>Login</button>
+            <BtnLogin name='Login'></BtnLogin>
           </Link>
         </div>
       )}
