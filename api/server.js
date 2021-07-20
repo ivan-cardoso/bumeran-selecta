@@ -24,3 +24,4 @@ db.sync({ force: false }).then(() => {
     console.log(`server running on port ${port}`)
   })
 }) 
+

@@ -8,7 +8,12 @@ const SidebarData = [
         path:'/recruiters',
         icon: <IoIcons.IoMdPeople />,
         cName: 'nav-text'
-    },
+    },{
+        title: 'Companies',
+        path:'/companies',
+        icon: <IoIcons.IoIosBusiness />,
+        cName: 'nav-text'
+    }
 ]
 
 export default SidebarData
