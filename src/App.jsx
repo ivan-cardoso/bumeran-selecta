@@ -13,8 +13,18 @@ import ForgotPass from './components/ForgottenPassword/Index'
 import { PrivateRoute } from './routes/PrivateRoute'
 /* {uid && <Route exact path='/recruiters' component={Recruiter} : '/home' />} */
 import Companies from './components/Companies/Companies'
+import firebase from 'firebase'
+import { useDispatch } from 'react-redux'
+import { userCookie } from './store/user/user'
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((userCred) => {
+      if (userCred) dispatch(userCookie(userCred))
+    })
+  }, [dispatch])
+
   return (
     <div>
       <NavBar />
@@ -22,11 +32,6 @@ function App() {
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/jobs' component={Jobs} />
-        {/*  <PrivateRoute
-          isLoggedIn={isLoggedIn}
-          path="/recruiters"
-          Component={Recruiter}
-        /> */}
         <Route exact path='/recruiters' component={Recruiter} />
         <Route exact path='/companies' component={Companies} />
         <Route path='/recruiters/:id' component={SingleView} />

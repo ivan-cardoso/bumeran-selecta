@@ -11,7 +11,7 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig)
-
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 // const firebaseAdminConfig = {
 //   apiKey: 'AIzaSyAvExraUkbIPt05YKnhUdRuX8ux_Mrwk3k',
 //   authDomain: 'naventp5.firebaseapp.com',
