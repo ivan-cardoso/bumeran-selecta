@@ -1,5 +1,5 @@
-import firebase from 'firebase'
-import 'firebase/firestore'
+var firebase = require('firebase/app')
+require('firebase/storage')
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAvExraUkbIPt05YKnhUdRuX8ux_Mrwk3k',
@@ -21,4 +21,4 @@ firebase.initializeApp(firebaseConfig)
 //   appId: '1:127675556030:web:e7a3497bc5f088828b7eef',
 // }
 
-export default firebase
+module.exports = firebase

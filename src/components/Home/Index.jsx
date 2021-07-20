@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './index.module.css'
-import { Link } from 'react-router-dom'
 import Sidebar from '../Sidebar/Index'
+import Footer from '../Footer/Index'
 
 const Home = () => {
   return (
