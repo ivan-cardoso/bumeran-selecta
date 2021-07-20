@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import LoginForm from './LoginForm'
 import { UserLogin } from '../../store/user/user'
+import firebase from '../../utils/firebase'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -55,6 +56,21 @@ const Login = () => {
         })
         .finally(() => setIsLoading(false))
     }
+  }
+
+  const changePassword = (email) => {
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        var errorCode = error.code
+        var errorMessage = error.message
+        // ..
+      })
   }
 
   return (

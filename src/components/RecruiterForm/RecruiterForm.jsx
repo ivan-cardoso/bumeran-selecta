@@ -10,8 +10,10 @@ import {
   MenuItem,
   useTheme,
 } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
 import s from './index.module.css'
+import { seniorityArr, favArea } from './options'
+import ImageUpload from './ImageUpload'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,249 +35,217 @@ const useStyles = makeStyles((theme) => ({
 
 const RecruiterForm = ({ handleSubmit, values, setValues }) => {
   const classes = useStyles()
-  const seniorityArr = ['Senior', 'Semi-Senior', 'Junior', 'Trainee']
-  const favArea = [
-    'Ingenierías',
-    'Comercial, Ventas y Negocios',
-    'Gerencia y Dirección General',
-    'Administración, Contabilidad y Finanzas',
-    'Recursos Humanos y Capacitación',
-    'Minería, Petróleo y Gas',
-    'Seguros',
-    'Tecnología, Sistemas y Telecomunicaciones',
-    'Salud, Medicina, Enfermería y Farmacia',
-    'Marketing y Publicidad',
-  ]
+  // const [favOptions, setFavOptions] = useState(favArea)
+  // const [restOptions, setRestOptions] = useState(favArea)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
+
     setValues({
       ...values,
       [name]: value,
     })
-    console.log(values)
   }
+
   return (
-    <form
-      onChange={(e) => handleInputChange(e)}
-      className={classes.root}
-      onSubmit={(e) => {
-        handleSubmit(e)
-      }}
-    >
-      <Grid container spacing={12}>
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Name'
-            name='name'
-            value={values.name}
-            // defaultValue={values.name}
-            // onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Surname'
-            name='surname'
-            value={values.surname}
-            // onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Email'
-            type='email'
-            name='email'
-            value={values.email}
-            // onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Country'
-            name='country'
-            value={values.country}
-            // onChange={handleInputChange}
-          />
-        </Grid>
-
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='State'
-            name='state'
-            value={values.state}
-            // onChange={handleInputChange}
-          />{' '}
-        </Grid>
-
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Img'
-            name='img'
-            value={values.img}
-            // onChange={handleInputChange}
-          />{' '}
-        </Grid>
-
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Favourite Area
-            </InputLabel>
-            <Select
-              name='favoriteArea1'
+    <>
+      <form
+        onChange={(e) => handleInputChange(e)}
+        className={classes.root}
+        onSubmit={(e) => {
+          e.preventDefault()
+          handleSubmit(e)
+        }}
+      >
+        <Grid container spacing={12}>
+          <Grid item xs={6}>
+            <TextField
+              variant='outlined'
+              label='Name'
+              name='name'
+              value={values.name}
+              // defaultValue={values.name}
+              // onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              variant='outlined'
+              label='Surname'
+              name='surname'
+              value={values.surname}
+              // onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              variant='outlined'
+              label='Email'
+              type='email'
+              name='email'
+              value={values.email}
+              // onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              variant='outlined'
+              label='Country'
+              name='country'
+              value={values.country}
+              // onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              variant='outlined'
+              label='State'
+              name='state'
+              value={values.state}
+              // onChange={handleInputChange}
+            />{' '}
+          </Grid>
+          {/* <Grid item xs={4}>
+            <TextField
+              variant='outlined'
+              label='Img'
+              name='img'
+              value={values.img}
+              // onChange={handleInputChange}
+            />{' '}
+          </Grid> */}
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Favourite Area 1
+              </InputLabel>
+              <Select
+                name='favoriteArea1'
+                required
+                label='Favourite Area'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {favArea.map((favrArea) => {
+                  return <MenuItem value={favrArea}>{favrArea}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Favourite Area 2
+              </InputLabel>
+              <Select
+                name='favoriteArea2'
+                label='Favourite Area'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {favArea.map((seniority) => {
+                  return <MenuItem value={seniority}>{seniority}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Favourite Area 3
+              </InputLabel>
+              <Select
+                name='favoriteArea3'
+                label='Favourite Area'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {favArea.map((seniority) => {
+                  return <MenuItem value={seniority}>{seniority}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Seniority 1
+              </InputLabel>
+              <Select
+                name='seniority1'
+                required
+                label='Seniority'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {seniorityArr.map((seniority) => {
+                  return <MenuItem value={seniority}>{seniority}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Seniority 2
+              </InputLabel>
+              <Select
+                name='seniority2'
+                label='Seniority'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {seniorityArr.map((seniority) => {
+                  return <MenuItem value={seniority}>{seniority}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Seniority 3
+              </InputLabel>
+              <Select
+                name='seniority3'
+                label='Seniority'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {seniorityArr.map((seniority) => {
+                  return <MenuItem value={seniority}>{seniority}</MenuItem>
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant='outlined'
+              label='Bio'
+              name='bio'
               required
-              label='Favourite Area'
-              onChange={(e) => handleInputChange(e)}
+              value={values.bio}
+              // onChange={handleInputChange}
+            />{' '}
+          </Grid>
+          {/* <div className={classes.root}></div> */}
+          <div>
+            <Button
+              type='submit'
+              variant='contained'
+              color='primary'
+              name='cloudImg'
+              label='Add'
+              style={{
+                border: '1px solid white',
+                borderRadius: '10px',
+                width: '10%',
+                margin: '10px auto',
+              }}
             >
-              {favArea.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Favourite Area
-            </InputLabel>
-            <Select
-              name='favoriteArea2'
-              required
-              label='Favourite Area'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {favArea.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Favourite Area
-            </InputLabel>
-            <Select
-              name='favoriteArea3'
-              required
-              label='Favourite Area'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {favArea.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Seniority
-            </InputLabel>
-            <Select
-              name='seniority1'
-              required
-              label='Seniority'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {seniorityArr.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Seniority
-            </InputLabel>
-            <Select
-              name='seniority2'
-              required
-              label='Seniority'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {seniorityArr.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Seniority
-            </InputLabel>
-            <Select
-              name='seniority3'
-              required
-              label='Seniority'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {seniorityArr.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        {/*  <TextField
-            variant="outlined"
-            label="Img"
-            name="img"
-            value={values.img}
-            onChange={handleInputChange}
-          /> */}
-
-        <input
-          style={{ display: 'none' }}
-          id='contained-button-file'
-          type='file'
-        />
-        {/* <label htmlFor="contained-button-file">
-            <Button variant="contained" color="primary" component="span" value={values.img}
-            onChange={handleInputChange}>
-              Upload Image
+              Confirm
             </Button>
-          </label> */}
-
-        <Grid item xs={12}>
-          <TextField
-            variant='outlined'
-            label='Bio'
-            name='bio'
-            value={values.bio}
-            // onChange={handleInputChange}
-          />{' '}
+          </div>
         </Grid>
-        {/* <div className={classes.root}></div> */}
-
-        <Button
-          type='submit'
-          variant='contained'
-          color='primary'
-          label='Add'
-          style={{
-            border: '1px solid white',
-            borderRadius: '10px',
-            width: '10%',
-            margin: '10px auto',
-          }}
-        >
-          Confirm
-        </Button>
-      </Grid>
-    </form>
+      </form>
+      <div>
+        <ImageUpload setValues={setValues} values={values} />
+      </div>
+    </>
   )
 }
 

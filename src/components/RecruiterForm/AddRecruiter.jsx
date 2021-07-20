@@ -5,6 +5,7 @@ import RecruiterForm from './RecruiterForm'
 import { Grid, Paper, makeStyles, Button } from '@material-ui/core'
 import { getAllRecruiters } from './recruiterTableData'
 import s from './index.module.css'
+import { Alert } from 'antd'
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -16,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
 const Recruiter = ({ setRecruiters }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const [showMessage, setShowMessage] = useState('')
+  const [succes, setSucces] = useState(false)
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const initialFormValues = {
     name: null,
@@ -36,14 +41,36 @@ const Recruiter = ({ setRecruiters }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(createRec(values)).then(() => {
-      getAllRecruiters()
-        .then((recruiters) => setRecruiters(recruiters))
-        .then(() => {
-          setValues(initialFormValues)
-          toggleAdd()
-        })
-    })
+    dispatch(createRec(values))
+      .then((recruiterCreated) => {
+        console.log(recruiterCreated)
+        if (recruiterCreated.payload.bio) setSucces(true)
+        else {
+          setError(true)
+          setErrorMessage('error creando el usuario')
+        }
+      })
+      .then(() => setValues(initialFormValues))
+
+      .then(() =>
+        setTimeout(() => {
+          setSucces(false)
+          setError(false)
+        }, 1500)
+      )
+      .then(() => {
+        getAllRecruiters()
+          .then((recruiters) => setRecruiters(recruiters))
+          .then((recruiters) => {
+            toggleAdd()
+            return recruiters
+          })
+      })
+      .catch((err) => {
+        console.log(err)
+        setValues(initialFormValues)
+        setError(true)
+      })
   }
 
   const toggleAdd = () => {
@@ -61,27 +88,41 @@ const Recruiter = ({ setRecruiters }) => {
   }
 
   return (
-    <Paper className={classes.pageContent}>
-      <Grid item xs={6}></Grid>
-
-      <Button
-        onClick={toggleAdd}
-        variant='contained'
-        color='primary'
-        label='Add'
-        className={s.addButton}
-      >
-        Add new recruiter
-      </Button>
-
-      <div style={{ display: 'none' }} id='RecruiterFormAdd'>
-        <RecruiterForm
-          handleSubmit={handleSubmit}
-          values={values}
-          setValues={setValues}
-        />
+    <>
+      <div>
+        {succes && (
+          <Alert
+            className={showMessage}
+            message='Usuario Agregado con exito'
+            banner
+            type='success'
+            showIcon
+          />
+        )}
+        {error && <Alert message={errorMessage} type='error' showIcon />}
       </div>
-    </Paper>
+      <Paper className={classes.pageContent}>
+        <Grid item xs={6}></Grid>
+
+        <Button
+          onClick={toggleAdd}
+          variant='contained'
+          color='primary'
+          label='Add'
+          className={s.addButton}
+        >
+          Add new recruiter
+        </Button>
+
+        <div style={{ display: 'none' }} id='RecruiterFormAdd'>
+          <RecruiterForm
+            handleSubmit={handleSubmit}
+            values={values}
+            setValues={setValues}
+          />
+        </div>
+      </Paper>
+    </>
   )
 }
 

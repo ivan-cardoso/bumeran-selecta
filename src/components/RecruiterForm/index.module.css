@@ -22,3 +22,22 @@
   outline: none;
   width: 300px;
 }
+
+.open-mesage {
+  /* The default, as in, you get this without defining anything */
+  transition-timing-function: ease;
+
+  /* Also the same as */
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.remove-mesage {
+  /* This timing applies on the way IN */
+  transition-timing-function: ease-out;
+
+  /* A litttttle slower on the way in */
+  transition: 0.25s;
+
+  /* Move into place */
+  transform: translateY(0);
+}

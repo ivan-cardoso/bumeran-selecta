@@ -50,6 +50,7 @@ const recruitersController = {
           seniority3,
         },
       })
+
       if (created) res.status(201).json(recrutier)
       else res.sendStatus(500)
     } catch (err) {

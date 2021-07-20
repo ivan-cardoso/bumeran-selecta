@@ -1,4 +1,4 @@
-const firebase = require('firebase')
+const firebase = require('../firebase')
 
 const register = (req, res) => {
   const { email, password } = req.body

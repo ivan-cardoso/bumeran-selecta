@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { singleRecruiter } from '../../store/recruiter/actions'
+import { Popconfirm, message } from 'antd'
 
 function RecruiterTableBody({
   recruiters,
@@ -26,7 +27,9 @@ function RecruiterTableBody({
         )
         setRecruiters(recruitersWithoutElimiated)
       })
+      .then(() => message.success('usuario eliminado'))
   }
+  const [confirmDelete, setConfirmDelete] = useState(false)
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -73,11 +76,22 @@ function RecruiterTableBody({
               }
             </TableCell>
             <TableCell align='right'>
-              {
-                <button onClick={() => handleDelete(id)}>
+              {/* {
+                <button onClick={() => setConfirmDelete(true)}>
                   <DeleteIcon />
                 </button>
-              }
+              } */}
+              <Popconfirm
+                title={`¿estas seguro que deseas eliminar el usuario ${email} ?`}
+                onConfirm={() => handleDelete(id)}
+                onCancel={() => message.error('cancelado')}
+                okText='confirmar'
+                cancelText='cancelar'
+              >
+                <button>
+                  <DeleteIcon />
+                </button>
+              </Popconfirm>
             </TableCell>
             <TableCell align='right'>
               <button onClick={() => handleSingleView(recruiter)}>
