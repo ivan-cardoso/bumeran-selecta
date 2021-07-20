@@ -8,41 +8,26 @@ import { useState } from "react";
 import { createCompany, getCompanies } from "../../store/companies/companies";
 import { message } from "antd";
 
-export default function AddCompany() {
+export default function AddCompany({ values, setValues, handleInputChange }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-
-  const initialFormValues = {
-    name: null,
-    address: null,
-    email: null,
-    img: null,
-    bio: null,
-  };
-  const [values, setValues] = useState(initialFormValues);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setValues({
-      ...values,
-      [name]: value,
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      values.address !== null &&
-      values.bio !== null &&
+      values.stateid !== null &&
+      values.contactName !== null &&
+      values.description !== null &&
       values.email !== null &&
       values.img !== null &&
+      values.areaId !== null &&
       values.name !== null
     ) {
       dispatch(createCompany(values)).then((value) => {
         if (value.payload) {
           message.success("Company added");
           dispatch(getCompanies());
-          setValues(initialFormValues);
+          //setValues(initialFormValues);
         } else {
           message.warning("Email ya existente");
         }
@@ -78,6 +63,7 @@ export default function AddCompany() {
           handleSubmit={handleSubmit}
           values={values}
           handleInputChange={handleInputChange}
+          setValues={setValues}
         />
       </div>
     </Paper>

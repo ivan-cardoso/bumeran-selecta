@@ -13,12 +13,17 @@ import { getAllAditionalData } from "../../store/aditionalData/actions";
 import styles from "../JobForm/index.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import ImageUpload from "../RecruiterForm/ImageUpload";
+import BtnConfirmRecruiter from "../UX/Buttons/BtnConfirmRecruiter";
+import BtnCancelEdit from "../UX/Buttons/BtnCancelEdit";
+import { message } from "antd";
+import { getCompanies, updateCompany } from "../../store/companies/companies";
 
-export default function AddCompaniesForm({
+export default function UpdateCompaniesForm({
   values,
   setValues,
   handleInputChange,
   handleSubmit,
+  setShowTable,
 }) {
   const dispatch = useDispatch();
 
@@ -28,6 +33,32 @@ export default function AddCompaniesForm({
   const classes = useStyles();
   const { aditionalData } = useSelector((state) => state);
   const { states, areas } = aditionalData;
+
+  const handleClose = (e) => {
+    e.preventDefault();
+    setShowTable(true);
+  };
+  const handleSubmitUpdate = (e) => {
+    e.preventDefault();
+    if (
+      values.stateid !== null &&
+      values.contactName !== null &&
+      values.description !== null &&
+      values.email !== null &&
+      values.img !== null &&
+      values.areaId !== null &&
+      values.name !== null
+    ) {
+      dispatch(updateCompany(values)).then((value) => {
+        message.success("Company added");
+        dispatch(getCompanies()).then(() => setShowTable(true));
+
+        //setValues(initialFormValues);
+      });
+    } else {
+      message.warning("Complete los campos");
+    }
+  };
 
   return (
     <>
@@ -57,9 +88,14 @@ export default function AddCompaniesForm({
                 name="stateId"
                 required
                 label="Provincia"
+                value={values.stateId}
                 onChange={(e) => handleInputChange(e)}
               >
-                <MenuItem className={styles.menuItemSelect} value="" disable>
+                <MenuItem
+                  className={styles.menuItemSelect}
+                  value={values.stateId}
+                  disable
+                >
                   <em>Seleccione provincia</em>
                 </MenuItem>
                 {states
@@ -79,9 +115,14 @@ export default function AddCompaniesForm({
                 name="areaId"
                 required
                 label="Area"
+                value={values.areaId}
                 onChange={(e) => handleInputChange(e)}
               >
-                <MenuItem className={styles.menuItemSelect} value="" disable>
+                <MenuItem
+                  className={styles.menuItemSelect}
+                  value={values.areaId}
+                  disable
+                >
                   <em>Seleccione su area</em>
                 </MenuItem>
                 {areas
@@ -130,21 +171,12 @@ export default function AddCompaniesForm({
             id="contained-button-file"
             type="file"
           />
-
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            label="Add"
-            style={{
-              border: "1px solid white",
-              borderRadius: "10px",
-              width: "10%",
-              margin: "10px auto",
-            }}
-          >
-            Confirmar
-          </Button>
+          <Grid item xs={4}></Grid>
+          <BtnConfirmRecruiter
+            onClick={(e) => handleSubmitUpdate(e)}
+            name="Confirm"
+          ></BtnConfirmRecruiter>
+          <BtnCancelEdit onClick={handleClose} name="Cancel"></BtnCancelEdit>
         </Grid>
       </form>
     </>
