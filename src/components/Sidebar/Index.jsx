@@ -21,7 +21,7 @@ const Sidebar = () => {
         {SidebarData?.map((item, index) => {
           return (
             <div key={index} className={item.cName}>
-              <Link to={user ? item.path : '/login'}>
+              <Link to={item.path}>
                 <h1 className='icon-container'>
                   {item.icon}
                   <span className={s.names}>{item.title}</span>
