@@ -1,19 +1,17 @@
 import {
   Grid,
   TextField,
-  Button,
   makeStyles,
   FormControl,
   InputLabel,
   Select,
-  Input,
   MenuItem,
-  useTheme,
 } from '@material-ui/core'
 import React, { useState } from 'react'
 import s from './index.module.css'
 import { seniorityArr, favArea } from './options'
 import ImageUpload from './ImageUpload'
+import BtnConfirmRecruiter from '../UX/Buttons/BtnConfirmRecruiter'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -223,12 +221,13 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             />{' '}
           </Grid>
           {/* <div className={classes.root}></div> */}
-          <div>
-            <Button
+          <Grid item xs={5}></Grid>
+          <Grid item xs={5}>
+            <BtnConfirmRecruiter
               type='submit'
               variant='contained'
               color='primary'
-              name='cloudImg'
+              name='confirmar'
               label='Add'
               style={{
                 border: '1px solid white',
@@ -238,8 +237,8 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
               }}
             >
               Confirm
-            </Button>
-          </div>
+            </BtnConfirmRecruiter>
+          </Grid>
         </Grid>
       </form>
       <div>

@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { singleRecruiter } from '../../store/recruiter/actions'
 import { Popconfirm, message } from 'antd'
+import styles from './index.module.css'
 
 function RecruiterTableBody({
   recruiters,
@@ -66,6 +67,7 @@ function RecruiterTableBody({
             <TableCell align='right'>
               {
                 <button
+                  className={styles.editButton}
                   onClick={() => {
                     setShowTable(false)
                     setUpdateInfo(recruiter)
@@ -76,11 +78,6 @@ function RecruiterTableBody({
               }
             </TableCell>
             <TableCell align='right'>
-              {/* {
-                <button onClick={() => setConfirmDelete(true)}>
-                  <DeleteIcon />
-                </button>
-              } */}
               <Popconfirm
                 title={`¿estas seguro que deseas eliminar el usuario ${email} ?`}
                 onConfirm={() => handleDelete(id)}
@@ -88,13 +85,16 @@ function RecruiterTableBody({
                 okText='confirmar'
                 cancelText='cancelar'
               >
-                <button>
+                <button className={styles.deleteButton}>
                   <DeleteIcon />
                 </button>
               </Popconfirm>
             </TableCell>
             <TableCell align='right'>
-              <button onClick={() => handleSingleView(recruiter)}>
+              <button
+                className={styles.singleViewButton}
+                onClick={() => handleSingleView(recruiter)}
+              >
                 {<VisibilityIcon />}
               </button>
             </TableCell>
