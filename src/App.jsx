@@ -10,7 +10,7 @@ import Recruiter from './components/RecruiterForm/Recruiter'
 import SingleView from './components/RecruiterSingleView/SingleView'
 import Footer from './components/Footer/Index'
 import ForgotPass from './components/ForgottenPassword/Index'
-import { UserLogin } from './store/user/user'
+import { PrivateRoute } from "./routes/PrivateRoute";
 
 
 /* {uid && <Route exact path='/recruiters' component={Recruiter} : '/home' />} */
@@ -26,17 +26,27 @@ function App() {
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
         
-         <Route exact path='/recruiters' component={Recruiter} />
+         <Route exact path='/recruiters'  component={Recruiter} />
+                                        
+        
+       {/*  <PrivateRoute
+          isLoggedIn={isLoggedIn}
+          path="/recruiters"
+          Component={Recruiter}
+        /> */}
+        
+        
+
 
         <Route path='/recruiters/:id' component={SingleView} />
         <Route path="/forgotpassword" component={ForgotPass} />
         <Redirect from='/' to='/home' />
-
       </Switch>
       <Footer />
     </div>
     
   )
 }
+/* component={()=> usuario ? <Home /> : <Redirect to="/iniciar" />  */
 
 export default App

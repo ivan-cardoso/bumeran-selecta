@@ -64,7 +64,7 @@ const Login = () => {
 
   return (
     <>
-      <div>
+      <div >
         <LoginForm
           handleChange={handleChange}
           handleSubmit={handleSubmit}

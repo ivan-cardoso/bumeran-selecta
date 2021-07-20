@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createRec } from '../../store/recruiter/actions'
 import RecruiterForm from './RecruiterForm'
-import { Grid, Paper, makeStyles, Button } from '@material-ui/core'
+import { Grid, Paper, makeStyles } from '@material-ui/core'
 import { getAllRecruiters } from './recruiterTableData'
 import s from './index.module.css'
+import BtnNewRecuiter from '../UX/Buttons/BtnNewRecruiter'
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -64,15 +65,12 @@ const Recruiter = ({ setRecruiters }) => {
     <Paper className={classes.pageContent}>
       <Grid item xs={6}></Grid>
 
-      <Button
+      <BtnNewRecuiter
         onClick={toggleAdd}
-        variant='contained'
-        color='primary'
         label='Add'
+        name='Add new recruiter'
         className={s.addButton}
-      >
-        Add new recruiter
-      </Button>
+      ></BtnNewRecuiter>
 
       <div style={{ display: 'none' }} id='RecruiterFormAdd'>
         <RecruiterForm

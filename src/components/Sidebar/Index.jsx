@@ -8,6 +8,8 @@ import s from './sidebar.css'
 import { useSelector } from 'react-redux'
 
 const Sidebar = () => {
+
+  
   const [showSidebar, setShowSidebar] = useState(true)
   const { user } = useSelector((state) => state)
 
@@ -18,7 +20,9 @@ const Sidebar = () => {
         className='iconImage'
       />
       <div className={showSidebar ? 'sidebarContainer' : 'hideSidebar'}>
+
         {SidebarData?.map((item, index) => {
+
           return (
             <div key={index} className={item.cName}>
               <Link to={user.uid ? item.path : '/login'}>

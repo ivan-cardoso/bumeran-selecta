@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styles from './index.module.css'
+import BtnGoBack from '../UX/Buttons/BtnGoBack'
 
 function SingleView() {
 
@@ -79,16 +80,8 @@ function SingleView() {
       ) : (
         history.push('/recruiters')
       )}
-
-      <div className={styles.btnCointainer}>
-        <button
-          className={styles.btnInfopersonal}
-          onClick={() => history.goBack()}
-        >
-          go Back
-        </button>
+        <BtnGoBack onClick={history.goBack} name='Go Back'></BtnGoBack>
       </div>
-    </div>
   )
 }
 

@@ -64,4 +64,8 @@ form button {
   background-color: blue;
 }
 
+.backgroundImage  {
+  background-image: url(https://colorate.azurewebsites.net/SwatchColor/3E43BB);
+  margin: 0;
+}
 

@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { singleRecruiter } from '../../store/recruiter/actions'
+import styles from './index.module.css'
 
 function RecruiterTableBody({
   recruiters,
@@ -63,6 +64,7 @@ function RecruiterTableBody({
             <TableCell align='right'>
               {
                 <button
+                  className={styles.editButton}
                   onClick={() => {
                     setShowTable(false)
                     setUpdateInfo(recruiter)
@@ -74,13 +76,13 @@ function RecruiterTableBody({
             </TableCell>
             <TableCell align='right'>
               {
-                <button onClick={() => handleDelete(id)}>
+                <button className={styles.deleteButton} onClick={() => handleDelete(id)}>
                   <DeleteIcon />
                 </button>
               }
             </TableCell>
             <TableCell align='right'>
-              <button onClick={() => handleSingleView(recruiter)}>
+              <button className={styles.singleViewButton} onClick={() => handleSingleView(recruiter)}>
                 {<VisibilityIcon />}
               </button>
             </TableCell>

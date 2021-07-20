@@ -9,7 +9,7 @@ function LoginForm({ handleChange, handleSubmit, errorMessage, isLoading }) {
   return (
 
 
-    <div >
+    <div className={styles.backgroundImage}>
     <div className={styles.loginCard}>
 
       <h1 color="white">Enter you Account</h1>

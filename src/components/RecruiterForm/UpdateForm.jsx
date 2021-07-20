@@ -1,6 +1,8 @@
-import { Grid, TextField, makeStyles, Button } from '@material-ui/core'
+import { Grid, TextField, makeStyles } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import BtnConfirmRecruiter from '../UX/Buttons/BtnConfirmRecruiter'
+import BtnCancelEdit from '../UX/Buttons/BtnCancelEdit'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -145,34 +147,8 @@ const UpdateForm = ({ handleSubmit, values, setShowTable }) => {
             defaultValue={values.bio}
           />
         </Grid>
-        <Button
-          type='submit'
-          variant='contained'
-          color='primary'
-          label='Add'
-          style={{
-            border: '1px solid white',
-            borderRadius: '10px',
-            width: '10%',
-            margin: '10px auto',
-          }}
-        >
-          Confirm
-        </Button>
-        <Button
-          onClick={handleClose}
-          variant='contained'
-          color='primary'
-          label='Add'
-          style={{
-            border: '1px solid white',
-            borderRadius: '10px',
-            width: '10%',
-            margin: '10px auto',
-          }}
-        >
-          Cancel
-        </Button>
+        <BtnConfirmRecruiter name='Confirm'></BtnConfirmRecruiter>
+        <BtnCancelEdit onClick={handleClose} name='Cancel'></BtnCancelEdit>
       </Grid>
     </form>
   )
