@@ -10,15 +10,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const BtnConfirmRecruiter = ({ name }) => {
+const StandardBtn = ({ name, onClick }) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <Button variant='contained' color='primary' type='submit'>
+      <Button color='primary' variant='contained' type='submit'>
         {name}
       </Button>
     </div>
   )
 }
 
-export default BtnConfirmRecruiter
+export default StandardBtn
