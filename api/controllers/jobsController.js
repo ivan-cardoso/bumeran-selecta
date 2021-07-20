@@ -20,9 +20,9 @@ const getOneJob = (req, res) => {
 }
 
 const createJob = (req, res) => {
-    const {title, area , seniority, description, country, state, typeOfEmployed, salary, modality} = req.body
+    const {title, area , seniority, description, country, state, typeOfEmployed, salary, modality, companyId} = req.body
     Jobs.create({
-        title, area , seniority, description, country, state, typeOfEmployed, salary, modality
+        title, area , seniority, description, country, state, typeOfEmployed, salary, modality, companyId
     })
     .then((data)=>{
         res.status(201).send(data)
