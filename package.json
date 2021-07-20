@@ -25,8 +25,6 @@
     "react-dropzone": "^11.3.4",
     "react-firebase-file-uploader": "^2.4.4",
     "react-icons": "^4.2.0",
-    "react-images-upload": "^1.2.8",
-    "react-images-uploading": "^3.1.2",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",

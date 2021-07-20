@@ -82,13 +82,6 @@ const Recruiter = ({ setRecruiters }) => {
         : 'none'
   }
 
-  const toggleEdit = () => {
-    document.getElementById('RecruiterFormEdit').style.display =
-      document.getElementById('RecruiterFormEdit').style.display === 'none'
-        ? 'block'
-        : 'none'
-  }
-
   return (
     <>
       <div>
