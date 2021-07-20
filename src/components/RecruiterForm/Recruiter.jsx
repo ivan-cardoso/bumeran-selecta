@@ -3,7 +3,6 @@ import AddRecruiter from './AddRecruiter'
 import { Paper, makeStyles } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import DenseTable from './RecruiterTable'
-import axios from 'axios'
 import { getAllRecruiters, recruitersColums } from './recruiterTableData'
 import InputSearch from './InputSearch'
 

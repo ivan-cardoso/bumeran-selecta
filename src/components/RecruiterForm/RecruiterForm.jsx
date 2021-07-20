@@ -6,9 +6,7 @@ import {
   FormControl,
   InputLabel,
   Select,
-  Input,
   MenuItem,
-  useTheme,
 } from '@material-ui/core'
 import React from 'react'
 import s from './index.module.css'
@@ -53,7 +51,6 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
       ...values,
       [name]: value,
     })
-    console.log(values)
   }
   return (
     <form

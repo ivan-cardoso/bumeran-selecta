@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createRec } from '../../store/recruiter/actions'
 import RecruiterForm from './RecruiterForm'
@@ -49,13 +49,6 @@ const Recruiter = ({ setRecruiters }) => {
   const toggleAdd = () => {
     document.getElementById('RecruiterFormAdd').style.display =
       document.getElementById('RecruiterFormAdd').style.display === 'none'
-        ? 'block'
-        : 'none'
-  }
-
-  const toggleEdit = () => {
-    document.getElementById('RecruiterFormEdit').style.display =
-      document.getElementById('RecruiterFormEdit').style.display === 'none'
         ? 'block'
         : 'none'
   }
