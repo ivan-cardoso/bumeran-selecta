@@ -4,9 +4,13 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import LoginForm from './LoginForm'
 import { UserLogin } from '../../store/user/user'
+import firebase from '../../utils/firebase'
 
 const Login = () => {
+
+
   const dispatch = useDispatch()
+  
   const [user, setUser] = useState({ email: '', password: '' })
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState({
@@ -41,6 +45,8 @@ const Login = () => {
         type: 'email',
         message: 'por favor ingrese un email valido: ejemplo@ejemplo.com',
       })
+
+      
     else {
       setIsLoading(true)
       dispatch(UserLogin(user))
@@ -57,16 +63,31 @@ const Login = () => {
     }
   }
 
+  const changePassword = (email) => {
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        var errorCode = error.code
+        var errorMessage = error.message
+        // ..
+      })
+  }
+
   return (
     <>
-      <div>
+      <div >
         <LoginForm
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           errorMessage={errorMessage}
           isLoading={isLoading}
         />
-        <button onClick={() => history.goBack()}>Go back</button>
+        {/* <button onClick={() => history.goBack()}>Go back</button> */}
       </div>
     </>
   )

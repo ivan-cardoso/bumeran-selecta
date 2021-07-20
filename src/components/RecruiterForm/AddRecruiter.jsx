@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createRec } from '../../store/recruiter/actions'
 import RecruiterForm from './RecruiterForm'
-import { Grid, Paper, makeStyles, Button } from '@material-ui/core'
+import { Grid, Paper, makeStyles } from '@material-ui/core'
 import { getAllRecruiters } from './recruiterTableData'
 import s from './index.module.css'
+import { Alert } from 'antd'
+import BtnNewRecuiter from '../UX/Buttons/BtnNewRecruiter'
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -16,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
 const Recruiter = ({ setRecruiters }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const [showMessage, setShowMessage] = useState('')
+  const [succes, setSucces] = useState(false)
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const initialFormValues = {
     name: null,
@@ -36,14 +42,37 @@ const Recruiter = ({ setRecruiters }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(createRec(values)).then(() => {
-      getAllRecruiters()
-        .then((recruiters) => setRecruiters(recruiters))
-        .then(() => {
+    dispatch(createRec(values))
+      .then((recruiterCreated) => {
+        console.log(recruiterCreated)
+        if (recruiterCreated.payload.bio) setSucces(true)
+        else {
+          setError(true)
+          setErrorMessage('el email ya existe')
           setValues(initialFormValues)
-          toggleAdd()
-        })
-    })
+        }
+      })
+      .then(() => setValues(initialFormValues))
+
+      .then(() =>
+        setTimeout(() => {
+          setSucces(false)
+          setError(false)
+        }, 2500)
+      )
+      .then(() => {
+        getAllRecruiters()
+          .then((recruiters) => setRecruiters(recruiters))
+          .then((recruiters) => {
+            toggleAdd()
+            return recruiters
+          })
+      })
+      .catch((err) => {
+        console.log(err)
+        setValues(initialFormValues)
+        setError(true)
+      })
   }
 
   const toggleAdd = () => {
@@ -53,35 +82,39 @@ const Recruiter = ({ setRecruiters }) => {
         : 'none'
   }
 
-  const toggleEdit = () => {
-    document.getElementById('RecruiterFormEdit').style.display =
-      document.getElementById('RecruiterFormEdit').style.display === 'none'
-        ? 'block'
-        : 'none'
-  }
-
   return (
-    <Paper className={classes.pageContent}>
-      <Grid item xs={6}></Grid>
-
-      <Button
-        onClick={toggleAdd}
-        variant='contained'
-        color='primary'
-        label='Add'
-        className={s.addButton}
-      >
-        Add new recruiter
-      </Button>
-
-      <div style={{ display: 'none' }} id='RecruiterFormAdd'>
-        <RecruiterForm
-          handleSubmit={handleSubmit}
-          values={values}
-          setValues={setValues}
-        />
+    <>
+      <div>
+        {succes && (
+          <Alert
+            className={showMessage}
+            message='Usuario Agregado con exito'
+            banner
+            type='success'
+            showIcon
+          />
+        )}
+        {error && <Alert message={errorMessage} type='error' showIcon />}
       </div>
-    </Paper>
+      <Paper className={classes.pageContent}>
+        <Grid item xs={6}></Grid>
+
+        <BtnNewRecuiter
+          onClick={toggleAdd}
+          label='Add'
+          name='Add new recruiter'
+          className={s.addButton}
+        ></BtnNewRecuiter>
+
+        <div style={{ display: 'none' }} id='RecruiterFormAdd'>
+          <RecruiterForm
+            handleSubmit={handleSubmit}
+            values={values}
+            setValues={setValues}
+          />
+        </div>
+      </Paper>
+    </>
   )
 }
 

@@ -47,3 +47,26 @@ h4 {
   color: red;
   padding: 10px;
 }
+
+.profileUser{
+  text-align: center;
+}
+
+.stylePersonalInfo {
+  border: 1px solid rgb(49, 49, 224);
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 40px;
+  border-radius: 10px;
+
+}
+
+
+.buttonChangePassword {
+  text-align: center;
+  margin-top: 35px;
+  background: #E90066;
+  border-radius: 8px;
+  color: white;
+  border: #E90066;
+}
