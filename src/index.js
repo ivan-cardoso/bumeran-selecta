@@ -8,7 +8,6 @@ import store from '../src/store/index'
 import { Provider } from 'react-redux'
 
 ReactDOM.render(
-  
   <React.Fragment>
     <Router>
       <Provider store={store}>
