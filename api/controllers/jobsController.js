@@ -78,4 +78,11 @@ const closeJob = (req, res) => {
     })
 }
 
-module.exports = {getAllJobs, getOneJob, createJob, deleteJob, updateJob, closeJob}
+module.exports = {
+  getAllJobs,
+  getOneJob,
+  createJob,
+  deleteJob,
+  updateJob,
+  closeJob,
+};

@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { Companies, Areas, States } = require("../db/models");
+const { Companies, Areas, States, Jobs } = require("../db/models");
 const { findByPk } = require("../db/models/recruiters");
 
 const companiesController = {
@@ -67,10 +67,23 @@ const companiesController = {
             },
           ],
         },
+        include: { all: true },
       });
       res.status(200).json(companies);
     } catch (err) {
-       next(err);
+      next(err);
+    }
+  },
+
+  async getAllJobsByPkCompany(req, res, next) {
+    try {
+      const jobs = await Jobs.findAll({
+        where: { companyId: req.params.id },
+        include: { all: true },
+      });
+      res.status(200).json(jobs);
+    } catch (err) {
+      next(err);
     }
   },
 };
