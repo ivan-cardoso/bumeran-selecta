@@ -3,9 +3,11 @@ import { useState } from 'react'
 import axios from 'axios'
 import { getAllRecruiters } from './recruiterTableData'
 import styles from './index.module.css'
+import FilteredArea from './FilteredAreas'
 
-function InputSearch({ setRecruiters }) {
+function InputSearch({ setRecruiters, recruiters }) {
   const [searchTerm, setSearchTerm] = useState('')
+  const [selectedArea, setSelectedArea] = useState('')
   const handleChange = (e) => {
     const { value } = e.target
     setSearchTerm(value)
@@ -27,16 +29,34 @@ function InputSearch({ setRecruiters }) {
     }
   }
 
+  const removeFilter = () => {
+    setSelectedArea('')
+    getAllRecruiters().then((data) => setRecruiters(data))
+  }
+
   return (
-    <div className={styles.inputSearchContainer}>
-      <form onChange={handleChange} onSubmit={handleSubmit}>
-        <input
-          className={styles.inputSearch}
-          type='text'
-          placeholder='Buscar por nombre...'
+    <>
+      <div className={styles.inputSearchContainer}>
+        <form onChange={handleChange} onSubmit={handleSubmit}>
+          <input
+            className={styles.inputSearch}
+            type='text'
+            placeholder='Buscar por nombre...'
+          />
+        </form>
+        <FilteredArea
+          setSelectedArea={setSelectedArea}
+          setRecruiters={setRecruiters}
+          recruiters={recruiters}
         />
-      </form>
-    </div>
+      </div>
+      <div>
+        <p>{selectedArea}</p>
+        {selectedArea && (
+          <button onClick={() => removeFilter()}>remover filtro</button>
+        )}
+      </div>
+    </>
   )
 }
 
