@@ -9,14 +9,14 @@ Jobs.init({
         type: S.STRING,
         allowNull:false
     },
-    area: {
-        type: S.STRING,
-        allowNull:false
-    },
-    seniority: {
-        type: S.STRING,
-        allowNull: false
-    },
+    // area: {
+    //     type: S.STRING,
+    //     allowNull:false
+    // },
+    // seniority: {
+    //     type: S.STRING,
+    //     allowNull: false
+    // },
     description: {
         type: S.TEXT,
         allowNull: false
@@ -25,21 +25,21 @@ Jobs.init({
         type: S.STRING,
         allowNull: false
     },
-    state: {
-        type: S.STRING,
-      allowNull:false  
-    },
-    typeOfEmployed: {
-        type: S.STRING,
-        allowNull: false
-    },
+    // state: {
+    //     type: S.STRING,
+    //   allowNull:false  
+    // },
+    // typeOfEmployed: {
+    //     type: S.STRING,
+    //     allowNull: false
+    // },
     salary: {
         type: S.INTEGER
     },
-    modality: {
-        type: S.STRING,
-        allowNull:false
-    },
+    // modality: {
+    //     type: S.STRING,
+    //     allowNull:false
+    // },
     isOpen: {
         type: S.BOOLEAN,
         defaultValue:true

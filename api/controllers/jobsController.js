@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 const { Jobs } = require('../db/models/index')
 
 const getAllJobs = (req, res) => {
   Jobs.findAll()
+=======
+const {Jobs, Areas, States, Seniority, TypeEmployed, Modality } = require("../db/models/index")
+
+
+const getAllJobs = (req, res) => {
+    Jobs.findAll({ include: { all: true}})
+>>>>>>> 916aa71dedaa334c43c7dfee2f0ee570550264d4
     .then((data) => res.status(200).send(data))
     .catch((err) => {
       console.log(err)
@@ -27,6 +35,7 @@ const getOneJob = (req, res) => {
 }
 
 const createJob = (req, res) => {
+<<<<<<< HEAD
   const {
     title,
     area,
@@ -53,6 +62,14 @@ const createJob = (req, res) => {
   })
     .then((data) => {
       res.status(201).send(data)
+=======
+    const {title, areaId , seniorityId, description, country, stateId, typeemloyedId, salary, modalityId , companyId} = req.body
+    Jobs.create({
+        title, areaId , seniorityId, description, country, stateId, typeemloyedId, salary, modalityId , companyId
+    })
+    .then((data)=>{
+        res.status(201).send(data)
+>>>>>>> 916aa71dedaa334c43c7dfee2f0ee570550264d4
     })
     .catch((err) => {
       console.log(err)
