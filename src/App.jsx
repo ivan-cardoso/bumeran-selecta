@@ -34,7 +34,7 @@ function App() {
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route path='/forgotpassword' component={ForgotPass} />
-        <PrivateRoute
+        <Route
           exact
           path='/jobs'
           component={Jobs}

@@ -8,9 +8,17 @@ const {
   deleteJob,
   updateJob,
   closeJob,
+  getTop3Companies,
+  jobByArea,
+  jobBySeniority,
+  historicChart,
 } = require('../controllers/jobsController')
 
 router.get('/opened', getOpenedJobs)
+router.get('/historic', historicChart)
+router.get('/jobbyarea', jobByArea)
+router.get('/jobbyseniority', jobBySeniority)
+router.get('/top3', getTop3Companies)
 router.get('/', getAllJobs)
 router.get('/:id', getOneJob)
 router.post('/create', createJob)

@@ -1,5 +1,5 @@
-const S = require("sequelize");
-const db = require("../db");
+const S = require('sequelize')
+const db = require('../db')
 
 class Recruiters extends S.Model {}
 
@@ -14,7 +14,7 @@ Recruiters.init(
       type: S.STRING,
       allowNull: false,
     },
-    
+
     email: {
       type: S.STRING,
       allowNull: false,
@@ -60,7 +60,7 @@ Recruiters.init(
 
     seniority3: { type: S.STRING },
   },
-  { sequelize: db, timestamps: false, modelName: "recruiters" }
-);
+  { sequelize: db, timestamps: false, modelName: 'recruiters' }
+)
 
-module.exports = Recruiters;
+module.exports = Recruiters

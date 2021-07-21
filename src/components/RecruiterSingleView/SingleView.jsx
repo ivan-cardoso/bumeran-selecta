@@ -24,7 +24,6 @@ function SingleView() {
     seniority3,
   } = recruiter
 
-  console.log(recruiter)
   return (
     <div>
       {recruiter.id ? (
