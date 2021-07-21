@@ -5,20 +5,23 @@ import { Grid, Paper, Button, Modal, Fade, makeStyles, Backdrop } from "@materia
 import JobsForm from './JobsForm';
 import { message } from "antd";
 import styles from "./index.module.css"
+import useModal from "./useModal"
 
 
-function getModalStyle() {
-    const top = 50
-    const left = 50
+// function getModalStyle() {
+//     const top = 50
+//     const left = 50
   
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
-    }
-}
+//     return {
+//       top: `${top}%`,
+//       left: `${left}%`,
+//       transform: `translate(-${top}%, -${left}%)`,
+//     }
+// }
 
 const AddJob = () => {
+    const {open, setOpen, handleOpen, handleClose, classes, modalStyle} = useModal()
+
     //Traditional settings
     const handleShowForm = () =>{
         document.getElementById("createJobForm").style.display = 
@@ -26,31 +29,31 @@ const AddJob = () => {
     }
 
     //Modal settings
-    const useStyles = makeStyles((theme) => ({
-        modal: {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-        paper: {
-          position: 'absolute',
-          width: 1100,
-          backgroundColor: theme.palette.background.paper,
-          boxShadow: theme.shadows[5],
-          padding: theme.spacing(2, 4, 3),
-        },
-      }))
-    const classes = useStyles()
+    // const useStyles = makeStyles((theme) => ({
+    //     modal: {
+    //       display: 'flex',
+    //       alignItems: 'center',
+    //       justifyContent: 'center',
+    //     },
+    //     paper: {
+    //       position: 'absolute',
+    //       width: 1100,
+    //       backgroundColor: theme.palette.background.paper,
+    //       boxShadow: theme.shadows[5],
+    //       padding: theme.spacing(2, 4, 3),
+    //     },
+    //   }))
+    // const classes = useStyles()
 
-    const [modalStyle] = React.useState(getModalStyle)
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => {
-        setOpen(true)
-      }
-    const handleClose = () => {
-        setOpen(false)
-    }
-
+    // const [modalStyle] = React.useState(getModalStyle)
+    // const [open, setOpen] = React.useState(false)
+    
+    // const handleOpen = () => {
+    //     setOpen(true)
+    //   }
+    // const handleClose = () => {
+    //     setOpen(false)
+    // }
 
 
 
@@ -118,7 +121,6 @@ const AddJob = () => {
             >
                 <Fade in={open}>  
                 <div style={modalStyle} className={classes.paper}> 
-                
                     <JobsForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}/>
                 </div>
                 </Fade>
