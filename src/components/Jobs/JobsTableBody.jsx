@@ -28,12 +28,12 @@ const JobsTableBody = ({ setShowTable, setUpdateInfo}) => {
                     <TableCell align='right'>{job.area.name}</TableCell>
                     <TableCell align='right'>{job.seniority.name}</TableCell>
                     <TableCell align='right'>{job.typeemloyed.name}</TableCell>
-                    {/* 
+                    
                     <TableCell align='right'>{job.modality.name}</TableCell>
                     <TableCell align='right'>{job.country}</TableCell>
                     <TableCell align='right'>{job.state.name}</TableCell>
                     <TableCell align='right'>{job.salary}</TableCell>
-                    <TableCell align='right'>{job.description}</TableCell>  */}
+                    <TableCell align='right'>{job.description}</TableCell> 
                     <TableCell align='right'>
                         <button
                         // onClick={() => {

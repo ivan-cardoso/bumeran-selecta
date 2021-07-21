@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch } from "react-redux";
-import { createJob } from "../../store/jobs/jobs"
+import { createJob, getAllJobs } from "../../store/jobs/jobs"
 import { Grid, Paper, Button, Modal, Fade, makeStyles, Backdrop } from "@material-ui/core";
 import JobsForm from './JobsForm';
 import { message } from "antd";
@@ -92,6 +92,7 @@ const AddJob = () => {
           ) {
             dispatch(createJob(values)).then((value) => {
               if (value.payload) {
+                dispatch(getAllJobs())
                 setOpen(false)
                 message.success("Búsqueda creada correctamente");
                 // dispatch(getCompanies());
