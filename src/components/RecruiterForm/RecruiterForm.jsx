@@ -13,6 +13,7 @@ import ImageUpload from './ImageUpload'
 import BtnConfirmRecruiter from '../UX/Buttons/BtnConfirmRecruiter'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllAditionalData } from '../../store/aditionalData/actions'
+import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,8 +46,29 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
   const { areas, modalities, seniorities, states, type } = aditionalData
   const countryArr = ['Argentina']
 
+  // const [selectedFav1, setSelectedFav1] = useState('')
+  // const [selectedFav2, setSelectedFav2] = useState('')
+  // const [selectedFav3, setSelectedFav3] = useState('')
+  // const [favOptions, setFavOptions] = useState(areas)
+
+  // console.log('fav options', favOptions)
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
+
+    // if (name === 'favoriteArea1') setSelectedFav1(value)
+    // if (name === 'favoriteArea2') setSelectedFav2(value)
+    // if (name === 'favoriteArea3') setSelectedFav3(value)
+    // setFavOptions((remainders) => {
+    //   return remainders.filter((remainder) => {
+    //     if (remainder === selectedFav1) return false
+    //     if (remainder === selectedFav2) return false
+    //     if (remainder === selectedFav3) return false
+    //     return true
+    //   })
+    // })
+
+    // console.log('FAV OPTIONNS', favOptions)
 
     setValues({
       ...values,
@@ -69,6 +91,7 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             <TextField
               variant='outlined'
               label='Name'
+              required
               name='name'
               value={values.name}
             />
@@ -77,6 +100,7 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             <TextField
               variant='outlined'
               label='Surname'
+              required
               name='surname'
               value={values.surname}
             />
@@ -86,6 +110,7 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
               variant='outlined'
               label='Email'
               type='email'
+              required
               name='email'
               value={values.email}
             />

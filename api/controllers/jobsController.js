@@ -1,81 +1,119 @@
-const {Jobs} = require("../db/models/index")
-
+const { Jobs } = require('../db/models/index')
 
 const getAllJobs = (req, res) => {
-    Jobs.findAll()
+  Jobs.findAll()
     .then((data) => res.status(200).send(data))
-    .catch((err)=> {
-        console.log(err)
-        res.status(500).send(err)
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err)
+    })
+}
+const getOpenedJobs = (req, res) => {
+  Jobs.findAll({ where: { isOpen: true } })
+    .then((data) => res.status(200).send(data))
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err)
     })
 }
 
 const getOneJob = (req, res) => {
-    Jobs.findByPk(req.params.id)
+  Jobs.findByPk(req.params.id)
     .then((data) => res.status(200).send(data))
-    .catch((err)=> {
-        console.log(err)
-        res.status(500).send(err)
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err)
     })
 }
 
 const createJob = (req, res) => {
-    const {title, area , seniority, description, country, state, typeOfEmployed, salary, modality, companyId} = req.body
-    Jobs.create({
-        title, area , seniority, description, country, state, typeOfEmployed, salary, modality, companyId
+  const {
+    title,
+    area,
+    seniority,
+    description,
+    country,
+    state,
+    typeOfEmployed,
+    salary,
+    modality,
+    companyId,
+  } = req.body
+  Jobs.create({
+    title,
+    area,
+    seniority,
+    description,
+    country,
+    state,
+    typeOfEmployed,
+    salary,
+    modality,
+    companyId,
+  })
+    .then((data) => {
+      res.status(201).send(data)
     })
-    .then((data)=>{
-        res.status(201).send(data)
-    })
-    .catch((err)=> {
-        console.log(err)
-        res.status(500).send(err)
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err)
     })
 }
 
 const deleteJob = (req, res) => {
-    Jobs.destroy({
-        where : {
-            id : req.params.id
-        }
+  Jobs.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then(() => {
+      res.status(200).send('Delete succefully')
     })
-    .then(()=>{
-        res.status(200).send("Delete succefully")
-    })
-    .catch((err)=> {
-        console.log(err)
-        res.status(500).send(err)
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err)
     })
 }
 
 const updateJob = (req, res) => {
-    Jobs.update(req.body, {
-        where : {
-            id : req.params.id
-        },
-        returning : true,
-        plain : true 
-    })
-    .then(([,data]) => res.status(200).send(data))
-    .catch((err)=> {
-        console.log(err)
-        res.status(500).send(err)
+  Jobs.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+    returning: true,
+    plain: true,
+  })
+    .then(([, data]) => res.status(200).send(data))
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err)
     })
 }
 
 const closeJob = (req, res) => {
-    Jobs.update({isOpen : false}, {
-        where : {
-            id : req.params.id
-        },
-        returning : true,
-        plain : true
-    })
-    .then(([,data]) => res.status(200).send(data))
-    .catch((err)=> {
-        console.log(err)
-        res.status(500).send(err)
+  Jobs.update(
+    { isOpen: false },
+    {
+      where: {
+        id: req.params.id,
+      },
+      returning: true,
+      plain: true,
+    }
+  )
+    .then(([, data]) => res.status(200).send(data))
+    .catch((err) => {
+      console.log(err)
+      res.status(500).send(err)
     })
 }
 
-module.exports = {getAllJobs, getOneJob, createJob, deleteJob, updateJob, closeJob}
+module.exports = {
+  getOpenedJobs,
+  getAllJobs,
+  getOneJob,
+  createJob,
+  deleteJob,
+  updateJob,
+  closeJob,
+}

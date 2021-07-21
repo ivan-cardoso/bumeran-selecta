@@ -5,7 +5,7 @@ import RecruiterForm from './RecruiterForm'
 import { Grid, Paper, makeStyles } from '@material-ui/core'
 import { getAllRecruiters } from './recruiterTableData'
 import s from './index.module.css'
-import { Alert } from 'antd'
+import { message } from 'antd'
 import BtnNewRecuiter from '../UX/Buttons/BtnNewRecruiter'
 
 const useStyles = makeStyles((theme) => ({
@@ -18,10 +18,6 @@ const useStyles = makeStyles((theme) => ({
 const Recruiter = ({ setRecruiters }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const [showMessage, setShowMessage] = useState('')
-  const [succes, setSucces] = useState(false)
-  const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
 
   const initialFormValues = {
     name: null,
@@ -44,22 +40,16 @@ const Recruiter = ({ setRecruiters }) => {
     e.preventDefault()
     dispatch(createRec(values))
       .then((recruiterCreated) => {
-        console.log(recruiterCreated)
-        if (recruiterCreated.payload.bio) setSucces(true)
-        else {
-          setError(true)
-          setErrorMessage('el email ya existe')
-          setValues(initialFormValues)
+        if (recruiterCreated.payload.bio) {
+          message.success('usuario agregado con exito')
+        } else {
+          message.error('el usuario ya existe')
         }
+        return
       })
-      .then(() => setValues(initialFormValues))
-
-      .then(() =>
-        setTimeout(() => {
-          setSucces(false)
-          setError(false)
-        }, 2500)
-      )
+      .then(() => {
+        setValues((values) => initialFormValues)
+      })
       .then(() => {
         getAllRecruiters()
           .then((recruiters) => setRecruiters(recruiters))
@@ -71,11 +61,13 @@ const Recruiter = ({ setRecruiters }) => {
       .catch((err) => {
         console.log(err)
         setValues(initialFormValues)
-        setError(true)
       })
   }
 
+  console.log(values)
+
   const toggleAdd = () => {
+    setValues(initialFormValues)
     document.getElementById('RecruiterFormAdd').style.display =
       document.getElementById('RecruiterFormAdd').style.display === 'none'
         ? 'block'
@@ -84,18 +76,6 @@ const Recruiter = ({ setRecruiters }) => {
 
   return (
     <>
-      <div>
-        {succes && (
-          <Alert
-            className={showMessage}
-            message='Usuario Agregado con exito'
-            banner
-            type='success'
-            showIcon
-          />
-        )}
-        {error && <Alert message={errorMessage} type='error' showIcon />}
-      </div>
       <Paper className={classes.pageContent}>
         <Grid item xs={6}></Grid>
 

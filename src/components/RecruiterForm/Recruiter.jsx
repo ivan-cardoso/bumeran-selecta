@@ -36,7 +36,6 @@ const Recruiter = () => {
         ) : (
           <h1>No hay resultados...</h1>
         )}
-        {/* <button onClick={() => history.goBack()}>Go back</button> */}
       </Paper>
     </>
   )
