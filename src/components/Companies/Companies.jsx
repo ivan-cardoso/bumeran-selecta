@@ -53,13 +53,10 @@ export default function Companies() {
       <InputSearch handleChange={handleChange} />
       <Paper className={classes.pageContent}>
         {companies.length > 0 ? (
-          <CompaniesTable
-            companies={companies}
-          />
+          <CompaniesTable companies={companies} />
         ) : (
           <h1>No hay resultados...</h1>
         )}
-        {/* <button onClick={() => history.goBack()}>Go back</button> */}
       </Paper>
     </>
   );

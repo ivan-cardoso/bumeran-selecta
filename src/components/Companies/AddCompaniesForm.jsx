@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import useStyles from "./style";
 import { getAllAditionalData } from "../../store/aditionalData/actions";
-import styles from "../JobForm/index.module.css";
+import styles from "../Jobs/index.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import ImageUpload from "../RecruiterForm/ImageUpload";
 

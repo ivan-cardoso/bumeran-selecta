@@ -3,21 +3,30 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "../RecruiterSingleView/index.module.css";
 import BtnGoBack from "../UX/Buttons/BtnGoBack";
-import BtnCreateNewJobs from "../UX/Buttons/BtnCreateNewJobs";
+import { Button, Modal, Fade, Backdrop } from "@material-ui/core";
+import AddJob from "../Jobs/AddJob";
 
 function SingleViewCompany() {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const history = useHistory();
-  const { companies } = useSelector((state) => state);
-    const { name, email, state, img, contactName, description, area } =
-      companies;
-    
-    const handleCreateJobs = () => {
-      history.push();
-    };
+  const { singleCompany } = useSelector((state) => state);
+  const { name, email, state, img, contactName, description, area } =
+    singleCompany;
+
+  const handleCreateJobs = () => {
+    history.push();
+  };
 
   return (
     <div>
-      {companies.id ? (
+      {singleCompany.id ? (
         <div className={styles.container}>
           <div className={styles.picture}>
             <h1>{name}</h1>
@@ -41,15 +50,13 @@ function SingleViewCompany() {
             <p>
               Area: <span>{area.name}</span>
             </p>
-            <BtnCreateNewJobs
-              onClick={handleCreateJobs}
-              name="Crear un nuevo anuncio"
-            ></BtnCreateNewJobs>
+            <AddJob></AddJob>
           </div>
+          <h1>hola</h1>
         </div>
       ) : (
         history.push("/companies")
-      )}
+        )}
       <BtnGoBack onClick={history.goBack} name="Go Back"></BtnGoBack>
     </div>
   );

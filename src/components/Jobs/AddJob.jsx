@@ -5,6 +5,8 @@ import { Grid, Paper, Button, Modal, Fade, makeStyles, Backdrop } from "@materia
 import JobsForm from './JobsForm';
 import { message } from "antd";
 import styles from "./index.module.css"
+import BtnCreateNewJobs from "../UX/Buttons/BtnCreateNewJobs";
+
 
 
 function getModalStyle() {
@@ -76,6 +78,7 @@ const AddJob = () => {
             ...values,
             [name]: value
         })
+      console.log(values);
     };
 
     const handleSubmit = (e) => {
@@ -106,25 +109,37 @@ const AddJob = () => {
 
 
     return (
-        <div>
-            <Button onClick={handleOpen} >Crear búsqueda</Button>
-            {/* <div style={{ display: "none" }} id="createJobForm">
+      <div>
+        <BtnCreateNewJobs
+          onClick={handleOpen}
+          name="Crear búsqueda"
+        ></BtnCreateNewJobs>
+        {/* <div style={{ display: "none" }} id="createJobForm">
                 <JobsForm/>
             </div> */}
 
-            <Modal open={open} onClose={() => {handleClose()}} className={classes.modal}
-                closeAfterTransition BackdropComponent={Backdrop} 
-                BackdropProps={{timeout: 1000,}}
-            >
-                <Fade in={open}>  
-                <div style={modalStyle} className={classes.paper}> 
-                
-                    <JobsForm values={values} handleChange={handleChange} handleSubmit={handleSubmit}/>
-                </div>
-                </Fade>
-            </Modal>
-        </div>
-    )
+        <Modal
+          open={open}
+          onClose={() => {
+            handleClose();
+          }}
+          className={classes.modal}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{ timeout: 1000 }}
+        >
+          <Fade in={open}>
+            <div style={modalStyle} className={classes.paper}>
+              <JobsForm
+                values={values}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+              />
+            </div>
+          </Fade>
+        </Modal>
+      </div>
+    );
 }
 
 export default AddJob
