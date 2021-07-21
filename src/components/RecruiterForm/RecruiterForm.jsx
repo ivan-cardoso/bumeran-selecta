@@ -7,9 +7,13 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from './index.module.css'
+import ImageUpload from './ImageUpload'
 import BtnConfirmRecruiter from '../UX/Buttons/BtnConfirmRecruiter'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllAditionalData } from '../../store/aditionalData/actions'
+import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,236 +35,274 @@ const useStyles = makeStyles((theme) => ({
 
 const RecruiterForm = ({ handleSubmit, values, setValues }) => {
   const classes = useStyles()
-  const seniorityArr = ['Senior', 'Semi-Senior', 'Junior', 'Trainee']
-  const favArea = [
-    'Ingenierías',
-    'Comercial, Ventas y Negocios',
-    'Gerencia y Dirección General',
-    'Administración, Contabilidad y Finanzas',
-    'Recursos Humanos y Capacitación',
-    'Minería, Petróleo y Gas',
-    'Seguros',
-    'Tecnología, Sistemas y Telecomunicaciones',
-    'Salud, Medicina, Enfermería y Farmacia',
-    'Marketing y Publicidad',
-  ]
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllAditionalData())
+  }, [dispatch])
+
+  const { aditionalData } = useSelector((state) => state)
+  const { areas, modalities, seniorities, states, type } = aditionalData
+  const countryArr = ['Argentina']
+
+  // const [selectedFav1, setSelectedFav1] = useState('')
+  // const [selectedFav2, setSelectedFav2] = useState('')
+  // const [selectedFav3, setSelectedFav3] = useState('')
+  // const [favOptions, setFavOptions] = useState(areas)
+
+  // console.log('fav options', favOptions)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
+
+    // if (name === 'favoriteArea1') setSelectedFav1(value)
+    // if (name === 'favoriteArea2') setSelectedFav2(value)
+    // if (name === 'favoriteArea3') setSelectedFav3(value)
+    // setFavOptions((remainders) => {
+    //   return remainders.filter((remainder) => {
+    //     if (remainder === selectedFav1) return false
+    //     if (remainder === selectedFav2) return false
+    //     if (remainder === selectedFav3) return false
+    //     return true
+    //   })
+    // })
+
+    // console.log('FAV OPTIONNS', favOptions)
+
     setValues({
       ...values,
       [name]: value,
     })
-    console.log(values)
   }
+
   return (
-    <form
-      onChange={(e) => handleInputChange(e)}
-      className={classes.root}
-      onSubmit={(e) => {
-        handleSubmit(e)
-      }}
-    >
-      <Grid container spacing={12}>
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Name'
-            name='name'
-            value={values.name}
-            // defaultValue={values.name}
-            // onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Surname'
-            name='surname'
-            value={values.surname}
-            // onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Email'
-            type='email'
-            name='email'
-            value={values.email}
-            // onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Country'
-            name='country'
-            value={values.country}
-            // onChange={handleInputChange}
-          />
-        </Grid>
-
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='State'
-            name='state'
-            value={values.state}
-            // onChange={handleInputChange}
-          />{' '}
-        </Grid>
-
-        <Grid item xs={4}>
-          <TextField
-            variant='outlined'
-            label='Img'
-            name='img'
-            value={values.img}
-            // onChange={handleInputChange}
-          />{' '}
-        </Grid>
-
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Favourite Area
-            </InputLabel>
-            <Select
-              name='favoriteArea1'
+    <>
+      <form
+        onChange={(e) => handleInputChange(e)}
+        className={classes.root}
+        onSubmit={(e) => {
+          e.preventDefault()
+          handleSubmit(e)
+        }}
+      >
+        <Grid container spacing={12}>
+          <Grid item xs={6}>
+            <TextField
+              variant='outlined'
+              label='Name'
               required
-              label='Favourite Area'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {favArea.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Favourite Area
-            </InputLabel>
-            <Select
-              name='favoriteArea2'
+              name='name'
+              value={values.name}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              variant='outlined'
+              label='Surname'
               required
-              label='Favourite Area'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {favArea.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Favourite Area
-            </InputLabel>
-            <Select
-              name='favoriteArea3'
+              name='surname'
+              value={values.surname}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              variant='outlined'
+              label='Email'
+              type='email'
               required
-              label='Favourite Area'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {favArea.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
+              name='email'
+              value={values.email}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                País
+              </InputLabel>
+              <Select
+                name='country'
+                required
+                label='País'
+                onChange={(e) => handleInputChange(e)}
+              >
+                <MenuItem value='' disable>
+                  <em>Seleccione país</em>
+                </MenuItem>
+                {countryArr.length &&
+                  countryArr.map((country) => {
+                    return <MenuItem value={country}>{country}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Provincia
+              </InputLabel>
+              <Select
+                name='state'
+                onChange={(e) => handleInputChange(e)}
+                required
+                label='Provincia'
+              >
+                <MenuItem value='' disable>
+                  <em>Seleccione provincia</em>
+                </MenuItem>
+                {states &&
+                  states.map((state) => {
+                    return <MenuItem value={state.id}>{state.name}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
+          </Grid>
 
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Seniority
-            </InputLabel>
-            <Select
-              name='seniority1'
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Favourite Area 1
+              </InputLabel>
+              <Select
+                name='favoriteArea1'
+                required
+                label='Favourite Area'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {areas &&
+                  areas.map((area) => {
+                    const { name, id } = area
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Favourite Area 2
+              </InputLabel>
+              <Select
+                name='favoriteArea2'
+                label='Favourite Area'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {areas &&
+                  areas.map((area) => {
+                    const { name, id } = area
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Favourite Area 3
+              </InputLabel>
+              <Select
+                name='favoriteArea3'
+                label='Favourite Area'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {areas &&
+                  areas.map((area) => {
+                    const { name, id } = area
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Seniority 1
+              </InputLabel>
+              <Select
+                name='seniority1'
+                required
+                label='Seniority'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {seniorities &&
+                  seniorities.map((seniority) => {
+                    const { name, id } = seniority
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Seniority 2
+              </InputLabel>
+              <Select
+                name='seniority2'
+                label='Seniority'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {seniorities &&
+                  seniorities.map((seniority) => {
+                    const { name, id } = seniority
+
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Seniority 3
+              </InputLabel>
+              <Select
+                name='seniority3'
+                label='Seniority'
+                onChange={(e) => handleInputChange(e)}
+              >
+                {seniorities &&
+                  seniorities.map((seniority) => {
+                    const { name, id } = seniority
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant='outlined'
+              label='Bio'
+              name='bio'
               required
-              label='Seniority'
-              onChange={(e) => handleInputChange(e)}
+              value={values.bio}
+            />{' '}
+          </Grid>
+
+          <Grid item xs={5}></Grid>
+          <Grid item xs={5}>
+            <BtnConfirmRecruiter
+              type='submit'
+              variant='contained'
+              color='primary'
+              name='confirmar'
+              label='Add'
+              style={{
+                border: '1px solid white',
+                borderRadius: '10px',
+                width: '10%',
+                margin: '10px auto',
+              }}
             >
-              {seniorityArr.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
+              Confirm
+            </BtnConfirmRecruiter>
+          </Grid>
         </Grid>
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Seniority
-            </InputLabel>
-            <Select
-              name='seniority2'
-              required
-              label='Seniority'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {seniorityArr.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={4}>
-          <FormControl variant='outlined' className={classes.formControl}>
-            <InputLabel id='demo-simple-select-outlined-label'>
-              Seniority
-            </InputLabel>
-            <Select
-              name='seniority3'
-              required
-              label='Seniority'
-              onChange={(e) => handleInputChange(e)}
-            >
-              {seniorityArr.map((seniority) => {
-                return <MenuItem value={seniority}>{seniority}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </Grid>
-
-        {/*  <TextField
-            variant="outlined"
-            label="Img"
-            name="img"
-            value={values.img}
-            onChange={handleInputChange}
-          /> */}
-
-        <input
-          style={{ display: 'none' }}
-          id='contained-button-file'
-          type='file'
-        />
-        {/* <label htmlFor="contained-button-file">
-            <Button variant="contained" color="primary" component="span" value={values.img}
-            onChange={handleInputChange}>
-              Upload Image
-            </Button>
-          </label> */}
-
-        <Grid item xs={12}>
-          <TextField
-            variant='outlined'
-            label='Bio'
-            name='bio'
-            value={values.bio}
-            // onChange={handleInputChange}
-          />{' '}
-        </Grid>
-        {/* <div className={classes.root}></div> */}
-
-        <BtnConfirmRecruiter name='Confirm'></BtnConfirmRecruiter>
-      </Grid>
-    </form>
+      </form>
+      <div>
+        <ImageUpload setValues={setValues} values={values} />
+      </div>
+    </>
   )
 }
 

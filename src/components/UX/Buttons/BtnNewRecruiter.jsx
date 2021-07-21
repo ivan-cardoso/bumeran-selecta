@@ -1,6 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -8,19 +8,18 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
-}));
+}))
 
 const BtnNewRecruiter = ({ name, onClick }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>
-      
-      <Button variant="contained" color="primary" onClick={onClick}>
+      <Button variant='contained' color='primary' onClick={onClick}>
         {name}
       </Button>
     </div>
-  );
+  )
 }
- 
-export default BtnNewRecruiter;
+
+export default BtnNewRecruiter

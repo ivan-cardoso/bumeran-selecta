@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
+
 const recruitersController = require('../controllers/recruitersController')
+
+// Create a storage reference from our storage service
 
 router.get('/search/:name', recruitersController.SearchByName)
 router.get('/', recruitersController.findAll)

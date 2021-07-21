@@ -5,6 +5,7 @@ import RecruiterForm from './RecruiterForm'
 import { Grid, Paper, makeStyles } from '@material-ui/core'
 import { getAllRecruiters } from './recruiterTableData'
 import s from './index.module.css'
+import { message } from 'antd'
 import BtnNewRecuiter from '../UX/Buttons/BtnNewRecruiter'
 
 const useStyles = makeStyles((theme) => ({
@@ -37,49 +38,63 @@ const Recruiter = ({ setRecruiters }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(createRec(values)).then(() => {
-      getAllRecruiters()
-        .then((recruiters) => setRecruiters(recruiters))
-        .then(() => {
-          setValues(initialFormValues)
-          toggleAdd()
-        })
-    })
+    dispatch(createRec(values))
+      .then((recruiterCreated) => {
+        if (recruiterCreated.payload.bio) {
+          message.success('usuario agregado con exito')
+        } else {
+          message.error('el usuario ya existe')
+        }
+        return
+      })
+      .then(() => {
+        setValues((values) => initialFormValues)
+      })
+      .then(() => {
+        getAllRecruiters()
+          .then((recruiters) => setRecruiters(recruiters))
+          .then((recruiters) => {
+            toggleAdd()
+            return recruiters
+          })
+      })
+      .catch((err) => {
+        console.log(err)
+        setValues(initialFormValues)
+      })
   }
 
+  console.log(values)
+
   const toggleAdd = () => {
+    setValues(initialFormValues)
     document.getElementById('RecruiterFormAdd').style.display =
       document.getElementById('RecruiterFormAdd').style.display === 'none'
         ? 'block'
         : 'none'
   }
 
-  const toggleEdit = () => {
-    document.getElementById('RecruiterFormEdit').style.display =
-      document.getElementById('RecruiterFormEdit').style.display === 'none'
-        ? 'block'
-        : 'none'
-  }
-
   return (
-    <Paper className={classes.pageContent}>
-      <Grid item xs={6}></Grid>
+    <>
+      <Paper className={classes.pageContent}>
+        <Grid item xs={6}></Grid>
 
-      <BtnNewRecuiter
-        onClick={toggleAdd}
-        label='Add'
-        name='Add new recruiter'
-        className={s.addButton}
-      ></BtnNewRecuiter>
+        <BtnNewRecuiter
+          onClick={toggleAdd}
+          label='Add'
+          name='Add new recruiter'
+          className={s.addButton}
+        ></BtnNewRecuiter>
 
-      <div style={{ display: 'none' }} id='RecruiterFormAdd'>
-        <RecruiterForm
-          handleSubmit={handleSubmit}
-          values={values}
-          setValues={setValues}
-        />
-      </div>
-    </Paper>
+        <div style={{ display: 'none' }} id='RecruiterFormAdd'>
+          <RecruiterForm
+            handleSubmit={handleSubmit}
+            values={values}
+            setValues={setValues}
+          />
+        </div>
+      </Paper>
+    </>
   )
 }
 

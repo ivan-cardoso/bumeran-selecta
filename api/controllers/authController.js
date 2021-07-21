@@ -14,7 +14,7 @@ const register = (req, res) => {
       var errorCode = error.code
       var errorMessage = error.message
       res.send(errorMessage)
-
+      
       // ..
     })
 }
