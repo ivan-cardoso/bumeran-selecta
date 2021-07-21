@@ -86,6 +86,7 @@ const AddJob = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(values)
         if (
             values.title !== null &&
             values.areaId !== null &&
