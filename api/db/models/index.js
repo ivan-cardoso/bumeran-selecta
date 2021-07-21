@@ -15,4 +15,10 @@ Recruiters.hasMany(Jobs)
 Jobs.belongsTo(Companies)
 Companies.hasMany(Jobs)
 
+Jobs.belongsTo(Areas)
+Jobs.belongsTo(States)
+Jobs.belongsTo(Seniority)
+Jobs.belongsTo(TypeEmployed)
+Jobs.belongsTo(Modality)
+
 module.exports = { Recruiters, Jobs, Companies, Areas, States, Seniority, TypeEmployed, Modality}
