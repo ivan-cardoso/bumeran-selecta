@@ -8,7 +8,12 @@ import BtnCreateNewJobs from "../UX/Buttons/BtnCreateNewJobs";
 function SingleViewCompany() {
   const history = useHistory();
   const { companies } = useSelector((state) => state);
-  const { name, email, state, img, contactName, description, area } = companies;
+    const { name, email, state, img, contactName, description, area } =
+      companies;
+    
+    const handleCreateJobs = () => {
+      history.push();
+    };
 
   return (
     <div>
@@ -37,7 +42,7 @@ function SingleViewCompany() {
               Area: <span>{area.name}</span>
             </p>
             <BtnCreateNewJobs
-              onClick={history.goBack}
+              onClick={handleCreateJobs}
               name="Crear un nuevo anuncio"
             ></BtnCreateNewJobs>
           </div>

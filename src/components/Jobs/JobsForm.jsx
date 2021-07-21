@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { CircularProgress, Grid, TextField, Button, makeStyles, FormControl, InputLabel, Select, Input, MenuItem, useTheme } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux"
-import { createJob } from "../../store/jobs/jobs"
+import { createJob, getAllJobs } from "../../store/jobs/jobs"
+import {getCompanies} from "../../store/companies/companies"
 import { getAllAditionalData } from "../../store/aditionalData/actions"
 import styles from "./index.module.css"
 
-const JobsForm = () => {
+const JobsForm = ({values, handleChange, handleSubmit}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -30,49 +31,58 @@ const JobsForm = () => {
     const classes = useStyles();
     const theme = useTheme();
 
-    const [inputValues, setInputValues] = useState({})
+    // const [inputValues, setInputValues] = useState({})
     const dispatch = useDispatch()
 
     const countryArr = ["Argentina"]
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setInputValues({
-            ...inputValues,
-            [name]: value
-        })
-    };
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setInputValues({
+    //         ...inputValues,
+    //         [name]: value
+    //     })
+    // };
     const { aditionalData } = useSelector((state) => state)
     const {areas, modalities, seniorities, states, type } = aditionalData
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(createJob(inputValues)).then((res) => console.log(res.data))
-    }
-
-    const getData = () => {
-        dispatch(getAllAditionalData()).then((data) => console.log("JBOS, FORM", data))
-    }
-
+    const {companies} = useSelector((state) => state)
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     dispatch(createJob(inputValues)).then((res) => console.log(res.data))
+    // }
 
     useEffect(()=>{
         dispatch(getAllAditionalData())
+        dispatch(getCompanies())
     }, [dispatch])
     
     return (
         <>
             {aditionalData.areas ?
                 <>
-            <form onSubmit={handleSubmit} className={classes.root}>
+            <form onSubmit={(e)=>handleSubmit(e)} className={classes.root}>
                 <Grid container spacing={12}>
                     <Grid item xs={4}>
-                        <TextField
+                        {/* <TextField
                             variant="outlined"
                             label="Empresa Fake"
-
+                            value={values.companyId}
                             name="companyId"
                             onChange={handleChange}
-                        />
+                        /> */}
+
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-outlined-label">Compania</InputLabel>
+                            <Select name="companyId" onChange={handleChange} required label="Compania">
+                                <MenuItem className={styles.menuItemSelect} value="" disable><em>Seleccione compania</em></MenuItem>
+                                {companies.map((company) => {
+                                    return (
+                                        <MenuItem value={company.id}>{company.name}</MenuItem>
+                                    )
+                                })}
+                            </Select>
+                        </FormControl>
+
                     </Grid>
 
                     <Grid item xs={4}>
@@ -81,6 +91,7 @@ const JobsForm = () => {
                             label="Título"
                             name="title"
                             onChange={handleChange}
+                            value={values.title}
                             required
                             placeholder="Ej: Front-End Developer"
                         />
@@ -89,7 +100,7 @@ const JobsForm = () => {
                     <Grid item xs={4}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Area</InputLabel>
-                            <Select name="area" onChange={handleChange} required label="Area">
+                            <Select name="areaId" onChange={handleChange} required label="Area">
                                 <MenuItem className={styles.menuItemSelect} value="" disable><em>Seleccione area</em></MenuItem>
                                 {areas.map((area) => {
                                     return (
@@ -103,7 +114,7 @@ const JobsForm = () => {
                     <Grid item xs={4}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Seniority</InputLabel>
-                            <Select name="seniority" onChange={handleChange} required label="Seniority">
+                            <Select name="seniorityId" onChange={handleChange} required label="Seniority">
                                 <MenuItem className={styles.menuItemSelect} value="" disable><em>Seleccione seniority</em></MenuItem>
                                 {seniorities.map((seniority) => {
                                     return (
@@ -132,7 +143,7 @@ const JobsForm = () => {
                     <Grid item xs={4}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Provincia</InputLabel>
-                            <Select name="state" onChange={handleChange} required label="Provincia">
+                            <Select name="stateId" onChange={handleChange} required label="Provincia">
                                 <MenuItem className={styles.menuItemSelect} value="" disable><em>Seleccione provincia</em></MenuItem>
                                 {states.map((state) => {
                                     return (
@@ -146,7 +157,7 @@ const JobsForm = () => {
                     <Grid item xs={4}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Tipo de empleo</InputLabel>
-                            <Select name="typeOfEmployed" onChange={handleChange} required label="Tipo de empleo">
+                            <Select name="typeemloyedId" onChange={handleChange} required label="Tipo de empleo">
                                 <MenuItem value="" className={styles.menuItemSelect} disable><em>Seleccione tipo de empleo</em></MenuItem>
                                 {type.map((typeEmployed) => {
                                     return (
@@ -170,7 +181,7 @@ const JobsForm = () => {
                     <Grid item xs={4}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Modalidad</InputLabel>
-                            <Select name="modality" onChange={handleChange} required label="Modalidad">
+                            <Select name="modalityId" onChange={handleChange} required label="Modalidad">
                                 <MenuItem value="" className={styles.menuItemSelect} disable><em>Seleccione modalidad</em></MenuItem>
                                 {modalities.map((modality) => {
                                     return (
@@ -181,15 +192,29 @@ const JobsForm = () => {
                         </FormControl>
                     </Grid>
 
-                    <Grid item xs={9}>
-                        <TextField
+                    <Grid item  xs={12}  >
+                        {/* <TextField
                             variant="outlined"
                             label="Descripción"
                             name="description"
                             required
                             onChange={handleChange}
+                        /> */}
+                        <TextField
+                        label="Descripción"
+                        multiline
+                        rows={6}
+                        name="description"
+                        variant="outlined"
+                        value={values.description}
+                        onChange={handleChange}
+
+                        required
+                        className={styles.formControlDescription}
                         />
                     </Grid>
+
+                    
 
                     <Grid item xs={3}>
                         <Button type="submit" color='secondary' variant='contained'>

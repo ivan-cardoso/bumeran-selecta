@@ -1,8 +1,8 @@
-const {Jobs} = require("../db/models/index")
+const {Jobs, Areas, States, Seniority, TypeEmployed, Modality } = require("../db/models/index")
 
 
 const getAllJobs = (req, res) => {
-    Jobs.findAll()
+    Jobs.findAll({ include: { all: true}})
     .then((data) => res.status(200).send(data))
     .catch((err)=> {
         console.log(err)
@@ -20,9 +20,9 @@ const getOneJob = (req, res) => {
 }
 
 const createJob = (req, res) => {
-    const {title, area , seniority, description, country, state, typeOfEmployed, salary, modality, companyId} = req.body
+    const {title, areaId , seniorityId, description, country, stateId, typeemloyedId, salary, modalityId , companyId} = req.body
     Jobs.create({
-        title, area , seniority, description, country, state, typeOfEmployed, salary, modality, companyId
+        title, areaId , seniorityId, description, country, stateId, typeemloyedId, salary, modalityId , companyId
     })
     .then((data)=>{
         res.status(201).send(data)

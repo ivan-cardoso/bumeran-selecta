@@ -21,4 +21,10 @@ States.hasMany(States);
 Companies.belongsTo(Areas);
 Areas.hasMany(Companies);
 
+Jobs.belongsTo(Areas)
+Jobs.belongsTo(States)
+Jobs.belongsTo(Seniority)
+Jobs.belongsTo(TypeEmployed)
+Jobs.belongsTo(Modality)
+
 module.exports = { Recruiters, Jobs, Companies, Areas, States, Seniority, TypeEmployed, Modality}
