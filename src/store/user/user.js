@@ -1,5 +1,6 @@
 import { createReducer, createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import axios from 'axios'
+import firebase from '../../utils/firebase'
 
 const initialState = ''
 
@@ -14,29 +15,34 @@ export const UserRegister = createAsyncThunk(
   }
 )
 
-export const UserLogin = createAsyncThunk(
-  'UserLogin',
-  async (user, thunkAPI) => {
-    const axiosresult = await axios.post('/api/auth/login', user)
-    const axiosUser = await axiosresult.data
-    return axiosUser
-  }
-)
-
-//esta ruta falta
-export const UserLogout = createAsyncThunk('UserLogout', () => {
-  return axios({
-    method: 'put',
-    url: '/api/auth/logout',
-  })
-    .then((res) => res.data)
-    .then((user) => user)
-    .catch((err) => err)
+export const UserLogin = createAsyncThunk('UserLogin', (user, thunkAPI) => {
+  return firebase
+    .auth()
+    .signInWithEmailAndPassword(user.email, user.password)
+    .then((userCredentials) => {
+      const { photoURL, refreshToken, displayName, email, uid } =
+        userCredentials.user
+      return { photoURL, refreshToken, displayName, email, uid }
+    })
+    .catch((error) => null)
 })
 
-export const userCookie = createAction('userCookie', (user) => ({
-  payload: user,
-}))
+export const UserLogout = createAsyncThunk('UserLogout', () => {
+  return firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      return null
+    })
+    .catch((error) => {
+      return null
+    })
+})
+
+export const userCookie = createAction('userCookie', (user) => {
+  const { photoURL, refreshToken, displayName, email, uid } = user
+  return { payload: { photoURL, refreshToken, displayName, email, uid } }
+})
 
 export const userReducer = createReducer(initialState, {
   [UserRegister.fulfilled]: (state, action) => action.payload,

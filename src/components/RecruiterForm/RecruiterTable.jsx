@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper'
 import RecruiterTableBody from './RecruiterTableBody'
 import UpdateForm from './UpdateForm'
 import axios from 'axios'
+import { message } from 'antd'
 
 const useStyles = makeStyles({
   table: {
@@ -49,6 +50,8 @@ export default function DenseTable({
       .put(`/api/recruiters/${updateInfo.id}`, updateValues)
       .then((res) => res.data)
       .then((data) => {
+        if (data) message.success('usuario modificado con exito')
+
         setShowTable(true)
         setUpdateValues(initialFormValues)
         setRecruiters((oldRecruiters) =>
@@ -58,6 +61,7 @@ export default function DenseTable({
           })
         )
       })
+      .catch(() => message.error('error, por favor intente mas tarde'))
   }
 
   return (

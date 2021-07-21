@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import LoginForm from './LoginForm'
 import { UserLogin } from '../../store/user/user'
+import firebase from '../../utils/firebase'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -44,8 +45,8 @@ const Login = () => {
     else {
       setIsLoading(true)
       dispatch(UserLogin(user))
-        .then((user) => {
-          if (user.type === 'UserLogin/fulfilled') history.push('/')
+        .then((response) => {
+          if (response.payload) history.push('/')
           else {
             setErrorMessage({
               type: 'password',

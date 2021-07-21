@@ -1,0 +1,12 @@
+.menuItemSelect{
+    background-color: #d3d3d3;
+    cursor:auto;
+}
+
+.createJobForm{
+    display : none; 
+}
+
+.formControlDescription{
+    width: 93% !important;
+}

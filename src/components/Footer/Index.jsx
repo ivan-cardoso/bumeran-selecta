@@ -7,6 +7,8 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 const Footer = () => {
   
   return (
+
+    
       <div className={style.container}>
         <div className={style.logo}>
           <img src={logo} alt='navent' />
