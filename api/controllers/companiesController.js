@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const { Companies, Areas, States } = require("../db/models");
+const { findByPk } = require("../db/models/recruiters");
 
 const companiesController = {
   async findAll(req, res, next) {
@@ -69,7 +70,7 @@ const companiesController = {
       });
       res.status(200).json(companies);
     } catch (err) {
-      return next(err);
+       next(err);
     }
   },
 };

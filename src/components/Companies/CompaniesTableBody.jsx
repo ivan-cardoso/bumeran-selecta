@@ -8,10 +8,9 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { singleRecruiter } from "../../store/recruiter/actions";
 import styles from '../RecruiterForm/index.module.css'
 import { Popconfirm, message } from "antd";
-import { getCompanies } from "../../store/companies/companies";
+import { getCompanies, singleCompany } from "../../store/companies/companies";
 
 function CompaniesTableBody({ companies, setShowTable, setUpdateInfo }) {
 
@@ -28,10 +27,10 @@ function CompaniesTableBody({ companies, setShowTable, setUpdateInfo }) {
 
   const history = useHistory();
 
-  //   const handleSingleView = (recruiter) => {
-  //     dispatch(singleRecruiter(recruiter))
-  //     history.push(`/recruiters/${recruiter.id}`)
-  // }
+    const handleSingleView = (company) => {
+      dispatch(singleCompany(company));
+      history.push(`/companies/${company.id}`);
+    };
   return (
     <TableBody>
       {companies
@@ -70,9 +69,8 @@ function CompaniesTableBody({ companies, setShowTable, setUpdateInfo }) {
                 </TableCell>
                 <TableCell align="right">
                   <button
-                    className={
-                      styles.singleViewButton
-                    } /* onClick={() => handleSingleView(recruiter)} */
+                    className={styles.singleViewButton}
+                    onClick={() => handleSingleView(company)}
                   >
                     {<VisibilityIcon />}
                   </button>
