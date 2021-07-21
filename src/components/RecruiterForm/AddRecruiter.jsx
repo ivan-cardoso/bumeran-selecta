@@ -44,35 +44,34 @@ const Recruiter = ({ setRecruiters }) => {
     e.preventDefault()
     dispatch(createRec(values))
       .then((recruiterCreated) => {
-        console.log(recruiterCreated)
-        if (recruiterCreated.payload.bio) setSucces(true)
+        if (recruiterCreated.payload.bio) setSucces(true);
         else {
-          setError(true)
-          setErrorMessage('el email ya existe')
-          setValues(initialFormValues)
+          setError(true);
+          setErrorMessage("el email ya existe");
+          setValues(initialFormValues);
         }
       })
       .then(() => setValues(initialFormValues))
 
       .then(() =>
         setTimeout(() => {
-          setSucces(false)
-          setError(false)
+          setSucces(false);
+          setError(false);
         }, 2500)
       )
       .then(() => {
         getAllRecruiters()
           .then((recruiters) => setRecruiters(recruiters))
           .then((recruiters) => {
-            toggleAdd()
-            return recruiters
-          })
+            toggleAdd();
+            return recruiters;
+          });
       })
       .catch((err) => {
-        console.log(err)
-        setValues(initialFormValues)
-        setError(true)
-      })
+        console.log(err);
+        setValues(initialFormValues);
+        setError(true);
+      });
   }
 
   const toggleAdd = () => {

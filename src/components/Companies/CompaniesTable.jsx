@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import CompaniesTableBody from './CompaniesTableBody'
-// import UpdateForm from './UpdateForm'
+import UpdateCompaniesForm from "./UpdateCompaniesForm";
 import companiesColums from './CompaniesData'
 
 const useStyles = makeStyles({
@@ -17,46 +17,18 @@ const useStyles = makeStyles({
   },
 })
 
-export default function CompaniesTable({
-  companies,
-}) {
-  const classes = useStyles()
-  const [showTable, setShowTable] = useState(true)
-  const [updateInfo, setUpdateInfo] = useState('')
+export default function CompaniesTable({ companies }) {
+  const classes = useStyles();
+  const [showTable, setShowTable] = useState(true);
+  const [updateInfo, setUpdateInfo] = useState("");
 
-//   const initialFormValues = {
-//     name: null,
-//     surname: null,
-//     email: null,
-//     country: null,
-//     state: null,
-//     bio: null,
-//     img: null,
-//     favoriteArea1: null,
-//     favoriteArea2: null,
-//     favoriteArea3: null,
-//     seniority1: null,
-//     seniority2: null,
-//     seniority3: null,
-//   }
-//   const [updateValues, setUpdateValues] = useState(initialFormValues)
-
-//   const handleSubmit = (e, updateValues) => {
-//     e.preventDefault()
-//     return axios
-//       .put(`/api/recruiters/${updateInfo.id}`, updateValues)
-//       .then((res) => res.data)
-//       .then((data) => {
-//         setShowTable(true)
-//         setUpdateValues(initialFormValues)
-//         setRecruiters((oldRecruiters) =>
-//           oldRecruiters.map((singleRecruiter) => {
-//             if (singleRecruiter.id === data[0].id) return data[0]
-//             else return singleRecruiter
-//           })
-//         )
-//       })
-//   }
+  const handleInputChangeUpdate = (e) => {
+    const { name, value } = e.target;
+    setUpdateInfo({
+      ...updateInfo,
+      [name]: value,
+    });
+  };
 
   return (
     <>
@@ -64,17 +36,17 @@ export default function CompaniesTable({
         <TableContainer component={Paper}>
           <Table
             className={classes.table}
-            size='small'
-            aria-label='a dense table'
+            size="small"
+            aria-label="a dense table"
           >
             <TableHead>
               <TableRow>
                 {companiesColums.map((column, index) => {
                   return (
-                    <TableCell key={index} align='right'>
+                    <TableCell key={index} align="right">
                       {column}
                     </TableCell>
-                  )
+                  );
                 })}
               </TableRow>
             </TableHead>
@@ -87,14 +59,13 @@ export default function CompaniesTable({
           </Table>
         </TableContainer>
       ) : (
-        // <UpdateForm
-        //   values={updateInfo}
-        //   setShowTable={setShowTable}
-        // //   setValues={setUpdateValues}
-        // //   handleSubmit={handleSubmit}
-        // />
-                 null
+        <UpdateCompaniesForm
+          values={updateInfo}
+          setValues={setUpdateInfo}
+          handleInputChange={handleInputChangeUpdate}
+          setShowTable={setShowTable}
+        />
       )}
     </>
-  )
+  );
 }

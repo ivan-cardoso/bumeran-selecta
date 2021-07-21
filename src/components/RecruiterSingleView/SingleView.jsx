@@ -26,7 +26,6 @@ function SingleView() {
     seniority3,
   } = recruiter
 
-  console.log(img)
   return (
     <div>
       {recruiter.id ? (
