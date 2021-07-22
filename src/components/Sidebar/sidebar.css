@@ -1,0 +1,82 @@
+div {
+  transition: width 1s;
+}
+
+.sidebarContainer {
+  bottom: 0;
+  position: absolute;
+  background-color: black;
+  z-index: 0;
+  display: flex;
+  width: 50px;
+  height: 100%;
+  color: white;
+  text-align: center;
+  font-size: medium;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.sidebarContainer:hover {
+  width: 230px;
+  background-color: #3f51b5;
+}
+.sidebarDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  font-size: 18px;
+}
+.hideSidebar {
+  display: none;
+}
+
+.navbartext {
+  color: white;
+  font-size: 2.5vh;
+  padding-right: 10px;
+}
+
+.iconImage {
+  color: #0a26ee;
+  margin-left: 0px;
+  height: 30px;
+  width: 30px;
+}
+
+.navbartext:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.div-icon {
+  height: 100%;
+  position: absolute;
+}
+.nav-text {
+  padding-left: 0px;
+  padding-right: 5px;
+  padding-top: 50%;
+}
+
+.nav-text {
+  font-size: 20px;
+  padding-bottom: 100px;
+  justify-content: flex-start;
+}
+
+.sidebarDiv {
+  align-self: center;
+  align-content: start;
+}
+
+.navbaricon {
+  color: white;
+  padding-right: 5px;
+  max-height: 45px;
+}
+.navbaricon:hover {
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+}

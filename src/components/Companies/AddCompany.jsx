@@ -1,19 +1,19 @@
-import React from "react";
-import { Grid, Paper, Button } from "@material-ui/core";
-import useStyles from "./style";
-import { useDispatch } from "react-redux";
-import AddCompaniesForm from "./AddCompaniesForm";
-import styles from "../RecruiterForm/index.module.css";
-import { useState } from "react";
-import { createCompany, getCompanies } from "../../store/companies/companies";
-import { message } from "antd";
+import React from 'react'
+import { Grid, Paper, Button } from '@material-ui/core'
+import useStyles from './style'
+import { useDispatch } from 'react-redux'
+import AddCompaniesForm from './AddCompaniesForm'
+import styles from '../RecruiterForm/index.module.css'
+import { useState } from 'react'
+import { createCompany, getCompanies } from '../../store/companies/companies'
+import { message } from 'antd'
 
 export default function AddCompany({ values, setValues, handleInputChange }) {
-  const classes = useStyles();
-  const dispatch = useDispatch();
+  const classes = useStyles()
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (
       values.stateid !== null &&
       values.contactName !== null &&
@@ -25,40 +25,41 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
     ) {
       dispatch(createCompany(values)).then((value) => {
         if (value.payload) {
-          message.success("Company added");
-          dispatch(getCompanies());
+          message.success('Company added')
+          dispatch(getCompanies())
           //setValues(initialFormValues);
         } else {
-          message.warning("Email ya existente");
+          message.warning('Email ya existente')
         }
-      });
+      })
     } else {
-      message.warning("Complete los campos");
+      message.warning('Complete los campos')
     }
-  };
+  }
 
   const toggleAdd = () => {
-    document.getElementById("CompaniesFormAdd").style.display =
-      document.getElementById("CompaniesFormAdd").style.display === "none"
-        ? "block"
-        : "none";
-  };
+    document.getElementById('CompaniesFormAdd').style.display =
+      document.getElementById('CompaniesFormAdd').style.display === 'none'
+        ? 'block'
+        : 'none'
+  }
 
   return (
     <Paper className={classes.pageContent}>
       <Grid item xs={6}></Grid>
+      <div style={{ marginLeft: 300 }}>
+        <Button
+          onClick={toggleAdd}
+          variant='contained'
+          color='primary'
+          label='Add'
+          className={styles.addButton}
+        >
+          Agregar Empresa
+        </Button>
+      </div>
 
-      <Button
-        onClick={toggleAdd}
-        variant="contained"
-        color="primary"
-        label="Add"
-        className={styles.addButton}
-      >
-        Add new company
-      </Button>
-
-      <div style={{ display: "none" }} id="CompaniesFormAdd">
+      <div style={{ display: 'none' }} id='CompaniesFormAdd'>
         <AddCompaniesForm
           handleSubmit={handleSubmit}
           values={values}
@@ -67,5 +68,5 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
         />
       </div>
     </Paper>
-  );
+  )
 }

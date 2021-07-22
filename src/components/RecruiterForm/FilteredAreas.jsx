@@ -4,7 +4,13 @@ import { getAllAditionalData } from '../../store/aditionalData/actions'
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { getAllRecruiters } from './recruiterTableData'
 
-function FilteredArea({ setSelectedArea, setRecruiters, recruiters }) {
+function FilteredArea({
+  setSelectedArea,
+  selectedSeniority,
+  setRecruiters,
+  recruiters,
+  selectedArea,
+}) {
   const dispatch = useDispatch()
 
   const { areas } = useSelector((state) => state.aditionalData)
@@ -22,22 +28,34 @@ function FilteredArea({ setSelectedArea, setRecruiters, recruiters }) {
         recruiters = data
       })
       .then(() => {
-        const filtered = recruiters.filter(
-          (recruiter) => recruiter.favoriteArea1 === value
-        )
+        const filtered = recruiters.filter((recruiter) => {
+          if (selectedSeniority) {
+            return (
+              recruiter.favoriteArea1 === value &&
+              recruiter.seniority1 === selectedSeniority
+            )
+          } else {
+            return recruiter.favoriteArea1 === value
+          }
+        })
         setRecruiters(filtered)
       })
   }
 
   return (
     <>
-      <FormControl variant='outlined' style={{ width: 160 }}>
+      <FormControl
+        variant='outlined'
+        className='optionControl'
+        style={{ width: 150 }}
+      >
         <InputLabel id='demo-simple-select-outlined-label'>
-          Favourite Area 1
+          Area Favorita
         </InputLabel>
         <Select
           name='favoriteArea'
-          label='Favourite Area'
+          label='Area Favorita'
+          value={selectedArea}
           onChange={(e) => handleInputChange(e)}
         >
           {areas &&
