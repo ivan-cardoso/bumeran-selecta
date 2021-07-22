@@ -111,7 +111,7 @@ const UpdateJob = ({job, handleClose}) => {
                     <Grid item xs={4}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Compania</InputLabel>
-                            <Select name="companyId" defaultValue={job.company.id} onChange={handleChange} required label="Compania">
+                            <Select name="companyId" value={job.company.id} onChange={handleChange} required label="Compania">
                                 <MenuItem className={styles.menuItemSelect} value="" disable><em>Seleccione compania</em></MenuItem>
                                 {companies.map((company) => {
                                     return (

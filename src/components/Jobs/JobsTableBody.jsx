@@ -10,13 +10,16 @@ import {singleJob} from "../../store/jobs/singleJob"
 import useModal from "./useModal"
 import JobsForm from "./JobsForm"
 import UpdateJob from "./UpdateJob"
+import {useHistory} from "react-router-dom"
 
 const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
   
   
-    const {open, setOpen,handleOpen, handleClose, classes, modalStyle, openUpdate, setOpenUpdate} = useModal()
-    const dispatch = useDispatch()
-    
+  const {open, setOpen,handleOpen, handleClose, classes, modalStyle, openUpdate, setOpenUpdate} = useModal()
+  const dispatch = useDispatch()
+  
+  const history = useHistory()
+  
   const handleDelete = (id) => {
     dispatch(deleteJob(id));
     dispatch(getAllJobs());
@@ -30,6 +33,12 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
   React.useEffect(() => {
     dispatch(getAllJobs());
   }, [dispatch]);
+
+  const handleSingleJob = (job) => {
+    dispatch(singleJob(job))
+    history.push(`/jobs/${job.id}`);
+  }
+
   return (
     <TableBody>
       {jobs ? (
@@ -47,7 +56,7 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
               <TableCell align="right">{job.country}</TableCell>
               <TableCell align="right">{job.state.name}</TableCell>
               <TableCell align="right">{job.salary}</TableCell>
-              <TableCell align="right">{job.isOpen}</TableCell>
+              <TableCell align="right">{job.isOpen ? "Abierta" : "Cerrada"}</TableCell>
 
               <TableCell align="right">
                 <button
@@ -62,7 +71,7 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                 </button>
               </TableCell>
                     <TableCell align='right'>
-                        <button /* onClick={() => handleSingleJob(job)} */ >
+                        <button onClick={() => handleSingleJob(job)}  >
                             <VisibilityIcon />
                         </button>
                     </TableCell>
@@ -81,11 +90,6 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                 <Fade in={open}>  
                 <div style={modalStyle} className={classes.paper}> 
                     <UpdateJob job={jobValues} handleClose={handleClose} />
-                    <Grid item xs={3}>
-                        <Button onClick={handleClose} color='secondary' variant='contained'>
-                            Close
-                        </Button>
-                    </Grid>
                 </div>
                 </Fade>
             </Modal>

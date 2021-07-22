@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
+      marginLeft : "10px"
     },
   },
 }));

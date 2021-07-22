@@ -17,6 +17,20 @@ const senioritysToMap = [
   { name: 'Senior' },
   { name: 'Manager' },
 ]
+
+const areas = [
+  { name: 'Ingenierías' },
+  { name: 'Comercial, Ventas y Negocios' },
+  { name: 'Gerencia y Dirección General' },
+  { name: 'Administración, Contabilidad y Finanzas' },
+  { name: 'Recursos Humanos y Capacitación' },
+  { name: 'Minería, Petróleo y Gas' },
+  { name: 'Seguros' },
+  { name: 'Tecnología, Sistemas y Telecomunicaciones' },
+  { name: 'Salud, Medicina, Enfermería y Farmacia' },
+  { name: 'Marketing y Publicidad' },
+]
+
 const recruiters = [
   {
     name: 'Guillermo Martin',
@@ -26,7 +40,7 @@ const recruiters = [
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/men/18.jpg',
-    favoriteArea1: 'Ingenierías',
+    favoriteArea1: areas[0].name,
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Recursos Humanos y Capacitación',
     seniority1: seniorities[1],
@@ -457,18 +471,7 @@ const companies = [
 ];
 
 
-const areas = [
-  { name: 'Ingenierías' },
-  { name: 'Comercial, Ventas y Negocios' },
-  { name: 'Gerencia y Dirección General' },
-  { name: 'Administración, Contabilidad y Finanzas' },
-  { name: 'Recursos Humanos y Capacitación' },
-  { name: 'Minería, Petróleo y Gas' },
-  { name: 'Seguros' },
-  { name: 'Tecnología, Sistemas y Telecomunicaciones' },
-  { name: 'Salud, Medicina, Enfermería y Farmacia' },
-  { name: 'Marketing y Publicidad' },
-]
+
 
 const states = [
   { name: 'CABA' },

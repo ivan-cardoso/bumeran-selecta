@@ -47,6 +47,13 @@ export const getJobsSearch = createAsyncThunk(
   }
 );
 
+export const closeJob = createAsyncThunk("SET_CLOSE_JOB", (id)=>{
+  return axios.put(`/api/jobs/closeJob/${id}`)
+  .then((res)=> res.data)
+  .then((job)=> job)
+  .catch((err)=> console.log(err))
+})
+
 const createJobReducer = createReducer({},{
     [createJob.fulfilled] : (state, action) => action.payload,
 })
@@ -59,6 +66,9 @@ const deleteJobReducer = createReducer({}, {
 })  
 const updateJobReducer = createReducer({}, {
     [updateJob.fulfilled] : (state, action) => action.payload
+})
+const closeJobReducer = createReducer({}, {
+  [closeJob.fulfilled] : (state, action) => action.payload
 })
 
 
