@@ -15,16 +15,19 @@ function TopCompanies() {
       })
   }, [])
   return (
-    <div>
-      <h1>Top 3 Companias</h1>
+    <div className={s.contenedor}>
+      <h1 className={s.title} >Top 3 Compañias</h1>
       {top3.map((companies, index) => {
         const { CompanyCount, companyId } = companies
         return (
-          <div key={companyId}>
-            <FaMedal />
-            <span>{index + 1}</span>
-            <p> Total Busquedas: {CompanyCount}</p>
-            <p>Nombre: {companies['company.name']}</p>
+          <div className={s.content} key={companyId}>
+            <div className={s.bestCompanies}>
+              <p>Nombre: {companies['company.name']}</p>
+              <p> Total Busquedas: {CompanyCount}</p>
+            </div>
+            <div className={s.trofeo}>
+              <span>{index + 1} <FaMedal /> </span>
+            </div>
           </div>
         )
       })}

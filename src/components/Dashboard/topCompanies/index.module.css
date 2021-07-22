@@ -1,0 +1,40 @@
+.contenedor {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.title {
+  height: 40%;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  height: 60%;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bestCompanies{
+  width: 60%;
+  height: 80%;
+  margin-left:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+.trofeo{
+  width: 40%;
+  height: 80%;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  color: gold;
+}
