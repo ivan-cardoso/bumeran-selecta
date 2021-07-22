@@ -47,7 +47,6 @@ function SingleViewCompany() {
             </p>
             <AddJob></AddJob>
           </div>
-          <h1>hola</h1>
         </div>
       ) : (
         history.push("/companies")
