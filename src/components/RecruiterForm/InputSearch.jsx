@@ -76,8 +76,12 @@ function InputSearch({ setRecruiters, recruiters }) {
   }
 
   return (
+
+    
     <>
       <div className={styles.inputSearchContainer}>
+        <div >
+        <div >
         <form onChange={handleChange} onSubmit={handleSubmit}>
           <input
             style={{ height: 55, border: '1px solid grey' }}
@@ -86,6 +90,8 @@ function InputSearch({ setRecruiters, recruiters }) {
             placeholder='Buscar por nombre...'
           />
         </form>
+
+        <div >
         <FilteredArea
           setSelectedArea={setSelectedArea}
           selectedSeniority={selectedSeniority}
@@ -100,6 +106,9 @@ function InputSearch({ setRecruiters, recruiters }) {
           recruiters={recruiters}
           selectedSeniority={selectedSeniority}
         />
+        </div>
+          </div>
+        </div>
       </div>
       <div className={styles.filterContainer}>
         <p onClick={() => removeFilter()} className={styles.selectedFilter}>
@@ -114,7 +123,7 @@ function InputSearch({ setRecruiters, recruiters }) {
         {selectedSeniority && (
           <TiDelete className={styles.removeBtn}></TiDelete>
         )}
-      </div>
+        </div>
     </>
   )
 }
