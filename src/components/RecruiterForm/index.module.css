@@ -75,3 +75,25 @@
   transition: ease-out 0.3s;
   cursor: pointer;
 }
+
+.filterContainer {
+  margin-left: 40%;
+  display: flex;
+}
+.removeBtn {
+  font-size: 25px;
+  color: rgb(68, 68, 213);
+
+  vertical-align: middle;
+}
+.selectedFilter {
+  font-size: 18px;
+  color: rgb(68, 68, 213);
+  text-decoration: underline;
+  font-style: italic;
+  margin-left: 40px;
+}
+
+.selectedFilter:hover {
+  cursor: pointer;
+}

@@ -5,6 +5,7 @@ import { getAllRecruiters } from './recruiterTableData'
 import styles from './index.module.css'
 import FilteredArea from './FilteredAreas'
 import FilteredSeniority from './FilteredSeniority'
+import { TiDelete } from 'react-icons/ti'
 
 function InputSearch({ setRecruiters, recruiters }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -16,16 +17,32 @@ function InputSearch({ setRecruiters, recruiters }) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+    let filtered, filtered2
 
     if (!searchTerm) {
-      getAllRecruiters().then((recruiters) => setRecruiters(recruiters))
+      getAllRecruiters().then((recruiters) => {
+        setRecruiters(recruiters)
+        setSelectedSenoirity('')
+        setSelectedArea('')
+      })
     } else {
       axios
         .get(`/api/recruiters/search/${searchTerm}`)
         .then((res) => res.data)
         .then((recruiters) => {
-          if (!recruiters.length) setRecruiters('')
-          else setRecruiters([...recruiters])
+          if (!recruiters.length) return setRecruiters([])
+          if (selectedSeniority) {
+            filtered = recruiters.filter(
+              (recruits) => recruits.seniority1 === selectedSeniority
+            )
+            setRecruiters(filtered)
+          }
+          if (selectedArea) {
+            filtered2 = filtered.filter(
+              (recruits) => recruits.favoriteArea1 === selectedArea
+            )
+            setRecruiters(filtered2)
+          } else setRecruiters([...recruiters])
         })
         .catch((err) => console.log(err))
     }
@@ -33,11 +50,29 @@ function InputSearch({ setRecruiters, recruiters }) {
 
   const removeFilter = () => {
     setSelectedArea('')
-    getAllRecruiters().then((data) => setRecruiters(data))
+    getAllRecruiters().then((data) => {
+      if (selectedSeniority) {
+        const filtered = data.filter(
+          (recruiters) => recruiters.seniority1 === selectedSeniority
+        )
+        setRecruiters(filtered)
+      } else {
+        setRecruiters(data)
+      }
+    })
   }
   const removeSeniority = () => {
     setSelectedSenoirity('')
-    getAllRecruiters().then((data) => setRecruiters(data))
+    getAllRecruiters().then((data) => {
+      if (selectedArea) {
+        const filtered = data.filter(
+          (recruiters) => recruiters.favoriteArea1 === selectedArea
+        )
+        setRecruiters(filtered)
+      } else {
+        setRecruiters(data)
+      }
+    })
   }
 
   return (
@@ -47,6 +82,7 @@ function InputSearch({ setRecruiters, recruiters }) {
         <div >
         <form onChange={handleChange} onSubmit={handleSubmit}>
           <input
+            style={{ height: 55, border: '1px solid grey' }}
             className={styles.inputSearch}
             type='text'
             placeholder='Buscar por nombre...'
@@ -56,34 +92,36 @@ function InputSearch({ setRecruiters, recruiters }) {
         <div >
         <FilteredArea
           setSelectedArea={setSelectedArea}
+          selectedSeniority={selectedSeniority}
           setRecruiters={setRecruiters}
           recruiters={recruiters}
+          selectedArea={selectedArea}
         />
         <FilteredSeniority
-          setSelectedArea={setSelectedSenoirity}
+          selectedArea={selectedArea}
+          setSelectedSenoirity={setSelectedSenoirity}
           setRecruiters={setRecruiters}
           recruiters={recruiters}
+          selectedSeniority={selectedSeniority}
         />
         </div>
           </div>
         </div>
       </div>
-
-      <div>
-      <div >
-        <p >{selectedArea}</p>
+      <div className={styles.filterContainer}>
+        <p onClick={() => removeFilter()} className={styles.selectedFilter}>
+          {selectedArea}
+        </p>
         {selectedArea && (
-          <button 
-        
-          onClick={() => removeFilter()}>remover filtro</button>
+          <TiDelete className={styles.removeBtn}>remover filtro</TiDelete>
         )}
-        <p >{selectedSeniority}</p>
+        <p className={styles.selectedFilter} onClick={() => removeSeniority()}>
+          {selectedSeniority}
+        </p>
         {selectedSeniority && (
-          <button
-           onClick={() => removeSeniority()}>remover filtro</button>
+          <TiDelete className={styles.removeBtn}></TiDelete>
         )}
         </div>
-      </div>
     </>
   )
 }

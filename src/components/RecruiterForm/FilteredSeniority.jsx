@@ -4,7 +4,13 @@ import { getAllAditionalData } from '../../store/aditionalData/actions'
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { getAllRecruiters } from './recruiterTableData'
 
-function FilteredSeniority({ setSelectedArea, setRecruiters, recruiters }) {
+function FilteredSeniority({
+  setSelectedSenoirity,
+  selectedArea,
+  setRecruiters,
+  recruiters,
+  selectedSeniority,
+}) {
   const dispatch = useDispatch()
 
   const { seniorities } = useSelector((state) => state.aditionalData)
@@ -15,16 +21,23 @@ function FilteredSeniority({ setSelectedArea, setRecruiters, recruiters }) {
 
   const handleInputChange = (e) => {
     const { value, name } = e.target
-    setSelectedArea(value)
+    setSelectedSenoirity(value)
     getAllRecruiters()
       .then((data) => {
         setRecruiters(data)
         recruiters = data
       })
       .then(() => {
-        const filtered = recruiters.filter(
-          (recruiter) => recruiter.seniority1 === value
-        )
+        const filtered = recruiters.filter((recruiter) => {
+          if (selectedArea) {
+            return (
+              recruiter.seniority1 === value &&
+              recruiter.favoriteArea1 === selectedArea
+            )
+          } else {
+            return recruiter.seniority1 === value
+          }
+        })
         setRecruiters(filtered)
       })
   }
@@ -38,6 +51,7 @@ function FilteredSeniority({ setSelectedArea, setRecruiters, recruiters }) {
         <Select
           name='seniority'
           label='Seniority'
+          value={selectedSeniority}
           onChange={(e) => handleInputChange(e)}
         >
           {seniorities &&

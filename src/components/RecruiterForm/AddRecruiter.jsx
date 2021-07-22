@@ -54,9 +54,9 @@ const Recruiter = ({ setRecruiters }) => {
         getAllRecruiters()
           .then((recruiters) => setRecruiters(recruiters))
           .then((recruiters) => {
-            toggleAdd();
-            return recruiters;
-          });
+            toggleAdd()
+            return recruiters
+          })
       })
       .catch((err) => {
         console.log(err)
@@ -78,13 +78,14 @@ const Recruiter = ({ setRecruiters }) => {
     <>
       <Paper className={classes.pageContent}>
         <Grid item xs={6}></Grid>
-
-        <BtnNewRecuiter
-          onClick={toggleAdd}
-          label='Add'
-          name='Add new recruiter'
-          className={s.addButton}
-        ></BtnNewRecuiter>
+        <div style={{ marginLeft: 300 }}>
+          <BtnNewRecuiter
+            onClick={toggleAdd}
+            label='Add'
+            name='Agregar Nuevo Reclutador'
+            className={s.addButton}
+          ></BtnNewRecuiter>
+        </div>
 
         <div style={{ display: 'none' }} id='RecruiterFormAdd'>
           <RecruiterForm

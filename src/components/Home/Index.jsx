@@ -7,10 +7,10 @@ import Dashboard from '../Dashboard/Index'
 const Home = () => {
   return (
     <div className={style.container}>
-      <Sidebar />
       <div className={style.home}>
         <Dashboard />
       </div>
+      <Footer />
     </div>
   )
 }
