@@ -1,4 +1,13 @@
-const { Recruiters, Companies, Areas, States, Seniority, TypeEmployed, Modality} = require('./db/models/index')
+const {
+  Recruiters,
+  Companies,
+  Areas,
+  States,
+  Seniority,
+  TypeEmployed,
+  Jobs,
+  Modality,
+} = require('./db/models/index')
 
 const recruiters = [
   {
@@ -15,6 +24,7 @@ const recruiters = [
     seniority1: 'SemiSenior/Senior',
     seniority2: 'Jefetura',
     seniority3: 'SemiSenior/Senior',
+    rating: 10,
   },
   {
     name: 'Eva',
@@ -30,6 +40,7 @@ const recruiters = [
     seniority1: 'SemiSenior/Senior',
     seniority2: 'Jefetura',
     seniority3: 'Training/Junior',
+    rating: 4,
   },
   {
     name: 'Alejandra',
@@ -45,6 +56,7 @@ const recruiters = [
     seniority1: 'Gerente/Director',
     seniority2: 'Jefetura',
     seniority3: 'SemiSenior/Senior',
+    rating: 8,
   },
   {
     name: 'Mario',
@@ -436,63 +448,124 @@ const companies = [
   },
 ];
 
+
 const areas = [
-  {name : 'Ingenierías'},
-  {name : 'Comercial, Ventas y Negocios'},
-  {name : 'Gerencia y Dirección General'},
-  {name : 'Administración, Contabilidad y Finanzas'},
-  {name : 'Recursos Humanos y Capacitación'},
-  {name : 'Minería, Petróleo y Gas'},
-  {name : 'Seguros'},
-  {name : 'Tecnología, Sistemas y Telecomunicaciones'},
-  {name : 'Salud, Medicina, Enfermería y Farmacia'},
-  {name : 'Marketing y Publicidad'},
+  { name: 'Ingenierías' },
+  { name: 'Comercial, Ventas y Negocios' },
+  { name: 'Gerencia y Dirección General' },
+  { name: 'Administración, Contabilidad y Finanzas' },
+  { name: 'Recursos Humanos y Capacitación' },
+  { name: 'Minería, Petróleo y Gas' },
+  { name: 'Seguros' },
+  { name: 'Tecnología, Sistemas y Telecomunicaciones' },
+  { name: 'Salud, Medicina, Enfermería y Farmacia' },
+  { name: 'Marketing y Publicidad' },
 ]
 
-
 const states = [
-  {name : "CABA"},
-  {name : "Buenos Aires"},
-  {name : "Catamarca"},
-  {name : "Chaco"},
-  {name : "Chubut"},
-  {name : "Córdoba"},
-  {name : "Corrientes"},
-  {name : "Entre Ríos"},
-  {name : "Formosa"},
-  {name : "Jujuy"},
-  {name : "La Pampa"},
-  {name : "La Rioja"},
-  {name : "Mendoza"},
-  {name : "Misiones"},
-  {name : "Neuquén"},
-  {name : "Rio Negro"},
-  {name : "Salta"},
-  {name : "San Juan"},
-  {name : "San Luis"},
-  {name : "Santa Cruz"},
-  {name : "Santa Fe"},
-  {name : "Santiago del Estero"},
-  {name : "Tierra del Fuego"},
-  {name : "Tucumán"},
+  { name: 'CABA' },
+  { name: 'Buenos Aires' },
+  { name: 'Catamarca' },
+  { name: 'Chaco' },
+  { name: 'Chubut' },
+  { name: 'Córdoba' },
+  { name: 'Corrientes' },
+  { name: 'Entre Ríos' },
+  { name: 'Formosa' },
+  { name: 'Jujuy' },
+  { name: 'La Pampa' },
+  { name: 'La Rioja' },
+  { name: 'Mendoza' },
+  { name: 'Misiones' },
+  { name: 'Neuquén' },
+  { name: 'Rio Negro' },
+  { name: 'Salta' },
+  { name: 'San Juan' },
+  { name: 'San Luis' },
+  { name: 'Santa Cruz' },
+  { name: 'Santa Fe' },
+  { name: 'Santiago del Estero' },
+  { name: 'Tierra del Fuego' },
+  { name: 'Tucumán' },
 ]
 
 const seniorities = [
-  {name: "Trainee"},
-  {name: "Junior"},
-  {name: "Semi-Senior"},
-  {name: "Senior"},
-  {name: "Manager"},
+  { name: 'Trainee' },
+  { name: 'Junior' },
+  { name: 'Semi-Senior' },
+  { name: 'Senior' },
+  { name: 'Manager' },
 ]
 
-const modalities = [
-  {name : "Presencial"},
-  {name : "Remota"},
-]
+const modalities = [{ name: 'Presencial' }, { name: 'Remota' }]
 
-const typesEmployed = [
-  {name: "Fulltime"},
-  {name: "Part-time"},
+const typesEmployed = [{ name: 'Fulltime' }, { name: 'Part-time' }]
+
+const jobs = [
+  {
+    title: 'Fullstack',
+    areaId: '2',
+    seniorityId: '2',
+    description: 'Alto laburo amigo',
+    country: 'Argentina',
+    stateId: '2',
+    typeemloyedId: '1',
+    salary: 10000,
+    modalityId: '2',
+    companyId: 2,
+    rating: 6,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Fullstack',
+    areaId: '1',
+    seniorityId: '1',
+    description: 'Alto laburo amigo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 10000,
+    modalityId: '1',
+    companyId: 1,
+    rating: 8,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Fullstack',
+    areaId: '1',
+    seniorityId: '1',
+    description: 'Alto laburo amigo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 10000,
+    modalityId: '1',
+    companyId: 1,
+    rating: 3,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Fullstack',
+    areaId: '3',
+    seniorityId: '3',
+    description: 'Alto laburo amigo',
+    country: 'Argentina',
+    stateId: '3',
+    typeemloyedId: '1',
+    salary: 10000,
+    modalityId: '3',
+    companyId: 1,
+    rating: 10,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
 ]
 
 states.map((State) => {
@@ -507,6 +580,25 @@ areas.map((Area) => {
   });
 });
 
+
+seniorities.map((seniority) => {
+  Seniority.create(seniority).then((data) => {
+    console.log('Seniority creado: ', data)
+  })
+})
+
+modalities.map((Modalities) => {
+  Modality.create(Modalities).then((modalities) => {
+    console.log('Modality creado: ', modalities)
+  })
+})
+
+typesEmployed.map((types) => {
+  TypeEmployed.create(types).then((type) => {
+    console.log('Type of Employed creado: ', type)
+  })
+})
+
 recruiters.map((recruiter) => {
   Recruiters.create(recruiter).then((user) =>
     console.log('usuario creado: ', user)
@@ -519,20 +611,13 @@ companies.map((Company) => {
   )
 })
 
-seniorities.map((seniority)=>{
-  Seniority.create(seniority).then((data)=>{
-    console.log("Seniority creado: ", data)
-  })
-})
 
-modalities.map((Modalities)=>{
-  Modality.create(Modalities).then((modalities)=>{
-    console.log("Modality creado: ", modalities)
-  })
-})
-
-typesEmployed.map((types)=>{
-  TypeEmployed.create(types).then((type)=>{
-    console.log("Type of Employed creado: ", type)
+jobs.map((job) => {
+  Jobs.create(job).then((jobCreated) => {
+    Recruiters.findByPk(Math.floor(Math.random() * recruiters.length))
+      .then((user) => user.addJob(jobCreated))
+      .then(() => {
+        console.log('job creado', jobCreated)
+      })
   })
 })

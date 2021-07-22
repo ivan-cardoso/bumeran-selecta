@@ -7,11 +7,13 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import s from './index.module.css'
-import { seniorityArr, favArea } from './options'
 import ImageUpload from './ImageUpload'
 import BtnConfirmRecruiter from '../UX/Buttons/BtnConfirmRecruiter'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllAditionalData } from '../../store/aditionalData/actions'
+import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,11 +35,40 @@ const useStyles = makeStyles((theme) => ({
 
 const RecruiterForm = ({ handleSubmit, values, setValues }) => {
   const classes = useStyles()
-  // const [favOptions, setFavOptions] = useState(favArea)
-  // const [restOptions, setRestOptions] = useState(favArea)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllAditionalData())
+  }, [dispatch])
+
+  const { aditionalData } = useSelector((state) => state)
+  const { areas, modalities, seniorities, states, type } = aditionalData
+  const countryArr = ['Argentina']
+
+  // const [selectedFav1, setSelectedFav1] = useState('')
+  // const [selectedFav2, setSelectedFav2] = useState('')
+  // const [selectedFav3, setSelectedFav3] = useState('')
+  // const [favOptions, setFavOptions] = useState(areas)
+
+  // console.log('fav options', favOptions)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
+
+    // if (name === 'favoriteArea1') setSelectedFav1(value)
+    // if (name === 'favoriteArea2') setSelectedFav2(value)
+    // if (name === 'favoriteArea3') setSelectedFav3(value)
+    // setFavOptions((remainders) => {
+    //   return remainders.filter((remainder) => {
+    //     if (remainder === selectedFav1) return false
+    //     if (remainder === selectedFav2) return false
+    //     if (remainder === selectedFav3) return false
+    //     return true
+    //   })
+    // })
+
+    // console.log('FAV OPTIONNS', favOptions)
 
     setValues({
       ...values,
@@ -60,19 +91,18 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
             <TextField
               variant='outlined'
               label='Name'
+              required
               name='name'
               value={values.name}
-              // defaultValue={values.name}
-              // onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={6}>
             <TextField
               variant='outlined'
               label='Surname'
+              required
               name='surname'
               value={values.surname}
-              // onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={4}>
@@ -80,38 +110,54 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
               variant='outlined'
               label='Email'
               type='email'
+              required
               name='email'
               value={values.email}
-              // onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={4}>
-            <TextField
-              variant='outlined'
-              label='Country'
-              name='country'
-              value={values.country}
-              // onChange={handleInputChange}
-            />
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                País
+              </InputLabel>
+              <Select
+                name='country'
+                required
+                label='País'
+                onChange={(e) => handleInputChange(e)}
+              >
+                <MenuItem value='' disable>
+                  <em>Seleccione país</em>
+                </MenuItem>
+                {countryArr.length &&
+                  countryArr.map((country) => {
+                    return <MenuItem value={country}>{country}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <TextField
-              variant='outlined'
-              label='State'
-              name='state'
-              value={values.state}
-              // onChange={handleInputChange}
-            />{' '}
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Provincia
+              </InputLabel>
+              <Select
+                name='state'
+                onChange={(e) => handleInputChange(e)}
+                required
+                label='Provincia'
+              >
+                <MenuItem value='' disable>
+                  <em>Seleccione provincia</em>
+                </MenuItem>
+                {states &&
+                  states.map((state) => {
+                    return <MenuItem value={state.id}>{state.name}</MenuItem>
+                  })}
+              </Select>
+            </FormControl>
           </Grid>
-          {/* <Grid item xs={4}>
-            <TextField
-              variant='outlined'
-              label='Img'
-              name='img'
-              value={values.img}
-              // onChange={handleInputChange}
-            />{' '}
-          </Grid> */}
+
           <Grid item xs={4}>
             <FormControl variant='outlined' className={classes.formControl}>
               <InputLabel id='demo-simple-select-outlined-label'>
@@ -123,9 +169,11 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
                 label='Favourite Area'
                 onChange={(e) => handleInputChange(e)}
               >
-                {favArea.map((favrArea) => {
-                  return <MenuItem value={favrArea}>{favrArea}</MenuItem>
-                })}
+                {areas &&
+                  areas.map((area) => {
+                    const { name, id } = area
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
               </Select>
             </FormControl>
           </Grid>
@@ -139,9 +187,11 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
                 label='Favourite Area'
                 onChange={(e) => handleInputChange(e)}
               >
-                {favArea.map((seniority) => {
-                  return <MenuItem value={seniority}>{seniority}</MenuItem>
-                })}
+                {areas &&
+                  areas.map((area) => {
+                    const { name, id } = area
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
               </Select>
             </FormControl>
           </Grid>
@@ -155,9 +205,11 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
                 label='Favourite Area'
                 onChange={(e) => handleInputChange(e)}
               >
-                {favArea.map((seniority) => {
-                  return <MenuItem value={seniority}>{seniority}</MenuItem>
-                })}
+                {areas &&
+                  areas.map((area) => {
+                    const { name, id } = area
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
               </Select>
             </FormControl>
           </Grid>
@@ -172,9 +224,11 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
                 label='Seniority'
                 onChange={(e) => handleInputChange(e)}
               >
-                {seniorityArr.map((seniority) => {
-                  return <MenuItem value={seniority}>{seniority}</MenuItem>
-                })}
+                {seniorities &&
+                  seniorities.map((seniority) => {
+                    const { name, id } = seniority
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
               </Select>
             </FormControl>
           </Grid>
@@ -188,9 +242,12 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
                 label='Seniority'
                 onChange={(e) => handleInputChange(e)}
               >
-                {seniorityArr.map((seniority) => {
-                  return <MenuItem value={seniority}>{seniority}</MenuItem>
-                })}
+                {seniorities &&
+                  seniorities.map((seniority) => {
+                    const { name, id } = seniority
+
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
               </Select>
             </FormControl>
           </Grid>
@@ -204,9 +261,11 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
                 label='Seniority'
                 onChange={(e) => handleInputChange(e)}
               >
-                {seniorityArr.map((seniority) => {
-                  return <MenuItem value={seniority}>{seniority}</MenuItem>
-                })}
+                {seniorities &&
+                  seniorities.map((seniority) => {
+                    const { name, id } = seniority
+                    return <MenuItem value={name}>{name}</MenuItem>
+                  })}
               </Select>
             </FormControl>
           </Grid>
@@ -217,10 +276,9 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
               name='bio'
               required
               value={values.bio}
-              // onChange={handleInputChange}
             />{' '}
           </Grid>
-          {/* <div className={classes.root}></div> */}
+
           <Grid item xs={5}></Grid>
           <Grid item xs={5}>
             <BtnConfirmRecruiter

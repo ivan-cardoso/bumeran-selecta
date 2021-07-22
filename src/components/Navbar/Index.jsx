@@ -49,8 +49,6 @@ const NavBar = () => {
   /* Material-UI state and functions */
   const [modalStyle] = React.useState(getModalStyle)
   const [open, setOpen] = React.useState(false)
-  
-
 
   const classes = useStyles()
 
@@ -76,7 +74,7 @@ const NavBar = () => {
         />
       </Link>
 
-      {user.uid ? (
+      {user ? (
         <div className={s.navbarButtonsContainer}>
           <button
             className={s.buttonPerfil}
@@ -108,24 +106,28 @@ const NavBar = () => {
           timeout: 500,
         }}
       >
-        <Fade in={open}>  
-          <div style={modalStyle} className={classes.paper}> 
-          <div className={s.profileUser}>
-            <h1>Personal information</h1>
-            <h3 className={s.stylePersonalInfo}>
+        <Fade in={open}>
+          <div style={modalStyle} className={classes.paper}>
+            <div className={s.profileUser}>
+              <h1>Personal information</h1>
+              <h3 className={s.stylePersonalInfo}>
+                Name : <span>{user && user.displayName}</span>
+              </h3>
+              <h3 className={s.stylePersonalInfo}>
+                {' '}
+                Email : <span>{user && user.email}</span>{' '}
+              </h3>
 
-              Name : <span>{user.displayName}</span>
-
-            </h3>
-            <h3 className={s.stylePersonalInfo}>
-              {' '}
-              Email : <span>{user.email}</span>{' '}
-            </h3>
-
-            <Link to="/forgotpassword"><h3><button
-             className={s.buttonChangePassword}
-             onClick={() => handleClose()}
-             >Change Password</button></h3></Link>
+              <Link to='/forgotpassword'>
+                <h3>
+                  <button
+                    className={s.buttonChangePassword}
+                    onClick={() => handleClose()}
+                  >
+                    Change Password
+                  </button>
+                </h3>
+              </Link>
             </div>
           </div>
         </Fade>

@@ -5,8 +5,6 @@ import styles from './index.module.css'
 import BtnGoBack from '../UX/Buttons/BtnGoBack'
 
 function SingleView() {
-
-
   const history = useHistory()
   const { recruiter } = useSelector((state) => state)
   const {
@@ -80,8 +78,8 @@ function SingleView() {
       ) : (
         history.push('/recruiters')
       )}
-        <BtnGoBack onClick={history.goBack} name='Go Back'></BtnGoBack>
-      </div>
+      <BtnGoBack onClick={history.goBack} name='Go Back'></BtnGoBack>
+    </div>
   )
 }
 

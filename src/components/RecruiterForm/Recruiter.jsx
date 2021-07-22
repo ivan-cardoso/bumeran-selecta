@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import AddRecruiter from './AddRecruiter'
 import { Paper, makeStyles } from '@material-ui/core'
-//import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import DenseTable from './RecruiterTable'
 import { getAllRecruiters, recruitersColums } from './recruiterTableData'
 import InputSearch from './InputSearch'
-
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -15,8 +15,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Recruiter = () => {
-
-  //const history = useHistory()
   const classes = useStyles()
   const [recruiters, setRecruiters] = useState([])
 
@@ -27,7 +25,10 @@ const Recruiter = () => {
   return (
     <>
       <AddRecruiter setRecruiters={setRecruiters} />
-      <InputSearch setRecruiters={setRecruiters} />
+      {recruiters && (
+        <InputSearch setRecruiters={setRecruiters} recruiters={recruiters} />
+      )}
+
       <Paper className={classes.pageContent}>
         {recruiters ? (
           <DenseTable
@@ -38,7 +39,6 @@ const Recruiter = () => {
         ) : (
           <h1>No hay resultados...</h1>
         )}
-        {/* <button onClick={() => history.goBack()}>Go back</button> */}
       </Paper>
     </>
   )
