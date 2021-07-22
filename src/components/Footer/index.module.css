@@ -1,7 +1,9 @@
 .container {
-  z-index: 999;
-  position: absolute;
+  position: relative;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  margin-top: auto;
   background-color: #3f51b5;
   display: flex;
   justify-content: space-around;

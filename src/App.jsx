@@ -5,7 +5,7 @@ import Login from './components/Login/Index'
 import NavBar from './components/Navbar/Index'
 import './App.css'
 import Jobs from './components/Jobs/Jobs'
-import JobSingleView from "./components/Jobs/JobSingleView"
+import JobSingleView from './components/Jobs/JobSingleView'
 import Recruiter from './components/RecruiterForm/Recruiter'
 import SingleView from './components/RecruiterSingleView/SingleView'
 import Footer from './components/Footer/Index'
@@ -15,7 +15,8 @@ import firebase from 'firebase'
 import { useDispatch } from 'react-redux'
 import { userCookie } from './store/user/user'
 import PrivateRoute from './routes/PrivateRoute'
-import CompaniesSingleView from "./components/CompaniesSingleView/CompaniesSingleView";
+import CompaniesSingleView from './components/CompaniesSingleView/CompaniesSingleView'
+import Sidebar from './components/Sidebar/Index'
 
 function App() {
   const [isAuthenticated, setisAuthenticated] = useState(false)
@@ -29,10 +30,10 @@ function App() {
     })
   }, [dispatch])
 
-
   return (
     <div>
       <NavBar />
+      <Sidebar />
       <Switch>
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
@@ -43,7 +44,12 @@ function App() {
           component={Jobs}
           isAuthenticated={isAuthenticated}
         />
-            <PrivateRoute exact path="/jobs/:id" component={JobSingleView} isAuthenticated={isAuthenticated}/>
+        <PrivateRoute
+          exact
+          path='/jobs/:id'
+          component={JobSingleView}
+          isAuthenticated={isAuthenticated}
+        />
         <PrivateRoute
           isAuthenticated={isAuthenticated}
           exact
@@ -56,7 +62,11 @@ function App() {
           component={Companies}
           isAuthenticated={isAuthenticated}
         />
-          <PrivateRoute path="/companies/:id" component={CompaniesSingleView} isAuthenticated={isAuthenticated} />
+        <PrivateRoute
+          path='/companies/:id'
+          component={CompaniesSingleView}
+          isAuthenticated={isAuthenticated}
+        />
         <PrivateRoute
           path='/recruiters/:id'
           component={SingleView}
@@ -64,9 +74,8 @@ function App() {
         />
         <Redirect from='/' to='/home' />
       </Switch>
-      <Footer />
     </div>
   )
 }
 
-export default App;
+export default App

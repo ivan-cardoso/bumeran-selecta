@@ -1,27 +1,29 @@
 div {
-  transition: width 2s, height 4s;
+  transition: width 1s;
 }
 
 .sidebarContainer {
-  background-color: #0a26ee;
+  bottom: 0;
+  position: absolute;
+  background-color: black;
   z-index: 0;
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  width: 50px;
   height: 100%;
-  position: relative;
   color: white;
   text-align: center;
   font-size: medium;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .sidebarContainer:hover {
-  width: 400px;
+  width: 230px;
+  background-color: #3f51b5;
 }
 .sidebarDiv {
   display: flex;
   flex-direction: row;
-  align-self: center;
 }
 
 .container {
@@ -46,7 +48,7 @@ div {
 
 .navbartext:hover {
   cursor: pointer;
-  transform: scale(1.04);
+  text-decoration: underline;
 }
 
 .div-icon {
@@ -54,34 +56,20 @@ div {
   position: absolute;
 }
 .nav-text {
-  padding-left: 5px;
+  padding-left: 0px;
   padding-right: 5px;
   padding-top: 50%;
 }
-.icon-container {
-  color: #fff;
-}
-.icon-container:hover {
-  text-decoration: underline;
-  transform: scale(1.02);
-}
 
-.navmenuitems {
-  background-color: red;
-}
 .nav-text {
   font-size: 20px;
-
   padding-bottom: 100px;
-  min-height: 200px;
+  justify-content: flex-start;
 }
 
 .sidebarDiv {
   align-self: center;
-}
-
-.sidebarText {
-  align-self: center;
+  align-content: start;
 }
 
 .navbaricon {
@@ -89,7 +77,6 @@ div {
   padding-right: 5px;
   max-height: 45px;
 }
-
-.sidebarDiv.hideSidebar {
-  transition: color 0.1s, border 0.1s;
+.navbaricon:hover {
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1);
 }

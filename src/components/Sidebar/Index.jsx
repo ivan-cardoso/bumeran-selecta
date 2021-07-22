@@ -4,9 +4,16 @@ import * as FaIcons from 'react-icons/fa'
 import s from './sidebar.css'
 import * as IoIcons from 'react-icons/io'
 import { MdWork } from 'react-icons/md'
+import { AiFillHome } from 'react-icons/ai'
 
 const Sidebar = () => {
   const SidebarData = [
+    {
+      title: 'Home',
+      path: '/',
+      icon: <AiFillHome />,
+      cName: 'nav-text',
+    },
     {
       title: 'Reclutadores',
       path: '/recruiters',
@@ -29,10 +36,6 @@ const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true)
   return (
     <div className='div-icon'>
-      <FaIcons.FaBars
-        onClick={() => setShowSidebar(!showSidebar)}
-        className='iconImage'
-      />
       <div className='sidebarContainer'>
         {SidebarData?.map((item, index) => {
           return (
@@ -40,7 +43,7 @@ const Sidebar = () => {
               <div key={index} className={item.cName}>
                 <h1 className='navbaricon'> {item.icon}</h1>
               </div>
-              <div className={showSidebar ? 'sidebarDiv' : 'hideSidebar'}>
+              <div className='sidebarDiv'>
                 <Link to={item.path}>
                   <h1 className='navbartext'>{item.title}</h1>
                 </Link>
