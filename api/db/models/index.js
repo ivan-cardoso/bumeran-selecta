@@ -15,6 +15,12 @@ Recruiters.hasMany(Jobs)
 Jobs.belongsTo(Companies)
 Companies.hasMany(Jobs)
 
+Companies.belongsTo(States);
+States.hasMany(States);
+
+Companies.belongsTo(Areas);
+Areas.hasMany(Companies);
+
 Jobs.belongsTo(Areas)
 Jobs.belongsTo(States)
 Jobs.belongsTo(Seniority)

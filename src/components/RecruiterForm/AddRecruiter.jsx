@@ -54,9 +54,9 @@ const Recruiter = ({ setRecruiters }) => {
         getAllRecruiters()
           .then((recruiters) => setRecruiters(recruiters))
           .then((recruiters) => {
-            toggleAdd()
-            return recruiters
-          })
+            toggleAdd();
+            return recruiters;
+          });
       })
       .catch((err) => {
         console.log(err)

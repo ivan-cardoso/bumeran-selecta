@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
 /* End Functions */
 
 const NavBar = () => {
-  const user = useSelector((state) => state.user)
-  console.log(user)
+
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch()
 
   /* Material-UI state and functions */

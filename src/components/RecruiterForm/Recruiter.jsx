@@ -25,7 +25,10 @@ const Recruiter = () => {
   return (
     <>
       <AddRecruiter setRecruiters={setRecruiters} />
-      <InputSearch setRecruiters={setRecruiters} />
+      {recruiters && (
+        <InputSearch setRecruiters={setRecruiters} recruiters={recruiters} />
+      )}
+
       <Paper className={classes.pageContent}>
         {recruiters ? (
           <DenseTable
