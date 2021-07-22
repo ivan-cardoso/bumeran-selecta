@@ -47,7 +47,7 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
               <TableCell align="right">{job.country}</TableCell>
               <TableCell align="right">{job.state.name}</TableCell>
               <TableCell align="right">{job.salary}</TableCell>
-              <TableCell align="right">{job.description}</TableCell>
+              <TableCell align="right">{job.isOpen}</TableCell>
 
               <TableCell align="right">
                 <button
@@ -62,14 +62,14 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                 </button>
               </TableCell>
                     <TableCell align='right'>
-                        <button onClick={() => handleSingleJob(job)} >
+                        <button /* onClick={() => handleSingleJob(job)} */ >
                             <VisibilityIcon />
                         </button>
                     </TableCell>
                 </TableRow>
-                )
-                
-            }) : <>Nada</>}
+            
+           
+      )}) ): null}
 
             <Modal 
                 open={open} 
