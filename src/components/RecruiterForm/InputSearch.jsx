@@ -76,6 +76,8 @@ function InputSearch({ setRecruiters, recruiters }) {
   }
 
   return (
+
+    
     <>
       <div className={styles.inputSearchContainer}>
         <div >

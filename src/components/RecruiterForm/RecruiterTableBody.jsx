@@ -40,7 +40,7 @@ function RecruiterTableBody({
     history.push(`/recruiters/${recruiter.id}`)
   }
   return (
-    <TableBody>
+    <TableBody >
       {recruiters.map((recruiter) => {
         const {
           country,
@@ -56,14 +56,14 @@ function RecruiterTableBody({
 
         return (
           <TableRow key={id}>
-            <TableCell align='right'>{name}</TableCell>
-            <TableCell align='right'>{surname}</TableCell>
-            <TableCell align='right'>{email}</TableCell>
-            <TableCell align='right'>{country}</TableCell>
-            <TableCell align='right'>{state}</TableCell>
-            <TableCell align='right'>{rating}</TableCell>
-            <TableCell align='right'>{favoriteArea1}</TableCell>
-            <TableCell align='right'>{seniority1}</TableCell>
+            <TableCell align='center'>{name}</TableCell>
+            <TableCell align='center'>{surname}</TableCell>
+            <TableCell align='center'>{email}</TableCell>
+            <TableCell align='center'>{country}</TableCell>
+            <TableCell align='center'>{state}</TableCell>
+            <TableCell align='center'>{rating}</TableCell>
+            <TableCell align='center'>{favoriteArea1}</TableCell>
+            <TableCell align='center'>{seniority1}</TableCell>
             <TableCell align='right'>
               {
                 <button

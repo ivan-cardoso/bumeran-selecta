@@ -80,6 +80,7 @@
   margin-left: 40%;
   display: flex;
 }
+
 .removeBtn {
   font-size: 25px;
   color: rgb(68, 68, 213);
@@ -97,3 +98,4 @@
 .selectedFilter:hover {
   cursor: pointer;
 }
+
