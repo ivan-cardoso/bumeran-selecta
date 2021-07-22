@@ -8,6 +8,8 @@ const {
   Companies,
   Recruiters,
 } = require('../db/models/index')
+const { Op } = require("sequelize");
+
 
 const sequelize = require('sequelize')
 
@@ -201,9 +203,28 @@ const historicChart = (req, res) => {
       res.status(500).send(err)
     })
 }
+const findAllBySearch = async (req, res, next) => {
+  try {
+    const jobs = await Jobs.findAll({
+      where: {
+        [Op.or]: [
+          {
+            title: {
+              [Op.iLike]: `%${req.params.search}%`,
+            },
+          },
+        ],
+      },
+      include: { all: true },
+    });
+    res.status(200).json(jobs);
+  } catch (err) {
+    next(err);
+  }
+};
 
 module.exports = {
-  getOpenedJobs,
+
   getAllJobs,
   getOneJob,
   createJob,
@@ -214,4 +235,6 @@ module.exports = {
   jobByArea,
   jobBySeniority,
   historicChart,
-}
+  getOpenedJobs,
+  findAllBySearch,
+};

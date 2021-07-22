@@ -1,4 +1,8 @@
-import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createReducer,
+  createAsyncThunk,
+  createAction,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getCompanies = createAsyncThunk("GET_COMPANIES", async () => {
@@ -34,10 +38,26 @@ export const createCompany = createAsyncThunk(
   }
 );
 
+export const updateCompany = createAsyncThunk(
+  "UPDATE_COMPANY",
+  async (companyValue) => {
+    try {
+      const newCompany = await axios.put(
+        `api/companies/${companyValue.id}`,
+        companyValue
+      );
+      return newCompany.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
 const companiesReducer = createReducer([], {
   [getCompanies.fulfilled]: (state, action) => action.payload,
   [getCompaniesSearch.fulfilled]: (state, action) => action.payload,
   [createCompany.fulfilled]: (state, action) => action.payload,
+  [updateCompany.fulfilled]: (state, action) => action.payload,
 });
 
 export default companiesReducer;

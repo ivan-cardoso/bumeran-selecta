@@ -1,10 +1,13 @@
 const { Op } = require("sequelize");
-const { Companies } = require("../db/models");
+const { Companies, Areas, States, Jobs } = require("../db/models");
+const { findByPk } = require("../db/models/recruiters");
 
 const companiesController = {
   async findAll(req, res, next) {
     try {
-      const companies = await Companies.findAll();
+      const companies = await Companies.findAll({
+        include: [{ model: States }, { model: Areas }],
+      });
       res.status(200).json(companies);
     } catch (err) {
       next(err);
@@ -13,11 +16,12 @@ const companiesController = {
 
   async findOrCreateCompanies(req, res, next) {
     try {
-      const { name, address, email, img, bio } = req.body;
+      const { name, stateId, email, contactName, img, description, areaId } =
+        req.body;
 
       const [companies, created] = await Companies.findOrCreate({
         where: { name, email },
-        defaults: { address, img, bio },
+        defaults: { stateId, contactName, img, description, areaId },
       });
       if (created) res.status(201).json(companies);
       else res.sendStatus(500);
@@ -28,10 +32,11 @@ const companiesController = {
 
   async updateByPk(req, res, next) {
     try {
-      const { name, address, email, img, bio } = req.body;
+      const { name, stateId, email, contactName, img, description, areaId } =
+        req.body;
 
       const [update, companies] = await Companies.update(
-        { name, address, email, img, bio },
+        { name, stateId, email, contactName, img, description, areaId },
         { where: { id: req.params.id }, returning: true }
       );
 
@@ -62,10 +67,23 @@ const companiesController = {
             },
           ],
         },
+        include: { all: true },
       });
       res.status(200).json(companies);
     } catch (err) {
-      return next(err);
+      next(err);
+    }
+  },
+
+  async getAllJobsByPkCompany(req, res, next) {
+    try {
+      const jobs = await Jobs.findAll({
+        where: { companyId: req.params.id },
+        include: { all: true },
+      });
+      res.status(200).json(jobs);
+    } catch (err) {
+      next(err);
     }
   },
 };

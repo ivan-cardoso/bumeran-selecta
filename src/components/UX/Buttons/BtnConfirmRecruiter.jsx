@@ -10,15 +10,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const BtnConfirmRecruiter = ({ name }) => {
-  const classes = useStyles()
+
+const BtnConfirmRecruiter = ({ name, onClick }) => {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Button variant='contained' color='primary' type='submit'>
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
+        onClick={onClick}
+      >
         {name}
       </Button>
     </div>
-  )
-}
-
-export default BtnConfirmRecruiter
+  );
+};
+ 
+export default BtnConfirmRecruiter;

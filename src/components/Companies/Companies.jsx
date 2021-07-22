@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCompanies,
@@ -14,6 +14,25 @@ export default function Companies() {
   const dispatch = useDispatch();
   const companies = useSelector((state) => state.companies);
   const classes = useStyles();
+  const initialFormValues = {
+    name: null,
+    stateId: null,
+    email: null,
+    contactName: null,
+    img: null,
+    description: null,
+    areaId: null,
+  };
+
+  const [values, setValues] = useState(initialFormValues);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -26,7 +45,11 @@ export default function Companies() {
 
   return (
     <>
-      <AddCompany />
+      <AddCompany
+        values={values}
+        setValues={setValues}
+        handleInputChange={handleInputChange}
+      />
       <InputSearch handleChange={handleChange} />
       <Paper className={classes.pageContent}>
         {companies.length > 0 ? (
@@ -34,7 +57,6 @@ export default function Companies() {
         ) : (
           <h1>No hay resultados...</h1>
         )}
-        {/* <button onClick={() => history.goBack()}>Go back</button> */}
       </Paper>
     </>
   );

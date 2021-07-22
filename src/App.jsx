@@ -14,6 +14,7 @@ import firebase from 'firebase'
 import { useDispatch } from 'react-redux'
 import { userCookie } from './store/user/user'
 import PrivateRoute from './routes/PrivateRoute'
+import CompaniesSingleView from "./components/CompaniesSingleView/CompaniesSingleView";
 
 function App() {
   const [isAuthenticated, setisAuthenticated] = useState(false)
@@ -26,6 +27,7 @@ function App() {
       }
     })
   }, [dispatch])
+
 
   return (
     <div>
@@ -52,6 +54,7 @@ function App() {
           component={Companies}
           isAuthenticated={isAuthenticated}
         />
+          <PrivateRoute path="/companies/:id" component={CompaniesSingleView} isAuthenticated={isAuthenticated} />
         <PrivateRoute
           path='/recruiters/:id'
           component={SingleView}
@@ -64,4 +67,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

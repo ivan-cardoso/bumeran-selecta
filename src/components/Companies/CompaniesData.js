@@ -1,7 +1,7 @@
  const companiesColums = [
-  'Name',
+  'Nombre',
   'Email',
-  'Address',
+  'Provincia',
  ]
 
  export default companiesColums
