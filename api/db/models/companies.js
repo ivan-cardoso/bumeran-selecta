@@ -9,17 +9,16 @@ Companies.init(
       type: S.STRING,
       allowNull: false,
     },
-    address: {
-      type: S.STRING,
-      allowNull: false,
-    },
     email: {
       type: S.STRING,
       allowNull: false,
     },
+    contactName: {
+      type: S.STRING,
+      allowNull:  false,
+    },
     img: { type: S.TEXT },
-
-    bio: {
+    description: {
       type: S.TEXT,
       allowNull: false,
     },

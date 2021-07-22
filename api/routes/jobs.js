@@ -12,6 +12,7 @@ const {
   jobByArea,
   jobBySeniority,
   historicChart,
+  findAllBySearch
 } = require('../controllers/jobsController')
 
 router.get('/opened', getOpenedJobs)
@@ -20,10 +21,13 @@ router.get('/jobbyarea', jobByArea)
 router.get('/jobbyseniority', jobBySeniority)
 router.get('/top3', getTop3Companies)
 router.get('/', getAllJobs)
-router.get('/:id', getOneJob)
+//router.get('/:id', getOneJob)
+router.get("/:search", findAllBySearch);
 router.post('/create', createJob)
 router.delete('/delete/:id', deleteJob)
 router.put('/update/:id', updateJob)
 router.put('/closeJob/:id', closeJob)
+
+
 
 module.exports = router

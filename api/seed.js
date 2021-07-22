@@ -415,34 +415,47 @@ const recruiters = [
 
 const companies = [
   {
-    name: 'DSNTEC',
-    address: 'Av. Santa Fe 4010,',
-    email: 'dsntec@dsntec.com',
-    img: 'https://media-exp1.licdn.com/dms/image/C4D0BAQG7z3D-htOC7A/company-logo_200_200/0/1518870857507?e=2159024400&v=beta&t=Kd7mQszqqmrQO3_LQxqCXpQY7qRvFW7ODQ0XfreeJSM',
-    bio: 'Our company combines know-how and a deep domain understanding of technology to provide a range of IT outsourcing services from Product Development, custom application programming, to IT consulting services to enterprises all over the world.',
+    name: "DSNTEC",
+    stateId: "1",
+    areaId: "1",
+    email: "dsntec@dsntec.com",
+    contactName: "Adam Smith",
+    img: "https://media-exp1.licdn.com/dms/image/C4D0BAQG7z3D-htOC7A/company-logo_200_200/0/1518870857507?e=2159024400&v=beta&t=Kd7mQszqqmrQO3_LQxqCXpQY7qRvFW7ODQ0XfreeJSM",
+    description:
+      "Our company combines know-how and a deep domain understanding of technology to provide a range of IT outsourcing services from Product Development, custom application programming, to IT consulting services to enterprises all over the world.",
   },
   {
-    name: 'Swiss Medical Group',
-    address: 'Av. Maipú 1139',
-    email: 'swissmedicalgroup@swissmedicalgroup.com',
-    img: 'https://prepagas-precios.com.ar/wp-content/uploads/2020/06/swissmedical-precios-1038x572.jpg',
-    bio: 'Swiss Medical Group es uno de los principales grupos empresarios de Argentina que se dedica a la protección de personas y es líder en el mercado de la salud.',
+    name: "Swiss Medical Group",
+    stateId: "2",
+    areaId: "2",
+    email: "swissmedicalgroup@swissmedicalgroup.com",
+    contactName: "Lautaro Rodriguez",
+    img: "https://prepagas-precios.com.ar/wp-content/uploads/2020/06/swissmedical-precios-1038x572.jpg",
+    description:
+      "Swiss Medical Group es uno de los principales grupos empresarios de Argentina que se dedica a la protección de personas y es líder en el mercado de la salud.",
   },
   {
-    name: 'Camuzzi Gas',
-    address: 'Mitre 1260',
-    email: 'camuzzigas@camuzzigas.com',
-    img: 'https://www.camuzzigas.com/wp-content/uploads/2019/06/generica-logo-camuzzi-gas-2019.jpg',
-    bio: 'Somos la mayor distribuidora de gas natural de la Argentina en términos de volumen, cubriendo el 45% del paísen dos regiones contiguas a través de Camuzzi Gas Pampeana y Camuzzi Gas del Sur.',
+    name: "Camuzzi Gas",
+    stateId: "3",
+    areaId: "3",
+    email: "camuzzigas@camuzzigas.com",
+    contactName: "Carlos Villarosa",
+    img: "https://www.camuzzigas.com/wp-content/uploads/2019/06/generica-logo-camuzzi-gas-2019.jpg",
+    description:
+      "Somos la mayor distribuidora de gas natural de la Argentina en términos de volumen, cubriendo el 45% del paísen dos regiones contiguas a través de Camuzzi Gas Pampeana y Camuzzi Gas del Sur.",
   },
   {
-    name: 'Accusys Technology',
-    address: 'Av. Córdoba 673',
-    email: 'accusystechnology@accusystechnology.com',
-    img: 'https://media-exp3.licdn.com/dms/image/C4D0BAQGYiIk7JYRxLg/company-logo_200_200/0/1519928788078?e=2159024400&v=beta&t=KSSqWoV1IGQdMyOd8mp8ns-DdDED57nqHceS7989C0o',
-    bio: 'Accusys Technology, Compañía Líder regional en desarrollo y mantenimiento de soluciones informáticas ',
+    name: "Accusys Technology",
+    stateId: "4",
+    areaId: "4",
+    email: "accusystechnology@accusystechnology.com",
+    contactName: "Matias Viña",
+    img: "https://media-exp3.licdn.com/dms/image/C4D0BAQGYiIk7JYRxLg/company-logo_200_200/0/1519928788078?e=2159024400&v=beta&t=KSSqWoV1IGQdMyOd8mp8ns-DdDED57nqHceS7989C0o",
+    description:
+      "Accusys Technology, Compañía Líder regional en desarrollo y mantenimiento de soluciones informáticas ",
   },
-]
+];
+
 
 const areas = [
   { name: 'Ingenierías' },
@@ -555,29 +568,18 @@ const jobs = [
   },
 ]
 
-recruiters.map((recruiter) => {
-  Recruiters.create(recruiter).then((user) =>
-    console.log('usuario creado: ', user)
-  )
-})
-
-companies.map((Company) => {
-  Companies.create(Company).then((Company) =>
-    console.log('Company creada: ', Company)
-  )
-})
+states.map((State) => {
+  States.create(State).then((state) => {
+    console.log("State creado: ", state);
+  });
+});
 
 areas.map((Area) => {
   Areas.create(Area).then((area) => {
-    console.log('Area creada: ', area)
-  })
-})
+    console.log("Area creada: ", area);
+  });
+});
 
-states.map((State) => {
-  States.create(State).then((state) => {
-    console.log('State creado: ', state)
-  })
-})
 
 senioritysToMap.map((seniority) => {
   Seniority.create(seniority).then((data) => {
@@ -596,6 +598,19 @@ typesEmployed.map((types) => {
     console.log('Type of Employed creado: ', type)
   })
 })
+
+recruiters.map((recruiter) => {
+  Recruiters.create(recruiter).then((user) =>
+    console.log('usuario creado: ', user)
+  )
+})
+
+companies.map((Company) => {
+  Companies.create(Company).then((Company) =>
+    console.log('Company creada: ', Company)
+  )
+})
+
 
 jobs.map((job) => {
   Jobs.create(job).then((jobCreated) => {
