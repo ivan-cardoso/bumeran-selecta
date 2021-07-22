@@ -5,6 +5,7 @@ import { getAllRecruiters } from './recruiterTableData'
 import styles from './index.module.css'
 import FilteredArea from './FilteredAreas'
 import FilteredSeniority from './FilteredSeniority'
+import s from './filteredButtons.module.css'
 
 function InputSearch({ setRecruiters, recruiters }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -43,6 +44,8 @@ function InputSearch({ setRecruiters, recruiters }) {
   return (
     <>
       <div className={styles.inputSearchContainer}>
+        <div >
+        <div >
         <form onChange={handleChange} onSubmit={handleSubmit}>
           <input
             className={styles.inputSearch}
@@ -50,6 +53,8 @@ function InputSearch({ setRecruiters, recruiters }) {
             placeholder='Buscar por nombre...'
           />
         </form>
+
+        <div className={s.paddingFilteredInputs}>
         <FilteredArea
           setSelectedArea={setSelectedArea}
           setRecruiters={setRecruiters}
@@ -60,16 +65,26 @@ function InputSearch({ setRecruiters, recruiters }) {
           setRecruiters={setRecruiters}
           recruiters={recruiters}
         />
+        </div>
+          </div>
+        </div>
       </div>
+
       <div>
-        <p>{selectedArea}</p>
+      <div className={s.boxFilter}>
+        <p >{selectedArea}</p>
         {selectedArea && (
-          <button onClick={() => removeFilter()}>remover filtro</button>
+          <button 
+          className={s.filteredStyledButtons}
+          onClick={() => removeFilter()}>remover filtro</button>
         )}
-        <p>{selectedSeniority}</p>
+        <p className={s.pFilter}>{selectedSeniority}</p>
         {selectedSeniority && (
-          <button onClick={() => removeSeniority()}>remover filtro</button>
+          <button
+           className={s.filteredStyledButtons}
+           onClick={() => removeSeniority()}>remover filtro</button>
         )}
+        </div>
       </div>
     </>
   )

@@ -72,6 +72,7 @@ function RecruiterTableBody({
                     setShowTable(false)
                     setUpdateInfo(recruiter)
                   }}
+
                 >
                   <EditIcon />
                 </button>

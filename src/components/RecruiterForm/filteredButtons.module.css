@@ -1,0 +1,40 @@
+.filteredStyledButtons  {
+    text-decoration: none;
+    padding: 10px;
+    padding-left: 10px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #ffffff;
+    background-color: rgb(62, 76, 154);
+    border-radius: 8px;
+    
+  }
+
+.filteredStyledButtons:hover{
+    color: rgb(62, 76, 154);
+    background-color: #ffffff;
+}
+
+.boxFilter  {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 10rem;
+    text-align: center;
+    font-weight: bold;
+    padding-left: 30px;
+    
+}
+
+.pFilter    {
+    margin: 0px 0px 0px 0px;
+    padding-top: 15px;
+}
+
+.alignButtons   {
+    display: flex;
+}
+
+.paddingFilteredInputs  {
+    padding-top: 20px;
+}
