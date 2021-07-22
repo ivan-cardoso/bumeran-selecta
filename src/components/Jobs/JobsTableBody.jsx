@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from "react-redux"
-import { TableBody, TableRow, TableCell, Modal, Fade, Backdrop} from '@material-ui/core'
+import { TableBody, TableRow, TableCell, Modal, Fade, Backdrop, Grid, Button} from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import {getAllJobs, deleteJob} from "../../store/jobs/jobs"
+import {singleJob} from "../../store/jobs/singleJob"
 
 import useModal from "./useModal"
 import JobsForm from "./JobsForm"
@@ -13,7 +14,7 @@ import UpdateJob from "./UpdateJob"
 const JobsTableBody = ({ setShowTable, setUpdateInfo}) => {
 
     const {jobs} = useSelector((state)=> state)
-    const {open, setOpen,handleOpen, handleClose, classes, modalStyle} = useModal()
+    const {open, setOpen,handleOpen, handleClose, classes, modalStyle, openUpdate, setOpenUpdate} = useModal()
     const dispatch = useDispatch()
 
     const handleDelete = (id) =>{
@@ -25,6 +26,10 @@ const JobsTableBody = ({ setShowTable, setUpdateInfo}) => {
     const handleUpdateJob = (job)=>{
         setJobValues(job)
         setOpen(true)
+    }
+
+    const handleSingleJob = (job) =>{
+        dispatch(singleJob(job))
     }
     
     return (
@@ -64,8 +69,8 @@ const JobsTableBody = ({ setShowTable, setUpdateInfo}) => {
                     </TableCell>
 
                     <TableCell align='right'>
-                        <button /* onClick={() => handleSingleView(recruiter)} */>
-                            {<VisibilityIcon />}
+                        <button onClick={() => handleSingleJob(job)} >
+                            <VisibilityIcon />
                         </button>
                     </TableCell>
                 </TableRow>
@@ -73,17 +78,21 @@ const JobsTableBody = ({ setShowTable, setUpdateInfo}) => {
                 
             }) : <>Nada</>}
 
-            <Modal open={open} onClose={() => {handleClose()}} className={classes.modal}
+            <Modal 
+                open={open} 
+                onClose={() => {handleClose()}} 
+                className={classes.modal}
                 closeAfterTransition BackdropComponent={Backdrop} 
                 BackdropProps={{timeout: 500,}}
             >
                 <Fade in={open}>  
                 <div style={modalStyle} className={classes.paper}> 
-                    <UpdateJob job={jobValues}/>
-
-                    {/* <JobsForm values={job}
-                    //  handleChange={handleChange} handleSubmit={handleSubmit}
-                        /> */}
+                    <UpdateJob job={jobValues} handleClose={handleClose} />
+                    <Grid item xs={3}>
+                        <Button onClick={handleClose} color='secondary' variant='contained'>
+                            Close
+                        </Button>
+                    </Grid>
                 </div>
                 </Fade>
             </Modal>

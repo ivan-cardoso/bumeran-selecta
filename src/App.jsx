@@ -5,6 +5,7 @@ import Login from "./components/Login/Index";
 import NavBar from "./components/Navbar/Index";
 import "./App.css";
 import Jobs from "./components/Jobs/Jobs";
+import JobSingleView from "./components/Jobs/JobSingleView"
 import Recruiter from "./components/RecruiterForm/Recruiter";
 import SingleView from "./components/RecruiterSingleView/SingleView";
 import Footer from "./components/Footer/Index";
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/jobs" component={Jobs} />
+        <Route exact path="/jobs/:id" component={JobSingleView} />
         {/*  <PrivateRoute
           isLoggedIn={isLoggedIn}
           path="/recruiters"

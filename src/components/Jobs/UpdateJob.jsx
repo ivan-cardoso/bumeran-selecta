@@ -8,8 +8,8 @@ import styles from "./index.module.css"
 import useModal from "./useModal"
 import { message } from "antd";
 
-const UpdateJob = ({job}) => {
-    const {setOpen} = useModal()
+const UpdateJob = ({job, handleClose}) => {
+    const {setOpen, setOpenUpdate} = useModal()
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -66,16 +66,17 @@ const UpdateJob = ({job}) => {
         //     values.description !== null &&
         //     values.stateId !== null
         //   ) {
-            dispatch(updateJob( {id : job.id, values})).then((value) => {
-                console.log(value)
-              if (value.payload) {
-                dispatch(getAllJobs())
-                setOpen(false)
-                message.success("Búsqueda actualizada correctamente");
-                // dispatch(getCompanies());
-                // setValues(initialFormValues);
-              } 
-            })
+            
+        dispatch(updateJob( {id : job.id, values})).then((value) => {
+            console.log(value)
+            if (value.payload) {
+            handleClose()
+            dispatch(getAllJobs())
+            message.success("Búsqueda actualizada correctamente");
+            // dispatch(getCompanies());
+            // setValues(initialFormValues);
+            } 
+        })
         //   } 
         //   else {
         //     message.warning("Complete los campos");
@@ -248,12 +249,19 @@ const UpdateJob = ({job}) => {
                     
 
                     <Grid item xs={3}>
-                        <Button type="submit" color='secondary' variant='contained'>
-                            Confirm
+                        <Button type="submit" color='primary' variant='contained'>
+                            Confirmar
+                        </Button>
+                    </Grid>
+
+                    <Grid item xs={3}>
+                        <Button onClick={()=>handleClose()} color='secondary' variant='contained'>
+                            Cerrar
                         </Button>
                     </Grid>
                 </Grid>
             </form>
+                    
                 </>
             :   <Grid continer spacing={12}>
                     <Grid item xs={3}>
