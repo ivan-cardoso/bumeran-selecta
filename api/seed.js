@@ -9,6 +9,14 @@ const {
   Modality,
 } = require('./db/models/index')
 
+const seniorities = ['Trainee', 'Junior', 'Semi-Senior', 'Senior', 'Manager']
+const senioritysToMap = [
+  { name: 'Trainee' },
+  { name: 'Junior' },
+  { name: 'Semi-Senior' },
+  { name: 'Senior' },
+  { name: 'Manager' },
+]
 const recruiters = [
   {
     name: 'Guillermo Martin',
@@ -21,10 +29,10 @@ const recruiters = [
     favoriteArea1: 'Ingenierías',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Recursos Humanos y Capacitación',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Jefetura',
-    seniority3: 'SemiSenior/Senior',
-    rating: 10,
+    seniority1: seniorities[1],
+    seniority2: seniorities[3],
+    seniority3: seniorities[2],
+    rating: 5,
   },
   {
     name: 'Eva',
@@ -37,10 +45,10 @@ const recruiters = [
     favoriteArea1: 'Comercial, Ventas y Negocios',
     favoriteArea2: 'Atención al Cliente, Call Center y Telemarketing',
     favoriteArea3: 'Seguros',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Jefetura',
-    seniority3: 'Training/Junior',
-    rating: 4,
+    seniority1: seniorities[1],
+    seniority2: seniorities[2],
+    seniority3: seniorities[3],
+    rating: 4.3,
   },
   {
     name: 'Alejandra',
@@ -53,10 +61,10 @@ const recruiters = [
     favoriteArea1: 'Gerencia y Dirección General',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Administración, Contabilidad y Finanzas',
-    seniority1: 'Gerente/Director',
-    seniority2: 'Jefetura',
-    seniority3: 'SemiSenior/Senior',
-    rating: 8,
+    seniority1: seniorities[4],
+    seniority2: seniorities[1],
+    seniority3: seniorities[0],
+    rating: 3.5,
   },
   {
     name: 'Mario',
@@ -69,9 +77,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Atención al Cliente, Call Center y Telemarketing',
     favoriteArea3: 'Legales',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Training/Junior',
-    seniority3: 'Jefetura',
+    seniority1: seniorities[0],
+    seniority2: seniorities[3],
+    seniority3: seniorities[2],
   },
   {
     name: 'Marisa',
@@ -84,9 +92,9 @@ const recruiters = [
     favoriteArea1: 'Recursos Humanos y Capacitación',
     favoriteArea2: 'Secretarias y Recepción',
     favoriteArea3: 'Administración, Contabilidad y Finanzas',
-    seniority1: 'Training/Junior',
-    seniority2: 'SemiSenior/Senior',
-    seniority3: 'Jefetura',
+    seniority1: seniorities[4],
+    seniority2: seniorities[1],
+    seniority3: seniorities[0],
   },
   {
     name: 'Asencio',
@@ -99,9 +107,9 @@ const recruiters = [
     favoriteArea1: 'Minería, Petróleo y Gas',
     favoriteArea2: 'Ingenierías',
     favoriteArea3: 'Ingeniería Civil y Construcción',
-    seniority1: 'Jefetura',
-    seniority2: 'Gerente/Director',
-    seniority3: 'SemiSenior/Senior',
+    seniority1: seniorities[4],
+    seniority2: seniorities[3],
+    seniority3: seniorities[0],
   },
   {
     name: 'Estefania',
@@ -129,9 +137,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Secretarias y Recepción',
     favoriteArea3: 'Salud, Medicina, Enfermería y Farmacia',
-    seniority1: 'Gerente/Director',
-    seniority2: 'Jefetura',
-    seniority3: 'SemiSenior/Senior',
+    seniority1: seniorities[0],
+    seniority2: seniorities[1],
+    seniority3: seniorities[2],
   },
   {
     name: 'Braian',
@@ -144,9 +152,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Comunicación, Relaciones Institucionales y Públicas',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Jefetura',
-    seniority3: 'Training/Junior',
+    seniority1: seniorities[0],
+    seniority2: seniorities[1],
+    seniority3: seniorities[2],
   },
   {
     name: 'Florencia',
@@ -159,9 +167,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Ingenierías',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Jefetura',
-    seniority3: 'Training/Junior',
+    seniority1: seniorities[0],
+    seniority2: seniorities[1],
+    seniority3: seniorities[2],
   },
   {
     name: 'Mariana',
@@ -174,9 +182,9 @@ const recruiters = [
     favoriteArea1: 'Seguros',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Marketing y Publicidad',
-    seniority1: 'Jefetura',
-    seniority2: 'Gerente/Director',
-    seniority3: 'SemiSenior/Senior',
+    seniority1: seniorities[3],
+    seniority2: seniorities[4],
+    seniority3: seniorities[1],
   },
   {
     name: 'Analía',
@@ -189,9 +197,9 @@ const recruiters = [
     favoriteArea1: 'Comercial, Ventas y Negocios',
     favoriteArea2: 'Gerencia y Dirección General',
     favoriteArea3: 'Gastronomía y Turismo',
-    seniority1: 'Gerente/Director',
-    seniority2: 'Jefetura',
-    seniority3: 'Training/Junior',
+    seniority1: seniorities[3],
+    seniority2: seniorities[4],
+    seniority3: seniorities[1],
   },
   {
     name: 'Alejandro',
@@ -204,9 +212,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Producción y Manufactura',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Training/Junior',
-    seniority3: 'Gerente/Director',
+    seniority1: seniorities[3],
+    seniority2: seniorities[4],
+    seniority3: seniorities[1],
   },
   {
     name: 'CL',
@@ -219,9 +227,9 @@ const recruiters = [
     favoriteArea1: 'Comercial, Ventas y Negocios',
     favoriteArea2: 'Administración, Contabilidad y Finanzas',
     favoriteArea3: 'Seguros',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Jefetura',
-    seniority3: 'Training/Junior',
+    seniority1: seniorities[3],
+    seniority2: seniorities[4],
+    seniority3: seniorities[1],
   },
   {
     name: 'Monica',
@@ -233,10 +241,10 @@ const recruiters = [
     img: 'https://randomuser.me/api/portraits/women/4.jpg',
     favoriteArea1: 'Gerencia y Dirección General',
     favoriteArea2: 'Salud, Medicina, Enfermería y Farmacia',
-    favoriteArea3: 'Comercial, Ventas y Negocios',
-    seniority1: 'Gerente/Director',
-    seniority2: 'Jefetura',
-    seniority3: 'SemiSenior/Senior',
+    favoriteArea3: 'Ingenierías',
+    seniority1: seniorities[3],
+    seniority2: seniorities[4],
+    seniority3: seniorities[1],
   },
   {
     name: 'Christian',
@@ -249,9 +257,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Ingenierías',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Training/Junior',
-    seniority3: 'Jefetura',
+    seniority1: seniorities[3],
+    seniority2: seniorities[4],
+    seniority3: seniorities[1],
   },
   {
     name: 'Nadia',
@@ -264,9 +272,9 @@ const recruiters = [
     favoriteArea1: 'Tecnología, Sistemas y Telecomunicaciones',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Administración, Contabilidad y Finanzas',
-    seniority1: 'Gerente/Director',
-    seniority2: 'SemiSenior/Senior',
-    seniority3: 'SemiSenior/Senior',
+    seniority1: seniorities[3],
+    seniority2: seniorities[2],
+    seniority3: seniorities[1],
   },
   {
     name: 'Verónica',
@@ -279,9 +287,9 @@ const recruiters = [
     favoriteArea1: 'Salud, Medicina, Enfermería y Farmacia',
     favoriteArea2: 'Ingeniería Civil y Construcción',
     favoriteArea3: 'Aduana y Comercio Exterior',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Jefetura',
-    seniority3: 'Gerente/Director',
+    seniority1: seniorities[3],
+    seniority2: seniorities[2],
+    seniority3: seniorities[1],
   },
   {
     name: 'Vanesa',
@@ -294,9 +302,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Secretarias y Recepción',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Training/Junior',
-    seniority3: 'Jefetura',
+    seniority1: seniorities[3],
+    seniority2: seniorities[2],
+    seniority3: seniorities[1],
   },
   {
     name: 'Claudio',
@@ -309,9 +317,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Recursos Humanos y Capacitación',
-    seniority1: 'Jefetura',
-    seniority2: 'SemiSenior/Senior',
-    seniority3: 'Gerente/Director',
+    seniority1: seniorities[3],
+    seniority2: seniorities[2],
+    seniority3: seniorities[1],
   },
   {
     name: 'Vanesa',
@@ -324,9 +332,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Secretarias y Recepción',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Training/Junior',
-    seniority3: 'Jefetura',
+    seniority1: seniorities[3],
+    seniority2: seniorities[2],
+    seniority3: seniorities[1],
   },
   {
     name: 'Ileana',
@@ -339,9 +347,9 @@ const recruiters = [
     favoriteArea1: 'Tecnología, Sistemas y Telecomunicaciones',
     favoriteArea2: 'Administración, Contabilidad y Finanzas',
     favoriteArea3: 'Comercial, Ventas y Negocios',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Jefetura',
-    seniority3: 'Training/Junior',
+    seniority1: seniorities[0],
+    seniority2: seniorities[4],
+    seniority3: seniorities[2],
   },
   {
     name: 'Josefina',
@@ -354,9 +362,9 @@ const recruiters = [
     favoriteArea1: 'Marketing y Publicidad',
     favoriteArea2: 'Recursos Humanos y Capacitación',
     favoriteArea3: 'Gerencia y Dirección General',
-    seniority1: 'Gerente/Director',
-    seniority2: 'Jefetura',
-    seniority3: 'SemiSenior/Senior',
+    seniority1: seniorities[3],
+    seniority2: seniorities[2],
+    seniority3: seniorities[1],
   },
   {
     name: 'Maida',
@@ -369,9 +377,9 @@ const recruiters = [
     favoriteArea1: 'Tecnología, Sistemas y Telecomunicaciones',
     favoriteArea2: 'Administración, Contabilidad y Finanzas',
     favoriteArea3: 'Recursos Humanos y Capacitación',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'SemiSenior/Senior',
-    seniority3: 'SemiSenior/Senior',
+    seniority1: seniorities[3],
+    seniority2: seniorities[2],
+    seniority3: seniorities[1],
   },
   {
     name: 'Inés',
@@ -384,9 +392,9 @@ const recruiters = [
     favoriteArea1: 'Administración, Contabilidad y Finanzas',
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Producción y Manufactura',
-    seniority1: 'Gerente/Director',
-    seniority2: 'Jefetura',
-    seniority3: 'SemiSenior/Senior',
+    seniority1: seniorities[3],
+    seniority2: seniorities[2],
+    seniority3: seniorities[1],
   },
   {
     name: 'Anabella',
@@ -399,42 +407,55 @@ const recruiters = [
     favoriteArea1: 'Recursos Humanos y Capacitación',
     favoriteArea2: 'Administración, Contabilidad y Finanzas',
     favoriteArea3: 'Tecnología, Sistemas y Telecomunicaciones',
-    seniority1: 'SemiSenior/Senior',
-    seniority2: 'Jefetura',
-    seniority3: 'Training/Junior',
+    seniority1: seniorities[4],
+    seniority2: seniorities[3],
+    seniority3: seniorities[2],
   },
 ]
 
 const companies = [
   {
-    name: 'DSNTEC',
-    address: 'Av. Santa Fe 4010,',
-    email: 'dsntec@dsntec.com',
-    img: 'https://media-exp1.licdn.com/dms/image/C4D0BAQG7z3D-htOC7A/company-logo_200_200/0/1518870857507?e=2159024400&v=beta&t=Kd7mQszqqmrQO3_LQxqCXpQY7qRvFW7ODQ0XfreeJSM',
-    bio: 'Our company combines know-how and a deep domain understanding of technology to provide a range of IT outsourcing services from Product Development, custom application programming, to IT consulting services to enterprises all over the world.',
+    name: "DSNTEC",
+    stateId: "1",
+    areaId: "1",
+    email: "dsntec@dsntec.com",
+    contactName: "Adam Smith",
+    img: "https://media-exp1.licdn.com/dms/image/C4D0BAQG7z3D-htOC7A/company-logo_200_200/0/1518870857507?e=2159024400&v=beta&t=Kd7mQszqqmrQO3_LQxqCXpQY7qRvFW7ODQ0XfreeJSM",
+    description:
+      "Our company combines know-how and a deep domain understanding of technology to provide a range of IT outsourcing services from Product Development, custom application programming, to IT consulting services to enterprises all over the world.",
   },
   {
-    name: 'Swiss Medical Group',
-    address: 'Av. Maipú 1139',
-    email: 'swissmedicalgroup@swissmedicalgroup.com',
-    img: 'https://prepagas-precios.com.ar/wp-content/uploads/2020/06/swissmedical-precios-1038x572.jpg',
-    bio: 'Swiss Medical Group es uno de los principales grupos empresarios de Argentina que se dedica a la protección de personas y es líder en el mercado de la salud.',
+    name: "Swiss Medical Group",
+    stateId: "2",
+    areaId: "2",
+    email: "swissmedicalgroup@swissmedicalgroup.com",
+    contactName: "Lautaro Rodriguez",
+    img: "https://prepagas-precios.com.ar/wp-content/uploads/2020/06/swissmedical-precios-1038x572.jpg",
+    description:
+      "Swiss Medical Group es uno de los principales grupos empresarios de Argentina que se dedica a la protección de personas y es líder en el mercado de la salud.",
   },
   {
-    name: 'Camuzzi Gas',
-    address: 'Mitre 1260',
-    email: 'camuzzigas@camuzzigas.com',
-    img: 'https://www.camuzzigas.com/wp-content/uploads/2019/06/generica-logo-camuzzi-gas-2019.jpg',
-    bio: 'Somos la mayor distribuidora de gas natural de la Argentina en términos de volumen, cubriendo el 45% del paísen dos regiones contiguas a través de Camuzzi Gas Pampeana y Camuzzi Gas del Sur.',
+    name: "Camuzzi Gas",
+    stateId: "3",
+    areaId: "3",
+    email: "camuzzigas@camuzzigas.com",
+    contactName: "Carlos Villarosa",
+    img: "https://www.camuzzigas.com/wp-content/uploads/2019/06/generica-logo-camuzzi-gas-2019.jpg",
+    description:
+      "Somos la mayor distribuidora de gas natural de la Argentina en términos de volumen, cubriendo el 45% del paísen dos regiones contiguas a través de Camuzzi Gas Pampeana y Camuzzi Gas del Sur.",
   },
   {
-    name: 'Accusys Technology',
-    address: 'Av. Córdoba 673',
-    email: 'accusystechnology@accusystechnology.com',
-    img: 'https://media-exp3.licdn.com/dms/image/C4D0BAQGYiIk7JYRxLg/company-logo_200_200/0/1519928788078?e=2159024400&v=beta&t=KSSqWoV1IGQdMyOd8mp8ns-DdDED57nqHceS7989C0o',
-    bio: 'Accusys Technology, Compañía Líder regional en desarrollo y mantenimiento de soluciones informáticas ',
+    name: "Accusys Technology",
+    stateId: "4",
+    areaId: "4",
+    email: "accusystechnology@accusystechnology.com",
+    contactName: "Matias Viña",
+    img: "https://media-exp3.licdn.com/dms/image/C4D0BAQGYiIk7JYRxLg/company-logo_200_200/0/1519928788078?e=2159024400&v=beta&t=KSSqWoV1IGQdMyOd8mp8ns-DdDED57nqHceS7989C0o",
+    description:
+      "Accusys Technology, Compañía Líder regional en desarrollo y mantenimiento de soluciones informáticas ",
   },
-]
+];
+
 
 const areas = [
   { name: 'Ingenierías' },
@@ -474,14 +495,6 @@ const states = [
   { name: 'Santiago del Estero' },
   { name: 'Tierra del Fuego' },
   { name: 'Tucumán' },
-]
-
-const seniorities = [
-  { name: 'Trainee' },
-  { name: 'Junior' },
-  { name: 'Semi-Senior' },
-  { name: 'Senior' },
-  { name: 'Manager' },
 ]
 
 const modalities = [{ name: 'Presencial' }, { name: 'Remota' }]
@@ -555,31 +568,20 @@ const jobs = [
   },
 ]
 
-recruiters.map((recruiter) => {
-  Recruiters.create(recruiter).then((user) =>
-    console.log('usuario creado: ', user)
-  )
-})
-
-companies.map((Company) => {
-  Companies.create(Company).then((Company) =>
-    console.log('Company creada: ', Company)
-  )
-})
+states.map((State) => {
+  States.create(State).then((state) => {
+    console.log("State creado: ", state);
+  });
+});
 
 areas.map((Area) => {
   Areas.create(Area).then((area) => {
-    console.log('Area creada: ', area)
-  })
-})
+    console.log("Area creada: ", area);
+  });
+});
 
-states.map((State) => {
-  States.create(State).then((state) => {
-    console.log('State creado: ', state)
-  })
-})
 
-seniorities.map((seniority) => {
+senioritysToMap.map((seniority) => {
   Seniority.create(seniority).then((data) => {
     console.log('Seniority creado: ', data)
   })
@@ -596,6 +598,19 @@ typesEmployed.map((types) => {
     console.log('Type of Employed creado: ', type)
   })
 })
+
+recruiters.map((recruiter) => {
+  Recruiters.create(recruiter).then((user) =>
+    console.log('usuario creado: ', user)
+  )
+})
+
+companies.map((Company) => {
+  Companies.create(Company).then((Company) =>
+    console.log('Company creada: ', Company)
+  )
+})
+
 
 jobs.map((job) => {
   Jobs.create(job).then((jobCreated) => {

@@ -20,32 +20,34 @@ const JobsTable = ({jobs}) => {
   
 
     return (
-        <>
-            <TableContainer component={Paper}>
-                <Table
-                className={classes.table}
-                size='small'
-                aria-label='a dense table'
-                >                
-                <TableHead>
-                    <TableRow>
-                        {jobsColums.map((column, index) => {
-                        return (
-                            <TableCell key={index} align='right'>
-                                {column}
-                            </TableCell>
-                        )
-                        })}
-                    </TableRow>
-                </TableHead>
-                
+      <>
+        <TableContainer component={Paper}>
+          <Table
+            className={classes.table}
+            size="small"
+            aria-label="a dense table"
+          >
+            <TableHead>
+              <TableRow>
+                {jobsColums.map((column, index) => {
+                  return (
+                    <TableCell key={index} align="right">
+                      {column}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            </TableHead>
 
-                <JobsTableBody setShowTable={setShowTable} setUpdateInfo={setUpdateInfo} />
-
-                </Table>
-            </TableContainer>
-        </>
-    )
+            <JobsTableBody
+              jobs={jobs}
+              setShowTable={setShowTable}
+              setUpdateInfo={setUpdateInfo}
+            />
+          </Table>
+        </TableContainer>
+      </>
+    );
 }
 
 export default JobsTable
