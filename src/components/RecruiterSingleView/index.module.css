@@ -42,3 +42,12 @@
   color: cornflowerblue;
   border: cornflowerblue 1px solid;
 }
+
+#tableActiveJobs{
+    text-align: center;
+    outline: 1px solid;
+    margin-top: 39px;
+}
+.ButtonsInfo{
+  display:flex
+}

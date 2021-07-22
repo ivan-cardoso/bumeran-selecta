@@ -61,16 +61,15 @@ const NavBar = () => {
   /* End state and functions */
 
   const handleLogout = () => {
-    console.log('hice logout')
-    dispatch(UserLogout(user))
-  }
+    dispatch(UserLogout(user));
+  };
 
   return (
     <div className={s.navbarContainer}>
-      <Link to={'/'}>
+      <Link to={"/"}>
         <img
-          src='https://www.bumeran.com.ar/selecta/wp-content/uploads/2021/06/logo-2.png'
-          alt='bumeran-selecta-logo'
+          src="https://www.bumeran.com.ar/selecta/wp-content/uploads/2021/06/logo-2.png"
+          alt="bumeran-selecta-logo"
         />
       </Link>
 
@@ -78,18 +77,17 @@ const NavBar = () => {
         <div className={s.navbarButtonsContainer}>
           <button
             className={s.buttonPerfil}
-            type='button'
+            type="button"
             onClick={() => handleOpen()}
           >
             <Avatar alt={user.email} src={user.photoURL} />
           </button>
-          <BtnLogout name='Logout' onClick={handleLogout}></BtnLogout>
-          {console.log(user)}
+          <BtnLogout name="Logout" onClick={handleLogout}></BtnLogout>
         </div>
       ) : (
         <div>
-          <Link to={'/login'}>
-            <BtnLogin name='Login'></BtnLogin>
+          <Link to={"/login"}>
+            <BtnLogin name="Login"></BtnLogin>
           </Link>
         </div>
       )}
@@ -97,7 +95,7 @@ const NavBar = () => {
       <Modal
         open={open}
         onClose={() => {
-          handleClose()
+          handleClose();
         }}
         className={classes.modal}
         closeAfterTransition
@@ -114,11 +112,11 @@ const NavBar = () => {
                 Name : <span>{user && user.displayName}</span>
               </h3>
               <h3 className={s.stylePersonalInfo}>
-                {' '}
-                Email : <span>{user && user.email}</span>{' '}
+                {" "}
+                Email : <span>{user && user.email}</span>{" "}
               </h3>
 
-              <Link to='/forgotpassword'>
+              <Link to="/forgotpassword">
                 <h3>
                   <button
                     className={s.buttonChangePassword}
@@ -141,7 +139,7 @@ const NavBar = () => {
         </div>
       )} */}
     </div>
-  )
+  );
 }
 
 export default NavBar

@@ -5,9 +5,11 @@ export const getAllJobsByCompany = createAsyncThunk(
   "GET_ALL_JOBS_BY_COMPANY",
   async (companyId, thunkAPI) => {
     try {
-      const { singleCompany } = thunkAPI.getState();
-      const jobs = await axios.get(`/api/companies/jobs/${singleCompany.id}`);
-      return jobs.data;
+      if (companyId) {
+        const jobs = await axios.get(`/api/companies/jobs/${companyId}`);
+
+        return jobs.data;
+      }
     } catch (err) {
       console.log(err);
     }

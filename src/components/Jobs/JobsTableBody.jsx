@@ -10,6 +10,7 @@ import {singleJob} from "../../store/jobs/singleJob"
 import useModal from "./useModal"
 import JobsForm from "./JobsForm"
 import UpdateJob from "./UpdateJob"
+import { useHistory } from "react-router-dom";
 
 const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
   
@@ -27,6 +28,14 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
     setJobValues(job);
     setOpen(true);
   };
+
+    const history = useHistory();
+
+    const handleSingleJob = (job) => {
+      dispatch(singleJob(job));
+      history.push(`/jobs/${job.id}`);
+    };
+
   React.useEffect(() => {
     dispatch(getAllJobs());
   }, [dispatch]);
@@ -41,7 +50,6 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
               <TableCell align="right">{job.area.name}</TableCell>
               <TableCell align="right">{job.seniority.name}</TableCell>
               <TableCell align="right">{job.typeemloyed.name}</TableCell>
-
 
               <TableCell align="right">{job.modality.name}</TableCell>
               <TableCell align="right">{job.country}</TableCell>
@@ -61,15 +69,13 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                   <EditIcon />
                 </button>
               </TableCell>
-                    <TableCell align='right'>
-                        <button /* onClick={() => handleSingleJob(job)} */ >
-                            <VisibilityIcon />
-                        </button>
-                    </TableCell>
-                </TableRow>
-            
-           
-      )}) ): null}
+              <TableCell align="right">
+                <button onClick={() => handleSingleJob(job)}>
+                  <VisibilityIcon />
+                </button>
+              </TableCell>
+            </TableRow>
+          );}) ): null}
 
             <Modal 
                 open={open} 
