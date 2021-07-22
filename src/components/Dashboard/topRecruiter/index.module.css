@@ -1,0 +1,40 @@
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+.title {
+  height: 40%;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  height: 60%;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bestRecruiter{
+  width: 60%;
+  height: 80%;
+  margin-left:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+.trofeo {
+  width: 40%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  font-size: 36px;
+  color: gold;
+}

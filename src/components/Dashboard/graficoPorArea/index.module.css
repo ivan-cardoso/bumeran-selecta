@@ -1,0 +1,19 @@
+.contenedor {
+  height: 100%;
+  display: flex;
+}
+.title {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 10px;
+}
+.graficos {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
+}

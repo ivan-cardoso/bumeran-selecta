@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import s from './index.module.css'
 
 function BusquedasActivas() {
   const [openedJobs, setOpenedJobs] = useState([])
@@ -11,9 +12,9 @@ function BusquedasActivas() {
   }, [])
 
   return (
-    <div>
-      <h1>Busquedas Activas</h1>
-      <h2>{openedJobs.length}</h2>
+    <div className={s.contenedor}>
+      <h1 className={s.title}>Busquedas Activas</h1>
+      <h2 className={s.number}>{openedJobs.length}</h2>
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styles from './index.module.css'
 import BtnGoBack from '../UX/Buttons/BtnGoBack'
+import SimpleRating from './RatingView';
 
 function SingleView() {
   const history = useHistory()
@@ -30,7 +31,7 @@ function SingleView() {
         <div className={styles.container}>
           <div className={styles.picture}>
             <h2>
-              Rating: <span>{rating}</span>
+              <SimpleRating rating={rating} />
             </h2>
             <img src={img} alt={surname} />
             <div className={styles.bio}>

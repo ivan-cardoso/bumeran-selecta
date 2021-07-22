@@ -11,19 +11,44 @@ import s from './index.module.css'
 function Dashboard() {
   return (
     <div className={s.container}>
+
       <div className={s.top}>
-        <TopRecruiter />
-        <TopCompanies />
+        <div className={s.recruiters}>
+          <TopRecruiter />
+        </div>
+        <div className={s.companies}>
+          <TopCompanies />
+        </div>
       </div>
-      <div style={{ display: 'flex' }}>
-        <BusquedasActivas />
-        <PromedioBusquedasporRecruiters />
+
+      <div className={s.busquedas}>
+
+        <div className={s.activas}>
+          <BusquedasActivas />
+        </div>
+        <div className={s.promedio}>
+          <PromedioBusquedasporRecruiters />
+        </div>
+
       </div>
-      <div style={{ display: 'flex' }}>
-        <ChartbyArea />
-        <CharyBySeniority />
+
+      <div className={s.areaAndSeñority}>
+        
+        <div className={s.area}>
+          <ChartbyArea />
+        </div>
+        <div className={s.señority}>
+          <CharyBySeniority />
+        </div>
+
       </div>
-      <ChartHistoric />
+
+      <div className={s.graficos}>
+        <div className={s.graficoUno}>
+          <ChartHistoric />
+        </div>
+      </div>
+
     </div>
   )
 }

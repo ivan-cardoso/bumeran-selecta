@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import s from './index.module.css'
 import {
   BarChart,
   Bar,
@@ -97,26 +98,30 @@ export default function ChartHistoric() {
   }, [])
 
   return (
-    <>
-      <h1> Nuevas busquedas los ultimos 7 dias</h1>
-      <BarChart
-        width={500}
-        height={300}
-        data={historicData}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='date' />
-        <YAxis />
-        <Tooltip />
-        {/* <Legend /> */}
-        <Bar dataKey='total' fill='#82ca9d' />
-      </BarChart>
-    </>
+    <div className={s.contenedor}>
+      <div className={s.title}>
+        <h1> Nuevas busquedas los ultimos 7 dias</h1>
+      </div>
+      <div className={s.grafico}>
+        <BarChart
+          width={500}
+          height={300}
+          data={historicData}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='date' />
+          <YAxis />
+          <Tooltip />
+          {/* <Legend /> */}
+          <Bar dataKey='total' fill='#82ca9d' />
+        </BarChart>
+      </div>
+    </div>
   )
 }

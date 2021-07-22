@@ -1,0 +1,19 @@
+.contenedor {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.title{
+  margin: 10px;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grafico {
+  margin: 10px;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import s from './index.module.css'
 
 function PromedioBusquedasporRecruiters() {
   const [jobs, setJobs] = useState([])
@@ -21,10 +22,10 @@ function PromedioBusquedasporRecruiters() {
   }, [jobs])
 
   return (
-    <div>
-      <h1>Promedio de busquedas por reclutador </h1>
-      <h2>{averageByRecruiter}</h2>
-      <p>los reclutadores deben tener al menos 1 busqueda activa</p>
+    <div className={s.contenedor}>
+      <h1 className={s.title}>Busquedas por reclutador </h1>
+      <h2 className={s.number}>{averageByRecruiter}</h2>
+      <p className={s.info}>Reclutadores con al menos 1 busqueda activa</p>
     </div>
   )
 }
