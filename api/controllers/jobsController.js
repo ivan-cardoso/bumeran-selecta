@@ -1,4 +1,5 @@
 const {Jobs, Areas, States, Seniority, TypeEmployed, Modality } = require("../db/models/index")
+const { Op } = require("sequelize");
 
 
 const getAllJobs = (req, res) => {
@@ -78,6 +79,26 @@ const closeJob = (req, res) => {
     })
 }
 
+const findAllBySearch = async (req, res, next) => {
+  try {
+    const jobs = await Jobs.findAll({
+      where: {
+        [Op.or]: [
+          {
+            title: {
+              [Op.iLike]: `%${req.params.search}%`,
+            },
+          },
+        ],
+      },
+      include: { all: true },
+    });
+    res.status(200).json(jobs);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getAllJobs,
   getOneJob,
@@ -85,4 +106,5 @@ module.exports = {
   deleteJob,
   updateJob,
   closeJob,
+  findAllBySearch,
 };
