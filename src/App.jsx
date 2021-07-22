@@ -5,6 +5,7 @@ import Login from './components/Login/Index'
 import NavBar from './components/Navbar/Index'
 import './App.css'
 import Jobs from './components/Jobs/Jobs'
+import JobSingleView from "./components/Jobs/JobSingleView"
 import Recruiter from './components/RecruiterForm/Recruiter'
 import SingleView from './components/RecruiterSingleView/SingleView'
 import Footer from './components/Footer/Index'
@@ -42,6 +43,7 @@ function App() {
           component={Jobs}
           isAuthenticated={isAuthenticated}
         />
+            <PrivateRoute exact path="/jobs/:id" component={JobSingleView} isAuthenticated={isAuthenticated}/>
         <PrivateRoute
           isAuthenticated={isAuthenticated}
           exact

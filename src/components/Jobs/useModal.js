@@ -35,13 +35,16 @@ export default function useModal(){
 
     const [modalStyle] = React.useState(getModalStyle)
     const [open, setOpen] = React.useState(false)
+    const [openUpdate, setOpenUpdate] = React.useState(false)
     
     const handleOpen = () => {
         setOpen(true)
-        }
+        // setOpenUpdate(true)
+    }
     const handleClose = () => {
         setOpen(false)
+        // setOpenUpdate(false)
     }
 
-    return ({open, setOpen,handleOpen, handleClose, classes, modalStyle})
+    return ({open, setOpen,handleOpen, handleClose, classes, modalStyle, openUpdate, setOpenUpdate})
 }
