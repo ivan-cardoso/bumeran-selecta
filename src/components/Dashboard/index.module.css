@@ -1,0 +1,42 @@
+.container {
+  background-color: rgb(235, 229, 229);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-left: 15%;
+}
+
+.contenedor {
+  padding: 0;
+}
+
+.top {
+  display: flex;
+  /* margin-top: 40px; */
+  justify-content: space-evenly;
+}
+
+.title {
+  color: black;
+  font-size: 22px;
+}
+
+.icon {
+  padding: 1px;
+  margin: 0;
+}
+
+.position {
+  padding: 1px;
+  margin: 0;
+}
+
+.rating {
+  padding: 1px;
+  margin: 0;
+}
+
+.nombre {
+  padding: 1px;
+  margin: 0;
+}

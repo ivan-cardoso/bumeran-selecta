@@ -140,14 +140,14 @@ const recruitersController = {
       return next(err)
     }
   },
+  getTopThreeRecruiters(req, res) {
+    Recruiters.findAll({ order: [['rating', 'DESC']], limit: 3 })
+      .then((recruiters) => res.status(200).send(recruiters))
+      .catch((err) => {
+        console.log(err)
+        res.status(500).send(err)
+      })
+  },
 }
 
 module.exports = recruitersController
-
-// {
-//   where: {
-//     name: {
-//       [Op.iLike]: `%${req.params.name}%`,
-//     },
-//   },
-// }

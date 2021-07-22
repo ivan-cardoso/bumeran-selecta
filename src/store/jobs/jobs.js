@@ -35,13 +35,25 @@ export const updateJob = createAsyncThunk("UPDATE_JOB", (value)=>{
     .catch((err)=> console.log(err))
 })
 
+export const getJobsSearch = createAsyncThunk(
+  "GET_JOBS_SEARCH",
+  async (search) => {
+    try {
+      const jobs = await axios.get(`api/jobs/${search}`);
+      return jobs.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
 
 const createJobReducer = createReducer({},{
     [createJob.fulfilled] : (state, action) => action.payload,
 })
 const jobsReducer = createReducer([], {
-    [getAllJobs.fulfilled] : (state, action) => action.payload
-})
+  [getAllJobs.fulfilled]: (state, action) => action.payload,
+  [getJobsSearch.fulfilled]: (state, action) => action.payload,
+});
 const deleteJobReducer = createReducer({}, {
     [deleteJob.fulfilled] : (state, action)=> action.payload
 })  

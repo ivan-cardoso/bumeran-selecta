@@ -6,6 +6,7 @@ import aditionalDataReducer from "./aditionalData/actions"
 import companiesReducer from './companies/companies'
 import singleCompanyReducer from "./companies/singleCompany";
 import singleJobReducer from "./jobs/singleJob"
+import getAllJobsByCompanyReducer from "./companies/jobsCompany";
 
 
 const store = configureStore({
@@ -16,7 +17,8 @@ const store = configureStore({
     aditionalData: aditionalDataReducer,
     companies: companiesReducer,
     singleCompany: singleCompanyReducer,
-    singleJob : singleJobReducer
+    singleJob : singleJobReducer,
+    jobsCompany: getAllJobsByCompanyReducer,
   },
 });
 
