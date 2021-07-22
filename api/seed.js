@@ -19,11 +19,14 @@ const senioritysToMap = [
   { name: 'Manager' },
 ]
 
+<<<<<<< HEAD
 
 // en 1 recrutier tenemos todos los campos, hay que cambiar el favorutie area 1, 2 y 3 
 
 //
 
+=======
+>>>>>>> a6cff410e131e475503c28c226c1147f05bf2ae6
 const areas = [
   { name: 'Ingenierías' },
   { name: 'Comercial, Ventas y Negocios' },
@@ -35,6 +38,7 @@ const areas = [
   { name: 'Tecnología, Sistemas y Telecomunicaciones' },
   { name: 'Salud, Medicina, Enfermería y Farmacia' },
   { name: 'Marketing y Publicidad' },
+<<<<<<< HEAD
   { name : 'Atención al Cliente, Call Center y Telemarketing'},
   { name: 'Legales' },
   { name : 'Secretaría y recepción'},
@@ -47,6 +51,10 @@ const areas = [
 
 
 
+=======
+]
+
+>>>>>>> a6cff410e131e475503c28c226c1147f05bf2ae6
 const recruiters = [
   {
     name: 'Guillermo Martin',
@@ -56,9 +64,15 @@ const recruiters = [
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/men/18.jpg',
+<<<<<<< HEAD
     favoriteArea1: areas[0].name,                           //
     favoriteArea2: areas[1].name,
     favoriteArea3: areas[4].name,
+=======
+    favoriteArea1: areas[0].name,
+    favoriteArea2: 'Comercial, Ventas y Negocios',
+    favoriteArea3: 'Recursos Humanos y Capacitación',
+>>>>>>> a6cff410e131e475503c28c226c1147f05bf2ae6
     seniority1: seniorities[1],
     seniority2: seniorities[3],
     seniority3: seniorities[2],

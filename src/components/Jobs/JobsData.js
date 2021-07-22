@@ -8,7 +8,7 @@ const jobsColums = [
     "País",
     "Provincia",
     "Salario",
-    "Descripción",
+    "Estado",
 ]
 
 export default jobsColums
