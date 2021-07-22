@@ -4,10 +4,10 @@ import { getAllAditionalData } from '../../store/aditionalData/actions'
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { getAllRecruiters } from './recruiterTableData'
 
-function FilteredArea({ setSelectedArea, setRecruiters, recruiters }) {
+function FilteredSeniority({ setSelectedArea, setRecruiters, recruiters }) {
   const dispatch = useDispatch()
 
-  const { areas } = useSelector((state) => state.aditionalData)
+  const { seniorities } = useSelector((state) => state.aditionalData)
 
   useEffect(() => {
     dispatch(getAllAditionalData())
@@ -23,7 +23,7 @@ function FilteredArea({ setSelectedArea, setRecruiters, recruiters }) {
       })
       .then(() => {
         const filtered = recruiters.filter(
-          (recruiter) => recruiter.favoriteArea1 === value
+          (recruiter) => recruiter.seniority1 === value
         )
         setRecruiters(filtered)
       })
@@ -33,15 +33,15 @@ function FilteredArea({ setSelectedArea, setRecruiters, recruiters }) {
     <>
       <FormControl variant='outlined' style={{ width: 160 }}>
         <InputLabel id='demo-simple-select-outlined-label'>
-          Favourite Area 1
+          Seniority
         </InputLabel>
         <Select
-          name='favoriteArea'
-          label='Favourite Area'
+          name='seniority'
+          label='Seniority'
           onChange={(e) => handleInputChange(e)}
         >
-          {areas &&
-            areas.map((area) => {
+          {seniorities &&
+            seniorities.map((area) => {
               const { name, id } = area
               return <MenuItem value={name}>{name}</MenuItem>
             })}
@@ -51,4 +51,4 @@ function FilteredArea({ setSelectedArea, setRecruiters, recruiters }) {
   )
 }
 
-export default FilteredArea
+export default FilteredSeniority
