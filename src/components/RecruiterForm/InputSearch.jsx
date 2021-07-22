@@ -5,7 +5,6 @@ import { getAllRecruiters } from './recruiterTableData'
 import styles from './index.module.css'
 import FilteredArea from './FilteredAreas'
 import FilteredSeniority from './FilteredSeniority'
-import s from './filteredButtons.module.css'
 
 function InputSearch({ setRecruiters, recruiters }) {
   const [searchTerm, setSearchTerm] = useState('')
@@ -54,7 +53,7 @@ function InputSearch({ setRecruiters, recruiters }) {
           />
         </form>
 
-        <div className={s.paddingFilteredInputs}>
+        <div >
         <FilteredArea
           setSelectedArea={setSelectedArea}
           setRecruiters={setRecruiters}
@@ -71,17 +70,16 @@ function InputSearch({ setRecruiters, recruiters }) {
       </div>
 
       <div>
-      <div className={s.boxFilter}>
+      <div >
         <p >{selectedArea}</p>
         {selectedArea && (
           <button 
-          className={s.filteredStyledButtons}
+        
           onClick={() => removeFilter()}>remover filtro</button>
         )}
-        <p className={s.pFilter}>{selectedSeniority}</p>
+        <p >{selectedSeniority}</p>
         {selectedSeniority && (
           <button
-           className={s.filteredStyledButtons}
            onClick={() => removeSeniority()}>remover filtro</button>
         )}
         </div>
