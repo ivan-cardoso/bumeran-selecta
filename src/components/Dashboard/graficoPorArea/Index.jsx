@@ -56,7 +56,7 @@ function ChartbyArea() {
         <h1>Busquedas por Area</h1>
       </div>
       <div className={s.graficos}>
-        <PieChart width={500} height={200}>
+        <PieChart width={600} height={200}>
           <Legend
             cy='20%'
             layout='vertical'
