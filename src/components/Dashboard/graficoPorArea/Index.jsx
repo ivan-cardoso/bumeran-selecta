@@ -11,6 +11,7 @@ function ChartbyArea() {
       .get('/api/jobs/jobbyarea')
       .then((res) => res.data)
       .then((areasSearch) => {
+        
         const formatedArea = areasSearch.map((singleArea) => {
           return {
             name: singleArea['area.name'],
