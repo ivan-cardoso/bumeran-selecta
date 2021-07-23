@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { createJob, getAllJobs } from '../../store/jobs/jobs'
+import { getAllJobsByCompany } from "../../store/companies/jobsCompany";
 import {
   Grid,
   Paper,
@@ -27,7 +28,7 @@ import BtnCreateNewJobs from '../UX/Buttons/BtnCreateNewJobs'
 //     }
 // }
 
-const AddJob = () => {
+const AddJob = ({setCreate}) => {
   const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
     useModal()
 
@@ -104,8 +105,10 @@ const AddJob = () => {
       values.stateId !== null
     ) {
       dispatch(createJob(values)).then((value) => {
+        console.log("VALUES GET ALL JOBS", value)
         if (value.payload) {
           dispatch(getAllJobs())
+          setCreate(true)
           setOpen(false)
           message.success('Búsqueda creada correctamente')
           // dispatch(getCompanies());
@@ -118,8 +121,9 @@ const AddJob = () => {
   }
 
   return (
-    <div>
-      <div style={{ marginLeft: 300, marginTop: 20 }}>
+    <>
+      {/* <div style={{ marginLeft: 300, marginTop: 20 }}> */}
+      <div>
         <BtnCreateNewJobs
           onClick={handleOpen}
           name='Crear búsqueda'
@@ -149,7 +153,7 @@ const AddJob = () => {
           </div>
         </Fade>
       </Modal>
-    </div>
+    </>
   )
 }
 

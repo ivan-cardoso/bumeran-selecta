@@ -12,7 +12,7 @@
 }
 
 .jobDetailsSection{
-    margin: 3rem;
+    margin: 4rem 5rem;
     display: flex;
     flex-direction: column;
 }
@@ -21,7 +21,6 @@
     display: flex;
 }
 .singleCompanyImg{
-    background-color: aqua;
     margin-right: 4rem;
     box-shadow: 2px 2px 10px 1px #cecccc; 
     width: 200px;
@@ -50,6 +49,9 @@
 .singleJobTitle{
     font-size: 1.8rem;
     margin-right: 1rem;
+}
+.singleJobTitleContainer p {
+    
 }
 .singleJobData{
     background-color: rgb(244, 250, 255);

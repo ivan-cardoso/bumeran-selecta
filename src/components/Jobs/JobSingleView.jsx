@@ -43,7 +43,7 @@ const JobSingleView = () => {
 
             <div className={style.singleJobData} >
                 <h3>Publicado: {singleJob.date.slice(0, 10)}</h3>
-                <p>{singleJob.country}, {singleJob.state.name}</p>
+                <h3>{singleJob.country}, {singleJob.state.name}</h3>
                 <h3>{singleJob.typeemloyed.name}</h3>
                 <h3>{singleJob.modality.name}</h3>
                 <h3>$ {singleJob.salary ? singleJob.salary : "No especificado"}</h3>
