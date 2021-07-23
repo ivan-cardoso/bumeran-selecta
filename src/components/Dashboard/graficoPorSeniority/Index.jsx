@@ -55,7 +55,7 @@ function ChartBySeniority() {
         <h1>Busquedas por Seniority</h1>
       </div>
       <div className={s.graficos}>
-        <PieChart width={400} height={200}>
+        <PieChart width={450} height={200}>
           <Legend
             cy="20%"
             layout="vertical"

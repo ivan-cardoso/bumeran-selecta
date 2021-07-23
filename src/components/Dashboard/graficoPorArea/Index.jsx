@@ -55,7 +55,7 @@ function ChartbyArea() {
         <h1>Busquedas por Area</h1>
       </div>
       <div className={s.graficos}>
-        <PieChart width={400} height={200}>
+        <PieChart width={450} height={200}>
           <Legend
             cy="20%"
             layout="vertical"
@@ -70,7 +70,6 @@ function ChartbyArea() {
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={80}
-            
           >
             {areas.map((areas, index) => (
               <Cell key={areas.areaId} fill={colors[index]} />

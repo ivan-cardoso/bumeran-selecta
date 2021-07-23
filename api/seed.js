@@ -30,7 +30,17 @@ const areas = [
   { name: 'Tecnología, Sistemas y Telecomunicaciones' },
   { name: 'Salud, Medicina, Enfermería y Farmacia' },
   { name: 'Marketing y Publicidad' },
+  { name : 'Atención al Cliente, Call Center y Telemarketing'},
+  { name: 'Legales' },
+  { name : 'Secretaría y recepción'},
+  { name : 'Ingeniería Civil y Construcción'},
+  { name : 'Comunicación, Relaciones Institucionales y Públicas'},
+  { name : 'Gastronomía y Turismo'},
+  { name : 'Producción y Manufactura'},
+  { name : 'Aduana y Comercio Exterior'},
 ]
+
+
 
 const recruiters = [
   {
@@ -41,9 +51,9 @@ const recruiters = [
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/men/18.jpg',
-    favoriteArea1: areas[0].name,
-    favoriteArea2: 'Comercial, Ventas y Negocios',
-    favoriteArea3: 'Recursos Humanos y Capacitación',
+    favoriteArea1: areas[0].name,                           //
+    favoriteArea2: areas[1].name,
+    favoriteArea3: areas[4].name,
     seniority1: seniorities[1],
     seniority2: seniorities[3],
     seniority3: seniorities[2],
