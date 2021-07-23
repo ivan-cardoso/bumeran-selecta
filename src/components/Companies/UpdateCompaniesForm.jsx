@@ -147,19 +147,13 @@ export default function UpdateCompaniesForm({
               value={values.contactName}
             />
           </Grid>
-          {/* <Grid item xs={4}>
-            <TextField
-              variant="outlined"
-              label="logo"
-              name="logo"
-              value={values.logo}
-            />
-          </Grid> */}
           <Grid item xs={4}>
             <TextField
               variant="outlined"
               label="Descripción"
               name="description"
+              multiline
+              row={1}
               value={values.description}
             />
           </Grid>

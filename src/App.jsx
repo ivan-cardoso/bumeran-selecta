@@ -19,14 +19,17 @@ import CompaniesSingleView from './components/CompaniesSingleView/CompaniesSingl
 import Sidebar from './components/Sidebar/Index'
 
 function App() {
-  const [isAuthenticated, setisAuthenticated] = useState(false)
+  const [isAuthenticated, setisAuthenticated] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+
   const dispatch = useDispatch()
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userCred) => {
       if (userCred) {
         dispatch(userCookie(userCred))
         setisAuthenticated(true)
-      }
+      } else setisAuthenticated(false)
+      setIsLoading(false)
     })
   }, [dispatch])
 
@@ -38,39 +41,45 @@ function App() {
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route path='/forgotpassword' component={ForgotPass} />
-        <Route
+        <PrivateRoute
           exact
           path='/jobs'
           component={Jobs}
           isAuthenticated={isAuthenticated}
+          isLoading={isLoading}
         />
         <PrivateRoute
           exact
           path='/jobs/:id'
           component={JobSingleView}
           isAuthenticated={isAuthenticated}
+          isLoading={isLoading}
         />
         <PrivateRoute
           isAuthenticated={isAuthenticated}
           exact
           path='/recruiters'
           component={Recruiter}
+          isLoading={isLoading}
         />
         <PrivateRoute
           exact
           path='/companies'
           component={Companies}
           isAuthenticated={isAuthenticated}
+          isLoading={isLoading}
         />
         <PrivateRoute
           path='/companies/:id'
           component={CompaniesSingleView}
           isAuthenticated={isAuthenticated}
+          isLoading={isLoading}
         />
         <PrivateRoute
           path='/recruiters/:id'
           component={SingleView}
           isAuthenticated={isAuthenticated}
+          isLoading={isLoading}
         />
         <Redirect from='/' to='/home' />
       </Switch>
@@ -78,4 +87,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

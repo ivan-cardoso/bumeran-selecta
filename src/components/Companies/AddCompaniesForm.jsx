@@ -122,6 +122,8 @@ export default function AddCompaniesForm({
               variant="outlined"
               label="Descripción"
               name="description"
+              multiline
+              row={1}
               value={values.description}
             />
           </Grid>
