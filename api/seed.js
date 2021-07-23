@@ -19,14 +19,6 @@ const senioritysToMap = [
   { name: 'Manager' },
 ]
 
-<<<<<<< HEAD
-
-// en 1 recrutier tenemos todos los campos, hay que cambiar el favorutie area 1, 2 y 3 
-
-//
-
-=======
->>>>>>> a6cff410e131e475503c28c226c1147f05bf2ae6
 const areas = [
   { name: 'Ingenierías' },
   { name: 'Comercial, Ventas y Negocios' },
@@ -38,23 +30,8 @@ const areas = [
   { name: 'Tecnología, Sistemas y Telecomunicaciones' },
   { name: 'Salud, Medicina, Enfermería y Farmacia' },
   { name: 'Marketing y Publicidad' },
-<<<<<<< HEAD
-  { name : 'Atención al Cliente, Call Center y Telemarketing'},
-  { name: 'Legales' },
-  { name : 'Secretaría y recepción'},
-  { name : 'Ingeniería Civil y Construcción'},
-  { name : 'Comunicación, Relaciones Institucionales y Públicas'},
-  { name : 'Gastronomía y Turismo'},
-  { name : 'Producción y Manufactura'},
-  { name : 'Aduana y Comercio Exterior'},
 ]
 
-
-
-=======
-]
-
->>>>>>> a6cff410e131e475503c28c226c1147f05bf2ae6
 const recruiters = [
   {
     name: 'Guillermo Martin',
@@ -64,15 +41,9 @@ const recruiters = [
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/men/18.jpg',
-<<<<<<< HEAD
-    favoriteArea1: areas[0].name,                           //
-    favoriteArea2: areas[1].name,
-    favoriteArea3: areas[4].name,
-=======
     favoriteArea1: areas[0].name,
     favoriteArea2: 'Comercial, Ventas y Negocios',
     favoriteArea3: 'Recursos Humanos y Capacitación',
->>>>>>> a6cff410e131e475503c28c226c1147f05bf2ae6
     seniority1: seniorities[1],
     seniority2: seniorities[3],
     seniority3: seniorities[2],
@@ -87,7 +58,7 @@ const recruiters = [
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/women/84.jpg',
     favoriteArea1: areas[1].name,
-    favoriteArea2: areas[10].name,
+    favoriteArea2: areas[9].name,
     favoriteArea3: areas[6].name,
     seniority1: seniorities[1],
     seniority2: seniorities[2],
@@ -119,8 +90,8 @@ const recruiters = [
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/men/62.jpg',
     favoriteArea1: areas[3].name,
-    favoriteArea2: areas[10].name,
-    favoriteArea3: areas[11].name,
+    favoriteArea2: areas[9].name,
+    favoriteArea3: areas[7].name,
     seniority1: seniorities[0],
     seniority2: seniorities[3],
     seniority3: seniorities[2],
@@ -134,7 +105,7 @@ const recruiters = [
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/women/37.jpg',
     favoriteArea1: areas[4].name,
-    favoriteArea2: areas[12].name,
+    favoriteArea2: areas[5].name,
     favoriteArea3: areas[3].name,
     seniority1: seniorities[4],
     seniority2: seniorities[1],
@@ -150,7 +121,7 @@ const recruiters = [
     img: 'https://randomuser.me/api/portraits/men/0.jpg',
     favoriteArea1: areas[5].name,
     favoriteArea2: areas[0].name,
-    favoriteArea3: areas[13].name,
+    favoriteArea3: areas[4].name,
     seniority1: seniorities[4],
     seniority2: seniorities[3],
     seniority3: seniorities[0],
@@ -165,7 +136,7 @@ const recruiters = [
     img: 'https://randomuser.me/api/portraits/women/78.jpg',
     favoriteArea1: areas[3].name,
     favoriteArea2: areas[1].name,
-    favoriteArea3: areas[10].name,
+    favoriteArea3: areas[9].name,
     seniority1: seniorities[2],
     seniority2: seniorities[1],
     seniority3: seniorities[3],
@@ -179,7 +150,7 @@ const recruiters = [
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/women/56.jpg',
     favoriteArea1: areas[3].name,
-    favoriteArea2: areas[12].name,
+    favoriteArea2: areas[1].name,
     favoriteArea3: areas[8].name,
     seniority1: seniorities[0],
     seniority2: seniorities[1],
@@ -195,7 +166,7 @@ const recruiters = [
     img: 'https://randomuser.me/api/portraits/women/31.jpg',
     favoriteArea1: areas[3].name,
     favoriteArea2: areas[1].name,
-    favoriteArea3: areas[14].name,
+    favoriteArea3: areas[5].name,
     seniority1: seniorities[0],
     seniority2: seniorities[1],
     seniority3: seniorities[2],
@@ -240,7 +211,7 @@ const recruiters = [
     img: 'https://randomuser.me/api/portraits/women/23.jpg',
     favoriteArea1: areas[1].name,
     favoriteArea2: areas[2].name,
-    favoriteArea3: areas[15].name,
+    favoriteArea3: areas[3].name,
     seniority1: seniorities[3],
     seniority2: seniorities[4],
     seniority3: seniorities[1],
@@ -329,8 +300,8 @@ const recruiters = [
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/women/83.jpg',
     favoriteArea1: areas[8].name,
-    favoriteArea2: areas[13].name,
-    favoriteArea3: areas[17].name,
+    favoriteArea2: areas[8].name,
+    favoriteArea3: areas[7].name,
     seniority1: seniorities[3],
     seniority2: seniorities[2],
     seniority3: seniorities[1],
@@ -345,7 +316,7 @@ const recruiters = [
     img: 'https://randomuser.me/api/portraits/women/68.jpg',
     favoriteArea1: areas[3].name,
     favoriteArea2: areas[4].name,
-    favoriteArea3: areas[12].name,
+    favoriteArea3: areas[2].name,
     seniority1: seniorities[3],
     seniority2: seniorities[2],
     seniority3: seniorities[1],
@@ -375,7 +346,7 @@ const recruiters = [
     img: 'https://randomuser.me/api/portraits/women/78.jpg',
     favoriteArea1: areas[3].name,
     favoriteArea2: areas[4].name,
-    favoriteArea3: areas[12].name,
+    favoriteArea3: areas[1].name,
     seniority1: seniorities[3],
     seniority2: seniorities[2],
     seniority3: seniorities[1],
@@ -435,7 +406,7 @@ const recruiters = [
     img: 'https://randomuser.me/api/portraits/women/43.jpg',
     favoriteArea1: areas[3].name,
     favoriteArea2: areas[1].name,
-    favoriteArea3: areas[16].name,
+    favoriteArea3: areas[6].name,
     seniority1: seniorities[3],
     seniority2: seniorities[2],
     seniority3: seniorities[1],

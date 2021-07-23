@@ -20,52 +20,43 @@ const useStyles = makeStyles({
 export default function CompaniesTable({ companies }) {
   const classes = useStyles();
   const [showTable, setShowTable] = useState(true);
-  const [updateInfo, setUpdateInfo] = useState("");
-
-  const handleInputChangeUpdate = (e) => {
-    const { name, value } = e.target;
-    setUpdateInfo({
-      ...updateInfo,
-      [name]: value,
-    });
-  };
 
   return (
     <>
-      {showTable ? (
-        <TableContainer component={Paper}>
-          <Table
-            className={classes.table}
-            size="small"
-            aria-label="a dense table"
-          >
-            <TableHead>
-              <TableRow>
-                {companiesColums.map((column, index) => {
-                  return (
-                    <TableCell key={index} align="right">
-                      {column}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            </TableHead>
+      {
+        showTable ? (
+          <TableContainer component={Paper}>
+            <Table
+              className={classes.table}
+              size="small"
+              aria-label="a dense table"
+            >
+              <TableHead>
+                <TableRow>
+                  {companiesColums.map((column, index) => {
+                    return (
+                      <TableCell key={index} align="right">
+                        {column}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              </TableHead>
 
-            <CompaniesTableBody
-              companies={companies}
-              setShowTable={setShowTable}
-              setUpdateInfo={setUpdateInfo}
-            />
-          </Table>
-        </TableContainer>
-      ) : (
-        <UpdateCompaniesForm
-          values={updateInfo}
-          setValues={setUpdateInfo}
-          handleInputChange={handleInputChangeUpdate}
-          setShowTable={setShowTable}
-        />
-      )}
+              <CompaniesTableBody
+                companies={companies}
+                setShowTable={setShowTable}
+              />
+            </Table>
+          </TableContainer>
+        ) : null
+        // <UpdateCompaniesForm
+        //   values={updateInfo}
+        //   setValues={setUpdateInfo}
+        //   handleInputChange={handleInputChangeUpdate}
+        //   setShowTable={setShowTable}
+        // />
+      }
     </>
   );
 }

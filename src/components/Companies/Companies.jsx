@@ -45,11 +45,15 @@ export default function Companies() {
 
   return (
     <>
+      <div>
+
       <AddCompany
         values={values}
         setValues={setValues}
         handleInputChange={handleInputChange}
-      />
+        />
+        </div>
+
       <InputSearch handleChange={handleChange} />
       <Paper className={classes.pageContent}>
         {companies.length > 0 ? (

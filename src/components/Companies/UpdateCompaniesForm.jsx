@@ -24,6 +24,7 @@ export default function UpdateCompaniesForm({
   handleInputChange,
   handleSubmit,
   setShowTable,
+  handleClose,
 }) {
   const dispatch = useDispatch();
 
@@ -34,10 +35,6 @@ export default function UpdateCompaniesForm({
   const { aditionalData } = useSelector((state) => state);
   const { states, areas } = aditionalData;
 
-  const handleClose = (e) => {
-    e.preventDefault();
-    setShowTable(true);
-  };
   const handleSubmitUpdate = (e) => {
     e.preventDefault();
     if (
@@ -51,7 +48,7 @@ export default function UpdateCompaniesForm({
     ) {
       dispatch(updateCompany(values)).then((value) => {
         message.success("Company added");
-        dispatch(getCompanies()).then(() => setShowTable(true));
+        dispatch(getCompanies()).then(() => handleClose());
 
         //setValues(initialFormValues);
       });
