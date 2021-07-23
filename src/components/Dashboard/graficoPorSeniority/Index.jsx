@@ -33,6 +33,7 @@ function ChartBySeniority() {
     percent,
     index,
   }) => {
+    
     const radius = innerRadius + (outerRadius - innerRadius) * 0.6
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
     const y = cy + radius * Math.sin(-midAngle * RADIAN)

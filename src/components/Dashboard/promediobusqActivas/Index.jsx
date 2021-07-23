@@ -23,8 +23,8 @@ function PromedioBusquedasporRecruiters() {
 
   return (
     <div className={s.contenedor}>
-      <h1 className={s.title}>Busquedas por reclutador </h1>
-      <h2 className={s.number}>{averageByRecruiter}</h2>
+      <h1 className={s.title}>Promedio de Busquedas por reclutador </h1>
+      <h2 className={s.number}>{(averageByRecruiter.toFixed(2))}</h2>
       <p className={s.info}>Reclutadores con al menos 1 busqueda activa</p>
     </div>
   )

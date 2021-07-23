@@ -11,7 +11,6 @@ function ChartbyArea() {
       .get('/api/jobs/jobbyarea')
       .then((res) => res.data)
       .then((areasSearch) => {
-        
         const formatedArea = areasSearch.map((singleArea) => {
           return {
             name: singleArea['area.name'],
@@ -56,7 +55,7 @@ function ChartbyArea() {
         <h1>Busquedas por Area</h1>
       </div>
       <div className={s.graficos}>
-        <PieChart width={600} height={200}>
+        <PieChart width={500} height={200}>
           <Legend
             cy='20%'
             layout='vertical'
