@@ -15,6 +15,7 @@ div {
   font-size: medium;
   flex-wrap: wrap;
   overflow: hidden;
+  position: fixed;
 }
 
 .sidebarContainer:hover {
