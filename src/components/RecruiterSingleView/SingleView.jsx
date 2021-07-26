@@ -79,7 +79,9 @@ function SingleView() {
       ) : (
         history.push('/recruiters')
       )}
-      <BtnGoBack onClick={history.goBack} name='Go Back'></BtnGoBack>
+      <div className={styles.btn}>
+        <BtnGoBack className={styles.goBack} onClick={history.goBack} name='Go Back'></BtnGoBack>
+      </div>
     </div>
   )
 }

@@ -55,18 +55,18 @@ function ChartbyArea() {
         <h1>Busquedas por Area</h1>
       </div>
       <div className={s.graficos}>
-        <PieChart width={600} height={200}>
+        <PieChart width={450} height={200}>
           <Legend
-            cy='20%'
-            layout='vertical'
-            align='left'
-            verticalAlign='middle'
+            cy="20%"
+            layout="vertical"
+            align="left"
+            verticalAlign="middle"
           />
           <Pie
             data={areas}
-            cx='20%'
+            cx="55%"
             // cy='20%'
-            dataKey='value'
+            dataKey="value"
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={80}
@@ -78,7 +78,7 @@ function ChartbyArea() {
         </PieChart>
       </div>
     </div>
-  )
+  );
 }
 
 export default ChartbyArea

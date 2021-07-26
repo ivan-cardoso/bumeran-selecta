@@ -74,6 +74,7 @@ export default function UpdateCompaniesForm({
               label="Nombre"
               name="name"
               value={values.name}
+              autoComplete="disabled"
             />
           </Grid>
           <Grid item xs={4}>
@@ -87,6 +88,7 @@ export default function UpdateCompaniesForm({
                 label="Provincia"
                 value={values.stateId}
                 onChange={(e) => handleInputChange(e)}
+                autoComplete="disabled"
               >
                 <MenuItem
                   className={styles.menuItemSelect}
@@ -114,6 +116,7 @@ export default function UpdateCompaniesForm({
                 label="Area"
                 value={values.areaId}
                 onChange={(e) => handleInputChange(e)}
+                autoComplete="disabled"
               >
                 <MenuItem
                   className={styles.menuItemSelect}
@@ -137,6 +140,7 @@ export default function UpdateCompaniesForm({
               type="email"
               name="email"
               value={values.email}
+              autoComplete="disabled"
             />
           </Grid>
           <Grid item xs={4}>
@@ -145,22 +149,18 @@ export default function UpdateCompaniesForm({
               label="Nombre del contacto"
               name="contactName"
               value={values.contactName}
+              autoComplete="disabled"
             />
           </Grid>
-          {/* <Grid item xs={4}>
-            <TextField
-              variant="outlined"
-              label="logo"
-              name="logo"
-              value={values.logo}
-            />
-          </Grid> */}
           <Grid item xs={4}>
             <TextField
               variant="outlined"
               label="Descripción"
               name="description"
+              multiline
+              row={1}
               value={values.description}
+              autoComplete="disabled"
             />
           </Grid>
           <input

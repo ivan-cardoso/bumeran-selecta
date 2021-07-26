@@ -49,6 +49,8 @@
     outline: 1px solid;
     margin-top: 39px;
 }
-.ButtonsInfo{
-  display:flex
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

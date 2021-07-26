@@ -5,6 +5,7 @@
 }
 .home {
   display: flex;
+  /* width: 99vw; */
   height: 100%;
   background: aqua;
 }

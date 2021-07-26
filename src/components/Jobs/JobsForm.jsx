@@ -66,7 +66,6 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
             <form onSubmit={(e) => handleSubmit(e)} className={classes.root}>
               <Grid container spacing={12}>
                 <Grid item xs={4}>
-
                   {singleCompany.id ? (
                     <TextField
                       variant="outlined"
@@ -91,6 +90,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                         onChange={handleChange}
                         required
                         label="Compania"
+                        autoComplete="disabled"
                       >
                         <MenuItem className={styles.menuItemSelect} disable>
                           <em>Seleccione compania</em>
@@ -117,6 +117,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                     value={values.title}
                     required
                     placeholder="Ej: Front-End Developer"
+                    autoComplete="disabled"
                   />
                 </Grid>
 
@@ -133,6 +134,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                       onChange={handleChange}
                       required
                       label="Area"
+                      autoComplete="disabled"
                     >
                       <MenuItem
                         className={styles.menuItemSelect}
@@ -161,6 +163,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                       onChange={handleChange}
                       required
                       label="Seniority"
+                      autoComplete="disabled"
                     >
                       <MenuItem
                         className={styles.menuItemSelect}
@@ -193,6 +196,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                       onChange={handleChange}
                       required
                       label="País"
+                      autoComplete="disabled"
                     >
                       <MenuItem
                         className={styles.menuItemSelect}
@@ -221,6 +225,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                       onChange={handleChange}
                       required
                       label="Provincia"
+                      autoComplete="disabled"
                     >
                       <MenuItem
                         className={styles.menuItemSelect}
@@ -251,6 +256,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                       onChange={handleChange}
                       required
                       label="Tipo de empleo"
+                      autoComplete="disabled"
                     >
                       <MenuItem
                         value=""
@@ -277,6 +283,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                     name="salary"
                     type="number"
                     onChange={handleChange}
+                    autoComplete="disabled"
                   />
                 </Grid>
 
@@ -293,6 +300,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                       onChange={handleChange}
                       required
                       label="Modalidad"
+                      autoComplete="disabled"
                     >
                       <MenuItem
                         value=""
@@ -330,6 +338,7 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
                     onChange={handleChange}
                     required
                     className={styles.formControlDescription}
+                    autoComplete="disabled"
                   />
                 </Grid>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { createJob, getAllJobs } from '../../store/jobs/jobs'
+import { getAllJobsByCompany } from "../../store/companies/jobsCompany";
 import {
   Grid,
   Paper,
@@ -15,6 +16,7 @@ import { message } from 'antd'
 import styles from './index.module.css'
 import useModal from './useModal'
 import BtnCreateNewJobs from '../UX/Buttons/BtnCreateNewJobs'
+import { singleCompany } from "../../store/companies/singleCompany";
 
 // function getModalStyle() {
 //     const top = 50
@@ -27,7 +29,7 @@ import BtnCreateNewJobs from '../UX/Buttons/BtnCreateNewJobs'
 //     }
 // }
 
-const AddJob = () => {
+const AddJob = ({setCreate}) => {
   const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
     useModal()
 
@@ -105,21 +107,24 @@ const AddJob = () => {
     ) {
       dispatch(createJob(values)).then((value) => {
         if (value.payload) {
-          dispatch(getAllJobs())
-          setOpen(false)
-          message.success('Búsqueda creada correctamente')
+          dispatch(getAllJobs());
+          dispatch(singleCompany({}));
+          if (setCreate) setCreate(true);
+          setOpen(false);
+          message.success("Búsqueda creada correctamente");
           // dispatch(getCompanies());
           // setValues(initialFormValues);
         }
-      })
+      });
     } else {
       message.warning('Complete los campos')
     }
   }
 
   return (
-    <div>
-      <div style={{ marginLeft: 300, marginTop: 20 }}>
+    <>
+      {/* <div style={{ marginLeft: 300, marginTop: 20 }}> */}
+      <div>
         <BtnCreateNewJobs
           onClick={handleOpen}
           name='Crear búsqueda'
@@ -149,7 +154,7 @@ const AddJob = () => {
           </div>
         </Fade>
       </Modal>
-    </div>
+    </>
   )
 }
 

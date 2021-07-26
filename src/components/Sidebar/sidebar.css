@@ -16,6 +16,7 @@ div {
   flex-wrap: wrap;
   overflow: hidden;
   position: fixed;
+  justify-content:left
 }
 
 .sidebarContainer:hover {
@@ -24,6 +25,7 @@ div {
 }
 .sidebarDiv {
   display: flex;
+  height: 25%;
   flex-direction: row;
 }
 
@@ -60,13 +62,11 @@ div {
   padding-left: 0px;
   padding-right: 5px;
   padding-top: 50%;
-}
-
-.nav-text {
   font-size: 20px;
   padding-bottom: 100px;
   justify-content: flex-start;
 }
+
 
 .sidebarDiv {
   align-self: center;
