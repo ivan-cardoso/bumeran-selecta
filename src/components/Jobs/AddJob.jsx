@@ -125,6 +125,7 @@ const AddJob = () => {
           name='Crear búsqueda'
         ></BtnCreateNewJobs>
       </div>
+      
       {/* <div style={{ display: "none" }} id="createJobForm">
                 <JobsForm/>
             </div> */}

@@ -48,7 +48,7 @@ function ChartbyArea() {
         {`${(percent * 100).toFixed(0)}%`}
       </text>
     )
-  }
+  } 
   return (
     <div className={s.contenedor}>
       <div className={s.title}>

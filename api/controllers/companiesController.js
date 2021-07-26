@@ -32,8 +32,7 @@ const companiesController = {
 
   async updateByPk(req, res, next) {
     try {
-      const { name, stateId, email, contactName, img, description, areaId } =
-        req.body;
+      const { name, stateId, email, contactName, img, description, areaId } =  req.body;
 
       const [update, companies] = await Companies.update(
         { name, stateId, email, contactName, img, description, areaId },

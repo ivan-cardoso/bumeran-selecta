@@ -2,6 +2,7 @@ import { createReducer, createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const createJob = createAsyncThunk("CREATE_JOB", (jobDetails) => {
+  console.log(jobDetails, "jobDetails")
     return axios.post("/api/jobs/create", jobDetails)
         .then((res) => res.data)
         .then((data) =>{
@@ -18,6 +19,8 @@ export const getAllJobs = createAsyncThunk("GET_ALL_JOBS", ()=>{
 })
 
 export const deleteJob = createAsyncThunk("DELETE_JOB", (id)=>{
+  console.log(id, "id")
+
     return axios.delete(`/api/jobs/delete/${id}`)
     .then((res)=> res.data)
     .then((job)=> job)
