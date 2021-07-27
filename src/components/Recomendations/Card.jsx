@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import s from './index.module.css'
-import BtnGoBack from '../UX/Buttons/BtnGoBack'
+import BTN from '../UX/Buttons/BtnGoBack'
 import SimpleRating from '../RecruiterSingleView/RatingView'
 import { GoLocation } from 'react-icons/go'
 import { AiOutlineMail } from 'react-icons/ai'
@@ -9,14 +9,13 @@ import { SiWheniwork } from 'react-icons/si'
 import { MdPersonPin } from 'react-icons/md'
 import { BsSearch } from 'react-icons/bs'
 
-function Card({ selectedJob }) {
+function Card({ selectedJob, setOpenRecruiter }) {
   console.log('selectedJob', selectedJob)
   const { id, area, seniority } = selectedJob
   const [recruiters, setRecruiters] = useState([])
   const [activeSelection, setActiveSelection] = useState(false)
 
   useEffect(() => {
-    console.log('hice modal')
     axios
       .post('/api/jobs/findrecomendation', selectedJob)
       .then((res) => res.data)
@@ -55,6 +54,10 @@ function Card({ selectedJob }) {
     //add selected
     const element = document.getElementById(`${index}`)
     element.classList.add(s.active)
+  }
+
+  const handleClose = () => {
+    setOpenRecruiter(false)
   }
 
   return (
@@ -112,14 +115,15 @@ function Card({ selectedJob }) {
         })}
       </div>
       <div className={s.btncontainer}>
-        <BtnGoBack
+        <BTN
           style={{ width: '200px', height: '50px', fontSize: '20px' }}
           name='Confirmar'
-        ></BtnGoBack>
-        <BtnGoBack
+        ></BTN>
+        <BTN
           style={{ width: '200px', height: '50px', fontSize: '20px' }}
           name='Cancelar'
-        ></BtnGoBack>
+          onClick={handleClose}
+        ></BTN>
       </div>
     </>
   )

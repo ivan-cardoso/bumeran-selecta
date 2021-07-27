@@ -29,7 +29,10 @@ function Index({
             className={ClassNamePaper}
           >
             <h1 style={{ fontSize: 30 }}>Elige a un reclutador</h1>
-            <Card selectedJob={selectedJob} />
+            <Card
+              selectedJob={selectedJob}
+              setOpenRecruiter={setOpenRecruiter}
+            />
           </div>
         </Fade>
       </Modal>
