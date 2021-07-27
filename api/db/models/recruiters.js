@@ -25,11 +25,6 @@ Recruiters.init(
       allowNull: false,
     },
 
-    state: {
-      type: S.STRING,
-      allowNull: false,
-    },
-
     bio: {
       type: S.TEXT,
       allowNull: false,

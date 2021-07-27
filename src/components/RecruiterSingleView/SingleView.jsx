@@ -54,7 +54,7 @@ function SingleView() {
               Pais: <span>{country}</span>
             </p>
             <p>
-              Provincia: <span>{state}</span>
+              Provincia: <span>{state && state.name}</span>
             </p>
             <p>
               Area Favorita 1: <span>{favoriteArea1}</span>
@@ -77,11 +77,11 @@ function SingleView() {
           </div>
         </div>
       ) : (
-        history.push('/recruiters')
+        history.push("/recruiters")
       )}
-      <BtnGoBack onClick={history.goBack} name='Go Back'></BtnGoBack>
+      <BtnGoBack onClick={history.goBack} name="Go Back"></BtnGoBack>
     </div>
-  )
+  );
 }
 
 export default SingleView

@@ -244,8 +244,8 @@ const assignRecruiter = async (req, res, next) => {
     const jobFounded = await Jobs.findByPk(req.body.jobId)
     const recruiterAdded = await jobFounded.addActiveRecruiter(
       req.body.recruiterId
-    )
-    console.log(recruiterAdded)
+    );
+    await recruiterAdded.addJob(jobFounded);
 
     res.status(200).json(recruiterAdded)
   } catch (err) {

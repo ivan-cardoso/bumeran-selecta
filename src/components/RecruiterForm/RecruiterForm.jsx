@@ -146,7 +146,7 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
                 Provincia
               </InputLabel>
               <Select
-                name="state"
+                name="stateId"
                 onChange={(e) => handleInputChange(e)}
                 required
                 label="Provincia"

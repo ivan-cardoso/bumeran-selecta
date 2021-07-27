@@ -19,8 +19,8 @@ app.use(express.json())
 
 app.use('/api', require('./routes'))
 
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   app.listen(port, () => {
-    console.log(`server running on port ${port}`)
-  })
-})
+    console.log(`server running on port ${port}`);
+  });
+});

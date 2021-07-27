@@ -12,11 +12,14 @@ const Modality = require("./modality")
 Jobs.belongsTo(Recruiters)
 Recruiters.hasMany(Jobs)
 
+Recruiters.belongsTo(States);
+States.hasMany(Recruiters);
+
 Jobs.belongsTo(Companies)
 Companies.hasMany(Jobs)
 
 Companies.belongsTo(States);
-States.hasMany(States);
+States.hasMany(Companies);
 
 Companies.belongsTo(Areas);
 Areas.hasMany(Companies);

@@ -32,7 +32,7 @@ export default function DenseTable({
     surname: null,
     email: null,
     country: null,
-    state: null,
+    stateId: null,
     bio: null,
     img: null,
     favoriteArea1: null,
@@ -41,7 +41,7 @@ export default function DenseTable({
     seniority1: null,
     seniority2: null,
     seniority3: null,
-  }
+  };
   const [updateValues, setUpdateValues] = useState(initialFormValues)
 
   const handleSubmit = (e, updateValues) => {

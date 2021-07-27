@@ -21,7 +21,7 @@ const FindRecomendation = (jobArea, jobSeniority) => {
   return Recruiters.findAll()
     .then((recruiters) => {
       const TotalPointsByRecruiter = recruiters.map((recruiter) => {
-        let totalPoints = 0
+        let totalPoints = 0;
         const {
           id,
           rating,
@@ -32,47 +32,44 @@ const FindRecomendation = (jobArea, jobSeniority) => {
           seniority2,
           seniority3,
           activeSearch,
-        } = recruiter
+        } = recruiter;
 
         //rating
-        totalPoints += rating * 2 * ratingImportance
+        totalPoints += rating * 2 * ratingImportance;
 
         //active Search
         if (activeSearch === 0)
-          totalPoints += Search0 * searchQuantityImportance
+          totalPoints += Search0 * searchQuantityImportance;
         if (activeSearch === 1)
-          totalPoints += Search1 * searchQuantityImportance
+          totalPoints += Search1 * searchQuantityImportance;
         if (activeSearch === 2)
-          totalPoints += Search2 * searchQuantityImportance
+          totalPoints += Search2 * searchQuantityImportance;
         if (activeSearch === 3)
-          totalPoints += Search3 * searchQuantityImportance
+          totalPoints += Search3 * searchQuantityImportance;
 
         //area
 
         if (jobArea === favoriteArea1)
-          totalPoints += areamatch1 * areaImportance
+          totalPoints += areamatch1 * areaImportance;
         if (jobArea === favoriteArea2)
-          totalPoints += areamatch2 * areaImportance
+          totalPoints += areamatch2 * areaImportance;
         if (jobArea === favoriteArea3)
-          totalPoints += areamatch3 * areaImportance
+          totalPoints += areamatch3 * areaImportance;
 
         // seniority
-        // console.log('job', jobSeniority)
-        // console.log('senior', seniority1)
 
-        console.log(jobSeniority === seniority1)
         if (jobSeniority === seniority1)
-          totalPoints += senioritymatch1 * seniorityImportance
+          totalPoints += senioritymatch1 * seniorityImportance;
         if (jobSeniority === seniority2)
-          totalPoints += senioritymatch2 * seniorityImportance
+          totalPoints += senioritymatch2 * seniorityImportance;
         if (jobSeniority === seniority3)
-          totalPoints += senioritymatch3 * seniorityImportance
+          totalPoints += senioritymatch3 * seniorityImportance;
 
         return {
           recruiter: recruiter.dataValues,
           totalPoints,
           porcentajeMatch: Math.floor((totalPoints / maxPoints) * 100),
-        }
+        };
       })
       return TotalPointsByRecruiter.sort((a, b) =>
         a.totalPoints > b.totalPoints ? -1 : 1

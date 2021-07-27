@@ -2,11 +2,21 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createRec } from '../../store/recruiter/actions'
 import RecruiterForm from './RecruiterForm'
-import { Grid, Paper, makeStyles } from '@material-ui/core'
+import {
+  Grid,
+  Paper,
+  makeStyles,
+  Modal,
+  Fade,
+  Backdrop,
+} from "@material-ui/core";
+
 import { getAllRecruiters } from './recruiterTableData'
 import s from './index.module.css'
 import { message } from 'antd'
 import BtnNewRecuiter from '../UX/Buttons/BtnNewRecruiter'
+import useModal from "../Jobs/useModal";
+
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -16,15 +26,17 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Recruiter = ({ setRecruiters }) => {
-  const classes = useStyles()
+  const clases = useStyles();
   const dispatch = useDispatch()
+  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
+    useModal();
 
   const initialFormValues = {
     name: null,
     surname: null,
     email: null,
     country: null,
-    state: null,
+    stateId: null,
     bio: null,
     img: null,
     favoriteArea1: null,
@@ -33,7 +45,7 @@ const Recruiter = ({ setRecruiters }) => {
     seniority1: null,
     seniority2: null,
     seniority3: null,
-  }
+  };
   const [values, setValues] = useState(initialFormValues)
 
   const handleSubmit = (e) => {
@@ -54,7 +66,7 @@ const Recruiter = ({ setRecruiters }) => {
         getAllRecruiters()
           .then((recruiters) => setRecruiters(recruiters))
           .then((recruiters) => {
-            toggleAdd()
+            setValues(initialFormValues);
             return recruiters
           })
       })
@@ -64,39 +76,42 @@ const Recruiter = ({ setRecruiters }) => {
       })
   }
 
-  console.log(values)
 
-  const toggleAdd = () => {
-    setValues(initialFormValues)
-    document.getElementById('RecruiterFormAdd').style.display =
-      document.getElementById('RecruiterFormAdd').style.display === 'none'
-        ? 'block'
-        : 'none'
-  }
 
   return (
     <>
-      <Paper className={classes.pageContent}>
+      <Paper className={clases.pageContent}>
         <Grid item xs={6}></Grid>
-        <div style={{ marginLeft: 300 }}>
+        <div className={s.divAddBtn}>
           <BtnNewRecuiter
-            onClick={toggleAdd}
-            label='Add'
-            name='Agregar Nuevo Reclutador'
-            className={s.addButton}
+            onClick={() => handleOpen()}
+            label="Add"
+            name="Agregar Nuevo Reclutador"
           ></BtnNewRecuiter>
         </div>
-
-        <div style={{ display: 'none' }} id='RecruiterFormAdd'>
-          <RecruiterForm
-            handleSubmit={handleSubmit}
-            values={values}
-            setValues={setValues}
-          />
-        </div>
+        <Modal
+          open={open}
+          onClose={() => {
+            handleClose();
+          }}
+          className={classes.modal}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{ timeout: 1000 }}
+        >
+          <Fade in={open}>
+            <div style={modalStyle} className={classes.paper}>
+              <RecruiterForm
+                handleSubmit={handleSubmit}
+                values={values}
+                setValues={setValues}
+              />
+            </div>
+          </Fade>
+        </Modal>
       </Paper>
     </>
-  )
+  );
 }
 
 export default Recruiter

@@ -5,7 +5,7 @@ const { Op } = require('sequelize')
 const recruitersController = {
   async findAll(req, res, next) {
     try {
-      const recrutiers = await Recruiters.findAll()
+      const recrutiers = await Recruiters.findAll({ include: { all: true } });
       res.status(200).json(recrutiers)
     } catch (err) {
       next(err)
@@ -14,13 +14,12 @@ const recruitersController = {
 
   async findOrCreateRecruiter(req, res, next) {
     try {
-      console.log(req.body)
       const {
         name,
         surname,
         email,
         country,
-        state,
+        stateId,
         bio,
         img,
         rating,
@@ -30,7 +29,7 @@ const recruitersController = {
         seniority1,
         seniority2,
         seniority3,
-      } = req.body
+      } = req.body;
 
       const [recrutier, created] = await Recruiters.findOrCreate({
         where: { email },
@@ -38,7 +37,7 @@ const recruitersController = {
           name,
           surname,
           country,
-          state,
+          stateId,
           bio,
           img,
           rating,
@@ -49,12 +48,12 @@ const recruitersController = {
           seniority2,
           seniority3,
         },
-      })
+      });
 
-      if (created) res.status(201).json(recrutier)
-      else res.sendStatus(500)
+      if (created) res.status(201).json(recrutier);
+      else res.sendStatus(500);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
@@ -65,7 +64,7 @@ const recruitersController = {
         surname,
         email,
         country,
-        state,
+        stateId,
         bio,
         img,
         rating,
@@ -75,7 +74,7 @@ const recruitersController = {
         seniority1,
         seniority2,
         seniority3,
-      } = req.body
+      } = req.body;
 
       const [update, recrutier] = await Recruiters.update(
         {
@@ -83,7 +82,7 @@ const recruitersController = {
           surname,
           email,
           country,
-          state,
+          stateId,
           bio,
           img,
           rating,
@@ -95,7 +94,7 @@ const recruitersController = {
           seniority3,
         },
         { where: { id: req.params.id }, returning: true }
-      )
+      );
 
       res.status(200).json(recrutier)
     } catch (err) {

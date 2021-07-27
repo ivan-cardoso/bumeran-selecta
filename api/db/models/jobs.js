@@ -27,18 +27,20 @@ Jobs.init(
       type: S.INTEGER,
     },
     isOpen: {
-      type: S.BOOLEAN,
-      defaultValue: true,
+      type: S.ENUM,
+      values: ["abierta", "cerrada", "asignada"],
+      defaultValue: "abierta",
     },
   },
   { sequelize: db, modelName: "jobs" }
 );
 
 Jobs.prototype.addActiveRecruiter = (recruiterId) => {
-  Recruiter.findByPk(recruiterId)
+  return Recruiter.findByPk(recruiterId)
     .then((recruiter) => {
       recruiter.activeSearch += 1;
-      return recruiter.save();
+      recruiter.save();
+      return recruiter;
     })
     .catch((err) => console.log(err));
 };
@@ -47,7 +49,6 @@ Jobs.prototype.removeSearchFromRecruiter = (recruiterId) => {
     .then((recruiter) => {
       recruiter.activeSearch -= 1;
       if (recruiter.activeSearch < 0) recruiter.activeSearch = 0;
-      console.log("after save", recruiter);
       return recruiter.save();
     })
     .catch((err) => console.log(err));

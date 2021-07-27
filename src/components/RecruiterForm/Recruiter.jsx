@@ -22,7 +22,7 @@ const Recruiter = () => {
     getAllRecruiters().then((recruiters) => setRecruiters(recruiters))
   }, [])
 
-    
+    console.log(recruiters);
   return (
     <>
       <AddRecruiter setRecruiters={setRecruiters} />

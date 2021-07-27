@@ -40,70 +40,69 @@ function RecruiterTableBody({
     history.push(`/recruiters/${recruiter.id}`)
   }
   return (
-    <TableBody >
-      {recruiters.map((recruiter) => {
-        const {
-          country,
-          email,
-          favoriteArea1,
-          id,
-          name,
-          rating,
-          seniority1,
-          state,
-          surname,
-        } = recruiter
-
-        return (
-          <TableRow key={id}>
-            <TableCell align='center'>{name}</TableCell>
-            <TableCell align='center'>{surname}</TableCell>
-            <TableCell align='center'>{email}</TableCell>
-            <TableCell align='center'>{country}</TableCell>
-            <TableCell align='center'>{state}</TableCell>
-            <TableCell align='center'>{rating}</TableCell>
-            <TableCell align='center'>{favoriteArea1}</TableCell>
-            <TableCell align='center'>{seniority1}</TableCell>
-            <TableCell align='right'>
-              {
-                <button
-                  className={styles.editButton}
-                  onClick={() => {
-                    setShowTable(false)
-                    setUpdateInfo(recruiter)
-                  }}
-
+    <TableBody>
+      {
+        recruiters.map((recruiter) => {
+          const {
+            country,
+            email,
+            favoriteArea1,
+            id,
+            name,
+            rating,
+            seniority1,
+            state,
+            surname,
+          } = recruiter;
+          return (
+            <TableRow key={id}>
+              <TableCell align="center">{name}</TableCell>
+              <TableCell align="center">{surname}</TableCell>
+              <TableCell align="center">{email}</TableCell>
+              <TableCell align="center">{country}</TableCell>
+              {state && <TableCell align="center">{state.name}</TableCell>}
+              <TableCell align="center">{rating}</TableCell>
+              <TableCell align="center">{favoriteArea1}</TableCell>
+              <TableCell align="center">{seniority1}</TableCell>
+              <TableCell align="right">
+                {
+                  <button
+                    className={styles.editButton}
+                    onClick={() => {
+                      setShowTable(false);
+                      setUpdateInfo(recruiter);
+                    }}
+                  >
+                    <EditIcon />
+                  </button>
+                }
+              </TableCell>
+              <TableCell align="right">
+                <Popconfirm
+                  title={`¿estas seguro que deseas eliminar el usuario ${email} ?`}
+                  onConfirm={() => handleDelete(id)}
+                  onCancel={() => message.error("cancelado")}
+                  okText="confirmar"
+                  cancelText="cancelar"
                 >
-                  <EditIcon />
+                  <button className={styles.deleteButton}>
+                    <DeleteIcon />
+                  </button>
+                </Popconfirm>
+              </TableCell>
+              <TableCell align="right">
+                <button
+                  className={styles.singleViewButton}
+                  onClick={() => handleSingleView(recruiter)}
+                >
+                  {<VisibilityIcon />}
                 </button>
-              }
-            </TableCell>
-            <TableCell align='right'>
-              <Popconfirm
-                title={`¿estas seguro que deseas eliminar el usuario ${email} ?`}
-                onConfirm={() => handleDelete(id)}
-                onCancel={() => message.error('cancelado')}
-                okText='confirmar'
-                cancelText='cancelar'
-              >
-                <button className={styles.deleteButton}>
-                  <DeleteIcon />
-                </button>
-              </Popconfirm>
-            </TableCell>
-            <TableCell align='right'>
-              <button
-                className={styles.singleViewButton}
-                onClick={() => handleSingleView(recruiter)}
-              >
-                {<VisibilityIcon />}
-              </button>
-            </TableCell>
-          </TableRow>
-        )
-      })}
+              </TableCell>
+            </TableRow>
+          );
+        })}
     </TableBody>
-  )
+  );
 }
 
 export default RecruiterTableBody
