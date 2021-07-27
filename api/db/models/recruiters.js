@@ -55,12 +55,14 @@ Recruiters.init(
       type: S.STRING,
       allowNull: false,
     },
-
     seniority2: { type: S.STRING },
-
     seniority3: { type: S.STRING },
+    activeSearch: { type: S.INTEGER, defaultValue: 0 },
   },
   { sequelize: db, timestamps: false, modelName: 'recruiters' }
 )
+
+//
+// Recruiters.prototype.addSearch()
 
 module.exports = Recruiters

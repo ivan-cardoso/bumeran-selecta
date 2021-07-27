@@ -16,7 +16,7 @@ div {
   flex-wrap: wrap;
   overflow: hidden;
   position: fixed;
-  justify-content:left
+  justify-content: left;
 }
 
 .sidebarContainer:hover {
@@ -67,7 +67,6 @@ div {
   justify-content: flex-start;
   align-self: center;
 }
-
 
 .sidebarDiv {
   align-self: center;

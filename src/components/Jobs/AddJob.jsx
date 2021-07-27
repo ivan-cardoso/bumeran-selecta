@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { createJob, getAllJobs } from '../../store/jobs/jobs'
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { createJob, getAllJobs } from "../../store/jobs/jobs";
 import { getAllJobsByCompany } from "../../store/companies/jobsCompany";
 import {
   Grid,
@@ -10,12 +10,12 @@ import {
   Fade,
   makeStyles,
   Backdrop,
-} from '@material-ui/core'
-import JobsForm from './JobsForm'
-import { message } from 'antd'
-import styles from './index.module.css'
-import useModal from './useModal'
-import BtnCreateNewJobs from '../UX/Buttons/BtnCreateNewJobs'
+} from "@material-ui/core";
+import JobsForm from "./JobsForm";
+import { message } from "antd";
+import styles from "./index.module.css";
+import useModal from "./useModal";
+import BtnCreateNewJobs from "../UX/Buttons/BtnCreateNewJobs";
 import { singleCompany } from "../../store/companies/singleCompany";
 
 // function getModalStyle() {
@@ -29,17 +29,17 @@ import { singleCompany } from "../../store/companies/singleCompany";
 //     }
 // }
 
-const AddJob = ({setCreate}) => {
+const AddJob = ({ setCreate }) => {
   const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
-    useModal()
+    useModal();
 
   //Traditional settings
   const handleShowForm = () => {
-    document.getElementById('createJobForm').style.display =
-      document.getElementById('createJobForm').style.display === 'none'
-        ? 'block'
-        : 'none'
-  }
+    document.getElementById("createJobForm").style.display =
+      document.getElementById("createJobForm").style.display === "none"
+        ? "block"
+        : "none";
+  };
 
   //Modal settings
   // const useStyles = makeStyles((theme) => ({
@@ -80,21 +80,21 @@ const AddJob = ({setCreate}) => {
     modalityId: null,
     description: null,
     companyId: null,
-  }
-  const [values, setValues] = useState(initialValues)
-  const dispatch = useDispatch()
+  };
+  const [values, setValues] = useState(initialValues);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setValues({
       ...values,
       [name]: value,
-    })
-    console.log(values)
-  }
+    });
+    console.log(values);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (
       values.title !== null &&
       values.areaId !== null &&
@@ -117,14 +117,14 @@ const AddJob = ({setCreate}) => {
         }
       });
     } else {
-      message.warning('Complete los campos')
+      message.warning("Complete los campos");
     }
-  }
+  };
 
   return (
     <>
-      {/* <div style={{ marginLeft: 300, marginTop: 20 }}> */}
-        <div>
+      <div style={{ marginLeft: 300, marginTop: 20 }}>
+        {/* <div> */}
         <BtnCreateNewJobs
           onClick={handleOpen}
           name="Crear búsqueda"
@@ -156,6 +156,6 @@ const AddJob = ({setCreate}) => {
       </Modal>
     </>
   );
-}
+};
 
-export default AddJob
+export default AddJob;

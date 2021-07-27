@@ -1,5 +1,7 @@
-const S = require('sequelize')
-const db = require('../db')
+const S = require("sequelize");
+const db = require("../db");
+const Recruiters = require("../models/recruiters");
+const Recruiter = require("../models/recruiters");
 
 class Jobs extends S.Model {}
 
@@ -29,7 +31,26 @@ Jobs.init(
       defaultValue: true,
     },
   },
-  { sequelize: db, modelName: 'jobs' }
-)
+  { sequelize: db, modelName: "jobs" }
+);
 
-module.exports = Jobs
+Jobs.prototype.addActiveRecruiter = (recruiterId) => {
+  Recruiter.findByPk(recruiterId)
+    .then((recruiter) => {
+      recruiter.activeSearch += 1;
+      return recruiter.save();
+    })
+    .catch((err) => console.log(err));
+};
+Jobs.prototype.removeSearchFromRecruiter = (recruiterId) => {
+  Recruiter.findByPk(recruiterId)
+    .then((recruiter) => {
+      recruiter.activeSearch -= 1;
+      if (recruiter.activeSearch < 0) recruiter.activeSearch = 0;
+      console.log("after save", recruiter);
+      return recruiter.save();
+    })
+    .catch((err) => console.log(err));
+};
+
+module.exports = Jobs;
