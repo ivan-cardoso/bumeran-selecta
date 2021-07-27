@@ -1,0 +1,58 @@
+.divcontainer {
+  display: flex;
+  height: 85%;
+}
+
+.cardcontainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(226, 221, 221);
+  margin-top: 5px;
+  cursor: pointer;
+  margin-left: 20px;
+  padding-left: 20px;
+  width: 33%;
+  border: 2px solid rgb(90, 88, 88);
+  border-radius: 5px;
+  justify-content: space-around;
+}
+
+.active {
+  background-color: rgb(189, 183, 183);
+  border: 6px solid rgb(79, 42, 202);
+}
+
+.btncontainer {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  margin-left: 40%;
+  /* height: 100px; */
+}
+.btncontainer > div {
+  height: 200px;
+}
+
+.maintitle {
+  align-self: center;
+  font-size: 3em;
+  height: 30px;
+}
+.top {
+  display: flex;
+  height: 300px;
+  margin-top: 20px;
+  justify-content: space-around;
+}
+
+.topimage {
+  width: 300px;
+}
+
+.topright {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+  /* margin-left: 30px; */
+}

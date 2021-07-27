@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { createJob, getAllJobs } from '../../store/jobs/jobs'
-import { getAllJobsByCompany } from "../../store/companies/jobsCompany";
+import { getAllJobsByCompany } from '../../store/companies/jobsCompany'
 import {
   Grid,
   Paper,
@@ -16,7 +16,7 @@ import { message } from 'antd'
 import styles from './index.module.css'
 import useModal from './useModal'
 import BtnCreateNewJobs from '../UX/Buttons/BtnCreateNewJobs'
-import { singleCompany } from "../../store/companies/singleCompany";
+import { singleCompany } from '../../store/companies/singleCompany'
 
 // function getModalStyle() {
 //     const top = 50
@@ -29,7 +29,7 @@ import { singleCompany } from "../../store/companies/singleCompany";
 //     }
 // }
 
-const AddJob = ({setCreate}) => {
+const AddJob = ({ setCreate }) => {
   const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
     useModal()
 
@@ -107,15 +107,15 @@ const AddJob = ({setCreate}) => {
     ) {
       dispatch(createJob(values)).then((value) => {
         if (value.payload) {
-          dispatch(getAllJobs());
-          dispatch(singleCompany({}));
-          if (setCreate) setCreate(true);
-          setOpen(false);
-          message.success("Búsqueda creada correctamente");
+          dispatch(getAllJobs())
+          dispatch(singleCompany({}))
+          if (setCreate) setCreate(true)
+          setOpen(false)
+          message.success('Búsqueda creada correctamente')
           // dispatch(getCompanies());
           // setValues(initialFormValues);
         }
-      });
+      })
     } else {
       message.warning('Complete los campos')
     }
@@ -123,8 +123,8 @@ const AddJob = ({setCreate}) => {
 
   return (
     <>
-      {/* <div style={{ marginLeft: 300, marginTop: 20 }}> */}
-      <div>
+      <div style={{ marginLeft: 300, marginTop: 20 }}>
+        {/* <div> */}
         <BtnCreateNewJobs
           onClick={handleOpen}
           name='Crear búsqueda'

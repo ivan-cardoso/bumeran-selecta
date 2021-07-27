@@ -1,5 +1,7 @@
 const S = require('sequelize')
 const db = require('../db')
+const Recruiters = require('../models/recruiters')
+const Recruiter = require('../models/recruiters')
 
 class Jobs extends S.Model {}
 
@@ -9,14 +11,7 @@ Jobs.init(
       type: S.STRING,
       allowNull: false,
     },
-    // area: {
-    //     type: S.STRING,
-    //     allowNull:false
-    // },
-    // seniority: {
-    //     type: S.STRING,
-    //     allowNull: false
-    // },
+
     description: {
       type: S.TEXT,
       allowNull: false,
@@ -25,10 +20,6 @@ Jobs.init(
       type: S.STRING,
       allowNull: false,
     },
-    rating: {
-      type: S.STRING,
-      defaultValue: 0,
-    },
     date: {
       type: S.DATE,
       defaultValue: new Date(),
@@ -36,10 +27,7 @@ Jobs.init(
     salary: {
       type: S.INTEGER,
     },
-    // modality: {
-    //     type: S.STRING,
-    //     allowNull:false
-    // },
+
     isOpen: {
       type: S.BOOLEAN,
       defaultValue: true,
@@ -47,5 +35,24 @@ Jobs.init(
   },
   { sequelize: db, modelName: 'jobs' }
 )
+
+Jobs.prototype.addActiveRecruiter = (recruiterId) => {
+  Recruiter.findByPk(recruiterId)
+    .then((recruiter) => {
+      recruiter.activeSearch += 1
+      return recruiter.save()
+    })
+    .catch((err) => console.log(err))
+}
+Jobs.prototype.removeSearchFromRecruiter = (recruiterId) => {
+  Recruiter.findByPk(recruiterId)
+    .then((recruiter) => {
+      recruiter.activeSearch -= 1
+      if (recruiter.activeSearch < 0) recruiter.activeSearch = 0
+      console.log('after save', recruiter)
+      return recruiter.save()
+    })
+    .catch((err) => console.log(err))
+}
 
 module.exports = Jobs

@@ -8,8 +8,9 @@ const {
   Companies,
   Recruiters,
 } = require('../db/models/index')
-const { Op } = require("sequelize");
 
+const recomendationAlgo = require('../../src/utils/AlgortimoRecomendacion/index')
+const { Op } = require('sequelize')
 
 const sequelize = require('sequelize')
 
@@ -104,21 +105,37 @@ const updateJob = (req, res) => {
 }
 
 const closeJob = (req, res) => {
-  Jobs.update(
-    { isOpen: false },
-    {
-      where: {
-        id: req.params.id,
-      },
-      returning: true,
-      plain: true,
-    }
-  )
-    .then(([, data]) => res.status(200).send(data))
+  Jobs.findByPk(req.body.id)
+    .then((job) => {
+      console.log('job', job)
+      job.isOpen = false
+      if (job.recruiterId) {
+        job.removeSearchFromRecruiter(job.recruiterId)
+      }
+      job.save()
+      return res.status(200).send(job)
+    })
     .catch((err) => {
       console.log(err)
       res.status(500).send(err)
     })
+
+  // Jobs.update(
+  //   { isOpen: false },
+  //   {
+  //     where: {
+  //       id: req.params.id,
+  //     },
+  //     returning: true,
+  //     plain: true,
+  //   }
+  // )
+  // .then((jobUpdated)=>)
+  //   .then(([, data]) => res.status(200).send(data))
+  //   .catch((err) => {
+  //     console.log(err)
+  //     res.status(500).send(err)
+  //   })
 }
 const getTop3Companies = (req, res) => {
   Jobs.findAll({
@@ -216,15 +233,33 @@ const findAllBySearch = async (req, res, next) => {
         ],
       },
       include: { all: true },
-    });
-    res.status(200).json(jobs);
+    })
+    res.status(200).json(jobs)
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}
+const assignRecruiter = async (req, res, next) => {
+  try {
+    const jobFounded = await Jobs.findByPk(req.body.jobId)
+    const recruiterAdded = await jobFounded.addActiveRecruiter(
+      req.body.recruiterId
+    )
+    console.log(recruiterAdded)
+
+    res.status(200).json(recruiterAdded)
+  } catch (err) {
+    next(err)
+  }
+}
+const findRecommendations = (req, res, next) => {
+  Jobs.findByPk(req.body.id)
+    .then((job) => recomendationAlgo(req.body.area, req.body.seniority))
+    .then((recruiters) => res.status(200).json(recruiters))
+    .catch((err) => next(err))
+}
 
 module.exports = {
-
   getAllJobs,
   getOneJob,
   createJob,
@@ -237,4 +272,6 @@ module.exports = {
   historicChart,
   getOpenedJobs,
   findAllBySearch,
-};
+  assignRecruiter,
+  findRecommendations,
+}

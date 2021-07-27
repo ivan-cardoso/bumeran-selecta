@@ -30,17 +30,15 @@ const areas = [
   { name: 'Tecnología, Sistemas y Telecomunicaciones' },
   { name: 'Salud, Medicina, Enfermería y Farmacia' },
   { name: 'Marketing y Publicidad' },
-  { name : 'Atención al Cliente, Call Center y Telemarketing'},
+  { name: 'Atención al Cliente, Call Center y Telemarketing' },
   { name: 'Legales' },
-  { name : 'Secretaría y recepción'},
-  { name : 'Ingeniería Civil y Construcción'},
-  { name : 'Comunicación, Relaciones Institucionales y Públicas'},
-  { name : 'Gastronomía y Turismo'},
-  { name : 'Producción y Manufactura'},
-  { name : 'Aduana y Comercio Exterior'},
+  { name: 'Secretaría y recepción' },
+  { name: 'Ingeniería Civil y Construcción' },
+  { name: 'Comunicación, Relaciones Institucionales y Públicas' },
+  { name: 'Gastronomía y Turismo' },
+  { name: 'Producción y Manufactura' },
+  { name: 'Aduana y Comercio Exterior' },
 ]
-
-
 
 const recruiters = [
   {
@@ -51,13 +49,14 @@ const recruiters = [
     state: 'CABA',
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/men/18.jpg',
-    favoriteArea1: areas[0].name,                           //
+    favoriteArea1: areas[0].name, //
     favoriteArea2: areas[1].name,
     favoriteArea3: areas[4].name,
     seniority1: seniorities[1],
     seniority2: seniorities[3],
     seniority3: seniorities[2],
-    rating: 5,
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Eva',
@@ -73,7 +72,8 @@ const recruiters = [
     seniority1: seniorities[1],
     seniority2: seniorities[2],
     seniority3: seniorities[3],
-    rating: 4.3,
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Alejandra',
@@ -89,7 +89,8 @@ const recruiters = [
     seniority1: seniorities[4],
     seniority2: seniorities[1],
     seniority3: seniorities[0],
-    rating: 3.5,
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Mario',
@@ -105,6 +106,8 @@ const recruiters = [
     seniority1: seniorities[0],
     seniority2: seniorities[3],
     seniority3: seniorities[2],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Marisa',
@@ -120,6 +123,8 @@ const recruiters = [
     seniority1: seniorities[4],
     seniority2: seniorities[1],
     seniority3: seniorities[0],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Asencio',
@@ -135,6 +140,8 @@ const recruiters = [
     seniority1: seniorities[4],
     seniority2: seniorities[3],
     seniority3: seniorities[0],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Estefania',
@@ -150,6 +157,8 @@ const recruiters = [
     seniority1: seniorities[2],
     seniority2: seniorities[1],
     seniority3: seniorities[3],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Verónica Ana',
@@ -165,6 +174,8 @@ const recruiters = [
     seniority1: seniorities[0],
     seniority2: seniorities[1],
     seniority3: seniorities[2],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Braian',
@@ -180,6 +191,8 @@ const recruiters = [
     seniority1: seniorities[0],
     seniority2: seniorities[1],
     seniority3: seniorities[2],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Florencia',
@@ -195,6 +208,8 @@ const recruiters = [
     seniority1: seniorities[0],
     seniority2: seniorities[1],
     seniority3: seniorities[2],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Mariana',
@@ -210,6 +225,8 @@ const recruiters = [
     seniority1: seniorities[3],
     seniority2: seniorities[4],
     seniority3: seniorities[1],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Analía',
@@ -225,6 +242,8 @@ const recruiters = [
     seniority1: seniorities[3],
     seniority2: seniorities[4],
     seniority3: seniorities[1],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Alejandro',
@@ -240,6 +259,8 @@ const recruiters = [
     seniority1: seniorities[3],
     seniority2: seniorities[4],
     seniority3: seniorities[1],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'CL',
@@ -255,6 +276,8 @@ const recruiters = [
     seniority1: seniorities[3],
     seniority2: seniorities[4],
     seniority3: seniorities[1],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Monica',
@@ -270,6 +293,8 @@ const recruiters = [
     seniority1: seniorities[3],
     seniority2: seniorities[4],
     seniority3: seniorities[1],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Christian',
@@ -285,6 +310,8 @@ const recruiters = [
     seniority1: seniorities[3],
     seniority2: seniorities[4],
     seniority3: seniorities[1],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Nadia',
@@ -300,6 +327,8 @@ const recruiters = [
     seniority1: seniorities[3],
     seniority2: seniorities[2],
     seniority3: seniorities[1],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Verónica',
@@ -310,11 +339,13 @@ const recruiters = [
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/women/83.jpg',
     favoriteArea1: areas[8].name,
-    favoriteArea2: areas[8].name,
+    favoriteArea2: areas[1].name,
     favoriteArea3: areas[7].name,
     seniority1: seniorities[3],
     seniority2: seniorities[2],
     seniority3: seniorities[1],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Vanesa',
@@ -327,9 +358,9 @@ const recruiters = [
     favoriteArea1: areas[3].name,
     favoriteArea2: areas[4].name,
     favoriteArea3: areas[2].name,
-    seniority1: seniorities[3],
-    seniority2: seniorities[2],
-    seniority3: seniorities[1],
+    seniority1: seniorities[1],
+    seniority2: seniorities[3],
+    seniority3: seniorities[2],
   },
   {
     name: 'Claudio',
@@ -342,9 +373,9 @@ const recruiters = [
     favoriteArea1: areas[3].name,
     favoriteArea2: areas[1].name,
     favoriteArea3: areas[4].name,
-    seniority1: seniorities[3],
-    seniority2: seniorities[2],
-    seniority3: seniorities[1],
+    seniority1: seniorities[4],
+    seniority2: seniorities[1],
+    seniority3: seniorities[0],
   },
   {
     name: 'Vanesa',
@@ -354,12 +385,12 @@ const recruiters = [
     state: 'Santa Fe',
     bio: 'Soy una descripcion de ejemplo',
     img: 'https://randomuser.me/api/portraits/women/78.jpg',
-    favoriteArea1: areas[3].name,
-    favoriteArea2: areas[4].name,
-    favoriteArea3: areas[1].name,
-    seniority1: seniorities[3],
-    seniority2: seniorities[2],
-    seniority3: seniorities[1],
+    favoriteArea1: areas[1].name,
+    favoriteArea2: areas[2].name,
+    favoriteArea3: areas[0].name,
+    seniority1: seniorities[4],
+    seniority2: seniorities[1],
+    seniority3: seniorities[3],
   },
   {
     name: 'Ileana',
@@ -402,9 +433,9 @@ const recruiters = [
     favoriteArea1: areas[7].name,
     favoriteArea2: areas[4].name,
     favoriteArea3: areas[4].name,
-    seniority1: seniorities[3],
-    seniority2: seniorities[2],
-    seniority3: seniorities[1],
+    seniority1: seniorities[4],
+    seniority2: seniorities[0],
+    seniority3: seniorities[2],
   },
   {
     name: 'Inés',
@@ -417,9 +448,9 @@ const recruiters = [
     favoriteArea1: areas[3].name,
     favoriteArea2: areas[1].name,
     favoriteArea3: areas[6].name,
-    seniority1: seniorities[3],
-    seniority2: seniorities[2],
-    seniority3: seniorities[1],
+    seniority1: seniorities[4],
+    seniority2: seniorities[3],
+    seniority3: seniorities[2],
   },
   {
     name: 'Anabella',
@@ -432,57 +463,56 @@ const recruiters = [
     favoriteArea1: areas[4].name,
     favoriteArea2: areas[3].name,
     favoriteArea3: areas[7].name,
-    seniority1: seniorities[4],
-    seniority2: seniorities[3],
-    seniority3: seniorities[2],
+    seniority1: seniorities[1],
+    seniority2: seniorities[4],
+    seniority3: seniorities[3],
+    rating: parseFloat((Math.random() * 5).toFixed(1)),
+    activeSearch: Math.floor(Math.random() * 5),
   },
 ]
 
 const companies = [
   {
-    name: "DSNTEC",
-    stateId: "1",
-    areaId: "1",
-    email: "dsntec@dsntec.com",
-    contactName: "Adam Smith",
-    img: "https://media-exp1.licdn.com/dms/image/C4D0BAQG7z3D-htOC7A/company-logo_200_200/0/1518870857507?e=2159024400&v=beta&t=Kd7mQszqqmrQO3_LQxqCXpQY7qRvFW7ODQ0XfreeJSM",
+    name: 'DSNTEC',
+    stateId: '1',
+    areaId: '1',
+    email: 'dsntec@dsntec.com',
+    contactName: 'Adam Smith',
+    img: 'https://media-exp1.licdn.com/dms/image/C4D0BAQG7z3D-htOC7A/company-logo_200_200/0/1518870857507?e=2159024400&v=beta&t=Kd7mQszqqmrQO3_LQxqCXpQY7qRvFW7ODQ0XfreeJSM',
     description:
-      "Our company combines know-how and a deep domain understanding of technology to provide a range of IT outsourcing services from Product Development, custom application programming, to IT consulting services to enterprises all over the world.",
+      'Our company combines know-how and a deep domain understanding of technology to provide a range of IT outsourcing services from Product Development, custom application programming, to IT consulting services to enterprises all over the world.',
   },
   {
-    name: "Swiss Medical Group",
-    stateId: "2",
-    areaId: "2",
-    email: "swissmedicalgroup@swissmedicalgroup.com",
-    contactName: "Lautaro Rodriguez",
-    img: "https://prepagas-precios.com.ar/wp-content/uploads/2020/06/swissmedical-precios-1038x572.jpg",
+    name: 'Swiss Medical Group',
+    stateId: '2',
+    areaId: '2',
+    email: 'swissmedicalgroup@swissmedicalgroup.com',
+    contactName: 'Lautaro Rodriguez',
+    img: 'https://prepagas-precios.com.ar/wp-content/uploads/2020/06/swissmedical-precios-1038x572.jpg',
     description:
-      "Swiss Medical Group es uno de los principales grupos empresarios de Argentina que se dedica a la protección de personas y es líder en el mercado de la salud.",
+      'Swiss Medical Group es uno de los principales grupos empresarios de Argentina que se dedica a la protección de personas y es líder en el mercado de la salud.',
   },
   {
-    name: "Camuzzi Gas",
-    stateId: "3",
-    areaId: "3",
-    email: "camuzzigas@camuzzigas.com",
-    contactName: "Carlos Villarosa",
-    img: "https://www.camuzzigas.com/wp-content/uploads/2019/06/generica-logo-camuzzi-gas-2019.jpg",
+    name: 'Camuzzi Gas',
+    stateId: '3',
+    areaId: '3',
+    email: 'camuzzigas@camuzzigas.com',
+    contactName: 'Carlos Villarosa',
+    img: 'https://www.camuzzigas.com/wp-content/uploads/2019/06/generica-logo-camuzzi-gas-2019.jpg',
     description:
-      "Somos la mayor distribuidora de gas natural de la Argentina en términos de volumen, cubriendo el 45% del paísen dos regiones contiguas a través de Camuzzi Gas Pampeana y Camuzzi Gas del Sur.",
+      'Somos la mayor distribuidora de gas natural de la Argentina en términos de volumen, cubriendo el 45% del paísen dos regiones contiguas a través de Camuzzi Gas Pampeana y Camuzzi Gas del Sur.',
   },
   {
-    name: "Accusys Technology",
-    stateId: "4",
-    areaId: "4",
-    email: "accusystechnology@accusystechnology.com",
-    contactName: "Matias Viña",
-    img: "https://media-exp3.licdn.com/dms/image/C4D0BAQGYiIk7JYRxLg/company-logo_200_200/0/1519928788078?e=2159024400&v=beta&t=KSSqWoV1IGQdMyOd8mp8ns-DdDED57nqHceS7989C0o",
+    name: 'Accusys Technology',
+    stateId: '4',
+    areaId: '4',
+    email: 'accusystechnology@accusystechnology.com',
+    contactName: 'Matias Viña',
+    img: 'https://media-exp3.licdn.com/dms/image/C4D0BAQGYiIk7JYRxLg/company-logo_200_200/0/1519928788078?e=2159024400&v=beta&t=KSSqWoV1IGQdMyOd8mp8ns-DdDED57nqHceS7989C0o',
     description:
-      "Accusys Technology, Compañía Líder regional en desarrollo y mantenimiento de soluciones informáticas ",
+      'Accusys Technology, Compañía Líder regional en desarrollo y mantenimiento de soluciones informáticas ',
   },
-];
-
-
-
+]
 
 const states = [
   { name: 'CABA' },
@@ -518,64 +548,236 @@ const typesEmployed = [{ name: 'Fulltime' }, { name: 'Part-time' }]
 const jobs = [
   {
     title: 'Fullstack',
-    areaId: '2',
-    seniorityId: '2',
-    description: 'Alto laburo amigo',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '2',
     typeemloyedId: '1',
     salary: 10000,
     modalityId: '2',
-    companyId: 2,
-    rating: 6,
+    companyId: '2',
     date: new Date(
       new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
     ),
   },
   {
-    title: 'Fullstack',
-    areaId: '1',
-    seniorityId: '1',
-    description: 'Alto laburo amigo',
+    title: 'Back test',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
     typeemloyedId: '1',
     salary: 10000,
     modalityId: '1',
-    companyId: 1,
-    rating: 8,
+    companyId: '1',
     date: new Date(
       new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
     ),
   },
   {
     title: 'Fullstack',
-    areaId: '1',
-    seniorityId: '1',
-    description: 'Alto laburo amigo',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
     typeemloyedId: '1',
     salary: 10000,
     modalityId: '1',
-    companyId: 1,
-    rating: 3,
+    companyId: '3',
     date: new Date(
       new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
     ),
   },
   {
     title: 'Fullstack',
-    areaId: '3',
-    seniorityId: '3',
-    description: 'Alto laburo amigo',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '3',
     typeemloyedId: '1',
     salary: 10000,
-    modalityId: '3',
-    companyId: 1,
-    rating: 10,
+    modalityId: '1',
+    companyId: '4',
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Front',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '6',
+    typeemloyedId: '1',
+    salary: 80000,
+    isOpen: false,
+    modalityId: '2',
+    companyId: '1',
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Gerente de planta',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '9',
+    typeemloyedId: '2',
+    salary: 50000,
+    modalityId: '1',
+    isOpen: false,
+    companyId: '2',
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Asistente',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 180000,
+    modalityId: '2',
+    companyId: '3',
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Asistente 4',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 180000,
+    modalityId: '2',
+    companyId: '2',
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Asistente 3',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 180000,
+    modalityId: '1',
+    companyId: '2',
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Asistente 2',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 180000,
+    modalityId: '2',
+    companyId: '3',
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Asistente 1',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 180000,
+    modalityId: '2',
+    companyId: '3',
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Manager 4',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 180000,
+    modalityId: '2',
+    companyId: '3',
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Manager 3',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 20000,
+    modalityId: '2',
+    companyId: '4',
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Manager 2',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 20000,
+    modalityId: '2',
+    companyId: '4',
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: 'Manager 1',
+    areaId: `${Math.floor(Math.random() * areas.length)}`,
+    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    description: 'Soy una descripcion de ejemplo',
+    country: 'Argentina',
+    stateId: '1',
+    typeemloyedId: '1',
+    salary: 180000,
+    modalityId: '2',
+    companyId: '3',
+    isOpen: false,
     date: new Date(
       new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
     ),
@@ -584,54 +786,53 @@ const jobs = [
 
 states.map((State) => {
   States.create(State).then((state) => {
-    console.log("State creado: ", state);
-  });
-});
+    console.log('State creado: ')
+  })
+})
 
 areas.map((Area) => {
   Areas.create(Area).then((area) => {
-    console.log("Area creada: ", area);
-  });
-});
-
+    console.log('Area creada: ')
+  })
+})
 
 senioritysToMap.map((seniority) => {
   Seniority.create(seniority).then((data) => {
-    console.log('Seniority creado: ', data)
+    console.log('Seniority creado: ')
   })
 })
 
 modalities.map((Modalities) => {
   Modality.create(Modalities).then((modalities) => {
-    console.log('Modality creado: ', modalities)
+    console.log('Modality creado: ')
   })
 })
 
 typesEmployed.map((types) => {
   TypeEmployed.create(types).then((type) => {
-    console.log('Type of Employed creado: ', type)
+    console.log('Type of Employed creado: ')
   })
 })
 
 recruiters.map((recruiter) => {
-  Recruiters.create(recruiter).then((user) =>
-    console.log('usuario creado: ', user)
-  )
+  Recruiters.create(recruiter).then((user) => console.log('usuario creado: '))
 })
 
 companies.map((Company) => {
-  Companies.create(Company).then((Company) =>
-    console.log('Company creada: ', Company)
-  )
+  Companies.create(Company).then((Company) => console.log('Company creada: '))
 })
 
-
-jobs.map((job) => {
-  Jobs.create(job).then((jobCreated) => {
-    Recruiters.findByPk(Math.floor(Math.random() * recruiters.length))
-      .then((user) => user.addJob(jobCreated))
-      .then(() => {
-        console.log('job creado', jobCreated)
-      })
-  })
+jobs.map((job, index) => {
+  Jobs.create(job)
+    .then((jobCreated) => {
+      if (index > 5) {
+        let random = Math.random() * recruiters.length
+        Recruiters.findByPk(Math.floor(random)).then((user) =>
+          user.addJob(jobCreated)
+        )
+      }
+    })
+    .then(() => {
+      console.log('job creado')
+    })
 })

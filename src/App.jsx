@@ -48,6 +48,7 @@ function App() {
           isAuthenticated={isAuthenticated}
           isLoading={isLoading}
         />
+
         <PrivateRoute
           exact
           path='/jobs/:id'
@@ -87,4 +88,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
