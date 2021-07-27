@@ -35,7 +35,7 @@ export default function CompaniesTable({ companies }) {
                 <TableRow>
                   {companiesColums.map((column, index) => {
                     return (
-                      <TableCell key={index} align="right">
+                      <TableCell key={index} align="left">
                         {column}
                       </TableCell>
                     );

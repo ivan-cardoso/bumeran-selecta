@@ -44,7 +44,8 @@ function FilteredSeniority({
 
   return (
     <>
-      <FormControl variant='outlined' style={{ width: 160 }}>
+      <FormControl variant='outlined' style={
+          { width: 160, marginLeft: 50, marginTop: 20 }}>
         <InputLabel id='demo-simple-select-outlined-label'>
           Seniority
         </InputLabel>

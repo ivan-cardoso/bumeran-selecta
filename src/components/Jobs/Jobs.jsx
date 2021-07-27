@@ -29,7 +29,9 @@ const Jobs = () => {
 
   return (
     <>
-      <AddJob />
+      <div style={{ marginLeft: 100, marginTop: 30 }}>
+        <AddJob />
+      </div>  
       <InputSearch handleInputChange={handleInputChange} />
       <Paper className={classes.pageContent}>
         {jobs.length > 0 ? (

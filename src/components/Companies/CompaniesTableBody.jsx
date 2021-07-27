@@ -54,18 +54,23 @@ function CompaniesTableBody({
     dispatch(singleCompany(company));
     history.push(`/companies/${company.id}`);
   };
+
+
   return (
     <TableBody>
       {companies
         ? companies.map((company) => {
-            const { name, state, email, id } = company;
+            const { name, state, email, area, id } = company;
 
             return (
-              <TableRow key={id}>
-                <TableCell align="right">{name}</TableCell>
-                <TableCell align="right">{email}</TableCell>
-                <TableCell align="right">{state ? state.name : null}</TableCell>
-                <TableCell align="right">
+
+
+              <TableRow  key={id}>
+                <TableCell align="left">{name}</TableCell>
+                <TableCell align="left">{email}</TableCell>
+                <TableCell align="left">{state ? state.name : null}</TableCell>
+                <TableCell align="left">{area ? area.name : null}</TableCell>
+                <TableCell align="left">
                   {
                     <button
                       className={styles.editButton}
@@ -94,6 +99,7 @@ function CompaniesTableBody({
                   <button
                     className={styles.singleViewButton}
                     onClick={() => handleSingleView(company)}
+                    
                   >
                     {<VisibilityIcon />}
                   </button>

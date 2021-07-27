@@ -10,17 +10,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BtnGoBack = ({ name, onClick }) => {
+const BtnGoBack = ({ name, onClick, style }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      
-      <Button variant="contained" color="primary" onClick={() => onClick()}>
+      <Button
+        style={style}
+        variant="contained"
+        color="primary"
+        onClick={() => onClick()}
+      >
         {name}
       </Button>
     </div>
   );
-}
+};
  
 export default BtnGoBack;

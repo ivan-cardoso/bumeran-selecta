@@ -46,6 +46,7 @@ export default function AddCompaniesForm({
               label="Nombre"
               name="name"
               value={values.name}
+              autoComplete="disabled"
             />
           </Grid>
           <Grid item xs={4}>
@@ -58,6 +59,7 @@ export default function AddCompaniesForm({
                 required
                 label="Provincia"
                 onChange={(e) => handleInputChange(e)}
+                autoComplete="disabled"
               >
                 <MenuItem className={styles.menuItemSelect} value="" disable>
                   <em>Seleccione provincia</em>
@@ -80,6 +82,7 @@ export default function AddCompaniesForm({
                 required
                 label="Area"
                 onChange={(e) => handleInputChange(e)}
+                autoComplete="disabled"
               >
                 <MenuItem className={styles.menuItemSelect} value="" disable>
                   <em>Seleccione su area</em>
@@ -99,6 +102,7 @@ export default function AddCompaniesForm({
               type="email"
               name="email"
               value={values.email}
+              autoComplete="disabled"
             />
           </Grid>
           <Grid item xs={4}>
@@ -107,6 +111,7 @@ export default function AddCompaniesForm({
               label="Nombre del contacto"
               name="contactName"
               value={values.contactName}
+              autoComplete="disabled"
             />
           </Grid>
           {/* <Grid item xs={4}>
@@ -117,12 +122,17 @@ export default function AddCompaniesForm({
               value={values.logo}
             />
           </Grid> */}
-          <Grid item xs={4}>
+         
+          <Grid item xs={12} >
             <TextField
               variant="outlined"
               label="Descripción"
               name="description"
+              multiline
+              rows={6}
               value={values.description}
+              autoComplete="disabled"
+              className={styles.formControlDescription}
             />
           </Grid>
           <input

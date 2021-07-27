@@ -17,7 +17,7 @@ div {
   flex-wrap: wrap;
   overflow: hidden;
   position: fixed;
- 
+  justify-content:left
 }
 
 
@@ -28,6 +28,7 @@ div {
 }
 .sidebarDiv {
   display: flex;
+  height: 25%;
   flex-direction: row;
 }
 

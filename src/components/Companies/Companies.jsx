@@ -11,6 +11,7 @@ import InputSearch from "./InputSearch";
 import AddCompany from "./AddCompany";
 
 export default function Companies() {
+  
   const dispatch = useDispatch();
   const companies = useSelector((state) => state.companies);
   const classes = useStyles();
@@ -52,9 +53,12 @@ export default function Companies() {
         setValues={setValues}
         handleInputChange={handleInputChange}
         />
+
         </div>
 
       <InputSearch handleChange={handleChange} />
+
+
       <Paper className={classes.pageContent}>
         {companies.length > 0 ? (
           <CompaniesTable companies={companies} />
