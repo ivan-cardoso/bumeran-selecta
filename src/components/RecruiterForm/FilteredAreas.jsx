@@ -42,12 +42,17 @@ function FilteredArea({
       })
   }
 
+
   return (
+
+
+    
     <>
       <FormControl
         variant='outlined'
         className='optionControl'
-        style={{ width: 150 }}
+        style={
+          { width: 160, marginLeft: 60, marginTop: 20,   }}
       >
         <InputLabel id='demo-simple-select-outlined-label'>
           Area Favorita
@@ -61,7 +66,7 @@ function FilteredArea({
           {areas &&
             areas.map((area) => {
               const { name, id } = area
-              return <MenuItem value={name}>{name}</MenuItem>
+              return <MenuItem value={id}>{name}</MenuItem>
             })}
         </Select>
       </FormControl>

@@ -122,15 +122,17 @@ export default function AddCompaniesForm({
               value={values.logo}
             />
           </Grid> */}
-          <Grid item xs={4}>
+         
+          <Grid item xs={12} >
             <TextField
               variant="outlined"
               label="Descripción"
               name="description"
               multiline
-              row={1}
+              rows={6}
               value={values.description}
               autoComplete="disabled"
+              className={styles.formControlDescription}
             />
           </Grid>
           <input

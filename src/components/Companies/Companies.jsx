@@ -9,8 +9,10 @@ import { Paper } from "@material-ui/core";
 import CompaniesTable from "./CompaniesTable";
 import InputSearch from "./InputSearch";
 import AddCompany from "./AddCompany";
+import FilteredAreas from "./FilteredAreas";
 
 export default function Companies() {
+  
   const dispatch = useDispatch();
   const companies = useSelector((state) => state.companies);
   const classes = useStyles();
@@ -52,9 +54,13 @@ export default function Companies() {
         setValues={setValues}
         handleInputChange={handleInputChange}
         />
+
         </div>
 
-      <InputSearch handleChange={handleChange} />
+      
+      <InputSearch setValues={setValues} handleChange={handleChange} />
+
+
       <Paper className={classes.pageContent}>
         {companies.length > 0 ? (
           <CompaniesTable companies={companies} />

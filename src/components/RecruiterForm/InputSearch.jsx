@@ -11,10 +11,13 @@ function InputSearch({ setRecruiters, recruiters }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedArea, setSelectedArea] = useState('')
   const [selectedSeniority, setSelectedSenoirity] = useState('')
+
+
   const handleChange = (e) => {
     const { value } = e.target
     setSearchTerm(value)
   }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     let filtered, filtered2

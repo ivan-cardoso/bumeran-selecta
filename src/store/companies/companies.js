@@ -17,6 +17,7 @@ export const getCompanies = createAsyncThunk("GET_COMPANIES", async () => {
 export const getCompaniesSearch = createAsyncThunk(
   "GET_COMPANIES_SEARCH",
   async (search) => {
+    
     try {
       const companies = await axios.get(`api/companies/${search}`);
       return companies.data;

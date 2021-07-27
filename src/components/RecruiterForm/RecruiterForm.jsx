@@ -80,6 +80,7 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
     <>
       <form
         onChange={(e) => handleInputChange(e)}
+        
         className={classes.root}
         onSubmit={(e) => {
           e.preventDefault();
@@ -124,6 +125,7 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
                 País
               </InputLabel>
               <Select
+              
                 name="country"
                 required
                 label="País"

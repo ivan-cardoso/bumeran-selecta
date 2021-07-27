@@ -53,7 +53,8 @@ h4 {
 }
 
 .stylePersonalInfo {
-  border: 1px solid rgb(49, 49, 224);
+  text-decoration: underline;
+  padding: 8px;
   width: 50%;
   margin: 0 auto;
   margin-top: 40px;
