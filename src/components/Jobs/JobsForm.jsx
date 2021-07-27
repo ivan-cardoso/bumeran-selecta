@@ -45,16 +45,15 @@ const JobsForm = ({values, handleChange, handleSubmit}) => {
     // };
     const { aditionalData } = useSelector((state) => state)
     const {areas, modalities, seniorities, states, type } = aditionalData
-  const { companies, singleCompany } = useSelector((state) => state);
-
+    const { companies, singleCompany } = useSelector((state) => state);
   
-  // const handleSubmit = (e) => {
+    // const handleSubmit = (e) => {
     //     e.preventDefault()
     //     dispatch(createJob(inputValues)).then((res) => console.log(res.data))
     // }
     
     useEffect(()=>{
-      values.companyId = singleCompany.id;
+        values.companyId = singleCompany.id;
         dispatch(getAllAditionalData())
         dispatch(getCompanies())
     }, [dispatch,singleCompany])

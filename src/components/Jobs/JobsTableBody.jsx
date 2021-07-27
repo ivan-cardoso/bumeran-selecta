@@ -52,10 +52,6 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
     history.push(`/jobs/${job.id}`);
   };
 
-  React.useEffect(() => {
-    dispatch(getAllJobs());
-  }, [dispatch]);
-
   return (
     <TableBody>
       {jobs
