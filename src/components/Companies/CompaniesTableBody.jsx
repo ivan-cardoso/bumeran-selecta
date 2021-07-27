@@ -66,10 +66,10 @@ function CompaniesTableBody({
 
 
               <TableRow  key={id}>
-                <TableCell align="left">{name}</TableCell>
-                <TableCell align="left">{email}</TableCell>
-                <TableCell align="left">{state ? state.name : null}</TableCell>
-                <TableCell align="left">{area ? area.name : null}</TableCell>
+                <TableCell align="center">{name}</TableCell>
+                <TableCell align="center">{email}</TableCell>
+                <TableCell align="center">{state ? state.name : null}</TableCell>
+                <TableCell align="center">{area ? area.name : null}</TableCell>
                 <TableCell align="left">
                   {
                     <button

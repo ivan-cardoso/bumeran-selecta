@@ -108,12 +108,13 @@ const NavBar = () => {
           <div style={modalStyle} className={classes.paper}>
             <div className={s.profileUser}>
               <h1>Personal information</h1>
-              <h3 className={s.stylePersonalInfo}>
-                Name : <span>{user && user.displayName}</span>
+              <h3 >
+                <h3 className={s.stylePersonalInfo}>Name</h3>
+                  <span>{user && user.displayName}</span>
               </h3>
-              <h3 className={s.stylePersonalInfo}>
-                {" "}
-                Email : <span>{user && user.email}</span>{" "}
+              <h3 >
+                <h3 className={s.stylePersonalInfo}> Email </h3>
+                 <span>{user && user.email}</span>{" "}
               </h3>
 
               <Link to="/forgotpassword">

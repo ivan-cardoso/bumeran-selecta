@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/* import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
 import { getAllAditionalData } from "../../store/aditionalData/actions";
@@ -7,6 +7,7 @@ import { getAllCompanies } from "./CompaniesData";
 
 const FilteredAreas = ({ values, setValues }) => {
         
+
     const [selectedArea, setSelectedArea] = useState('')
     const [companies, setCompanies] = useState([])
 
@@ -17,6 +18,7 @@ const FilteredAreas = ({ values, setValues }) => {
   useEffect(() => {
     dispatch(getAllAditionalData());
   }, [dispatch]);
+
 
   const handleInputChange = (e) => {
       
@@ -29,24 +31,22 @@ const FilteredAreas = ({ values, setValues }) => {
     })
     .then((data)=> {
         const filtered = companies.filter((company) => {
-          
             return (
                 companies.area
             )
         })
         setValues(filtered)
     })
-
   };
 
   return (
-    <>
 
+    <>
       <FormControl 
       variant="outlined"
       className='optionControl'
       style={
-          { width: 150, marginRight: 255, marginTop: 50 }}>
+          { width: 150, marginRight: 255, marginTop: 25 }}>
         <InputLabel id="demo-simple-select-outlined-label">
           Area
         </InputLabel>
@@ -60,7 +60,6 @@ const FilteredAreas = ({ values, setValues }) => {
                 const { name, id } = area
                 return <MenuItem value={name}>{name}</MenuItem>
             })}
-          
         </Select>
       </FormControl>
     </>
@@ -68,3 +67,4 @@ const FilteredAreas = ({ values, setValues }) => {
 };
 
 export default FilteredAreas;
+ */

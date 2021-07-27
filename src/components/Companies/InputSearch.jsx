@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../RecruiterForm/index.module.css'
 import FilteredAreas from "./FilteredAreas";
 
-export default function InputSearch({ handleChange}) {
+export default function InputSearch({ setValues, handleChange}) {
     
 
   
@@ -20,7 +20,7 @@ export default function InputSearch({ handleChange}) {
         {/* ={
           { width: 160, marginRight: 155, marginTop: 50 }}> */}
         <div />
-        <FilteredAreas  handleChange={handleChange}/>
+      {/*   <FilteredAreas  setValues={setValues} handleChange={handleChange}/> */}
 
       </form>
         </div>

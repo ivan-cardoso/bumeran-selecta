@@ -9,6 +9,7 @@ import { Paper } from "@material-ui/core";
 import CompaniesTable from "./CompaniesTable";
 import InputSearch from "./InputSearch";
 import AddCompany from "./AddCompany";
+import FilteredAreas from "./FilteredAreas";
 
 export default function Companies() {
   
@@ -56,7 +57,8 @@ export default function Companies() {
 
         </div>
 
-      <InputSearch handleChange={handleChange} />
+      
+      <InputSearch setValues={setValues} handleChange={handleChange} />
 
 
       <Paper className={classes.pageContent}>

@@ -77,7 +77,7 @@ export default function DenseTable({
               <TableRow>
                 {recruitersColums.map((column, index) => {
                   return (
-                    <TableCell key={index} align='right'>
+                    <TableCell key={index} align='center'>
                       {column}
                     </TableCell>
                   )
