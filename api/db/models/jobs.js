@@ -9,14 +9,6 @@ Jobs.init(
       type: S.STRING,
       allowNull: false,
     },
-    // area: {
-    //     type: S.STRING,
-    //     allowNull:false
-    // },
-    // seniority: {
-    //     type: S.STRING,
-    //     allowNull: false
-    // },
     description: {
       type: S.TEXT,
       allowNull: false,
@@ -25,10 +17,6 @@ Jobs.init(
       type: S.STRING,
       allowNull: false,
     },
-    rating: {
-      type: S.STRING,
-      defaultValue: 0,
-    },
     date: {
       type: S.DATE,
       defaultValue: new Date(),
@@ -36,10 +24,6 @@ Jobs.init(
     salary: {
       type: S.INTEGER,
     },
-    // modality: {
-    //     type: S.STRING,
-    //     allowNull:false
-    // },
     isOpen: {
       type: S.BOOLEAN,
       defaultValue: true,

@@ -124,10 +124,10 @@ const AddJob = ({setCreate}) => {
   return (
     <>
       {/* <div style={{ marginLeft: 300, marginTop: 20 }}> */}
-      <div>
+        <div>
         <BtnCreateNewJobs
           onClick={handleOpen}
-          name='Crear búsqueda'
+          name="Crear búsqueda"
         ></BtnCreateNewJobs>
       </div>
       {/* <div style={{ display: "none" }} id="createJobForm">
@@ -137,7 +137,7 @@ const AddJob = ({setCreate}) => {
       <Modal
         open={open}
         onClose={() => {
-          handleClose()
+          handleClose();
         }}
         className={classes.modal}
         closeAfterTransition
@@ -155,7 +155,7 @@ const AddJob = ({setCreate}) => {
         </Fade>
       </Modal>
     </>
-  )
+  );
 }
 
 export default AddJob

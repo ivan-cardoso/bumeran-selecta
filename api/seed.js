@@ -517,121 +517,163 @@ const typesEmployed = [{ name: 'Fulltime' }, { name: 'Part-time' }]
 
 const jobs = [
   {
-    title: 'Fullstack',
-    areaId: '2',
-    seniorityId: '2',
-    description: 'Alto laburo amigo',
-    country: 'Argentina',
-    stateId: '2',
-    typeemloyedId: '1',
+    title: "Fullstack",
+    areaId: "2",
+    seniorityId: "2",
+    description: "Soy una descripcion de ejemplo",
+    country: "Argentina",
+    stateId: "2",
+    typeemloyedId: "1",
     salary: 10000,
-    modalityId: '2',
-    companyId: 2,
-    rating: 6,
+    modalityId: "2",
+    companyId: "2",
     date: new Date(
       new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
     ),
   },
   {
-    title: 'Fullstack',
-    areaId: '1',
-    seniorityId: '1',
-    description: 'Alto laburo amigo',
-    country: 'Argentina',
-    stateId: '1',
-    typeemloyedId: '1',
+    title: "Back",
+    areaId: "1",
+    seniorityId: "1",
+    description: "Soy una descripcion de ejemplo",
+    country: "Argentina",
+    stateId: "1",
+    typeemloyedId: "1",
     salary: 10000,
-    modalityId: '1',
-    companyId: 1,
-    rating: 8,
+    modalityId: "1",
+    companyId: "1",
     date: new Date(
       new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
     ),
   },
   {
-    title: 'Fullstack',
-    areaId: '1',
-    seniorityId: '1',
-    description: 'Alto laburo amigo',
-    country: 'Argentina',
-    stateId: '1',
-    typeemloyedId: '1',
+    title: "Fullstack",
+    areaId: "1",
+    seniorityId: "1",
+    description: "Soy una descripcion de ejemplo",
+    country: "Argentina",
+    stateId: "1",
+    typeemloyedId: "1",
     salary: 10000,
-    modalityId: '1',
-    companyId: 1,
-    rating: 3,
+    modalityId: "1",
+    companyId: "3",
     date: new Date(
       new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
     ),
   },
   {
-    title: 'Fullstack',
-    areaId: '3',
-    seniorityId: '3',
-    description: 'Alto laburo amigo',
-    country: 'Argentina',
-    stateId: '3',
-    typeemloyedId: '1',
+    title: "Fullstack",
+    areaId: "3",
+    seniorityId: "3",
+    description: "Soy una descripcion de ejemplo",
+    country: "Argentina",
+    stateId: "3",
+    typeemloyedId: "1",
     salary: 10000,
-    modalityId: '3',
-    companyId: 1,
-    rating: 10,
+    modalityId: "1",
+    companyId: "4",
     date: new Date(
       new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
     ),
   },
-]
+  {
+    title: "Front",
+    areaId: "6",
+    seniorityId: "1",
+    description: "Soy una descripcion de ejemplo",
+    country: "Argentina",
+    stateId: "6",
+    typeemloyedId: "1",
+    salary: 80000,
+    isOpen: false,
+    modalityId: "2",
+    companyId: "1",
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: "Gerente de planta",
+    areaId: "4",
+    seniorityId: "2",
+    description: "Soy una descripcion de ejemplo",
+    country: "Argentina",
+    stateId: "9",
+    typeemloyedId: "2",
+    salary: 50000,
+    modalityId: "1",
+    isOpen: false,
+    companyId: "2",
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+  {
+    title: "Asistente",
+    areaId: "9",
+    seniorityId: "3",
+    description: "Soy una descripcion de ejemplo",
+    country: "Argentina",
+    stateId: "1",
+    typeemloyedId: "1",
+    salary: 180000,
+    modalityId: "2",
+    companyId: "3",
+    isOpen: false,
+    date: new Date(
+      new Date().setDate(new Date().getDate() - Math.floor(Math.random() * 7))
+    ),
+  },
+];
 
 states.map((State) => {
   States.create(State).then((state) => {
-    console.log("State creado: ", state);
+    console.log("State creado: ");
   });
 });
 
 areas.map((Area) => {
   Areas.create(Area).then((area) => {
-    console.log("Area creada: ", area);
+    console.log("Area creada: ");
   });
 });
 
 
 senioritysToMap.map((seniority) => {
   Seniority.create(seniority).then((data) => {
-    console.log('Seniority creado: ', data)
+    console.log("Seniority creado: ");
   })
 })
 
 modalities.map((Modalities) => {
   Modality.create(Modalities).then((modalities) => {
-    console.log('Modality creado: ', modalities)
+    console.log("Modality creado: ");
   })
 })
 
 typesEmployed.map((types) => {
   TypeEmployed.create(types).then((type) => {
-    console.log('Type of Employed creado: ', type)
+    console.log("Type of Employed creado: ");
   })
 })
 
 recruiters.map((recruiter) => {
-  Recruiters.create(recruiter).then((user) =>
-    console.log('usuario creado: ', user)
-  )
+  Recruiters.create(recruiter).then((user) => console.log("usuario creado: "));
 })
 
 companies.map((Company) => {
-  Companies.create(Company).then((Company) =>
-    console.log('Company creada: ', Company)
-  )
+  Companies.create(Company).then((Company) => console.log("Company creada: "));
 })
 
 
 jobs.map((job) => {
   Jobs.create(job).then((jobCreated) => {
-    Recruiters.findByPk(Math.floor(Math.random() * recruiters.length))
+    let random = Math.random() * recruiters.length;
+    console.log(Math.floor(random));
+    Recruiters.findByPk(Math.floor(random))
       .then((user) => user.addJob(jobCreated))
       .then(() => {
-        console.log('job creado', jobCreated)
-      })
+        console.log("job creado");
+      });
   })
 })
