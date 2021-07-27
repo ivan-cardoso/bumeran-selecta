@@ -548,8 +548,8 @@ const typesEmployed = [{ name: 'Fulltime' }, { name: 'Part-time' }]
 const jobs = [
   {
     title: 'Fullstack',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '2',
@@ -563,8 +563,8 @@ const jobs = [
   },
   {
     title: 'Back test',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -578,8 +578,8 @@ const jobs = [
   },
   {
     title: 'Fullstack',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -593,8 +593,8 @@ const jobs = [
   },
   {
     title: 'Fullstack',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '3',
@@ -608,8 +608,8 @@ const jobs = [
   },
   {
     title: 'Front',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '6',
@@ -624,8 +624,8 @@ const jobs = [
   },
   {
     title: 'Gerente de planta',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '9',
@@ -640,8 +640,8 @@ const jobs = [
   },
   {
     title: 'Asistente',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -656,8 +656,8 @@ const jobs = [
   },
   {
     title: 'Asistente 4',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -672,8 +672,8 @@ const jobs = [
   },
   {
     title: 'Asistente 3',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -688,8 +688,8 @@ const jobs = [
   },
   {
     title: 'Asistente 2',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -704,8 +704,8 @@ const jobs = [
   },
   {
     title: 'Asistente 1',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -720,8 +720,8 @@ const jobs = [
   },
   {
     title: 'Manager 4',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -736,8 +736,8 @@ const jobs = [
   },
   {
     title: 'Manager 3',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -752,8 +752,8 @@ const jobs = [
   },
   {
     title: 'Manager 2',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -768,8 +768,8 @@ const jobs = [
   },
   {
     title: 'Manager 1',
-    areaId: `${Math.floor(Math.random() * areas.length)}`,
-    seniorityId: `${Math.floor(Math.random() * seniorities.length)}`,
+    areaId: `${Math.ceil(Math.random() * areas.length)}`,
+    seniorityId: `${Math.ceil(Math.random() * seniorities.length)}`,
     description: 'Soy una descripcion de ejemplo',
     country: 'Argentina',
     stateId: '1',
@@ -827,7 +827,7 @@ jobs.map((job, index) => {
     .then((jobCreated) => {
       if (index > 5) {
         let random = Math.random() * recruiters.length
-        Recruiters.findByPk(Math.floor(random)).then((user) =>
+        Recruiters.findByPk(Math.ceil(random)).then((user) =>
           user.addJob(jobCreated)
         )
       }
