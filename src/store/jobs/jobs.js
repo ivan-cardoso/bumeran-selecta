@@ -38,15 +38,28 @@ export const updateJob = createAsyncThunk("UPDATE_JOB", (value)=>{
     .catch((err)=> console.log(err))
 })
 
-export const getJobsSearch = createAsyncThunk(
-  "GET_JOBS_SEARCH",
-  async (search) => {
-    try {
-      const jobs = await axios.get(`api/jobs/${search}`);
-      return jobs.data;
-    } catch (err) {
-      console.log(err);
-    }
+// export const getJobsSearch = createAsyncThunk(
+//   "GET_JOBS_SEARCH",
+//   async (search) => {
+//     try {
+//       console.log("SEARCH", search)
+//       const jobs = await axios.get(`api/jobs/${search.search}`, {params : 
+        
+//         {areaId : 7}
+//       });
+//       return jobs.data;
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// );
+
+export const getJobsSearch = createAsyncThunk("GET_JOBS_SEARCH",(values) => {
+      console.log("SEARCH", values)
+      return axios.post(`api/jobs/filter`, values)
+      .then((res)=> res.data)
+      .then((jobs) => jobs)
+      .catch((err) => console.log(err))
   }
 );
 

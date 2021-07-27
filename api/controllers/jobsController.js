@@ -220,21 +220,41 @@ const historicChart = (req, res) => {
       res.status(500).send(err)
     })
 }
+
 const findAllBySearch = async (req, res, next) => {
   try {
-    const jobs = await Jobs.findAll({
-      where: {
-        [Op.or]: [
-          {
-            title: {
-              [Op.iLike]: `%${req.params.search}%`,
+    if (req.body.areaId) {
+      const jobs = await Jobs.findAll({
+        where: {
+          areaId : req.body.areaId,
+          [Op.or]: [
+            {
+              title: {
+                [Op.iLike]: `%${req.body.search}%`,
+              },
             },
-          },
-        ],
-      },
-      include: { all: true },
-    })
-    res.status(200).json(jobs)
+          ],
+        },
+        include: { all: true },
+        returning: true,
+      })
+      res.status(200).json(jobs)
+    } else {
+      const jobs = await Jobs.findAll({
+        where: {
+          [Op.or]: [
+            {
+              title: {
+                [Op.iLike]: `%${req.body.search}%`,
+              },
+            },
+          ],
+        },
+        include: { all: true },
+        returning: true,
+      })
+      res.status(200).json(jobs)
+    }
   } catch (err) {
     next(err)
   }

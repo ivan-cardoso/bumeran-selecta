@@ -25,7 +25,7 @@ router.get('/top3', getTop3Companies)
 router.post('/findrecomendation', findRecommendations)
 router.get('/', getAllJobs)
 //router.get('/:id', getOneJob)
-router.get('/:search', findAllBySearch)
+router.post("/filter", findAllBySearch);
 router.post('/create', createJob)
 router.post('/assignrecruiter', assignRecruiter)
 router.delete('/delete/:id', deleteJob)

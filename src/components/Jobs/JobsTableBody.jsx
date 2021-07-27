@@ -66,7 +66,7 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
 
   React.useEffect(() => {
     dispatch(getAllJobs());
-  }, [dispatch, openRecruiter]);
+  }, [ openRecruiter]);
 
   return (
     <TableBody>
