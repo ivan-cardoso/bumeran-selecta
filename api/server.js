@@ -11,12 +11,15 @@ const admin = require('firebase-admin')
 const db = require('./db/db')
 const Models = require('./db/models/index')
 
+const volleyball = require('volleyball')
+
 //auth
 app.use(cookieParser())
 app.use(express.json())
 
 //Routers
 
+app.use(volleyball)
 app.use('/api', require('./routes'))
 
 db.sync({ force: false }).then(() => {

@@ -31,7 +31,11 @@ const FilteredArea = ({
           {values &&
             values.map((item) => {
               const { name, id } = item
-              return <MenuItem value={name}>{name}</MenuItem>
+              return (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              )
             })}
         </Select>
       </FormControl>

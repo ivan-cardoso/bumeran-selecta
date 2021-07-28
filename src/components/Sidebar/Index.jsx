@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import s from './sidebar.css'
@@ -33,13 +33,12 @@ const Sidebar = () => {
       cName: 'nav-text',
     },
   ]
-  const [showSidebar, setShowSidebar] = useState(true)
   return (
     <div className='div-icon'>
       <div className='sidebarContainer'>
         {SidebarData?.map((item, index) => {
           return (
-            <div className='sidebarDiv'>
+            <div key={index} className='sidebarDiv'>
               <div key={index} className={item.cName}>
                 <h1 className='navbaricon'> {item.icon}</h1>
               </div>
@@ -53,7 +52,7 @@ const Sidebar = () => {
         })}
       </div>
     </div>
-  );
+  )
 }
 
 export default Sidebar
