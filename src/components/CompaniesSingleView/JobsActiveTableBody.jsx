@@ -19,8 +19,7 @@ function JobsActiveTableBody({ activeJobs }) {
   return (
     <TableBody>
       {activeJobs.map((job) => {
-        const { title, area, state, id, seniority, typeemloyed } = job;
-
+        const { title, area, state, id, seniority, typeemloyed, isOpen } = job;
         return (
           <TableRow key={id}>
             <TableCell align="right">{title}</TableCell>
@@ -28,6 +27,7 @@ function JobsActiveTableBody({ activeJobs }) {
             <TableCell align="right">{seniority.name}</TableCell>
             <TableCell align="right">{typeemloyed.name}</TableCell>
             <TableCell align="right">{state.name}</TableCell>
+            <TableCell align="right">{isOpen}</TableCell>
             <TableCell align="right">
               <button
                 className={styles.singleViewButton}

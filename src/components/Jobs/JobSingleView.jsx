@@ -85,11 +85,7 @@ const JobSingleView = () => {
             <h3>{singleJob.country}</h3>
             <h3>
               Estado:
-              {singleJob.isOpen
-                ? singleJob.recruiterId
-                  ? "Asignada"
-                  : "Abierta"
-                : "Cerrada"}
+              {singleJob.isOpen}
             </h3>
             <Button
               color="primary"
@@ -100,25 +96,25 @@ const JobSingleView = () => {
             </Button>
           </div>
         </div>
-          <div className={style.asignRecruiter}>
-            {recruiter ? (
-              <>
-                <div className={style.infoRecruiter}>
-                  <h1>
-                    {recruiter.name} {recruiter.surname}
-                  </h1>
-                  <h1>Rating: {<SimpleRating rating={recruiter.rating} />}</h1>
-                  <BTN
-                    name="Ver Perfil"
-                    onClick={() => handleViewRecruiter(recruiter)}
-                  />
-                </div>
-                <img src={recruiter.img} alt={recruiter.name} />
-              </>
-            ) : (
-              <h1>No existe recruta asignado</h1>
-            )}
-          </div>
+        <div className={style.asignRecruiter}>
+          {recruiter ? (
+            <>
+              <div className={style.infoRecruiter}>
+                <h1>
+                  {recruiter.name} {recruiter.surname}
+                </h1>
+                <h1>Rating: {<SimpleRating rating={recruiter.rating} />}</h1>
+                <BTN
+                  name="Ver Perfil"
+                  onClick={() => handleViewRecruiter(recruiter)}
+                />
+              </div>
+              <img src={recruiter.img} alt={recruiter.name} />
+            </>
+          ) : (
+            <h1>No existe recruta asignado</h1>
+          )}
+        </div>
       </div>
     </>
   );

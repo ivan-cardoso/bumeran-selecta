@@ -30,6 +30,6 @@ router.post('/create', createJob)
 router.post('/assignrecruiter', assignRecruiter)
 router.delete('/delete/:id', deleteJob)
 router.put('/update/:id', updateJob)
-router.put('/closejob', closeJob)
+router.put("/closejob/:id", closeJob);
 
 module.exports = router

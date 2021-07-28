@@ -1,10 +1,7 @@
 const {
   Jobs,
   Areas,
-  States,
   Seniority,
-  TypeEmployed,
-  Modality,
   Companies,
   Recruiters,
 } = require('../db/models/index')
@@ -23,12 +20,20 @@ const getAllJobs = (req, res) => {
     })
 }
 const getOpenedJobs = (req, res) => {
-  Jobs.findAll({ where: { isOpen: true }, include: Recruiters })
+  const arrOpenAssign=['abierta','asignada']
+  Jobs.findAll({
+    where: {
+      isOpen: {
+        [Op.or]: arrOpenAssign
+      },
+    },
+    include: Recruiters,
+  })
     .then((data) => res.status(200).send(data))
     .catch((err) => {
-      console.log(err)
-      res.status(500).send(err)
-    })
+      console.log(err);
+      res.status(500).send(err);
+    });
 }
 
 const getOneJob = (req, res) => {
@@ -105,10 +110,9 @@ const updateJob = (req, res) => {
 }
 
 const closeJob = (req, res) => {
-  Jobs.findByPk(req.body.id)
+  Jobs.findByPk(req.params.id)
     .then((job) => {
-      console.log('job', job)
-      job.isOpen = false
+      job.isOpen = 'cerrada'
       if (job.recruiterId) {
         job.removeSearchFromRecruiter(job.recruiterId)
       }
@@ -265,6 +269,8 @@ const assignRecruiter = async (req, res, next) => {
     const recruiterAdded = await jobFounded.addActiveRecruiter(
       req.body.recruiterId
     );
+    jobFounded.isOpen = 'asignada'
+    await jobFounded.save()
     await recruiterAdded.addJob(jobFounded);
 
     res.status(200).json(recruiterAdded)

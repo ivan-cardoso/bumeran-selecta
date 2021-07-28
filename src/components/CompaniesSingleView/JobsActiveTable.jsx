@@ -22,6 +22,7 @@ export default function JobsActiveTable({ activeJobs }) {
     "Seniority",
     "Tipo de empleo",
     "Provincia",
+    "Estado",
   ];
 
   return (

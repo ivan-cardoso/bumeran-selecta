@@ -84,13 +84,7 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                 <TableCell align="right">{job.country}</TableCell>
                 <TableCell align="right">{job.state.name}</TableCell>
                 <TableCell align="right">{job.salary}</TableCell>
-                <TableCell align="right">
-                  {job.isOpen
-                    ? job.recruiterId
-                      ? "Asignada"
-                      : "Abierta"
-                    : "Cerrada"}
-                </TableCell>
+                <TableCell align="right">{job.isOpen}</TableCell>
 
                 <TableCell align="right">
                   <button
