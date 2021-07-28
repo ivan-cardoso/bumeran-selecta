@@ -7,7 +7,6 @@ const {
   createJob,
   deleteJob,
   updateJob,
-  closeJob,
   getTop3Companies,
   jobByArea,
   jobBySeniority,
@@ -15,7 +14,9 @@ const {
   findAllBySearch,
   assignRecruiter,
   findRecommendations,
-} = require('../controllers/jobsController')
+  deleteAssignRecruiter,
+  ratingRecruiter,
+} = require("../controllers/jobsController");
 
 router.get('/opened', getOpenedJobs)
 router.get('/historic', historicChart)
@@ -28,8 +29,9 @@ router.get('/', getAllJobs)
 router.post("/filter", findAllBySearch);
 router.post('/create', createJob)
 router.post('/assignrecruiter', assignRecruiter)
+router.put("/deleteassignrecruiter", deleteAssignRecruiter);
 router.delete('/delete/:id', deleteJob)
 router.put('/update/:id', updateJob)
-router.put("/closejob/:id", closeJob);
+router.put("/ratingrecruiter", ratingRecruiter);
 
 module.exports = router

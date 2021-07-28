@@ -5,7 +5,7 @@ import TableRow from "@material-ui/core/TableRow";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { singleJob } from "../../store/jobs/singleJob";
+import { getSingleJob } from "../../store/jobs/getSingleJob";
 import styles from "../RecruiterForm/index.module.css";
 
 function JobsActiveTableBody({ activeJobs }) {
@@ -13,7 +13,7 @@ function JobsActiveTableBody({ activeJobs }) {
 
   const history = useHistory();
   const handleSingleJob = (job) => {
-    dispatch(singleJob(job));
+    dispatch(getSingleJob(job));
     history.push(`/jobs/${job.id}`);
   };
   return (

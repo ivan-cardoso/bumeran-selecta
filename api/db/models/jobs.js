@@ -31,6 +31,13 @@ Jobs.init(
       values: ["abierta", "cerrada", "asignada"],
       defaultValue: "abierta",
     },
+    ratingRecruiter: {
+      type: S.DOUBLE,
+      defaultValue: 0,
+    },
+    candidates: {
+      type: S.DOUBLE,
+    },
   },
   { sequelize: db, modelName: "jobs" }
 );

@@ -1,27 +1,53 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Button } from "@material-ui/core";
+import { Button, Backdrop } from "@material-ui/core";
 import { closeJob } from "../../store/jobs/jobs";
 import style from "./index.module.css";
 import SimpleRating from "../RecruiterSingleView/RatingView";
 import BTN from "../UX/Buttons/BtnGoBack";
 import { singleRecruiter } from "../../store/recruiter/actions";
+import axios from "axios";
+import { getSingleJob } from "../../store/jobs/getSingleJob";
+import { message } from "antd";
+import ModalRatingClose from "../ModalRatingClose/Index";
+import useModal from "./useModal";
 
 const JobSingleView = () => {
   const { singleJob } = useSelector((state) => state);
   const dispatch = useDispatch();
   const history = useHistory();
+  const {
+    open,
+    setOpen,
+    handleOpen,
+    handleClose,
+    classes,
+    modalStyle,
+    openUpdate,
+    setOpenUpdate,
+  } = useModal();
 
-  const handleSetClose = (id) => {
-    dispatch(closeJob(id)).then(() => {
-      history.push(`/jobs`);
-    });
+  const handleSetClose = (job) => {
+    setOpen(true);
   };
+
   const handleViewRecruiter = (recruiter) => {
     dispatch(singleRecruiter(recruiter));
     history.push(`/recruiters/${recruiter.id}`);
   };
+
+  const handleDeleteAssing = (Job) => {
+    axios
+      .put("/api/jobs/deleteassignrecruiter", { jobId: Job.id })
+      .then((res) => res.data)
+      .then((jobModificated) => {
+        message.success("Recluta eliminado correctamente");
+        dispatch(getSingleJob({ ...singleJob, ...jobModificated }));
+      });
+  };
+
+  React.useEffect(() => {}, [singleJob]);
 
   const { recruiter } = singleJob;
 
@@ -87,17 +113,19 @@ const JobSingleView = () => {
               Estado:
               {singleJob.isOpen}
             </h3>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => handleSetClose(singleJob.id)}
-            >
-              Cerrar búsqueda
-            </Button>
+            {singleJob.isOpen !== "cerrada" && (
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={() => handleSetClose(singleJob)}
+              >
+                Cerrar búsqueda
+              </Button>
+            )}
           </div>
         </div>
         <div className={style.asignRecruiter}>
-          {recruiter ? (
+          {singleJob.recruiterId ? (
             <>
               <div className={style.infoRecruiter}>
                 <h1>
@@ -108,6 +136,12 @@ const JobSingleView = () => {
                   name="Ver Perfil"
                   onClick={() => handleViewRecruiter(recruiter)}
                 />
+                {singleJob.isOpen !== "cerrada" && (
+                  <BTN
+                    name="Eliminar"
+                    onClick={() => handleDeleteAssing(singleJob)}
+                  />
+                )}
               </div>
               <img src={recruiter.img} alt={recruiter.name} />
             </>
@@ -115,6 +149,18 @@ const JobSingleView = () => {
             <h1>No existe recruta asignado</h1>
           )}
         </div>
+
+        <ModalRatingClose
+          singleJob={singleJob}
+          open={open}
+          setOpen={setOpen}
+          className={classes.modal}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{ timeout: 500 }}
+          ClassNamePaper={classes.paper}
+          modalStyle={modalStyle}
+        />
       </div>
     </>
   );

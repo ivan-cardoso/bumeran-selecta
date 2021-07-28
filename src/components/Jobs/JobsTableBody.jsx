@@ -15,7 +15,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import { getAllJobs, deleteJob } from '../../store/jobs/jobs'
-import { singleJob } from '../../store/jobs/singleJob'
+import { getSingleJob } from "../../store/jobs/getSingleJob";
 import ModalRecomendation from '../Recomendations/Index'
 
 import useModal from './useModal'
@@ -60,7 +60,7 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
   };
 
   const handleSingleJob = (job) => {
-    dispatch(singleJob(job))
+    dispatch(getSingleJob(job));
     history.push(`/jobs/${job.id}`)
   }
 

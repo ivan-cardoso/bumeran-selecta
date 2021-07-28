@@ -66,7 +66,7 @@ function Card({ selectedJob, setOpenRecruiter }) {
       .post("/api/jobs/assignrecruiter", activeSelection)
       .then(() => {
         setOpenRecruiter(false)
-      message.success("Recruta asignado correctamente");
+      message.success("Recluta asignado correctamente");
       });
   };
 

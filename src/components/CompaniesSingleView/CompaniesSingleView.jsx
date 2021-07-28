@@ -38,8 +38,6 @@ function SingleViewCompany() {
     <div>
       {singleCompany.id ? (
         <div className={style.companySingleSection}>
-          {console.log(singleCompany)}
-
           <div className={style.companySingleDetail}>
             <div className={style.singleCompanyImg}>
               <img className={style.singleImg} src={img} alt={name} />
