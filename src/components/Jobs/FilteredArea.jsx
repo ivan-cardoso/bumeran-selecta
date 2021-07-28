@@ -1,39 +1,41 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllJobs, getJobsSearch } from "../../store/jobs/jobs";
+import { getAllJobs, getJobsSearch } from '../../store/jobs/jobs'
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 
+const FilteredArea = ({
+  values,
+  selectedValue,
+  setValues,
+  title,
+  name,
+  handleAreaChange,
+}) => {
+  const dispatch = useDispatch()
 
-const FilteredArea = ({areaSelected, setAreaSelected, values, setValues, handleAreaChange}) => {
-    const { areas } = useSelector((state) => state.aditionalData)
-    const dispatch = useDispatch()
-
-    
-    
-    return (
-        <>
-            <FormControl
-                variant='outlined'
-                className='optionControl'
-                style={{ width: 150 }}
-                >
-                <InputLabel id='demo-simple-select-outlined-label'>
-                Area Favorita
-                </InputLabel>
-                <Select
-                name='areaId'
-                label='Area Favorita'
-                onChange={(e) => handleAreaChange(e)}
-                >
-                {areas &&
-                    areas.map((area) => {
-                    const { name, id } = area
-                    return <MenuItem value={id}>{name}</MenuItem>
-                    })}
-                </Select>
-            </FormControl>
-        </>
-    )
+  return (
+    <>
+      <FormControl
+        variant='outlined'
+        className='optionControl'
+        style={{ width: 150 }}
+      >
+        <InputLabel id='demo-simple-select-outlined-label'>{title}</InputLabel>
+        <Select
+          name={name}
+          value={selectedValue}
+          label={title}
+          onChange={(e) => handleAreaChange(e)}
+        >
+          {values &&
+            values.map((item) => {
+              const { name, id } = item
+              return <MenuItem value={name}>{name}</MenuItem>
+            })}
+        </Select>
+      </FormControl>
+    </>
+  )
 }
 
 export default FilteredArea

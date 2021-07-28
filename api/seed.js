@@ -81,7 +81,7 @@ const recruiters = [
     seniority2: seniorities[3],
     seniority3: seniorities[2],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Eva',
@@ -98,7 +98,7 @@ const recruiters = [
     seniority2: seniorities[2],
     seniority3: seniorities[3],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Alejandra',
@@ -115,7 +115,7 @@ const recruiters = [
     seniority2: seniorities[1],
     seniority3: seniorities[0],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Mario',
@@ -132,7 +132,7 @@ const recruiters = [
     seniority2: seniorities[3],
     seniority3: seniorities[2],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Marisa',
@@ -149,7 +149,7 @@ const recruiters = [
     seniority2: seniorities[1],
     seniority3: seniorities[0],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Asencio',
@@ -166,7 +166,7 @@ const recruiters = [
     seniority2: seniorities[3],
     seniority3: seniorities[0],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Estefania',
@@ -183,7 +183,7 @@ const recruiters = [
     seniority2: seniorities[1],
     seniority3: seniorities[3],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Verónica Ana',
@@ -200,7 +200,7 @@ const recruiters = [
     seniority2: seniorities[1],
     seniority3: seniorities[2],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Braian',
@@ -217,7 +217,7 @@ const recruiters = [
     seniority2: seniorities[1],
     seniority3: seniorities[2],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Florencia',
@@ -234,7 +234,7 @@ const recruiters = [
     seniority2: seniorities[1],
     seniority3: seniorities[2],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Mariana',
@@ -251,7 +251,7 @@ const recruiters = [
     seniority2: seniorities[4],
     seniority3: seniorities[1],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Analía',
@@ -268,7 +268,7 @@ const recruiters = [
     seniority2: seniorities[4],
     seniority3: seniorities[1],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Alejandro',
@@ -285,7 +285,7 @@ const recruiters = [
     seniority2: seniorities[4],
     seniority3: seniorities[1],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'CL',
@@ -302,7 +302,7 @@ const recruiters = [
     seniority2: seniorities[4],
     seniority3: seniorities[1],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Monica',
@@ -319,7 +319,7 @@ const recruiters = [
     seniority2: seniorities[4],
     seniority3: seniorities[1],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Christian',
@@ -336,7 +336,7 @@ const recruiters = [
     seniority2: seniorities[4],
     seniority3: seniorities[1],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Nadia',
@@ -353,7 +353,7 @@ const recruiters = [
     seniority2: seniorities[2],
     seniority3: seniorities[1],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Verónica',
@@ -370,7 +370,7 @@ const recruiters = [
     seniority2: seniorities[2],
     seniority3: seniorities[1],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
   {
     name: 'Vanesa',
@@ -492,7 +492,7 @@ const recruiters = [
     seniority2: seniorities[4],
     seniority3: seniorities[3],
     rating: parseFloat((Math.random() * 5).toFixed(1)),
-    activeSearch: Math.floor(Math.random() * 5),
+    // activeSearch: Math.floor(Math.random() * 5),
   },
 ]
 
@@ -825,9 +825,11 @@ jobs.map((job, index) => {
     .then((jobCreated) => {
       if (index > 5) {
         let random = Math.random() * recruiters.length
-        Recruiters.findByPk(Math.ceil(random)).then((user) =>
+        Recruiters.findByPk(Math.ceil(random)).then((user) => {
           user.addJob(jobCreated)
-        )
+          jobCreated.isOpen = 'asignada'
+          jobCreated.save()
+        })
       }
     })
     .then(() => {

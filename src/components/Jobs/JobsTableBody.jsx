@@ -56,17 +56,17 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
     setOpen(true)
   }
   const assignRecruiter = () => {
-    setOpenRecruiter(true);
-  };
+    setOpenRecruiter(true)
+  }
 
   const handleSingleJob = (job) => {
     dispatch(singleJob(job))
     history.push(`/jobs/${job.id}`)
   }
 
-  React.useEffect(() => {
-    dispatch(getAllJobs());
-  }, [ openRecruiter]);
+  // React.useEffect(() => {
+  //   dispatch(getAllJobs());
+  // }, [ openRecruiter]);
 
   return (
     <TableBody>
@@ -74,42 +74,36 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
         ? jobs.map((job) => {
             return (
               <TableRow>
-                <TableCell align="right">{job.title}</TableCell>
-                <TableCell align="right">{job.company.name}</TableCell>
-                <TableCell align="right">{job.area.name}</TableCell>
-                <TableCell align="right">{job.seniority.name}</TableCell>
-                <TableCell align="right">{job.typeemloyed.name}</TableCell>
+                <TableCell align='right'>{job.title}</TableCell>
+                <TableCell align='right'>{job.company.name}</TableCell>
+                <TableCell align='right'>{job.area.name}</TableCell>
+                <TableCell align='right'>{job.seniority.name}</TableCell>
+                <TableCell align='right'>{job.typeemloyed.name}</TableCell>
 
-                <TableCell align="right">{job.modality.name}</TableCell>
-                <TableCell align="right">{job.country}</TableCell>
-                <TableCell align="right">{job.state.name}</TableCell>
-                <TableCell align="right">{job.salary}</TableCell>
-                <TableCell align="right">
-                  {job.isOpen
-                    ? job.recruiterId
-                      ? "Asignada"
-                      : "Abierta"
-                    : "Cerrada"}
-                </TableCell>
+                <TableCell align='right'>{job.modality.name}</TableCell>
+                <TableCell align='right'>{job.country}</TableCell>
+                <TableCell align='right'>{job.state.name}</TableCell>
+                <TableCell align='right'>{job.salary}</TableCell>
+                <TableCell align='right'>{job.isOpen}</TableCell>
 
-                <TableCell align="right">
+                <TableCell align='right'>
                   <button
                     onClick={() => {
                       // setShowTable(false)
                       // setUpdateInfo(job)
                       // handleUpdateJob(job)
-                      handleUpdateJob(job);
+                      handleUpdateJob(job)
                     }}
                   >
                     <EditIcon />
                   </button>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align='right'>
                   <button onClick={() => handleSingleJob(job)}>
                     <VisibilityIcon />
                   </button>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align='right'>
                   <button
                     disabled={job.recruiterId}
                     onClick={() => {
@@ -117,23 +111,23 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                         area: job.area.name,
                         seniority: job.seniority.name,
                         id: job.id,
-                      });
+                      })
 
-                      assignRecruiter();
+                      assignRecruiter()
                     }}
                   >
                     <PersonAddIcon />
                   </button>
                 </TableCell>
               </TableRow>
-            );
+            )
           })
         : null}
 
       <Modal
         open={open}
         onClose={() => {
-          handleClose();
+          handleClose()
         }}
         className={classes.modal}
         closeAfterTransition
@@ -159,7 +153,7 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
         modalStyle={modalStyle}
       />
     </TableBody>
-  );
+  )
 }
 
 export default JobsTableBody
