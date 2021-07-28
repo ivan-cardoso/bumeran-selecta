@@ -7,7 +7,6 @@ export const getAllJobsByCompany = createAsyncThunk(
     try {
       if (companyId) {
         const jobs = await axios.get(`/api/companies/jobs/${companyId}`);
-
         return jobs.data;
       }
     } catch (err) {

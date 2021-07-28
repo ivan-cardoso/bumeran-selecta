@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@material-ui/core";
 import { closeJob } from "../../store/jobs/jobs";
@@ -7,9 +7,17 @@ import style from "./index.module.css";
 import SimpleRating from "../RecruiterSingleView/RatingView";
 import BTN from "../UX/Buttons/BtnGoBack";
 import { singleRecruiter } from "../../store/recruiter/actions";
+import { ImLocation } from "react-icons/im";
+import { MdTimer } from "react-icons/md";
+import { BsFillPersonLinesFill } from "react-icons/bs";
+import { GiMoneyStack } from "react-icons/gi";
+
+
 
 const JobSingleView = () => {
+
   const { singleJob } = useSelector((state) => state);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -18,6 +26,7 @@ const JobSingleView = () => {
       history.push(`/jobs`);
     });
   };
+  
   const handleViewRecruiter = (recruiter) => {
     dispatch(singleRecruiter(recruiter));
     history.push(`/recruiters/${recruiter.id}`);
@@ -25,17 +34,38 @@ const JobSingleView = () => {
 
   const { recruiter } = singleJob;
 
+  
+  /* const handleSingleCompany = (company) => {
+    history.push(`/companies/${company.id}`);
+    dispatch(singleCompany(company.id))
+  };
+
+  const { company } = singleJob
+ */
   return (
     <>
+      <div className={style.buttonBack}>
+        <Button
+          color="secondary"
+          variant="contained"
+          onClick={() => history.push("/jobs")}
+        >
+          Atrás
+        </Button>
+
+        {/* TypeError: Cannot read property 'type' of undefined */}
+      </div>
       <div className={style.jobDetailsSection}>
         <div className={style.jobDetailsContainer}>
           <div className={style.singleCompanyImg}>
             <img
+           /*    onClick={() => handleSingleCompany(company)} */
               className={style.singleImg}
               src={singleJob.company.img}
               alt=""
             />
           </div>
+
           <div className={style.singleJobDetails}>
             <div className={style.singleJobTitleContainer}>
               <h3 className={style.singleJobTitle}>{singleJob.title}</h3>
@@ -57,19 +87,31 @@ const JobSingleView = () => {
                 {singleJob.country}, {singleJob.state.name}
               </p>
             </div>
-            <h3>{singleJob.company.name}</h3>
-            <h3>{singleJob.area.name}</h3>
+            <h3 onClick={() => Redirect("http://localhost:3000/companies/2")}>
+              Empresa: {singleJob.company.name}
+            </h3>
+            <h3>Area: {singleJob.area.name}</h3>
           </div>
         </div>
 
         <div className={style.singleJobData}>
-          <h3>Publicado: {singleJob.date.slice(0, 10)}</h3>
+          <h3>Fecha de publicación: {singleJob.date.slice(0, 10)}</h3>
           <h3>
-            {singleJob.country}, {singleJob.state.name}
+            <ImLocation /> {singleJob.country}, {singleJob.state.name}
           </h3>
-          <h3>{singleJob.typeemloyed.name}</h3>
-          <h3>{singleJob.modality.name}</h3>
-          <h3>$ {singleJob.salary ? singleJob.salary : "No especificado"}</h3>
+          <h3>
+            {" "}
+            <MdTimer /> {singleJob.typeemloyed.name}
+          </h3>
+          <h3>
+            {" "}
+            <BsFillPersonLinesFill /> {singleJob.modality.name}
+          </h3>
+          <h3>
+            {" "}
+            <GiMoneyStack /> $
+            {singleJob.salary ? singleJob.salary : "No especificado"}
+          </h3>
         </div>
 
         <div className={style.singleJobDescriptionContainer}>
@@ -80,9 +122,9 @@ const JobSingleView = () => {
             </span>
           </div>
           <div className={style.singleJobCloseJob}>
-            <h3>{singleJob.title}</h3>
-            <h3>{singleJob.company.name}</h3>
-            <h3>{singleJob.country}</h3>
+            <h3> Puesto: {singleJob.title}</h3>
+            <h3> Empresa: {singleJob.company.name}</h3>
+            <h3> País:{singleJob.country}</h3>
             <h3>
               Estado:
               {singleJob.isOpen
@@ -100,25 +142,25 @@ const JobSingleView = () => {
             </Button>
           </div>
         </div>
-          <div className={style.asignRecruiter}>
-            {recruiter ? (
-              <>
-                <div className={style.infoRecruiter}>
-                  <h1>
-                    {recruiter.name} {recruiter.surname}
-                  </h1>
-                  <h1>Rating: {<SimpleRating rating={recruiter.rating} />}</h1>
-                  <BTN
-                    name="Ver Perfil"
-                    onClick={() => handleViewRecruiter(recruiter)}
-                  />
-                </div>
-                <img src={recruiter.img} alt={recruiter.name} />
-              </>
-            ) : (
-              <h1>No existe recruta asignado</h1>
-            )}
-          </div>
+        <div className={style.asignRecruiter}>
+          {recruiter ? (
+            <>
+              <div className={style.infoRecruiter}>
+                <h1>
+                  {recruiter.name} {recruiter.surname}
+                </h1>
+                <h1>Rating: {<SimpleRating rating={recruiter.rating} />}</h1>
+                <BTN
+                  name="Ver Perfil"
+                  onClick={() => handleViewRecruiter(recruiter)}
+                />
+              </div>
+              <img src={recruiter.img} alt={recruiter.name} />
+            </>
+          ) : (
+            <h1>No existe recruta asignado</h1>
+          )}
+        </div>
       </div>
     </>
   );

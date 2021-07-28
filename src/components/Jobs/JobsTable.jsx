@@ -35,14 +35,14 @@ const JobsTable = ({ jobs }) => {
             <TableRow>
               {jobsColums.map((column, index) => {
                 return (
-                  <TableCell key={index} align='right'>
+                  <TableCell key={index} align='center'>
                     {column}
                   </TableCell>
                 )
               })}
-              <TableCell align='right'>Editar</TableCell>
-              <TableCell align='right'>Ver mas</TableCell>
-              <TableCell align='right'>Asignar</TableCell>
+              <TableCell align='center'>Editar</TableCell>
+              <TableCell align='center'>Ver mas</TableCell>
+              <TableCell align='center'>Asignar</TableCell>
             </TableRow>
           </TableHead>
 

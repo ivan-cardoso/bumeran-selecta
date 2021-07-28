@@ -96,6 +96,7 @@ function CompaniesTableBody({
                   </Popconfirm>
                 </TableCell>
                 <TableCell align="right">
+                  
                   <button
                     className={styles.singleViewButton}
                     onClick={() => handleSingleView(company)}

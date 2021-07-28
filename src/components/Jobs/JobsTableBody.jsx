@@ -72,19 +72,22 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
     <TableBody>
       {jobs
         ? jobs.map((job) => {
-            return (
-              <TableRow>
-                <TableCell align="right">{job.title}</TableCell>
-                <TableCell align="right">{job.company.name}</TableCell>
-                <TableCell align="right">{job.area.name}</TableCell>
-                <TableCell align="right">{job.seniority.name}</TableCell>
-                <TableCell align="right">{job.typeemloyed.name}</TableCell>
 
-                <TableCell align="right">{job.modality.name}</TableCell>
-                <TableCell align="right">{job.country}</TableCell>
-                <TableCell align="right">{job.state.name}</TableCell>
-                <TableCell align="right">{job.salary}</TableCell>
-                <TableCell align="right">
+          
+            return (
+
+              <TableRow>
+                <TableCell align="center">{job.title}</TableCell>
+                <TableCell align="center">{job.company.name}</TableCell>
+                <TableCell align="center">{job.area.name}</TableCell>
+                <TableCell align="center">{job.seniority.name}</TableCell>
+                <TableCell align="center">{job.typeemloyed.name}</TableCell>
+
+                <TableCell align="center">{job.modality.name}</TableCell>
+                <TableCell align="center">{job.country}</TableCell>
+                <TableCell align="center">{job.state.name}</TableCell>
+                <TableCell align="center">{job.salary}</TableCell>
+                <TableCell align="center">
                   {job.isOpen
                     ? job.recruiterId
                       ? "Asignada"

@@ -9,9 +9,11 @@ import { singleJob } from "../../store/jobs/singleJob";
 import styles from "../RecruiterForm/index.module.css";
 
 function JobsActiveTableBody({ activeJobs }) {
-  const dispatch = useDispatch();
 
+
+  const dispatch = useDispatch();
   const history = useHistory();
+
   const handleSingleJob = (job) => {
     dispatch(singleJob(job));
     history.push(`/jobs/${job.id}`);

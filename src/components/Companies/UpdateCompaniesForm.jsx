@@ -152,15 +152,17 @@ export default function UpdateCompaniesForm({
               autoComplete="disabled"
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               label="Descripción"
               name="description"
               multiline
-              row={1}
+              row={4}
               value={values.description}
               autoComplete="disabled"
+              className={styles.formControlDescription}
+
             />
           </Grid>
           <input

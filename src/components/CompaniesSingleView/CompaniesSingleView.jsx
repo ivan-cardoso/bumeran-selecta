@@ -13,14 +13,13 @@ import style from "./index.module.css"
 
 
 function SingleViewCompany() {
-  const [activeJobs, setActiveJobs] = React.useState([]);
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
-    useModal();
-  const history = useHistory();
-  const { singleCompany, jobsCompany } = useSelector((state) => state);
-  const { name, email, state, img, contactName, description, area, id } =
-    singleCompany;
 
+  const [activeJobs, setActiveJobs] = React.useState([]);
+  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } = useModal();
+  const { singleCompany, jobsCompany } = useSelector((state) => state);
+  const { name, email, state, img, contactName, description, area, id } = singleCompany;
+  
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [create, setCreate] = useState(false)
@@ -33,6 +32,10 @@ function SingleViewCompany() {
       }
     });
   }, [dispatch, create]);
+  //dispatch(getSingleCompany())
+  /* dispatch(singleCompany(/* company.id)) */
+
+
 
   return (
     <div>
@@ -97,7 +100,7 @@ function SingleViewCompany() {
 
           <div className={style.singleCompanyDescription}>
             <div className={style.singleCompanyContent}>
-              <h2>Descripción de Companía</h2>
+              <h2>Descripción de Compania</h2>
               <span className={style.singleCompanyDescriptionText}>
                 {description}
               </span>
