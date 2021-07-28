@@ -26,6 +26,7 @@ const FilteredArea = ({
           value={selectedValue}
           label={title}
           onChange={(e) => handleAreaChange(e)}
+          style={{ height: '100%' }}
         >
           {values &&
             values.map((item) => {

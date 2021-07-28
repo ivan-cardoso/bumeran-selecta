@@ -247,7 +247,7 @@ const findAllBySearch = async (req, res, next) => {
           model: Areas,
           where: {
             name: {
-              [Op.iLike]: `%${req.body.area}%`,
+              [Op.iLike]: `${req.body.area}%`,
             },
           },
         },
@@ -256,7 +256,7 @@ const findAllBySearch = async (req, res, next) => {
           model: Seniority,
           where: {
             name: {
-              [Op.iLike]: `%${req.body.seniority}%`,
+              [Op.iLike]: `${req.body.seniority}%`,
             },
           },
         },

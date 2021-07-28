@@ -1,86 +1,14 @@
-// import React, { Component, useState } from 'react'
-// import firebase from '../../utils/firebase'
-
-// function ImageUpload({ setValues, values }) {
-//   const [selectedFile, setSelectedFile] = useState(null)
-//   const [isDisabled, setIsDisabled] = useState(true)
-
-//   // On file select (from the pop up)
-//   const onFileChange = (event) => {
-//     // Update the state
-//     setSelectedFile(event.target.files[0])
-//   }
-
-//   // On file upload (click the upload button)
-//   const onFileUpload = () => {
-//     // Create a storage reference from our storage service
-//     setIsDisabled(true)
-//     var storageRef = firebase.storage().ref()
-//     var mountainsRef = storageRef.child(selectedFile.name)
-
-//     mountainsRef
-//       .put(selectedFile)
-//       .then(function (snapshot) {
-//         snapshot.ref.getDownloadURL().then((downloadURL) => {
-//           setValues({
-//             ...values,
-//             img: downloadURL,
-//           })
-//         })
-//         setIsDisabled(false)
-//       })
-//       .catch((err) => console.log(err))
-//   }
-
-//   const fileData = () => {
-//     if (selectedFile) {
-//       return (
-//         <div>
-//           <h2>File Details:</h2>
-
-//           <p>File Name: {selectedFile.name}</p>
-
-//           <p>File Type: {selectedFile.type}</p>
-
-//           <p>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
-//         </div>
-//       )
-//     } else {
-//       return (
-//         <div>
-//           <br />
-//           <h4>Choose before Pressing the Upload button</h4>
-//         </div>
-//       )
-//     }
-//   }
-
-//   return (
-//     <div>
-//       <h1>GeeksforGeeks</h1>
-//       <h3>File Upload using React!</h3>
-//       <div>
-//         <input type='file' onChange={onFileChange} />
-//         <button onClick={onFileUpload}>Upload!</button>
-//       </div>
-//       {fileData()}
-//     </div>
-//   )
-// }
-
-// export default ImageUpload
-
 import React, { Component, useState } from 'react'
 import firebase from '../../utils/firebase'
 import FileUploader from 'react-firebase-file-uploader'
 
 function ImageUpload({ setValues, values }) {
   const [data, setData] = useState({
-    avatar: "",
+    avatar: '',
     isUploading: false,
     progress: 0,
-    avatarURL: values.img || ''
-  });
+    avatarURL: values.img || '',
+  })
   const handleUploadStart = () =>
     setData((current) => ({ ...current, isUploading: true, progress: 0 }))
 
