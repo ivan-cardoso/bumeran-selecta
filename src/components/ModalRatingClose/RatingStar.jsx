@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
+import s from "./index.module.css"
 
 const labels = {
   0.5: "Useless",
@@ -21,6 +22,8 @@ const useStyles = makeStyles({
     width: 200,
     display: "flex",
     alignItems: "center",
+    padding: 0,
+    marginBottom : "10px"
   },
 });
 
@@ -44,7 +47,7 @@ export default function HoverRating({ setRating }) {
         }}
       />
       {value !== null && (
-        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
+        <Box ml={2} className={s.starLabels}  >{labels[hover !== -1 ? hover : value]}</Box>
       )}
     </div>
   );

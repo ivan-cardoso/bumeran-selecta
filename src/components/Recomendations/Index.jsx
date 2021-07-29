@@ -12,6 +12,7 @@ function Index({
   ClassNamePaper,
   modalStyle,
   setOpenRecruiter,
+  setReclutadorAsignado
 }) {
   return (
     <div>
@@ -25,13 +26,14 @@ function Index({
       >
         <Fade in={open}>
           <div
-            style={{ width: '90%', height: '80%' }}
+            style={{ width: '90%', height: '87%' }}
             className={ClassNamePaper}
           >
             <h1 style={{ fontSize: 30 }}>Elige a un reclutador</h1>
             <Card
               selectedJob={selectedJob}
               setOpenRecruiter={setOpenRecruiter}
+              setReclutadorAsignado={setReclutadorAsignado}
             />
           </div>
         </Fade>

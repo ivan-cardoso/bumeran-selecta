@@ -9,13 +9,17 @@ import { SiWheniwork } from 'react-icons/si'
 import { MdPersonPin } from 'react-icons/md'
 import { BsSearch } from 'react-icons/bs'
 import { message } from 'antd'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getAllJobs } from '../../store/jobs/jobs'
+import {getSingleJob} from "../../store/jobs/getSingleJob"
 
-function Card({ selectedJob, setOpenRecruiter }) {
+function Card({ selectedJob, setOpenRecruiter , setReclutadorAsignado}) {
   const { id, area, seniority } = selectedJob
   const [recruiters, setRecruiters] = useState([])
   const [activeSelection, setActiveSelection] = useState({})
+  const [selectedRecruiter, setSelectedRecruiter] = useState({})
+
+  const { singleJob } = useSelector((state) => state);
 
   console.log(recruiters)
 
@@ -60,23 +64,34 @@ function Card({ selectedJob, setOpenRecruiter }) {
     const element = document.getElementById(`${index}`)
     element.classList.add(s.active)
     setActiveSelection({ recruiterId: recruiter.id, jobId: id })
+    setSelectedRecruiter(recruiter)
   }
 
   const handleClose = () => {
     setOpenRecruiter(false)
   }
 
-  const handleConfirm = () => {
+  const handleConfirm = (recruiter) => {
     axios.post('/api/jobs/assignrecruiter', activeSelection).then(() => {
       setOpenRecruiter(false)
       message.success('Recruta asignado correctamente')
       dispatch(getAllJobs())
+      dispatch(getSingleJob({ 
+        ...singleJob, 
+        recruiter:selectedRecruiter, 
+        recruiterId : selectedRecruiter.id,
+        isOpen : "asignada"
+      }));
+      // setReclutadorAsignado(true)
     })
   }
 
   return (
     <>
       <div className={s.divcontainer}>
+        <div  className={s.cardSection}>
+
+        
         {recruiters.map((selectedRecruiter, index) => {
           const { porcentajeMatch, totalPoints, recruiter } = selectedRecruiter
 
@@ -87,10 +102,10 @@ function Card({ selectedJob, setOpenRecruiter }) {
               key={recruiter.id}
               onClick={() => handleClick(index, recruiter)}
             >
-              <h1 className={s.maintitle}>
-                {recruiter.name} {recruiter.surname}
-              </h1>
               {/* <h1>{totalPoints}</h1> */}
+              <h3 className={s.maintitle}>
+                {recruiter.name} {recruiter.surname}
+              </h3>
               <div className={s.top}>
                 <img
                   src={recruiter.img}
@@ -98,49 +113,60 @@ function Card({ selectedJob, setOpenRecruiter }) {
                   className={s.topimage}
                 ></img>
                 <div className={s.topright}>
-                  <h1>Rating: {<SimpleRating rating={recruiter.rating} />}</h1>
-                  <h1>Match: {porcentajeMatch}%</h1>
+                  <h4>Rating: {<SimpleRating rating={recruiter.rating} />}</h4>
+                  <div className={s.matchContainer} >
+                    <h4>Match:</h4>
+                    <div className={s.porcentajeMatch}>
+                      <p>{porcentajeMatch}%</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <h1>
-                <BsSearch />
-                {'   '}
-                {!recruiter.activeSearch
-                  ? 'No tiene busq. activas...'
-                  : recruiter.activeSearch === 1
-                  ? `${recruiter.activeSearch} busqueda activa`
-                  : `${recruiter.activeSearch} busquedas activas`}
-              </h1>
-              <h1>
-                <GoLocation /> {'   '} {recruiter.country} -{' '}
-                {recruiter.state.name}
-              </h1>
-              <h1>
-                <AiOutlineMail /> {recruiter.email}
-              </h1>
-              <h1>
-                <SiWheniwork /> {'   '} {areaMatch(recruiter)}
-              </h1>
-              <h1>
-                <MdPersonPin /> {'   '}
-                {seniorityMatch(recruiter)}
-              </h1>
+
+              <div className={s.detailsContainer}>
+                <h3>
+                  <BsSearch color={"#f13d89"} className={s.iconDetails} />
+                  {'   '}
+                  {!recruiter.activeSearch
+                    ? 'No tiene busq. activas...'
+                    : recruiter.activeSearch === 1
+                    ? `${recruiter.activeSearch} busqueda activa`
+                    : `${recruiter.activeSearch} busquedas activas`}
+                </h3>
+                <h3>
+                  <GoLocation className={s.iconDetails} color={"#f13d89"}/> {'   '} {recruiter.country} - {recruiter.state.name}
+                </h3>
+                <h3>
+                  <AiOutlineMail className={s.iconDetails} color={"#f13d89"}/> {recruiter.email}
+                </h3>
+                <h3>
+                  <SiWheniwork className={s.iconDetails} color={"#f13d89"}/> {'   '} {areaMatch(recruiter)}
+                </h3>
+                <h3>
+                  <MdPersonPin className={s.iconDetails} color={"#f13d89"}/> {'   '}
+                  {seniorityMatch(recruiter)}
+                </h3>
+              </div>
             </div>
           )
         })}
       </div>
+
       <div className={s.btncontainer}>
         <BTN
-          style={{ width: '200px', height: '50px', fontSize: '20px' }}
+          // style={{ width: '200px', height: '50px', fontSize: '20px' }}
           name='Confirmar'
-          onClick={handleConfirm}
+          onClick={()=> handleConfirm()}
         ></BTN>
         <BTN
-          style={{ width: '200px', height: '50px', fontSize: '20px' }}
+          // style={{ width: '200px', height: '50px', fontSize: '20px' }}
           name='Cancelar'
           onClick={handleClose}
-        ></BTN>
+          ></BTN>
       </div>
+
+    </div>
+
     </>
   )
 }
