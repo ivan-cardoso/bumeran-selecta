@@ -71,17 +71,7 @@ const JobSingleView = () => {
   return (
 
     <>
-      <div className={style.buttonBack}>
-        <Button
-          color="secondary"
-          variant="contained"
-          onClick={() => history.push("/jobs")}
-        >
-          Atrás
-        </Button>
-
-        {/* TypeError: Cannot read property 'type' of undefined */}
-      </div>
+      
       <div className={style.jobDetailsSection}>
         <div className={style.jobDetailsContainer}>
           <div className={style.singleCompanyImg}>
@@ -169,6 +159,19 @@ const JobSingleView = () => {
             )}
           </div>
         </div>
+
+        <div className={style.buttonBack}>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => history.push("/jobs")}
+        >
+          Atrás
+        </Button>
+
+        {/* TypeError: Cannot read property 'type' of undefined */}
+      </div>
+
         <div className={style.asignRecruiter}>
           {singleJob.recruiterId ? (
             <>
@@ -194,6 +197,8 @@ const JobSingleView = () => {
             <h1>No existe recruta asignado</h1>
           )}
         </div>
+
+        
 
         <ModalRatingClose
           singleJob={singleJob}

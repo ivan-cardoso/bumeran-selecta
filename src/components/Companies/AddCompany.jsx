@@ -44,7 +44,7 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
   return (
     <Paper className={clases.pageContent}>
       <Grid item xs={6}></Grid>
-      <div style={{ marginLeft: 300 }}>
+      
         <Button
           onClick={handleOpen}
           variant="contained"
@@ -54,7 +54,7 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
         >
           Agregar Empresa
         </Button>
-      </div>
+      
       <Modal
         open={open}
         onClose={() => {

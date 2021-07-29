@@ -80,7 +80,7 @@ function SingleView() {
         history.push("/recruiters")
       )}
       <div className={styles.btn}>
-        <BtnGoBack className={styles.goBack} onClick={history.goBack} name='Go Back'></BtnGoBack>
+        <BtnGoBack className={styles.goBack} onClick={history.goBack} name='Atras'></BtnGoBack>
       </div>
     </div>
   );

@@ -62,8 +62,8 @@
 
 .singleJobDescriptionContainer{
     display: flex;
-    
 }
+
 .singleJobDescription{
     width: 66%;
     background-color: rgb(244, 250, 255);
@@ -122,11 +122,9 @@
 
 .buttonBack {
     padding-right: 80px;
-    text-align: end;
-    margin-top: 20px;
-};
-
-.buttons{
- display: flex;
- justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+    width: 62%;
+    padding-left: 150px;
 }
+

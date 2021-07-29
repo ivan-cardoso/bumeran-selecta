@@ -14,8 +14,13 @@ const BtnNewRecruiter = ({ name, onClick }) => {
   const classes = useStyles()
 
   return (
+    
     <div className={classes.root}>
-      <Button variant='contained' color='primary' onClick={onClick}>
+      <Button 
+       style={{}}
+       variant='contained'
+       color='primary'
+       onClick={onClick}>
         {name}
       </Button>
     </div>
