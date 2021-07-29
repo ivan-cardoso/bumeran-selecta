@@ -21,7 +21,19 @@ function ChartBySeniority() {
       })
   }, [])
 
-  const colors = ['#FFBB28', '#FF8042', '#0088FE', '#00C49F']
+  const colors = [
+    '#848C8E',
+    '#646E73',
+    '#435058',
+    '#90A45E',
+    'DCF763',
+    'CED78D',
+    'BFB7B6',
+    'CCC6C4',
+    'D8D5D2',
+    'F1F2EE',
+    'FFF',
+  ]
   const RADIAN = Math.PI / 180
 
   const renderCustomizedLabel = ({
@@ -33,7 +45,6 @@ function ChartBySeniority() {
     percent,
     index,
   }) => {
-    
     const radius = innerRadius + (outerRadius - innerRadius) * 0.6
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
     const y = cy + radius * Math.sin(-midAngle * RADIAN)
@@ -56,21 +67,21 @@ function ChartBySeniority() {
         <h1>Busquedas por Seniority</h1>
       </div>
       <div className={s.graficos}>
-        <PieChart width={450} height={200}>
+        <PieChart width={600} height={200}>
           <Legend
-            cy="20%"
-            layout="vertical"
-            align="left"
-            verticalAlign="middle"
+            cy='20%'
+            layout='vertical'
+            align='left'
+            verticalAlign='middle'
           />
           <Pie
             data={areas}
-            cx="55%"
+            cx='55%'
             // cy='20%'
-            dataKey="value"
+            dataKey='value'
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={80}
+            outerRadius={100}
           >
             {areas.map((areas, index) => (
               <Cell key={areas.areaId} fill={colors[index]} />
@@ -79,7 +90,7 @@ function ChartBySeniority() {
         </PieChart>
       </div>
     </div>
-  );
+  )
 }
 
 export default ChartBySeniority

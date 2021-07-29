@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper'
 import RecruiterTableBody from './RecruiterTableBody'
 import UpdateForm from './UpdateForm'
 import axios from 'axios'
+import { getAllRecruiters } from './recruiterTableData'
 import { message } from 'antd'
 
 const useStyles = makeStyles({
@@ -22,6 +23,9 @@ export default function DenseTable({
   recruiters,
   setRecruiters,
   recruitersColums,
+  setValues,
+  setSelectedArea,
+  setSelectedSeniority,
 }) {
   const classes = useStyles()
   const [showTable, setShowTable] = useState(true)
@@ -41,7 +45,7 @@ export default function DenseTable({
     seniority1: null,
     seniority2: null,
     seniority3: null,
-  };
+  }
   const [updateValues, setUpdateValues] = useState(initialFormValues)
 
   const handleSubmit = (e, updateValues) => {
@@ -54,12 +58,14 @@ export default function DenseTable({
 
         setShowTable(true)
         setUpdateValues(initialFormValues)
-        setRecruiters((oldRecruiters) =>
-          oldRecruiters.map((singleRecruiter) => {
-            if (singleRecruiter.id === data[0].id) return data[0]
-            else return singleRecruiter
-          })
-        )
+        setValues({
+          search: '',
+          area1: '',
+          seniority1: '',
+        })
+        setSelectedSeniority('')
+        setSelectedArea('')
+        getAllRecruiters().then((recruiters) => setRecruiters(recruiters))
       })
       .catch(() => message.error('error, por favor intente mas tarde'))
   }

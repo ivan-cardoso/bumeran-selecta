@@ -21,7 +21,19 @@ function ChartbyArea() {
       })
   }, [])
 
-  const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
+  const colors = [
+    '#242331',
+    '#3C312F',
+    '#533E2D',
+    '#90A45E',
+    '#A27035',
+    '#AD7E40',
+    '#B88B4A',
+    '#CBAB64',
+    '#CBAB64',
+    '#DDCA7D',
+    '#A83264',
+  ]
   const RADIAN = Math.PI / 180
 
   const renderCustomizedLabel = ({
@@ -48,28 +60,28 @@ function ChartbyArea() {
         {`${(percent * 100).toFixed(0)}%`}
       </text>
     )
-  } 
+  }
   return (
     <div className={s.contenedor}>
       <div className={s.title}>
         <h1>Busquedas por Area</h1>
       </div>
       <div className={s.graficos}>
-        <PieChart width={450} height={200}>
+        <PieChart width={600} height={200}>
           <Legend
-            cy="20%"
-            layout="vertical"
-            align="left"
-            verticalAlign="middle"
+            cy='20%'
+            layout='vertical'
+            align='left'
+            verticalAlign='middle'
           />
           <Pie
             data={areas}
-            cx="55%"
+            cx='55%'
             // cy='20%'
-            dataKey="value"
+            dataKey='value'
             labelLine={false}
             label={renderCustomizedLabel}
-            outerRadius={80}
+            outerRadius={100}
           >
             {areas.map((areas, index) => (
               <Cell key={areas.areaId} fill={colors[index]} />
@@ -78,7 +90,7 @@ function ChartbyArea() {
         </PieChart>
       </div>
     </div>
-  );
+  )
 }
 
 export default ChartbyArea

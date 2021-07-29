@@ -1,14 +1,9 @@
 .container {
-  
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 165vh;
 }
 .home {
-
   display: flex;
-  /* width: 99vw; */
   height: 100%;
-  background: aqua;
-
 }

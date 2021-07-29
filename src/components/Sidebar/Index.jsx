@@ -34,23 +34,35 @@ const Sidebar = () => {
     },
   ]
   return (
-    <div className='div-icon'>
-      <div className='sidebarContainer'>
-        {SidebarData?.map((item, index) => {
-          return (
-            <div key={index} className='sidebarDiv'>
-              <div key={index} className={item.cName}>
-                <h1 className='navbaricon'> {item.icon}</h1>
-              </div>
-              <div className='sidebarDiv'>
-                <Link to={item.path}>
-                  <h1 className='navbartext'>{item.title}</h1>
-                </Link>
-              </div>
-            </div>
-          )
-        })}
-      </div>
+    // <div className='div-icon'>
+    //   <div className='sidebarContainer'>
+    //     {SidebarData?.map((item, index) => {
+    //       return (
+    //         <div key={index} className='sidebarDiv'>
+    //           <div key={index} className={item.cName}>
+    //             <h1 className='navbaricon'> {item.icon}</h1>
+    //           </div>
+    //           <div className='sidebarDiv'>
+    //             <Link to={item.path}>
+    //               <h1 className='navbartext'>{item.title}</h1>
+    //             </Link>
+    //           </div>
+    //         </div>
+    //       )
+    //     })}
+    //   </div>
+    // </div>
+    <div className='container'>
+      {SidebarData?.map((item, index) => {
+        return (
+          <div key={index} className='diviconoytitulo'>
+            <h1> {item.icon}</h1>
+            <Link to={item.path}>
+              <h1 className='titulo'>{item.title}</h1>
+            </Link>
+          </div>
+        )
+      })}
     </div>
   )
 }

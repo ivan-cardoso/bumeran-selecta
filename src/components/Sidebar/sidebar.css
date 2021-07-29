@@ -1,9 +1,8 @@
-div {
+/* div {
   transition: width 1s;
 }
 
 .sidebarContainer {
-
   bottom: 0;
   position: absolute;
   background-color: black;
@@ -19,8 +18,6 @@ div {
   position: fixed;
   justify-content: left;
 }
-
-
 
 .sidebarContainer:hover {
   width: 230px;
@@ -44,7 +41,6 @@ div {
   font-size: 2.5vh;
   padding-right: 10px;
   height: 100px;
-
 }
 
 .iconImage {
@@ -81,11 +77,49 @@ div {
 .navbaricon {
   color: white;
   padding-right: 5px;
-  /* max-height: 5px; */
+  /* max-height: 5px;
   height: 100px;
-
-
 }
 .navbaricon:hover {
   transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+} */
+
+div {
+  transition: width 1s;
+}
+.container {
+  z-index: 100;
+  top: 0px;
+  padding-bottom: 200px;
+  padding-top: 80px;
+  margin-bottom: 300px;
+  height: 100%;
+  position: fixed;
+  width: 50px;
+  background-color: black;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.container:hover {
+  width: 370px;
+  background-color: #1890ff;
+}
+.diviconoytitulo {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  color: white;
+}
+
+.diviconoytitulo > h1 {
+  color: white;
+}
+
+.titulo {
+  vertical-align: center;
+  padding-left: 7px;
+  color: white;
 }
