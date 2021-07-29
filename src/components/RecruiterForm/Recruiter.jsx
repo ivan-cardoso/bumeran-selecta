@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom'
 import DenseTable from './RecruiterTable'
 import { getAllRecruiters, recruitersColums } from './recruiterTableData'
 import InputSearch from './InputSearch'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllAditionalData } from "../../store/aditionalData/actions"
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -18,11 +19,13 @@ const Recruiter = () => {
   const classes = useStyles()
   const [recruiters, setRecruiters] = useState([])
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
     getAllRecruiters().then((recruiters) => setRecruiters(recruiters))
+    dispatch(getAllAditionalData())
   }, [])
 
-    console.log(recruiters);
   return (
     <>
       <AddRecruiter setRecruiters={setRecruiters} />

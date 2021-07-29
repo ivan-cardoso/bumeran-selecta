@@ -1,6 +1,6 @@
-const { Recruiters } = require('../db/models')
+const { Recruiters, Areas, Seniority } = require('../db/models')
 const { findOne } = require('../db/models/recruiters')
-const { Op } = require('sequelize')
+const { Op, where } = require('sequelize')
 
 const recruitersController = {
   async findAll(req, res, next) {
@@ -147,6 +147,32 @@ const recruitersController = {
         res.status(500).send(err)
       })
   },
+
+  findAllBySearch(req, res, next){
+    Recruiters.findAll({
+      where : {
+        [Op.and]: [
+          {
+            name: {
+              [Op.iLike]: `%${req.body.search}%`,
+            },
+          },
+          {
+            favoriteArea1 : {
+              [Op.iLike] : `${req.body.area1}%`
+            }
+          },
+          {
+            seniority1 : {
+              [Op.iLike] : `${req.body.seniority1}%`
+            }
+          },
+        ],
+      },
+    })
+    .then((data)=> res.status(200).json(data))
+    .catch((err)=> next(err))
+  }
 }
 
 module.exports = recruitersController
