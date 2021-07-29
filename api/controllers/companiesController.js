@@ -102,6 +102,18 @@ const companiesController = {
       next(err)
     }
   },
+
+  async getSingleCompany(req, res, next) {
+    try {
+      const singleJob = await Companies.findOne({
+        where: { id: req.params.id },
+        include: { all: true },
+      })
+      res.status(200).json(singleJob)
+    } catch (err) {
+      next(err)
+    }
+  },
 }
 
 module.exports = companiesController

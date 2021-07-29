@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 import {
   CircularProgress,
   Grid,
@@ -11,36 +11,36 @@ import {
   Input,
   MenuItem,
   useTheme,
-} from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
-import { createJob, getAllJobs, updateJob } from "../../store/jobs/jobs";
-import { getCompanies } from "../../store/companies/companies";
-import { getAllAditionalData } from "../../store/aditionalData/actions";
-import styles from "./index.module.css";
-import useModal from "./useModal";
-import { message } from "antd";
+} from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import { createJob, getAllJobs, updateJob } from '../../store/jobs/jobs'
+import { getCompanies } from '../../store/companies/companies'
+import { getAllAditionalData } from '../../store/aditionalData/actions'
+import styles from './index.module.css'
+import useModal from './useModal'
+import { message } from 'antd'
 
 const UpdateJob = ({ job, handleClose }) => {
-  const { setOpen, setOpenUpdate } = useModal();
+  const { setOpen, setOpenUpdate } = useModal()
 
   const useStyles = makeStyles((theme) => ({
     root: {
-      "& .MuiFormControl-root": {
-        width: "80%",
+      '& .MuiFormControl-root': {
+        width: '80%',
         margin: theme.spacing(1),
       },
       input: {
-        display: "none",
+        display: 'none',
       },
-      "& > *": {
+      '& > *': {
         margin: theme.spacing(1),
       },
       button: {
         margin: theme.spacing(1),
       },
     },
-  }));
-  const classes = useStyles();
+  }))
+  const classes = useStyles()
 
   const initialValues = {
     title: job.title,
@@ -53,64 +53,43 @@ const UpdateJob = ({ job, handleClose }) => {
     modalityId: job.modalityId,
     description: job.description,
     companyId: job.companyId,
-  };
-  const [values, setValues] = useState(initialValues);
-  const dispatch = useDispatch();
+  }
+  const [values, setValues] = useState(initialValues)
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setValues({
       ...values,
       [name]: value,
-    });
-  };
+    })
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(values)
-    // if (
-    //     values.title !== null &&
-    //     values.areaId !== null &&
-    //     values.seniorityId !== null &&
-    //     values.country !== null &&
-    //     values.typeemloyedId !== null &&
-    //     values.modalityId !== null &&
-    //     values.description !== null &&
-    //     values.stateId !== null
-    //   ) {
+    e.preventDefault()
 
     dispatch(updateJob({ id: job.id, values })).then((value) => {
-      console.log(value);
+      console.log(value)
       if (value.payload) {
-        handleClose();
-        dispatch(getAllJobs());
-        message.success("Búsqueda actualizada correctamente");
-        // dispatch(getCompanies());
-        // setValues(initialFormValues);
+        handleClose()
+        dispatch(getAllJobs())
+        message.success('Búsqueda actualizada correctamente')
       }
-    });
-    //   }
-    //   else {
-    //     message.warning("Complete los campos");
-    //   }
-  };;;
+    })
+  }
 
-  const theme = useTheme();
+  const theme = useTheme()
 
-  const countryArr = ["Argentina"];
+  const countryArr = ['Argentina']
 
-  const { aditionalData } = useSelector((state) => state);
-  const { areas, modalities, seniorities, states, type } = aditionalData;
-  const { companies } = useSelector((state) => state);
+  const { aditionalData } = useSelector((state) => state)
+  const { areas, modalities, seniorities, states, type } = aditionalData
+  const { companies } = useSelector((state) => state)
 
   useEffect(() => {
-    dispatch(getAllAditionalData());
-    dispatch(getCompanies());
-  }, [dispatch]);
-
-  const getDataJob = () => {
-    console.log("JOB", job);
-  };
+    dispatch(getAllAditionalData())
+    dispatch(getCompanies())
+  }, [dispatch])
 
   return (
     <>
@@ -119,21 +98,21 @@ const UpdateJob = ({ job, handleClose }) => {
           <form onSubmit={(e) => handleSubmit(e)} className={classes.root}>
             <Grid container spacing={12}>
               <Grid item xs={4}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-outlined-label">
+                <FormControl variant='outlined' className={classes.formControl}>
+                  <InputLabel id='demo-simple-select-outlined-label'>
                     Compania
                   </InputLabel>
                   <Select
-                    name="companyId"
+                    name='companyId'
                     value={job.company.id}
                     onChange={handleChange}
                     required
-                    label="Compania"
-                    autoComplete="disabled"
+                    label='Compania'
+                    autoComplete='disabled'
                   >
                     <MenuItem
                       className={styles.menuItemSelect}
-                      value=""
+                      value=''
                       disable
                     >
                       <em>Seleccione compania</em>
@@ -141,7 +120,7 @@ const UpdateJob = ({ job, handleClose }) => {
                     {companies.map((company) => {
                       return (
                         <MenuItem value={company.id}>{company.name}</MenuItem>
-                      );
+                      )
                     })}
                   </Select>
                 </FormControl>
@@ -149,60 +128,60 @@ const UpdateJob = ({ job, handleClose }) => {
 
               <Grid item xs={4}>
                 <TextField
-                  variant="outlined"
-                  label="Título"
-                  name="title"
+                  variant='outlined'
+                  label='Título'
+                  name='title'
                   onChange={handleChange}
                   defaultValue={job.title}
                   required
-                  placeholder="Ej: Front-End Developer"
-                  autoComplete="disabled"
+                  placeholder='Ej: Front-End Developer'
+                  autoComplete='disabled'
                 />
               </Grid>
 
               <Grid item xs={4}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-outlined-label">
+                <FormControl variant='outlined' className={classes.formControl}>
+                  <InputLabel id='demo-simple-select-outlined-label'>
                     Area
                   </InputLabel>
                   <Select
-                    name="areaId"
+                    name='areaId'
                     defaultValue={job.areaId}
                     onChange={handleChange}
                     required
-                    label="Area"
-                    autoComplete="disabled"
+                    label='Area'
+                    autoComplete='disabled'
                   >
                     <MenuItem
                       className={styles.menuItemSelect}
-                      value=""
+                      value=''
                       disable
                     >
                       <em>Seleccione area</em>
                     </MenuItem>
                     {areas.map((area) => {
-                      return <MenuItem value={area.id}>{area.name}</MenuItem>;
+                      return <MenuItem value={area.id}>{area.name}</MenuItem>
                     })}
                   </Select>
                 </FormControl>
               </Grid>
 
               <Grid item xs={4}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-outlined-label">
+                <FormControl variant='outlined' className={classes.formControl}>
+                  <InputLabel id='demo-simple-select-outlined-label'>
                     Seniority
                   </InputLabel>
                   <Select
-                    name="seniorityId"
+                    name='seniorityId'
                     onChange={handleChange}
                     defaultValue={job.seniorityId}
                     required
-                    label="Seniority"
-                    autoComplete="disabled"
+                    label='Seniority'
+                    autoComplete='disabled'
                   >
                     <MenuItem
                       className={styles.menuItemSelect}
-                      value=""
+                      value=''
                       disable
                     >
                       <em>Seleccione seniority</em>
@@ -212,81 +191,81 @@ const UpdateJob = ({ job, handleClose }) => {
                         <MenuItem value={seniority.id}>
                           {seniority.name}
                         </MenuItem>
-                      );
+                      )
                     })}
                   </Select>
                 </FormControl>
               </Grid>
 
               <Grid item xs={4}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-outlined-label">
+                <FormControl variant='outlined' className={classes.formControl}>
+                  <InputLabel id='demo-simple-select-outlined-label'>
                     País
                   </InputLabel>
                   <Select
-                    name="country"
+                    name='country'
                     onChange={handleChange}
                     required
-                    defaultValue={"Argentina"}
-                    label="País"
-                    autoComplete="disabled"
+                    defaultValue={'Argentina'}
+                    label='País'
+                    autoComplete='disabled'
                   >
                     <MenuItem
                       className={styles.menuItemSelect}
-                      value=""
+                      value=''
                       disable
                     >
                       <em>Seleccione país</em>
                     </MenuItem>
                     {countryArr.map((country) => {
-                      return <MenuItem value={country}>{country}</MenuItem>;
+                      return <MenuItem value={country}>{country}</MenuItem>
                     })}
                   </Select>
                 </FormControl>
               </Grid>
 
               <Grid item xs={4}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-outlined-label">
+                <FormControl variant='outlined' className={classes.formControl}>
+                  <InputLabel id='demo-simple-select-outlined-label'>
                     Provincia
                   </InputLabel>
                   <Select
-                    name="stateId"
+                    name='stateId'
                     onChange={handleChange}
                     required
                     defaultValue={job.stateId}
-                    label="Provincia"
-                    autoComplete="disabled"
+                    label='Provincia'
+                    autoComplete='disabled'
                   >
                     <MenuItem
                       className={styles.menuItemSelect}
-                      value=""
+                      value=''
                       disable
                     >
                       <em>Seleccione provincia</em>
                     </MenuItem>
                     {states.map((state) => {
-                      return <MenuItem value={state.id}>{state.name}</MenuItem>;
+                      return <MenuItem value={state.id}>{state.name}</MenuItem>
                     })}
                   </Select>
                 </FormControl>
               </Grid>
 
               <Grid item xs={4}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-outlined-label">
+                <FormControl variant='outlined' className={classes.formControl}>
+                  <InputLabel id='demo-simple-select-outlined-label'>
                     Tipo de empleo
                   </InputLabel>
                   <Select
-                    name="typeemloyedId"
+                    name='typeemloyedId'
                     onChange={handleChange}
                     defaultValue={job.typeemloyedId}
                     required
-                    label="Tipo de empleo"
-                    autoComplete="disabled"
+                    label='Tipo de empleo'
+                    autoComplete='disabled'
                   >
                     <MenuItem
-                      value=""
+                      value=''
                       className={styles.menuItemSelect}
                       disable
                     >
@@ -297,7 +276,7 @@ const UpdateJob = ({ job, handleClose }) => {
                         <MenuItem value={typeEmployed.id}>
                           {typeEmployed.name}
                         </MenuItem>
-                      );
+                      )
                     })}
                   </Select>
                 </FormControl>
@@ -305,31 +284,31 @@ const UpdateJob = ({ job, handleClose }) => {
 
               <Grid item xs={4}>
                 <TextField
-                  variant="outlined"
-                  label="Salario"
-                  name="salary"
-                  type="number"
+                  variant='outlined'
+                  label='Salario'
+                  name='salary'
+                  type='number'
                   defaultValue={job.salary}
                   onChange={handleChange}
-                  autoComplete="disabled"
+                  autoComplete='disabled'
                 />
               </Grid>
 
               <Grid item xs={4}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="demo-simple-select-outlined-label">
+                <FormControl variant='outlined' className={classes.formControl}>
+                  <InputLabel id='demo-simple-select-outlined-label'>
                     Modalidad
                   </InputLabel>
                   <Select
-                    name="modalityId"
+                    name='modalityId'
                     onChange={handleChange}
                     defaultValue={job.modalityId}
                     required
-                    label="Modalidad"
-                    autoComplete="disabled"
+                    label='Modalidad'
+                    autoComplete='disabled'
                   >
                     <MenuItem
-                      value=""
+                      value=''
                       className={styles.menuItemSelect}
                       disable
                     >
@@ -338,7 +317,7 @@ const UpdateJob = ({ job, handleClose }) => {
                     {modalities.map((modality) => {
                       return (
                         <MenuItem value={modality.id}>{modality.name}</MenuItem>
-                      );
+                      )
                     })}
                   </Select>
                 </FormControl>
@@ -346,16 +325,16 @@ const UpdateJob = ({ job, handleClose }) => {
 
               <Grid item xs={12}>
                 <TextField
-                  label="Descripción"
+                  label='Descripción'
                   multiline
                   rows={6}
-                  name="description"
-                  variant="outlined"
+                  name='description'
+                  variant='outlined'
                   defaultValue={job.description}
                   onChange={handleChange}
                   required
                   className={styles.formControlDescription}
-                  autoComplete="disabled"
+                  autoComplete='disabled'
                 />
               </Grid>
               <Grid item xs={3}></Grid>
@@ -371,7 +350,7 @@ const UpdateJob = ({ job, handleClose }) => {
                   color="primary"
                   variant="contained"
                 >
-                  Cerrar
+                  Cancelar
                 </Button>
               </Grid>
             </Grid>
@@ -385,7 +364,7 @@ const UpdateJob = ({ job, handleClose }) => {
         </Grid>
       )}
     </>
-  );
-};
+  )
+}
 
-export default UpdateJob;
+export default UpdateJob

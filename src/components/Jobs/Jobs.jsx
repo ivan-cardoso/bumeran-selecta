@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { Paper, makeStyles } from "@material-ui/core";
-import AddJob from "./AddJob";
-import JobsTable from "./JobsTable";
-import InputSearch from "./InputSearch";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllJobs, getJobsSearch } from "../../store/jobs/jobs";
-import { singleCompany } from "../../store/companies/singleCompany";
-import { getAllAditionalData } from "../../store/aditionalData/actions"
-
+import React, { useEffect } from 'react'
+import { Paper, makeStyles } from '@material-ui/core'
+import AddJob from './AddJob'
+import JobsTable from './JobsTable'
+import InputSearch from './InputSearch'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllJobs, getJobsSearch } from '../../store/jobs/jobs'
+import { singleCompany } from '../../store/companies/singleCompany'
+import { getAllAditionalData } from '../../store/aditionalData/actions'
+import { getCompanies } from '../../store/companies/companies'
 
 const Jobs = () => {
   const useStyles = makeStyles((theme) => ({
@@ -15,10 +15,10 @@ const Jobs = () => {
       margin: theme.spacing(5),
       padding: theme.spacing(3),
     },
-  }));
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const { jobs } = useSelector((state) => state);
+  }))
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const { jobs } = useSelector((state) => state)
 
   // const handleInputChange = (e) => {
   //   const { value } = e.target;
@@ -26,18 +26,19 @@ const Jobs = () => {
   // };
 
   useEffect(() => {
-    dispatch(getAllJobs());
+    dispatch(getAllJobs())
     dispatch(getAllAditionalData())
-    dispatch(singleCompany({}));
-  }, []);
+    dispatch(getCompanies())
+    dispatch(singleCompany({}))
+  }, [])
 
   return (
     <>
       <div style={{ marginLeft: 450, marginTop: 30, paddingBottom: 23 }}>
         <AddJob />
-      </div>  
+      </div>
       {/* <InputSearch handleInputChange={handleInputChange} /> */}
-      <InputSearch/>
+      <InputSearch />
       <Paper className={classes.pageContent}>
         {jobs.length > 0 ? (
           <JobsTable jobs={jobs} />
@@ -46,7 +47,7 @@ const Jobs = () => {
         )}
       </Paper>
     </>
-  );
-};
+  )
+}
 
-export default Jobs;
+export default Jobs

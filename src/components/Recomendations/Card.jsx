@@ -17,6 +17,8 @@ function Card({ selectedJob, setOpenRecruiter }) {
   const [recruiters, setRecruiters] = useState([])
   const [activeSelection, setActiveSelection] = useState({})
 
+  console.log(recruiters)
+
   const dispatch = useDispatch()
   useEffect(() => {
     axios
@@ -110,7 +112,8 @@ function Card({ selectedJob, setOpenRecruiter }) {
                   : `${recruiter.activeSearch} busquedas activas`}
               </h1>
               <h1>
-                <GoLocation /> {'   '} {recruiter.country} - {recruiter.state}
+                <GoLocation /> {'   '} {recruiter.country} -{' '}
+                {recruiter.state.name}
               </h1>
               <h1>
                 <AiOutlineMail /> {recruiter.email}

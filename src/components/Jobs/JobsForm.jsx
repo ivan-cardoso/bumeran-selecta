@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 import {
   CircularProgress,
   Grid,
@@ -87,7 +87,7 @@ const JobsForm = ({ values, handleChange, handleSubmit, handleClose }) => {
                   />
                 ) : (
                   <FormControl
-                    variant="outlined"
+                    variant='outlined'
                     className={classes.formControl}
                   >
                     <InputLabel id="demo-simple-select-outlined-label">

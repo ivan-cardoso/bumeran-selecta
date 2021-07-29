@@ -5,16 +5,23 @@
 }
 .title {
   height: 25%;
-  margin: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.number {
-  height: 75%;
+.info {
+  /* height: 75%;
   margin: 5px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 96px;
+  align-items: center; */
+  margin-left: 15px;
+  font-size: 25px;
+}
+
+.total {
+  margin-left: 15px;
+  margin-top: 5%;
+  font-size: 28px;
+  font-weight: 700;
 }

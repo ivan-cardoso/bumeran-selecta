@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import RecruiterTableBody from "./RecruiterTableBody";
-import UpdateForm from "./UpdateForm";
-import axios from "axios";
-import { message } from "antd";
-import { getAllRecruiters } from "./recruiterTableData";
+import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import RecruiterTableBody from './RecruiterTableBody'
+import UpdateForm from './UpdateForm'
+import axios from 'axios'
+import { getAllRecruiters } from './recruiterTableData'
+import { message } from 'antd'
 
 const useStyles = makeStyles({
   table: {
@@ -23,6 +23,9 @@ export default function DenseTable({
   recruiters,
   setRecruiters,
   recruitersColums,
+  setValues,
+  setSelectedArea,
+  setSelectedSeniority,
 }) {
   const classes = useStyles();
   const [showTable, setShowTable] = useState(true);
@@ -42,8 +45,8 @@ export default function DenseTable({
     seniority1: null,
     seniority2: null,
     seniority3: null,
-  };
-  const [updateValues, setUpdateValues] = useState(initialFormValues);
+  }
+  const [updateValues, setUpdateValues] = useState(initialFormValues)
 
   const handleSubmit = (e, updateValues) => {
     e.preventDefault();
@@ -51,9 +54,16 @@ export default function DenseTable({
       .put(`/api/recruiters/${updateValues.id}`, updateValues)
       .then((res) => res.data)
       .then((data) => {
-        if (data) message.success("usuario modificado con exito");
-        setUpdateValues(initialFormValues);
-        getAllRecruiters().then((recruiters) => setRecruiters(recruiters));
+        if (data) message.success('usuario modificado con exito')
+        setUpdateValues(initialFormValues)
+        setValues({
+          search: '',
+          area1: '',
+          seniority1: '',
+        })
+        setSelectedSeniority('')
+        setSelectedArea('')
+        getAllRecruiters().then((recruiters) => setRecruiters(recruiters))
       })
       .catch(() => message.error("error, por favor intente mas tarde"));
   };

@@ -49,7 +49,7 @@ export default function InputSearch() {
               className={styles.inputSearch}
               type='text'
               name='search'
-              placeholder='Buscar por nombre...'
+              placeholder='Buscar por titulo...'
             />
           </form>
 

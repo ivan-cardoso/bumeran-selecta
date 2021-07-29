@@ -50,6 +50,7 @@ const Recruiter = ({ setRecruiters }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(values);
     dispatch(createRec(values))
       .then((recruiterCreated) => {
         if (recruiterCreated.payload.bio) {
