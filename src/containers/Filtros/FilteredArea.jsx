@@ -18,7 +18,7 @@ const FilteredArea = ({
       <FormControl
         variant='outlined'
         className='optionControl'
-        style={{ width: 150 }}
+        style={{ width: 150 , margin : "0 15px"}}
       >
         <InputLabel id='demo-simple-select-outlined-label'>{title}</InputLabel>
         <Select

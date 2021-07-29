@@ -82,7 +82,7 @@ export default function InputSearch() {
             handleAreaChange={handleInputChange}
           />
         </div>
-        <div className={styles.filterOptionContainer}>
+        <div >
           {selectedArea && (
             <p
               className={styles.filterOption}
