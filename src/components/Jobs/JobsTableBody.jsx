@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import {  useDispatch } from 'react-redux'
 import {
   TableBody,
   TableRow,
@@ -56,17 +56,17 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
     setOpen(true)
   }
   const assignRecruiter = () => {
-    setOpenRecruiter(true);
-  };
+    setOpenRecruiter(true)
+  }
 
   const handleSingleJob = (job) => {
     dispatch(getSingleJob(job));
     history.push(`/jobs/${job.id}`)
   }
 
-  React.useEffect(() => {
-    dispatch(getAllJobs());
-  }, [ openRecruiter]);
+  // React.useEffect(() => {
+  //   dispatch(getAllJobs());
+  // }, [ openRecruiter]);
 
   return (
     <TableBody>
@@ -92,18 +92,18 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                       // setShowTable(false)
                       // setUpdateInfo(job)
                       // handleUpdateJob(job)
-                      handleUpdateJob(job);
+                      handleUpdateJob(job)
                     }}
                   >
                     <EditIcon />
                   </button>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align='right'>
                   <button onClick={() => handleSingleJob(job)}>
                     <VisibilityIcon />
                   </button>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align='right'>
                   <button
                     disabled={job.recruiterId}
                     onClick={() => {
@@ -111,23 +111,23 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                         area: job.area.name,
                         seniority: job.seniority.name,
                         id: job.id,
-                      });
+                      })
 
-                      assignRecruiter();
+                      assignRecruiter()
                     }}
                   >
                     <PersonAddIcon />
                   </button>
                 </TableCell>
               </TableRow>
-            );
+            )
           })
         : null}
 
       <Modal
         open={open}
         onClose={() => {
-          handleClose();
+          handleClose()
         }}
         className={classes.modal}
         closeAfterTransition
@@ -153,7 +153,7 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
         modalStyle={modalStyle}
       />
     </TableBody>
-  );
+  )
 }
 
 export default JobsTableBody

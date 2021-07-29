@@ -33,6 +33,7 @@
     "react-scripts": "4.0.3",
     "recharts": "^2.0.10",
     "sequelize": "^6.6.5",
+    "volleyball": "^1.5.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

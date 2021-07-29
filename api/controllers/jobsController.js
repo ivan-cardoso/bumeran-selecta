@@ -211,43 +211,58 @@ const historicChart = (req, res) => {
 };
 
 const findAllBySearch = async (req, res, next) => {
+  let isOpenFiltered
+  if (!req.body.isOpen) {
+    isOpenFiltered = ['abierta', 'cerrada', 'asignada']
+  } else isOpenFiltered = [req.body.isOpen]
+
   try {
-    if (req.body.areaId) {
-      const jobs = await Jobs.findAll({
-        where: {
-          areaId: req.body.areaId,
-          [Op.or]: [
-            {
-              title: {
-                [Op.iLike]: `%${req.body.search}%`,
-              },
+    const jobs = await Jobs.findAll({
+      where: {
+        [Op.or]: [
+          {
+            title: {
+              [Op.iLike]: `%${req.body.search}%`,
             },
-          ],
-        },
-        include: { all: true },
-        returning: true,
-      });
-      res.status(200).json(jobs);
-    } else {
-      const jobs = await Jobs.findAll({
-        where: {
-          [Op.or]: [
-            {
-              title: {
-                [Op.iLike]: `%${req.body.search}%`,
-              },
+            isOpen: {
+              [Op.in]: isOpenFiltered,
             },
-          ],
+          },
+        ],
+      },
+      include: [
+        //incluir modelos
+        {
+          model: Areas,
+          where: {
+            name: {
+              [Op.iLike]: `${req.body.area}%`,
+            },
+          },
         },
-        include: { all: true },
-        returning: true,
-      });
-      res.status(200).json(jobs);
-    }
+
+        {
+          model: Seniority,
+          where: {
+            name: {
+              [Op.iLike]: `${req.body.seniority}%`,
+            },
+          },
+        },
+        {
+          all: true,
+        },
+
+        //fin incluir modelos
+      ],
+    })
+
+    res.status(200).json(jobs)
   } catch (err) {
     next(err);
   }
-};
+     
+}
 const assignRecruiter = async (req, res, next) => {
   try {
     const jobFounded = await Jobs.findByPk(req.body.jobId);
@@ -308,7 +323,6 @@ const ratingRecruiter = async (req, res, next) => {
       raw: true,
     });
 
-    // {recruiterId:1, total:2, cantidad:4}
 
     const recruiter = await Recruiters.findByPk(recruiterId);
     console.log(jobsByRecruiter);
@@ -321,20 +335,7 @@ const ratingRecruiter = async (req, res, next) => {
     next(err);
   }
 };
-// const closeJob = (req, res) => {
-//   Jobs.findByPk(req.params.id)
-//     .then((job) => {
-//       job.isOpen = "cerrada";
-//       if (job.recruiterId) {
-//         job.removeSearchFromRecruiter(job.recruiterId);
-//       }
-//       job.save();
-//       return res.status(200).send(job);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).send(err);
-//     });
+
 
 module.exports = {
   getAllJobs,
