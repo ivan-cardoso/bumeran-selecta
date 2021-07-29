@@ -1,11 +1,14 @@
-import { createReducer, createAction, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createReducer,
+  createAction,
+  createAsyncThunk,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const singleCompany = createAction("singleCompany");
 
-export const singleCompany = createAction("singleCompany")
-
-/* export const singleCompany = createAsyncThunk(
-  "SINGLE_COMPANY",
+export const getOneSingleCompany = createAsyncThunk(
+  "GET_ONE_SINGLE_COMPANY",
   async (id) => {
     try {
       const newCompany = await axios.get(`api/companies/singlecompany/${id}`);
@@ -14,12 +17,13 @@ export const singleCompany = createAction("singleCompany")
       console.log(err);
     }
   }
-); */
+);
 
 const singleCompanyReducer = createReducer(
   {},
   {
     [singleCompany]: (state, action) => action.payload,
+    [getOneSingleCompany.fulfilled]: (state, action) => action.payload,
   }
 );
 

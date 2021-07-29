@@ -98,7 +98,17 @@ const companiesController = {
     }
   },
 
-
+  async getOneSingleCompany(req, res, next) {
+    try {
+      const company = await Companies.findOne({
+        where: { id: req.params.id },
+        include: { all: true },
+      });
+      res.status(200).json(company);
+    } catch (err) {
+      next(err);
+    }
+  },
 };
 
 

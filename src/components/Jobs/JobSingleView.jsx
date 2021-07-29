@@ -11,7 +11,7 @@ import { ImLocation } from "react-icons/im";
 import { MdTimer } from "react-icons/md";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
-
+import { getOneSingleCompany } from "../../store/companies/singleCompany";
 
 
 const JobSingleView = () => {
@@ -35,14 +35,16 @@ const JobSingleView = () => {
   const { recruiter } = singleJob;
 
   
-  /* const handleSingleCompany = (company) => {
+  const handleGetOneSingleCompany = (company) => {
+    dispatch(getOneSingleCompany(company.id))
     history.push(`/companies/${company.id}`);
-    dispatch(singleCompany(company.id))
   };
 
   const { company } = singleJob
- */
+
+
   return (
+
     <>
       <div className={style.buttonBack}>
         <Button
@@ -58,8 +60,10 @@ const JobSingleView = () => {
       <div className={style.jobDetailsSection}>
         <div className={style.jobDetailsContainer}>
           <div className={style.singleCompanyImg}>
+
             <img
-           /*    onClick={() => handleSingleCompany(company)} */
+
+              onClick={() => handleGetOneSingleCompany(company)}
               className={style.singleImg}
               src={singleJob.company.img}
               alt=""
