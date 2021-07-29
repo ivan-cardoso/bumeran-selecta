@@ -5,7 +5,7 @@ import TableRow from "@material-ui/core/TableRow";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { singleJob } from "../../store/jobs/singleJob";
+import { getSingleJob } from "../../store/jobs/getSingleJob";
 import styles from "../RecruiterForm/index.module.css";
 
 function JobsActiveTableBody({ activeJobs }) {
@@ -15,14 +15,13 @@ function JobsActiveTableBody({ activeJobs }) {
   const history = useHistory();
 
   const handleSingleJob = (job) => {
-    dispatch(singleJob(job));
+    dispatch(getSingleJob(job));
     history.push(`/jobs/${job.id}`);
   };
   return (
     <TableBody>
       {activeJobs.map((job) => {
-        const { title, area, state, id, seniority, typeemloyed } = job;
-
+        const { title, area, state, id, seniority, typeemloyed, isOpen } = job;
         return (
           <TableRow key={id}>
             <TableCell align="right">{title}</TableCell>
@@ -30,6 +29,7 @@ function JobsActiveTableBody({ activeJobs }) {
             <TableCell align="right">{seniority.name}</TableCell>
             <TableCell align="right">{typeemloyed.name}</TableCell>
             <TableCell align="right">{state.name}</TableCell>
+            <TableCell align="right">{isOpen}</TableCell>
             <TableCell align="right">
               <button
                 className={styles.singleViewButton}

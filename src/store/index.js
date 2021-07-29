@@ -5,7 +5,7 @@ import jobsReducer from "./jobs/jobs"
 import aditionalDataReducer from "./aditionalData/actions"
 import companiesReducer from './companies/companies'
 import singleCompanyReducer from "./companies/singleCompany";
-import singleJobReducer from "./jobs/singleJob"
+import singleJobReducer from "./jobs/getSingleJob";
 import getAllJobsByCompanyReducer from "./companies/jobsCompany";
 
 

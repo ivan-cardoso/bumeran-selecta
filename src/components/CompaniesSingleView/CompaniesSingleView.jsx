@@ -27,7 +27,7 @@ function SingleViewCompany() {
   React.useEffect(() => {
     dispatch(getAllJobsByCompany(id)).then((value) => {
       if (value.payload) {
-        let arr = value.payload.filter((jobs) => jobs.isOpen);
+        let arr = value.payload.filter((jobs) => !(jobs.isOpen === "cerrada"));
         setActiveJobs(arr);
       }
     });
@@ -41,8 +41,6 @@ function SingleViewCompany() {
     <div>
       {singleCompany.id ? (
         <div className={style.companySingleSection}>
-          {console.log(singleCompany)}
-
           <div className={style.companySingleDetail}>
             <div className={style.singleCompanyImg}>
               <img className={style.singleImg} src={img} alt={name} />

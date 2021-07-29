@@ -3,130 +3,98 @@ import { useState } from 'react'
 import axios from 'axios'
 import { getAllRecruiters } from './recruiterTableData'
 import styles from './index.module.css'
-import FilteredArea from './FilteredAreas'
-import FilteredSeniority from './FilteredSeniority'
+import { useDispatch, useSelector } from 'react-redux'
+import {getRecruiterSearch} from "../../store/recruiter/actions"
+import FilteredArea from '../../containers/Filtros/FilteredArea'
 import { TiDelete } from 'react-icons/ti'
 
-function InputSearch({ setRecruiters, recruiters }) {
-  const [searchTerm, setSearchTerm] = useState('')
+function InputSearch({setRecruiters}) {
+
+  const dispatch = useDispatch()
+  const { areas } = useSelector((state) => state.aditionalData)
+  const { seniorities } = useSelector((state) => state.aditionalData)
+
   const [selectedArea, setSelectedArea] = useState('')
-  const [selectedSeniority, setSelectedSenoirity] = useState('')
+  const [selectedSeniority, setSelectedSeniority] = useState('')
 
+  const [values, setValues] = useState({
+    search : "",
+    area1 : "",
+    seniority1 : ""
+  })
 
-  const handleChange = (e) => {
-    const { value } = e.target
-    setSearchTerm(value)
+  const handleInputChange = async (e) => {
+    const { value, name } = e.target
+    if (name === 'area1') setSelectedArea(value)
+    if (name === 'seniority1') setSelectedSeniority(value)
+
+    await setValues({ ...values, [name]: value })
+    const inputValues = { ...values, [name]: value }
+    await dispatch(getRecruiterSearch(inputValues))
+    .then((recruiters) => setRecruiters(recruiters.payload))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    let filtered, filtered2
-
-    if (!searchTerm) {
-      getAllRecruiters().then((recruiters) => {
-        setRecruiters(recruiters)
-        setSelectedSenoirity('')
-        setSelectedArea('')
-      })
-    } else {
-      axios
-        .get(`/api/recruiters/search/${searchTerm}`)
-        .then((res) => res.data)
-        .then((recruiters) => {
-          if (!recruiters.length) return setRecruiters([])
-          if (selectedSeniority) {
-            filtered = recruiters.filter(
-              (recruits) => recruits.seniority1 === selectedSeniority
-            )
-            setRecruiters(filtered)
-          }
-          if (selectedArea) {
-            filtered2 = filtered.filter(
-              (recruits) => recruits.favoriteArea1 === selectedArea
-            )
-            setRecruiters(filtered2)
-          } else setRecruiters([...recruiters])
-        })
-        .catch((err) => console.log(err))
-    }
-  }
-
-  const removeFilter = () => {
-    setSelectedArea('')
-    getAllRecruiters().then((data) => {
-      if (selectedSeniority) {
-        const filtered = data.filter(
-          (recruiters) => recruiters.seniority1 === selectedSeniority
-        )
-        setRecruiters(filtered)
-      } else {
-        setRecruiters(data)
-      }
-    })
-  }
-  const removeSeniority = () => {
-    setSelectedSenoirity('')
-    getAllRecruiters().then((data) => {
-      if (selectedArea) {
-        const filtered = data.filter(
-          (recruiters) => recruiters.favoriteArea1 === selectedArea
-        )
-        setRecruiters(filtered)
-      } else {
-        setRecruiters(data)
-      }
-    })
+  const clearFilter = (stateChanged, name) => {
+    stateChanged('')
+    setValues({ ...values, [name]: '' })
+    const inputValues = { ...values, [name]: '' }
+    dispatch(getRecruiterSearch(inputValues))
+    .then((recruiters) => setRecruiters(recruiters.payload))
   }
 
   return (
-
-    
     <>
-      <div className={styles.inputSearchContainer}>
-        <div >
-        <div >
-        <form onChange={handleChange} onSubmit={handleSubmit}>
-          <input
-            style={{ height: 55, border: '1px solid grey' }}
-            className={styles.inputSearch}
-            type='text'
-            placeholder='Buscar por nombre...'
-          />
-        </form>
+      <div >
+        <div className={styles.inputSearchContainer}>
+          <form onSubmit={(e) => e.preventDefault()} style={{marginRight : "15px"}}>
+            <input
+                onChange={(e) => handleInputChange(e)}
+                className={styles.inputSearch}
+                type='text'
+                name='search'
+                placeholder='Buscar por nombre...'
+                
+              />
+          </form>
 
-        <div >
-        <FilteredArea
-          setSelectedArea={setSelectedArea}
-          selectedSeniority={selectedSeniority}
-          setRecruiters={setRecruiters}
-          recruiters={recruiters}
-          selectedArea={selectedArea}
-        />
-        <FilteredSeniority
-          selectedArea={selectedArea}
-          setSelectedSenoirity={setSelectedSenoirity}
-          setRecruiters={setRecruiters}
-          recruiters={recruiters}
-          selectedSeniority={selectedSeniority}
-        />
-        </div>
-          </div>
-        </div>
+          <FilteredArea
+            selectedValue={selectedArea}
+            name='area1'
+            title='Area Favorita'
+            values={areas}
+            setValues={setValues}
+            handleAreaChange={handleInputChange}
+
+          />
+
+          <FilteredArea
+            selectedValue={selectedSeniority}
+            name='seniority1'
+            title='Seniority'
+            values={seniorities}
+            setValues={setValues}
+            handleAreaChange={handleInputChange}
+          />
       </div>
-      <div className={styles.filterContainer}>
-        <p onClick={() => removeFilter()} className={styles.selectedFilter}>
-          {selectedArea}
-        </p>
-        {selectedArea && (
-          <TiDelete className={styles.removeBtn}>remover filtro</TiDelete>
-        )}
-        <p className={styles.selectedFilter} onClick={() => removeSeniority()}>
-          {selectedSeniority}
-        </p>
-        {selectedSeniority && (
-          <TiDelete className={styles.removeBtn}></TiDelete>
-        )}
-        </div>
+        <div className={styles.filterOptionContainer}>
+            {selectedArea && (
+              <p
+                className={styles.filterOption}
+                onClick={() => clearFilter(setSelectedArea, 'area1')}
+              >
+                {selectedArea} <TiDelete className={styles.deleteicon} />
+              </p>
+            )}
+            {selectedSeniority && (
+              <p
+                className={styles.filterOption}
+                onClick={() => clearFilter(setSelectedSeniority, 'seniority1')}
+              >
+                {selectedSeniority} <TiDelete className={styles.deleteicon} />
+              </p>
+              )}
+          </div>
+      </div>
     </>
   )
 }

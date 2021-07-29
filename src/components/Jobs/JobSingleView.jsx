@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { Redirect, useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Button } from "@material-ui/core";
+import { Button, Backdrop } from "@material-ui/core";
 import { closeJob } from "../../store/jobs/jobs";
 import style from "./index.module.css";
 import SimpleRating from "../RecruiterSingleView/RatingView";
@@ -12,7 +13,10 @@ import { MdTimer } from "react-icons/md";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
 import { getOneSingleCompany } from "../../store/companies/singleCompany";
-
+import { getSingleJob } from "../../store/jobs/getSingleJob";
+import { message } from "antd";
+import ModalRatingClose from "../ModalRatingClose/Index";
+import useModal from "./useModal";
 
 const JobSingleView = () => {
 
@@ -20,17 +24,38 @@ const JobSingleView = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const {
+    open,
+    setOpen,
+    handleOpen,
+    handleClose,
+    classes,
+    modalStyle,
+    openUpdate,
+    setOpenUpdate,
+  } = useModal();
 
-  const handleSetClose = (id) => {
-    dispatch(closeJob(id)).then(() => {
-      history.push(`/jobs`);
-    });
+  const handleSetClose = (job) => {
+    setOpen(true);
   };
   
+
   const handleViewRecruiter = (recruiter) => {
     dispatch(singleRecruiter(recruiter));
     history.push(`/recruiters/${recruiter.id}`);
   };
+
+  const handleDeleteAssing = (Job) => {
+    axios
+      .put("/api/jobs/deleteassignrecruiter", { jobId: Job.id })
+      .then((res) => res.data)
+      .then((jobModificated) => {
+        message.success("Recluta eliminado correctamente");
+        dispatch(getSingleJob({ ...singleJob, ...jobModificated }));
+      });
+  };
+
+  React.useEffect(() => {}, [singleJob]);
 
   const { recruiter } = singleJob;
 
@@ -131,23 +156,21 @@ const JobSingleView = () => {
             <h3> País:{singleJob.country}</h3>
             <h3>
               Estado:
-              {singleJob.isOpen
-                ? singleJob.recruiterId
-                  ? "Asignada"
-                  : "Abierta"
-                : "Cerrada"}
+              {singleJob.isOpen}
             </h3>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => handleSetClose(singleJob.id)}
-            >
-              Cerrar búsqueda
-            </Button>
+            {singleJob.isOpen !== "cerrada" && (
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={() => handleSetClose(singleJob)}
+              >
+                Cerrar búsqueda
+              </Button>
+            )}
           </div>
         </div>
         <div className={style.asignRecruiter}>
-          {recruiter ? (
+          {singleJob.recruiterId ? (
             <>
               <div className={style.infoRecruiter}>
                 <h1>
@@ -158,6 +181,12 @@ const JobSingleView = () => {
                   name="Ver Perfil"
                   onClick={() => handleViewRecruiter(recruiter)}
                 />
+                {singleJob.isOpen !== "cerrada" && (
+                  <BTN
+                    name="Eliminar"
+                    onClick={() => handleDeleteAssing(singleJob)}
+                  />
+                )}
               </div>
               <img src={recruiter.img} alt={recruiter.name} />
             </>
@@ -165,6 +194,18 @@ const JobSingleView = () => {
             <h1>No existe recruta asignado</h1>
           )}
         </div>
+
+        <ModalRatingClose
+          singleJob={singleJob}
+          open={open}
+          setOpen={setOpen}
+          className={classes.modal}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{ timeout: 500 }}
+          ClassNamePaper={classes.paper}
+          modalStyle={modalStyle}
+        />
       </div>
     </>
   );

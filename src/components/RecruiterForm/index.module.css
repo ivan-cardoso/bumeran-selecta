@@ -9,14 +9,19 @@
   background-color: blue;
 }
 
+.all {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .inputSearchContainer {
   display: flex;
   justify-content: center;
   width: 100vw;
-
 }
 
 .inputSearch {
+  height: 55px;
   padding: 6px;
   border-radius: 5px;
   border: 2px solid black;
@@ -69,7 +74,6 @@
   background-color: white;
   border-radius: 5px;
   transition: ease-in 0.3s;
-  
 }
 .singleViewButton:hover {
   background-color: black;
@@ -106,4 +110,24 @@
   justify-content: center;
   align-items: center;
   height: 100px;
+}
+
+.filterOptionContainer {
+  display: flex;
+  margin: 0 auto;
+  width: 500px;
+  justify-content: space-around;
+}
+
+.filterOption {
+  font-size: 1.5vh;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.deleteicon {
+  font-size: 22px;
+  vertical-align: middle;
+  text-decoration: underline;
 }
