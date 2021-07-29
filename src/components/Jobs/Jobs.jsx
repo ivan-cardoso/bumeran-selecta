@@ -33,7 +33,7 @@ const Jobs = () => {
 
   return (
     <>
-      <div style={{ marginLeft: 100, marginTop: 30 }}>
+      <div style={{ marginLeft: 450, marginTop: 30, paddingBottom: 23 }}>
         <AddJob />
       </div>  
       {/* <InputSearch handleInputChange={handleInputChange} /> */}

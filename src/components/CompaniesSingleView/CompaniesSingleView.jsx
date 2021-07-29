@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "../RecruiterSingleView/index.module.css";
@@ -9,20 +9,26 @@ import { getAllJobsByCompany } from "../../store/companies/jobsCompany";
 import JobsActiveTable from "./JobsActiveTable";
 import useModal from "../Jobs/useModal";
 import { Modal, Fade, Backdrop } from "@material-ui/core";
-import style from "./index.module.css"
+import style from "./index.module.css";
+
+
+
+/* style={{marginLeft: -270}} */
+
 
 
 function SingleViewCompany() {
-
   const [activeJobs, setActiveJobs] = React.useState([]);
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } = useModal();
+  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
+    useModal();
   const { singleCompany, jobsCompany } = useSelector((state) => state);
-  const { name, email, state, img, contactName, description, area, id } = singleCompany;
-  
+  const { name, email, state, img, contactName, description, area, id } =
+    singleCompany;
+
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [create, setCreate] = useState(false)
+  const [create, setCreate] = useState(false);
 
   React.useEffect(() => {
     dispatch(getAllJobsByCompany(id)).then((value) => {
@@ -34,8 +40,6 @@ function SingleViewCompany() {
   }, [dispatch, create]);
   //dispatch(getSingleCompany())
   /* dispatch(singleCompany(/* company.id)) */
-
-
 
   return (
     <div>
@@ -71,7 +75,10 @@ function SingleViewCompany() {
             </div>
 
             <div className={style.singleCompanyActions}>
-              <AddJob setCreate={setCreate}></AddJob>
+              <AddJob
+                
+                setCreate={setCreate}
+              ></AddJob>
               <BtnHistoryJobs
                 onClick={() => setOpen(true)}
                 name="Historial de busquedas"
@@ -118,7 +125,7 @@ function SingleViewCompany() {
       <BtnGoBack
         style={{ marginLeft: "40%" }}
         onClick={history.goBack}
-        name="Go Back"
+        name="Atras"
       ></BtnGoBack>
     </div>
   );

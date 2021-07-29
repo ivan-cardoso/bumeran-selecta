@@ -28,7 +28,9 @@ const Recruiter = () => {
 
   return (
     <>
-      <AddRecruiter setRecruiters={setRecruiters} />
+    
+      <AddRecruiter 
+      setRecruiters={setRecruiters} />
       <InputSearch setRecruiters={setRecruiters} recruiters={recruiters} />
       <Paper className={classes.pageContent}>
         {recruiters.length ? (

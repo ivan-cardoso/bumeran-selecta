@@ -5,6 +5,7 @@ import styles from './index.module.css'
 import BtnGoBack from '../UX/Buttons/BtnGoBack'
 import SimpleRating from './RatingView';
 
+
 function SingleView() {
   const history = useHistory()
   const { recruiter } = useSelector((state) => state)
@@ -27,7 +28,12 @@ function SingleView() {
 
   return (
     <div>
+
+
+      
+      <div className={styles.allTheBox}>
       {recruiter.id ? (
+        <div className={styles.hugeContainer}>
         <div className={styles.container}>
           <div className={styles.picture}>
             <h2>
@@ -40,7 +46,11 @@ function SingleView() {
               </h2>
             </div>
           </div>
+          </div>
+
+
           <div className={styles.info}>
+            <div className={styles.orderedList}>
             <p>
               Nombre: <span>{name}</span>
             </p>
@@ -74,13 +84,18 @@ function SingleView() {
             <p>
               Seniority 3: <span>{seniority3}</span>
             </p>
+            </div>
           </div>
+          
         </div>
+        
       ) : (
         history.push("/recruiters")
       )}
       <div className={styles.btn}>
-        <BtnGoBack className={styles.goBack} onClick={history.goBack} name='Go Back'></BtnGoBack>
+        <BtnGoBack className={styles.goBack} onClick={history.goBack} name='atras'></BtnGoBack>
+      </div>
+     
       </div>
     </div>
   );

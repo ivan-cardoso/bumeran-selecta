@@ -3,7 +3,11 @@
   justify-content: flex-start;
   align-items: center;
   margin-left: 100px;
-  height: 68vh;
+  margin-top: 25px;
+  height: 59vh;
+  outline: 8px solid #3f51b5;
+  width: 323px;
+  padding-left: 10px;
 }
 .picture {
   margin-top: 20px;
@@ -21,19 +25,27 @@
   border-radius: 30%;
   margin: 10px 0px;
 }
+
 .info {
-  border: #3f51b5 1px solid;
+  border: #3f51b5 10px solid;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 60px;
   padding: 10px;
   border-radius: 5px;
   width: 50%;
-  background-color: #3f51b5;
-  color: white;
+  background-color: #d3d3d352;
+  color: black;
+  box-shadow: rgb(163 159 155) 6px 4px 6px 4px;
+
 }
+
+.orderedList{
+  text-align: center;
+}
+
 .info p {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 400;
   margin: 5px;
 }
 .btnInfopersonal {
@@ -53,4 +65,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 25px
+}
+
+.hugeContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
 }

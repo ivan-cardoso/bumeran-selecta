@@ -42,7 +42,7 @@ export default function Companies() {
 
   return (
     <>
-      <div>
+      <div style={{ display:"flex", justifyContent:"center", alignItems:"center", marginLeft: 150 }}>
         <AddCompany
           values={values}
           setValues={setValues}

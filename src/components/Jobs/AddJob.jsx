@@ -123,7 +123,7 @@ const AddJob = ({ setCreate }) => {
 
   return (
     <>
-      <div style={{ marginLeft: 300, marginTop: 20 }}>
+      <div style={{ marginLeft: 30, marginTop: 20 }}>
         {/* <div> */}
         <BtnCreateNewJobs
           onClick={handleOpen}

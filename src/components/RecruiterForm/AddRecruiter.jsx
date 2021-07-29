@@ -76,17 +76,18 @@ const Recruiter = ({ setRecruiters }) => {
       })
   }
 
-
-
   return (
     <>
+
       <Paper className={clases.pageContent}>
         <Grid item xs={6}></Grid>
+        
         <div className={s.divAddBtn}>
           <BtnNewRecuiter
             onClick={() => handleOpen()}
             label="Add"
             name="Agregar Nuevo Reclutador"
+
           ></BtnNewRecuiter>
         </div>
         <Modal
