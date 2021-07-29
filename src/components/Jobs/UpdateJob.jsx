@@ -358,17 +358,17 @@ const UpdateJob = ({ job, handleClose }) => {
                   autoComplete="disabled"
                 />
               </Grid>
-
-              <Grid item xs={3}>
+              <Grid item xs={3}></Grid>
+              <Grid item xs={4}>
                 <Button type="submit" color="primary" variant="contained">
                   Confirmar
                 </Button>
               </Grid>
 
-              <Grid item xs={3}>
+              <Grid item xs={4}>
                 <Button
                   onClick={() => handleClose()}
-                  color="secondary"
+                  color="primary"
                   variant="contained"
                 >
                   Cerrar

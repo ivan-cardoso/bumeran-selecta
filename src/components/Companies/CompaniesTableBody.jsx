@@ -63,19 +63,18 @@ function CompaniesTableBody({
             const { name, state, email, area, id } = company;
 
             return (
-
-
-              <TableRow  key={id}>
+              <TableRow key={id}>
                 <TableCell align="center">{name}</TableCell>
                 <TableCell align="center">{email}</TableCell>
-                <TableCell align="center">{state ? state.name : null}</TableCell>
+                <TableCell align="center">
+                  {state ? state.name : null}
+                </TableCell>
                 <TableCell align="center">{area ? area.name : null}</TableCell>
                 <TableCell align="left">
                   {
                     <button
                       className={styles.editButton}
                       onClick={() => {
-                        //setShowTable(false);
                         handleUpdateCompany(company);
                       }}
                     >
@@ -96,11 +95,9 @@ function CompaniesTableBody({
                   </Popconfirm>
                 </TableCell>
                 <TableCell align="right">
-                  
                   <button
                     className={styles.singleViewButton}
                     onClick={() => handleSingleView(company)}
-                    
                   >
                     {<VisibilityIcon />}
                   </button>

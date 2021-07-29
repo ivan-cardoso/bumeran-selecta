@@ -130,7 +130,7 @@ const AddJob = ({ setCreate }) => {
           name="Crear búsqueda"
         ></BtnCreateNewJobs>
       </div>
-      
+
       {/* <div style={{ display: "none" }} id="createJobForm">
                 <JobsForm/>
             </div> */}
@@ -151,6 +151,7 @@ const AddJob = ({ setCreate }) => {
               values={values}
               handleChange={handleChange}
               handleSubmit={handleSubmit}
+              handleClose={handleClose}
             />
           </div>
         </Fade>
@@ -160,3 +161,4 @@ const AddJob = ({ setCreate }) => {
 };
 
 export default AddJob;
+;

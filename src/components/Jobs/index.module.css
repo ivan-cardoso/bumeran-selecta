@@ -124,4 +124,9 @@
     padding-right: 80px;
     text-align: end;
     margin-top: 20px;
+};
+
+.buttons{
+ display: flex;
+ justify-content: center;
 }

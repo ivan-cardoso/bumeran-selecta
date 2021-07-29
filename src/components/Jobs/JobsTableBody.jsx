@@ -17,6 +17,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd'
 import { getAllJobs, deleteJob } from '../../store/jobs/jobs'
 import { getSingleJob } from "../../store/jobs/getSingleJob";
 import ModalRecomendation from '../Recomendations/Index'
+import styles from "../RecruiterForm/index.module.css";
 
 import useModal from './useModal'
 import JobsForm from './JobsForm'
@@ -75,7 +76,6 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
 
           
             return (
-
               <TableRow>
                 <TableCell align="center">{job.title}</TableCell>
                 <TableCell align="center">{job.company.name}</TableCell>
@@ -91,39 +91,44 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
 
                 <TableCell align="center">
                   <button
+                    className={styles.editButton}
                     onClick={() => {
                       // setShowTable(false)
                       // setUpdateInfo(job)
                       // handleUpdateJob(job)
-                      handleUpdateJob(job)
+                      handleUpdateJob(job);
                     }}
                   >
                     <EditIcon />
                   </button>
                 </TableCell>
-                <TableCell align='right'>
-                  <button onClick={() => handleSingleJob(job)}>
+                <TableCell align="right">
+                  <button
+                    className={styles.singleViewButton}
+                    onClick={() => handleSingleJob(job)}
+                  >
                     <VisibilityIcon />
                   </button>
                 </TableCell>
-                <TableCell align='right'>
+                <TableCell align="right">
                   <button
+                    className={!job.recruiterId && styles.assignRecruiterButton}
                     disabled={job.recruiterId}
                     onClick={() => {
                       setSelectedJob({
                         area: job.area.name,
                         seniority: job.seniority.name,
                         id: job.id,
-                      })
+                      });
 
-                      assignRecruiter()
+                      assignRecruiter();
                     }}
                   >
                     <PersonAddIcon />
                   </button>
                 </TableCell>
               </TableRow>
-            )
+            );
           })
         : null}
 

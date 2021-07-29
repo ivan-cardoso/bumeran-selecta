@@ -31,6 +31,7 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
         if (value.payload) {
           message.success('Company added')
           dispatch(getCompanies());
+          handleClose();
         } else {
           message.warning('Email ya existente')
         }
@@ -71,6 +72,7 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
               values={values}
               handleInputChange={handleInputChange}
               setValues={setValues}
+              handleClose={handleClose}
             />
           </div>
         </Fade>

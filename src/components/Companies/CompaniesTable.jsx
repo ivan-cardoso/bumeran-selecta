@@ -23,40 +23,32 @@ export default function CompaniesTable({ companies }) {
 
   return (
     <>
-      {
-        showTable ? (
-          <TableContainer component={Paper}>
-            <Table
-              className={classes.table}
-              size="small"
-              aria-label="a dense table"
-            >
-              <TableHead>
-                <TableRow>
-                  {companiesColums.map((column, index) => {
-                    return (
-                      <TableCell key={index} align="center">
-                        {column}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              </TableHead>
+      {showTable ? (
+        <TableContainer component={Paper}>
+          <Table
+            className={classes.table}
+            size="small"
+            aria-label="a dense table"
+          >
+            <TableHead>
+              <TableRow>
+                {companiesColums.map((column, index) => {
+                  return (
+                    <TableCell key={index} align="center">
+                      {column}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            </TableHead>
 
-              <CompaniesTableBody
-                companies={companies}
-                setShowTable={setShowTable}
-              />
-            </Table>
-          </TableContainer>
-        ) : null
-        // <UpdateCompaniesForm
-        //   values={updateInfo}
-        //   setValues={setUpdateInfo}
-        //   handleInputChange={handleInputChangeUpdate}
-        //   setShowTable={setShowTable}
-        // />
-      }
+            <CompaniesTableBody
+              companies={companies}
+              setShowTable={setShowTable}
+            />
+          </Table>
+        </TableContainer>
+      ) : null}
     </>
   );
 }

@@ -4,9 +4,10 @@ import {
   makeStyles,
   FormControl,
   InputLabel,
+  Button,
   Select,
   MenuItem,
-} from '@material-ui/core'
+} from "@material-ui/core";
 import React, { useEffect } from 'react'
 import s from './index.module.css'
 import ImageUpload from './ImageUpload'
@@ -33,27 +34,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const RecruiterForm = ({ handleSubmit, values, setValues }) => {
-  const classes = useStyles()
+const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
+  const classes = useStyles();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllAditionalData())
-  }, [dispatch])
+    dispatch(getAllAditionalData());
+  }, [dispatch]);
 
-  const { aditionalData } = useSelector((state) => state)
-  const { areas, modalities, seniorities, states, type } = aditionalData
-  const countryArr = ['Argentina']
+  const { aditionalData } = useSelector((state) => state);
+  const { areas, modalities, seniorities, states, type } = aditionalData;
+  const countryArr = ["Argentina"];
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
     setValues({
       ...values,
       [name]: value,
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -61,240 +62,238 @@ const RecruiterForm = ({ handleSubmit, values, setValues }) => {
         onChange={(e) => handleInputChange(e)}
         className={classes.root}
         onSubmit={(e) => {
-          e.preventDefault()
-          handleSubmit(e)
+          e.preventDefault();
+          handleSubmit(e);
         }}
       >
+        <div>
+          <ImageUpload setValues={setValues} values={values} />
+        </div>
         <Grid container spacing={12}>
           <Grid item xs={6}>
             <TextField
-              variant='outlined'
-              label='Name'
+              variant="outlined"
+              label="Name"
               required
-              name='name'
+              name="name"
               value={values.name}
-              autoComplete='disabled'
+              autoComplete="disabled"
             />
           </Grid>
           <Grid item xs={6}>
             <TextField
-              variant='outlined'
-              label='Surname'
+              variant="outlined"
+              label="Surname"
               required
-              name='surname'
+              name="surname"
               value={values.surname}
-              autoComplete='disabled'
+              autoComplete="disabled"
             />
           </Grid>
           <Grid item xs={4}>
             <TextField
-              variant='outlined'
-              label='Email'
-              type='email'
+              variant="outlined"
+              label="Email"
+              type="email"
               required
-              name='email'
+              name="email"
               value={values.email}
-              autoComplete='disabled'
+              autoComplete="disabled"
             />
           </Grid>
           <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
                 País
               </InputLabel>
               <Select
-                name='country'
+                name="country"
                 required
-                label='País'
+                label="País"
                 onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
+                autoComplete="disabled"
               >
-                <MenuItem value='' disable>
+                <MenuItem value="" disable>
                   <em>Seleccione país</em>
                 </MenuItem>
                 {countryArr.length &&
                   countryArr.map((country) => {
-                    return <MenuItem value={country}>{country}</MenuItem>
+                    return <MenuItem value={country}>{country}</MenuItem>;
                   })}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
                 Provincia
               </InputLabel>
               <Select
-                name='stateId'
+                name="stateId"
                 onChange={(e) => handleInputChange(e)}
                 required
-                label='Provincia'
-                autoComplete='disabled'
+                label="Provincia"
+                autoComplete="disabled"
               >
-                <MenuItem value='' disable>
+                <MenuItem value="" disable>
                   <em>Seleccione provincia</em>
                 </MenuItem>
                 {states &&
                   states.map((state) => {
-                    return <MenuItem value={state.id}>{state.name}</MenuItem>
+                    return <MenuItem value={state.id}>{state.name}</MenuItem>;
                   })}
               </Select>
             </FormControl>
           </Grid>
 
           <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
                 Favourite Area 1
               </InputLabel>
               <Select
-                name='favoriteArea1'
+                name="favoriteArea1"
                 required
-                label='Favourite Area'
+                label="Favourite Area"
                 onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
+                autoComplete="disabled"
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area
-                    return <MenuItem value={name}>{name}</MenuItem>
+                    const { name, id } = area;
+                    return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
                 Favourite Area 2
               </InputLabel>
               <Select
-                name='favoriteArea2'
-                label='Favourite Area'
+                name="favoriteArea2"
+                label="Favourite Area"
                 onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
+                autoComplete="disabled"
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area
-                    return <MenuItem value={name}>{name}</MenuItem>
+                    const { name, id } = area;
+                    return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
                 Favourite Area 3
               </InputLabel>
               <Select
-                name='favoriteArea3'
-                label='Favourite Area'
+                name="favoriteArea3"
+                label="Favourite Area"
                 onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
+                autoComplete="disabled"
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area
-                    return <MenuItem value={name}>{name}</MenuItem>
+                    const { name, id } = area;
+                    return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
                 Seniority 1
               </InputLabel>
               <Select
-                name='seniority1'
+                name="seniority1"
                 required
-                label='Seniority'
+                label="Seniority"
                 onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
+                autoComplete="disabled"
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority
-                    return <MenuItem value={name}>{name}</MenuItem>
+                    const { name, id } = seniority;
+                    return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
                 Seniority 2
               </InputLabel>
               <Select
-                name='seniority2'
-                label='Seniority'
+                name="seniority2"
+                label="Seniority"
                 onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
+                autoComplete="disabled"
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority
+                    const { name, id } = seniority;
 
-                    return <MenuItem value={name}>{name}</MenuItem>
+                    return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel id="demo-simple-select-outlined-label">
                 Seniority 3
               </InputLabel>
               <Select
-                name='seniority3'
-                label='Seniority'
+                name="seniority3"
+                label="Seniority"
                 onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
+                autoComplete="disabled"
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority
-                    return <MenuItem value={name}>{name}</MenuItem>
+                    const { name, id } = seniority;
+                    return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <TextField
-              variant='outlined'
-              label='Bio'
-              name='bio'
+              variant="outlined"
+              label="Bio"
+              name="bio"
               required
               value={values.bio}
-              autoComplete='disabled'
-            />{' '}
+              autoComplete="disabled"
+            />{" "}
           </Grid>
 
-          <Grid item xs={5}></Grid>
-          <Grid item xs={5}>
-            <BtnConfirmRecruiter
-              type='submit'
-              variant='contained'
-              color='primary'
-              name='confirmar'
-              label='Add'
-              style={{
-                border: '1px solid white',
-                borderRadius: '10px',
-                width: '10%',
-                margin: '10px auto',
-              }}
+          <Grid item xs={3}></Grid>
+          <Grid item xs={4}>
+            <Button type="submit" color="primary" variant="contained">
+              Confirmar
+            </Button>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Button
+              onClick={() => handleClose()}
+              color="primary"
+              variant="contained"
             >
-              Confirm
-            </BtnConfirmRecruiter>
+              Cerrar
+            </Button>
           </Grid>
         </Grid>
       </form>
-      <div>
-        <ImageUpload setValues={setValues} values={values} />
-      </div>
     </>
-  )
-}
+  );
+};
 
 export default RecruiterForm

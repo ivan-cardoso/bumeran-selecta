@@ -162,7 +162,6 @@ export default function UpdateCompaniesForm({
               value={values.description}
               autoComplete="disabled"
               className={styles.formControlDescription}
-
             />
           </Grid>
           <input
@@ -170,12 +169,27 @@ export default function UpdateCompaniesForm({
             id="contained-button-file"
             type="file"
           />
-          <Grid item xs={4}></Grid>
-          <BtnConfirmRecruiter
-            onClick={(e) => handleSubmitUpdate(e)}
-            name="Confirm"
-          ></BtnConfirmRecruiter>
-          <BtnCancelEdit onClick={handleClose} name="Cancel"></BtnCancelEdit>
+          <Grid item xs={3}></Grid>
+          <Grid item xs={4}>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              onClick={(e) => handleSubmitUpdate(e)}
+            >
+              Confirmar
+            </Button>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Button
+              onClick={() => handleClose()}
+              color="primary"
+              variant="contained"
+            >
+              Cerrar
+            </Button>
+          </Grid>
         </Grid>
       </form>
     </>

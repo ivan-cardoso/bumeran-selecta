@@ -54,6 +54,7 @@ const Recruiter = ({ setRecruiters }) => {
       .then((recruiterCreated) => {
         if (recruiterCreated.payload.bio) {
           message.success('usuario agregado con exito')
+          handleClose();
         } else {
           message.error('el usuario ya existe')
         }
@@ -105,6 +106,7 @@ const Recruiter = ({ setRecruiters }) => {
                 handleSubmit={handleSubmit}
                 values={values}
                 setValues={setValues}
+                handleClose={handleClose}
               />
             </div>
           </Fade>

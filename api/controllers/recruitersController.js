@@ -150,7 +150,7 @@ const recruitersController = {
 
   findAllBySearch(req, res, next){
     Recruiters.findAll({
-      where : {
+      where: {
         [Op.and]: [
           {
             name: {
@@ -158,20 +158,21 @@ const recruitersController = {
             },
           },
           {
-            favoriteArea1 : {
-              [Op.iLike] : `${req.body.area1}%`
-            }
+            favoriteArea1: {
+              [Op.iLike]: `${req.body.area1}%`,
+            },
           },
           {
-            seniority1 : {
-              [Op.iLike] : `${req.body.seniority1}%`
-            }
+            seniority1: {
+              [Op.iLike]: `${req.body.seniority1}%`,
+            },
           },
         ],
       },
+      include: { all: true },
     })
-    .then((data)=> res.status(200).json(data))
-    .catch((err)=> next(err))
+      .then((data) => res.status(200).json(data))
+      .catch((err) => next(err));
   }
 }
 
