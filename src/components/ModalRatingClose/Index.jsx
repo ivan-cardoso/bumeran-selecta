@@ -26,7 +26,7 @@ function Index({
       >
         <Fade in={open}>
           <div
-            style={{ width: "50%", height: "50%" }}
+            style={{ width: "50%", height: "60%" }}
             className={ClassNamePaper}
           >
             <h1 style={{ fontSize: 30 }}>Da tu puntaje al reclutador</h1>

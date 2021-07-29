@@ -17,6 +17,7 @@ import { getSingleJob } from "../../store/jobs/getSingleJob";
 import { message } from "antd";
 import ModalRatingClose from "../ModalRatingClose/Index";
 import useModal from "./useModal";
+import ModalRecomendation from '../Recomendations/Index'
 
 const JobSingleView = () => {
 
@@ -55,7 +56,7 @@ const JobSingleView = () => {
       });
   };
 
-  React.useEffect(() => {}, [singleJob]);
+  
 
   const { recruiter } = singleJob;
 
@@ -65,8 +66,20 @@ const JobSingleView = () => {
     history.push(`/companies/${company.id}`);
   };
 
+
+  const [selectedJob, setSelectedJob] = useState({
+    area: '',
+    seniority: '',
+    id: '',
+  })
+  const [openRecruiter, setOpenRecruiter] = useState(false)
+  const assignRecruiter = () => {
+    setOpenRecruiter(true)
+  }
+  const [reclutadorAsignado, setReclutadorAsignado] = useState(false)
   const { company } = singleJob
 
+  React.useEffect(() => {}, [singleJob, reclutadorAsignado]);
 
   return (
 
@@ -153,42 +166,71 @@ const JobSingleView = () => {
           <div className={style.singleJobCloseJob}>
             <h3> Puesto: {singleJob.title}</h3>
             <h3> Empresa: {singleJob.company.name}</h3>
-            <h3> País:{singleJob.country}</h3>
-            <h3>
-              Estado:
-              {singleJob.isOpen}
-            </h3>
+            <h3> País: {singleJob.country}</h3>
+            <h3> Estado: {singleJob.isOpen}</h3>
+            
+            <div className={style.btnSingleJobContainer} >
             {singleJob.isOpen !== "cerrada" && (
               <Button
                 color="primary"
                 variant="contained"
-                onClick={() => handleSetClose(singleJob)}
+                onClick={() => handleSetClose(singleJob) }
               >
                 Cerrar búsqueda
               </Button>
             )}
+
+              {singleJob.isOpen === "abierta" && (
+                <Button
+                color="primary"
+                variant="contained"
+                onClick={() => {setSelectedJob({
+                  area: singleJob.area.name,
+                  seniority: singleJob.seniority.name,
+                  id: singleJob.id,
+                }) 
+                assignRecruiter()
+                }}
+                >
+                  Asignar reclutador
+                </Button>
+              )} 
+            </div>
+
           </div>
         </div>
         <div className={style.asignRecruiter}>
           {singleJob.recruiterId ? (
             <>
               <div className={style.infoRecruiter}>
-                <h1>
+                <h2>Reclutador/a  asignado</h2>
+                <h3>
                   {recruiter.name} {recruiter.surname}
-                </h1>
-                <h1>Rating: {<SimpleRating rating={recruiter.rating} />}</h1>
-                <BTN
-                  name="Ver Perfil"
-                  onClick={() => handleViewRecruiter(recruiter)}
-                />
-                {singleJob.isOpen !== "cerrada" && (
-                  <BTN
-                    name="Eliminar"
-                    onClick={() => handleDeleteAssing(singleJob)}
-                  />
-                )}
+                </h3>
+
+                <div className={style.detailsRecruiterContainer} >
+                  <img className={style.detailsRecruiterImg} src={recruiter.img} alt={recruiter.name} />
+                  <h4>Rating {<SimpleRating rating={recruiter.rating} />}</h4>
+                </div>
+
+                <div className={style.btnRecruiterContainer} >
+                  <div className={style.singleBtnRecruiter}>
+                    <BTN
+                      name="Ver Perfil"
+                      onClick={() => handleViewRecruiter(recruiter)}
+                      />
+                  </div>
+                  {singleJob.isOpen !== "cerrada" && (
+                    <div className={style.singleBtnRecruiter} >
+                    <BTN
+                      name="Eliminar"
+                      onClick={() => handleDeleteAssing(singleJob)}
+                      />
+                    </div>
+                  )}
+                </div>
+
               </div>
-              <img src={recruiter.img} alt={recruiter.name} />
             </>
           ) : (
             <h1>No existe recruta asignado</h1>
@@ -206,6 +248,20 @@ const JobSingleView = () => {
           ClassNamePaper={classes.paper}
           modalStyle={modalStyle}
         />
+
+        <ModalRecomendation
+          selectedJob={selectedJob}
+          open={openRecruiter}
+          setOpenRecruiter={setOpenRecruiter}
+          className={classes.modal}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{ timeout: 500 }}
+          ClassNamePaper={classes.paper}
+          modalStyle={modalStyle}
+          setReclutadorAsignado={setReclutadorAsignado}
+        />
+
       </div>
     </>
   );
