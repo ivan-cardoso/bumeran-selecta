@@ -3,14 +3,14 @@ import axios from 'axios'
 import s from './index.module.css'
 
 function PromedioBusquedasporRecruiters() {
-  const [jobs, setJobs] = useState({})
+  const [jobs, setJobs] = useState({});
 
   useEffect(() => {
     axios
-      .get('/api/jobs/opened')
+      .get("/api/jobs/opened")
       .then((res) => res.data)
-      .then((jobs) => setJobs(jobs))
-  }, [])
+      .then((jobs) => setJobs(jobs));
+  }, []);
 
   return (
     <>
@@ -19,11 +19,13 @@ function PromedioBusquedasporRecruiters() {
           <h1 className={s.title}>Promedio busquedas por reclutador</h1>
           <h2>Total Busquedas Asignadas: {jobs.totalBusquedasAsignadas}</h2>
           <h2>Total Reclutadores Unicos: {jobs.totalRecruitersUnicos}</h2>
-          <h1 className={s.promedio}>Promedio: {jobs.promedio}</h1>
+          <h1 className={s.promedio}>
+            Promedio:{" "}
+            {jobs.promedio && !isNaN(jobs.promedio) ? jobs.promedio : 0}
+          </h1>
         </div>
       )}
     </>
-  )
+  );
 }
-
 export default PromedioBusquedasporRecruiters

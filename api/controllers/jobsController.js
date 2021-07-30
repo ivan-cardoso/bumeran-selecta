@@ -346,13 +346,11 @@ const ratingRecruiter = async (req, res, next) => {
       raw: true,
     })
 
-    const recruiter = await Recruiters.findByPk(recruiterId)
-    console.log(jobsByRecruiter)
+    const recruiter = await Recruiters.findByPk(recruiterId);
     recruiter.rating =
-      jobsByRecruiter[0].total / parseInt(jobsByRecruiter[0].cantidad)
-    console.log(recruiter.rating)
+      jobsByRecruiter[0].total / parseInt(jobsByRecruiter[0].cantidad);
     await recruiter.save()
-    res.status(200).json(job)
+    res.status(200).json({ job, recruiter });
   } catch (err) {
     next(err)
   }

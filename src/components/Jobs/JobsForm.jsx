@@ -87,7 +87,7 @@ const JobsForm = ({ values, handleChange, handleSubmit, handleClose }) => {
                   />
                 ) : (
                   <FormControl
-                    variant='outlined'
+                    variant="outlined"
                     className={classes.formControl}
                   >
                     <InputLabel id="demo-simple-select-outlined-label">
@@ -272,6 +272,7 @@ const JobsForm = ({ values, handleChange, handleSubmit, handleClose }) => {
                   label="Salario"
                   name="salary"
                   type="number"
+                  InputProps={{ inputProps: { min: 0 } }}
                   onChange={handleChange}
                   autoComplete="disabled"
                 />

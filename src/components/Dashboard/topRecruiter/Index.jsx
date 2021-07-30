@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { AiFillTrophy } from 'react-icons/ai'
 import s from './index.module.css'
+import RatingView from "../../RecruiterSingleView/RatingView";
+
 
 function TopRecruiter() {
   const [top3, setTop3] = useState([])
@@ -18,15 +20,17 @@ function TopRecruiter() {
         <div className={s.content} key={recruiter.id}>
           <div className={s.bestRecruiter}>
             <p>Nombre: {recruiter.name}</p>
-            <p>Rating: {recruiter.rating}</p>
+            {<RatingView rating={recruiter.rating} />}
           </div>
           <div className={s.trofeo}>
-            <span>{index + 1} <AiFillTrophy /></span>
+            <span>
+              {index + 1} <AiFillTrophy />
+            </span>
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export default TopRecruiter

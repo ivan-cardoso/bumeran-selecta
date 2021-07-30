@@ -72,7 +72,10 @@ function SingleViewCompany() {
               </div>
 
               <div className={style.singleCompanyActions}>
+                <div style={{marginLeft:'-300px'}}>
+
                 <AddJob setCreate={setCreate}></AddJob>
+                </div>
                 <BtnHistoryJobs
                   onClick={() => setOpen(true)}
                   name='Historial de busquedas'
