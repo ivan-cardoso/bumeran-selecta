@@ -47,7 +47,7 @@ const Card = ({ setOpen, singleJob }) => {
               <RatingStar setRating={setRating} />
               <div className={s.candidatesContainer}>
                 <h3>Ingrese cuantos candidatos brindó el reclutador</h3>
-                <input className={s.candidatesInput} type="number" onChange={onChangeInput} defaultValue={0} />
+                <input min="0"  pattern="^[0+]" required className={s.candidatesInput} type="number" onChange={onChangeInput} defaultValue={0} />
               </div>
             </div>
           </div>
