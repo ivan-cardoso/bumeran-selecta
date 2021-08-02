@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import FilteredArea from '../../containers/Filtros/FilteredArea'
-import { getAllJobs, getJobsSearch } from '../../store/jobs/jobs'
+import { getJobsSearch } from '../../store/jobs/jobs'
 import styles from '../RecruiterForm/index.module.css'
 import { TiDelete } from 'react-icons/ti'
 

@@ -4,7 +4,7 @@ import AddJob from './AddJob'
 import JobsTable from './JobsTable'
 import InputSearch from './InputSearch'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllJobs, getJobsSearch } from '../../store/jobs/jobs'
+import { getAllJobs } from '../../store/jobs/jobs'
 import { singleCompany } from '../../store/companies/singleCompany'
 import { getAllAditionalData } from '../../store/aditionalData/actions'
 import { getCompanies } from '../../store/companies/companies'
@@ -30,7 +30,7 @@ const Jobs = () => {
     dispatch(getAllAditionalData())
     dispatch(getCompanies())
     dispatch(singleCompany({}))
-  }, [])
+  }, [dispatch])
 
   return (
     <>

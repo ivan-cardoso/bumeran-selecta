@@ -1,28 +1,27 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import BtnGoBack from "../UX/Buttons/BtnGoBack";
-import BtnHistoryJobs from "../UX/Buttons/BtnHistoryJobs";
-import AddJob from "../Jobs/AddJob";
-import { getAllJobsByCompany } from "../../store/companies/jobsCompany";
-import JobsActiveTable from "./JobsActiveTable";
-import useModal from "../Jobs/useModal";
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useParams } from 'react-router-dom'
+//import styles from '../RecruiterSingleView/index.module.css'
+import BtnGoBack from '../UX/Buttons/BtnGoBack'
+import BtnHistoryJobs from '../UX/Buttons/BtnHistoryJobs'
+import AddJob from '../Jobs/AddJob'
+import { getAllJobsByCompany } from '../../store/companies/jobsCompany'
+import JobsActiveTable from './JobsActiveTable'
+import useModal from '../Jobs/useModal'
 import { Modal, Fade, Backdrop, CircularProgress } from "@material-ui/core";
 import { getOneSingleCompany } from "../../store/companies/singleCompany";
-
 import style from "./index.module.css";
 
 function SingleViewCompany() {
-  const [activeJobs, setActiveJobs] = React.useState([]);
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
-    useModal();
-  const { singleCompany, jobsCompany } = useSelector((state) => state);
+  const [activeJobs, setActiveJobs] = React.useState([])
+  const { open, setOpen, handleClose, classes, modalStyle } = useModal()
+  const { singleCompany, jobsCompany } = useSelector((state) => state)
   const { name, email, state, img, contactName, description, area, id } =
     singleCompany;
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const params = useParams();;
+  const params = useParams()
   const [create, setCreate] = useState(false);
 
   React.useEffect(() => {

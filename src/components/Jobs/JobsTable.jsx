@@ -10,7 +10,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import jobsColums from './JobsData'
 import JobsTableBody from './JobsTableBody'
-import { useSelector } from 'react-redux'
+
 
 const JobsTable = ({ jobs }) => {
   const useStyles = makeStyles({

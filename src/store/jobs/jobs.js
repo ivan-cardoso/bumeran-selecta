@@ -1,4 +1,4 @@
-import { createReducer, createAsyncThunk, createAction } from '@reduxjs/toolkit'
+import { createReducer, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const createJob = createAsyncThunk("CREATE_JOB", (jobDetails) => {
@@ -70,13 +70,9 @@ export const closeJob = createAsyncThunk("SET_CLOSE_JOB", (id)=>{
   .catch((err)=> console.log(err))
 })
 
-const createJobReducer = createReducer({},{
+/* const createJobReducer = createReducer({},{
     [createJob.fulfilled] : (state, action) => action.payload,
 })
-const jobsReducer = createReducer([], {
-  [getAllJobs.fulfilled]: (state, action) => action.payload,
-  [getJobsSearch.fulfilled]: (state, action) => action.payload,
-});
 const deleteJobReducer = createReducer({}, {
     [deleteJob.fulfilled] : (state, action)=> action.payload
 })  
@@ -85,7 +81,12 @@ const updateJobReducer = createReducer({}, {
 })
 const closeJobReducer = createReducer({}, {
   [closeJob.fulfilled] : (state, action) => action.payload
-})
+}) */
+
+const jobsReducer = createReducer([], {
+  [getAllJobs.fulfilled]: (state, action) => action.payload,
+  [getJobsSearch.fulfilled]: (state, action) => action.payload,
+});
 
 
 

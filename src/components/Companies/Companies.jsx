@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getCompanies,
-  getCompaniesSearch,
 } from '../../store/companies/companies'
 import useStyles from './style'
 import { Paper } from '@material-ui/core'
@@ -49,7 +48,6 @@ export default function Companies() {
           handleInputChange={handleInputChange}
         />
       </div>
-
       <InputSearch />
 
       <Paper className={classes.pageContent}>

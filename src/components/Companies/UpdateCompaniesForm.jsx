@@ -13,8 +13,6 @@ import { getAllAditionalData } from "../../store/aditionalData/actions";
 import styles from "../Jobs/index.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import ImageUpload from "../RecruiterForm/ImageUpload";
-import BtnConfirmRecruiter from "../UX/Buttons/BtnConfirmRecruiter";
-import BtnCancelEdit from "../UX/Buttons/BtnCancelEdit";
 import { message } from "antd";
 import { getCompanies, updateCompany } from "../../store/companies/companies";
 
@@ -23,7 +21,6 @@ export default function UpdateCompaniesForm({
   setValues,
   handleInputChange,
   handleSubmit,
-  setShowTable,
   handleClose,
 }) {
   const dispatch = useDispatch();
