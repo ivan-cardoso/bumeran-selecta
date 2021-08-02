@@ -1,13 +1,13 @@
-import {configureStore} from "@reduxjs/toolkit"
+import { configureStore } from '@reduxjs/toolkit'
 import { userReducer } from './user/user'
 import recruiterReducer from './recruiter/actions'
-import jobsReducer from "./jobs/jobs"
-import aditionalDataReducer from "./aditionalData/actions"
+import jobsReducer from './jobs/jobs'
+import aditionalDataReducer from './aditionalData/actions'
 import companiesReducer from './companies/companies'
-import singleCompanyReducer from "./companies/singleCompany";
-import singleJobReducer from "./jobs/getSingleJob";
-import getAllJobsByCompanyReducer from "./companies/jobsCompany";
-
+import singleCompanyReducer from './companies/singleCompany'
+import singleJobReducer from './jobs/getSingleJob'
+import getAllJobsByCompanyReducer from './companies/jobsCompany'
+import { allUserReducer } from './allUsers/allusers'
 
 const store = configureStore({
   reducer: {
@@ -17,9 +17,10 @@ const store = configureStore({
     aditionalData: aditionalDataReducer,
     companies: companiesReducer,
     singleCompany: singleCompanyReducer,
-    singleJob : singleJobReducer,
+    singleJob: singleJobReducer,
     jobsCompany: getAllJobsByCompanyReducer,
+    allUsers: allUserReducer,
   },
-});
+})
 
 export default store

@@ -1,4 +1,4 @@
-var firebase = require('firebase/app')
+var firebase = require('firebase')
 require('firebase/storage')
 
 const firebaseConfig = {
