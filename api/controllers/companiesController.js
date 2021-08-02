@@ -105,11 +105,11 @@ const companiesController = {
 
   async getSingleCompany(req, res, next) {
     try {
-      const singleJob = await Companies.findOne({
+      const singleCompany = await Companies.findOne({
         where: { id: req.params.id },
         include: { all: true },
-      })
-      res.status(200).json(singleJob)
+      });
+      res.status(200).json(singleCompany);
     } catch (err) {
       next(err)
     }

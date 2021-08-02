@@ -12,7 +12,6 @@ import { ImLocation } from "react-icons/im";
 import { MdTimer } from "react-icons/md";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
-import { getOneSingleCompany } from "../../store/companies/singleCompany";
 import { getSingleJob } from "../../store/jobs/getSingleJob";
 import { message } from "antd";
 import ModalRatingClose from "../ModalRatingClose/Index";
@@ -38,6 +37,10 @@ const JobSingleView = () => {
   const handleSetClose = (job) => {
     setOpen(true)
   }
+
+  const handleViewCompany = (company) => {
+    history.push(`/companies/${company.id}`);
+  };
 
   const handleViewRecruiter = (recruiter) => {
     dispatch(singleRecruiter(recruiter))
@@ -80,13 +83,12 @@ const JobSingleView = () => {
       <div className={style.jobDetailsSection}>
         <div className={style.jobDetailsContainer}>
           <div className={style.singleCompanyImg}>
-            <Link to={`/companies/${company.id}`}>
-              <img
-                className={style.singleImg}
-                src={singleJob.company.img}
-                alt=""
-              />
-            </Link>
+            <img
+              onClick={() => handleViewCompany(company)}
+              className={style.singleImg}
+              src={singleJob.company.img}
+              alt=""
+            />
           </div>
 
           <div className={style.singleJobDetails}>
@@ -197,7 +199,9 @@ const JobSingleView = () => {
                     alt={recruiter.name}
                   />
                   <h4>Rating {<SimpleRating rating={recruiter.rating} />}</h4>
-                  {singleJob.candidates !== null && <h4>Candidatos presentados: {singleJob.candidates}</h4>}
+                  {singleJob.candidates !== null && (
+                    <h4>Candidatos presentados: {singleJob.candidates}</h4>
+                  )}
                 </div>
 
                 <div className={style.btnRecruiterContainer}>
@@ -216,23 +220,23 @@ const JobSingleView = () => {
                     </div>
                   )}
                 </div>
-                  </div>
+              </div>
             </>
           ) : (
             <h1>No existe recruta asignado</h1>
-            )}
-            </div>
-                <div className={style.buttonBack}>
-                  <Button
-                    color="primary"
-                    variant="contained"
-                    onClick={() => history.goBack()}
-                  >
-                    Atrás
-                  </Button>
+          )}
+        </div>
+        <div className={style.buttonBack}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => history.goBack()}
+          >
+            Atrás
+          </Button>
 
-                  {/* TypeError: Cannot read property 'type' of undefined */}
-                </div>
+          {/* TypeError: Cannot read property 'type' of undefined */}
+        </div>
 
         <ModalRatingClose
           singleJob={singleJob}

@@ -29,6 +29,7 @@
 .singleImg {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 .singleJobDetails {
   background-color: rgb(253, 248, 255);
