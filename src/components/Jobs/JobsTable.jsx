@@ -40,9 +40,10 @@ const JobsTable = ({ jobs }) => {
                   </TableCell>
                 )
               })}
-              <TableCell align='center'>Editar</TableCell>
+
+              {/* <TableCell align='center'>Editar</TableCell>
               <TableCell align='center'>Ver mas</TableCell>
-              <TableCell align='center'>Asignar</TableCell>
+              <TableCell align='center'>Asignar</TableCell> */}
             </TableRow>
           </TableHead>
 

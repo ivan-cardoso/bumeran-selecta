@@ -145,3 +145,52 @@
   vertical-align: middle;
   text-decoration: underline;
 }
+
+.generalBtn{
+  padding: 0;
+}
+.recruiterImgContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.recruiterImg{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid #8a61bf;
+  transition: all .5s ease;
+}
+.recruiterImg:hover{
+  border: 3px solid #3e474e80;
+  transition: all .5s ease;
+}
+
+.companyImg{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid #3e474e80;
+  transition: all .5s ease;
+}
+.companyImg:hover{
+  border: 3px solid #8a61bf;
+  transition: all .5s ease;
+}
+
+.noRecruiterIcon{
+  font-size: 45px;
+  margin: 0;
+  padding: 0;
+  color: #74204e;
+}
+
+.imgNotFound{
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
+  color: #8a61bf;
+}

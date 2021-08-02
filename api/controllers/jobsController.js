@@ -239,7 +239,7 @@ const findAllBySearch = async (req, res, next) => {
   if (!req.body.isOpen) {
     isOpenFiltered = ['abierta', 'cerrada', 'asignada']
   } else isOpenFiltered = [req.body.isOpen]
-
+  
   try {
     const jobs = await Jobs.findAll({
       where: {
@@ -253,6 +253,9 @@ const findAllBySearch = async (req, res, next) => {
             },
           },
         ],
+        // country: {
+        //   [Op.iLike]: `${req.body.country}%`,
+        // },
       },
       include: [
         //incluir modelos
