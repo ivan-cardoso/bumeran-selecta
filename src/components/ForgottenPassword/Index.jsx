@@ -8,8 +8,10 @@ import firebase from '../../utils/firebase'
 import { useHistory } from 'react-router-dom'
 
 const ForgotPass = () => {
+  
   const history = useHistory()
   //  const dispatch = useDispatch()
+
   const [isLoading, setIsLoading] = useState(false)
   const [user, setUser] = useState('')
   const [errorMessage, setErrorMessage] = useState({

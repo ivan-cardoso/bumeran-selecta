@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllJobs, getJobsSearch } from '../../store/jobs/jobs'
+import React from 'react'
+//import { getAllJobs, getJobsSearch } from '../../store/jobs/jobs'
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 
 const FilteredArea = ({
@@ -11,8 +10,8 @@ const FilteredArea = ({
   name,
   handleAreaChange,
 }) => {
-  const dispatch = useDispatch()
-
+  
+ 
   return (
     <>
       <FormControl
@@ -30,7 +29,7 @@ const FilteredArea = ({
         >
           {values &&
             values.map((item) => {
-              const { name, id } = item
+              const { name } = item
               return (
                 <MenuItem key={name} value={name}>
                   {name}

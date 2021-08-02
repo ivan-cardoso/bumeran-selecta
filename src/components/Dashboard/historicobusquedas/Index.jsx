@@ -8,13 +8,14 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
 } from 'recharts'
 let dayDict = {}
 
 export default function ChartHistoric() {
+
   const [historicData, setHistoricData] = useState([])
-  const [values, setValues] = useState([])
+
+  //const [values, setValues] = useState([]) este estado no se está utilizando
 
   useEffect(() => {
     const arrayOfDates = []
@@ -33,8 +34,8 @@ export default function ChartHistoric() {
       .then((res) => res.data)
       .then((historicByDate) => {
         historicByDate.map((record) => {
-          const [year, month, other] = record.date.split('-')
-          const [day, rest] = other.split('T')
+          const [/* year */, month, other] = record.date.split('-')
+          const [day, /* rest */] = other.split('T')
           const returnValue = `${day}/${month}`
           dayDict[returnValue] = parseInt(record.total)
         })

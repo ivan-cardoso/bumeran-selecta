@@ -1,9 +1,7 @@
 import {
   createReducer,
-  createAsyncThunk,
   createAction,
 } from "@reduxjs/toolkit";
-import axios from "axios";
 
 export const getSingleJob = createAction("SINGLE_JOB");
 

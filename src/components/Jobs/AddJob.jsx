@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createJob, getAllJobs } from '../../store/jobs/jobs'
-import { getAllJobsByCompany } from '../../store/companies/jobsCompany'
 import {
-  Grid,
-  Paper,
-  Button,
   Modal,
   Fade,
-  makeStyles,
   Backdrop,
 } from '@material-ui/core'
 import JobsForm from './JobsForm'
 import { message } from 'antd'
-import styles from './index.module.css'
 import useModal from './useModal'
 import BtnCreateNewJobs from '../UX/Buttons/BtnCreateNewJobs'
 import { singleCompany } from '../../store/companies/singleCompany'

@@ -9,12 +9,10 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import React, { useEffect } from 'react'
-import s from './index.module.css'
+//import s from './index.module.css'
 import ImageUpload from './ImageUpload'
-import BtnConfirmRecruiter from '../UX/Buttons/BtnConfirmRecruiter'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllAditionalData } from '../../store/aditionalData/actions'
-import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +42,7 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
   }, [dispatch]);
 
   const { aditionalData } = useSelector((state) => state);
-  const { areas, modalities, seniorities, states, type } = aditionalData;
+  const { areas,  seniorities, states } = aditionalData;
   const countryArr = ["Argentina"];
 
   const handleInputChange = (e) => {
@@ -160,7 +158,7 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area;
+                    const { name } = area;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -179,7 +177,7 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area;
+                    const { name } = area;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -198,7 +196,7 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area;
+                    const { name } = area;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -218,7 +216,7 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority;
+                    const { name } = seniority;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -237,7 +235,7 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority;
+                    const { name } = seniority;
 
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
@@ -257,7 +255,7 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority;
+                    const { name } = seniority;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>

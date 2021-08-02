@@ -1,4 +1,4 @@
-import { createReducer, createAsyncThunk, createAction } from '@reduxjs/toolkit'
+import { createReducer, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const createJob = createAsyncThunk("CREATE_JOB", (jobDetails) => {
