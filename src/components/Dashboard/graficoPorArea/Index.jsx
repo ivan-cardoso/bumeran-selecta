@@ -22,18 +22,21 @@ function ChartbyArea() {
   }, [])
 
   const colors = [
-    '#242331',
-    '#3C312F',
-    '#533E2D',
-    '#90A45E',
-    '#A27035',
-    '#AD7E40',
-    '#B88B4A',
-    '#CBAB64',
-    '#CBAB64',
-    '#DDCA7D',
-    '#A83264',
-  ]
+    "#242331",
+    "#3C312F",
+    "#533E2D",
+    "#90A45E",
+    "#A27035",
+    "#AD7E40",
+    "#B88B4A",
+    "#CBAB64",
+    "#CBAB64",
+    "#DDCA7D",
+    "#A83264",
+    "#A88159",
+    "#a5cfb0",
+    "#6364d6",
+  ];
   const RADIAN = Math.PI / 180
 
   const renderCustomizedLabel = ({

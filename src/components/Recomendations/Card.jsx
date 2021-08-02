@@ -21,7 +21,6 @@ function Card({ selectedJob, setOpenRecruiter , setReclutadorAsignado}) {
 
   const { singleJob } = useSelector((state) => state);
 
-  console.log(recruiters)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -73,15 +72,17 @@ function Card({ selectedJob, setOpenRecruiter , setReclutadorAsignado}) {
 
   const handleConfirm = (recruiter) => {
     axios.post('/api/jobs/assignrecruiter', activeSelection).then(() => {
-      setOpenRecruiter(false)
-      message.success('Recruta asignado correctamente')
-      dispatch(getAllJobs())
-      dispatch(getSingleJob({ 
-        ...singleJob, 
-        recruiter:selectedRecruiter, 
-        recruiterId : selectedRecruiter.id,
-        isOpen : "asignada"
-      }));
+      setOpenRecruiter(false);
+      message.success("Recruta asignado correctamente");
+      dispatch(getAllJobs());
+      dispatch(
+        getSingleJob({
+          ...singleJob,
+          recruiter: selectedRecruiter,
+          recruiterId: selectedRecruiter.id,
+          isOpen: "asignada",
+        })
+      );
       // setReclutadorAsignado(true)
     })
   }

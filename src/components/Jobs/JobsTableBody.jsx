@@ -91,11 +91,9 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
 
                 <TableCell align="center">
                   <button
-                    className={styles.editButton}
+                    className={job.isOpen !== "cerrada" && styles.editButton}
+                    disabled={job.isOpen === "cerrada"}
                     onClick={() => {
-                      // setShowTable(false)
-                      // setUpdateInfo(job)
-                      // handleUpdateJob(job)
                       handleUpdateJob(job);
                     }}
                   >

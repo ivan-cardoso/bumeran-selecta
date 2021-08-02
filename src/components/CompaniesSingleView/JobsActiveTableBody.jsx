@@ -23,10 +23,10 @@ function JobsActiveTableBody({ activeJobs }) {
         return (
           <TableRow key={id}>
             <TableCell align='right'>{title}</TableCell>
-            {/* <TableCell align="right">{area.name}</TableCell>
+            <TableCell align="right">{area.name}</TableCell>
             <TableCell align="right">{seniority.name}</TableCell>
-            <TableCell align="right">{typeemloyed.name}</TableCell> */}
-            {/* <TableCell align='right'>{state.name}</TableCell> */}
+            <TableCell align="right">{typeemloyed.name}</TableCell>
+            <TableCell align='right'>{state.name}</TableCell>
             <TableCell align='right'>{isOpen}</TableCell>
             <TableCell align='right'>
               <button

@@ -14,6 +14,7 @@ import { Popconfirm, message } from 'antd'
 import styles from './index.module.css'
 import useModal from "../Jobs/useModal";
 import UpdateForm from "./UpdateForm";
+import RatingView from "../RecruiterSingleView/RatingView";
 
 
 function RecruiterTableBody({
@@ -83,7 +84,9 @@ function RecruiterTableBody({
                 <TableCell align="center">
                   {state ? state.name : null}
                 </TableCell>
-                <TableCell align="center">{rating}</TableCell>
+                <TableCell align="center">
+                  {<RatingView rating={rating} />}
+                </TableCell>
                 <TableCell align="center">{favoriteArea1}</TableCell>
                 <TableCell align="center">{seniority1}</TableCell>
                 <TableCell align="right">
