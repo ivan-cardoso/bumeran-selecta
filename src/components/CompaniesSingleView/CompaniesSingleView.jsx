@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import styles from '../RecruiterSingleView/index.module.css'
+//import styles from '../RecruiterSingleView/index.module.css'
 import BtnGoBack from '../UX/Buttons/BtnGoBack'
 import BtnHistoryJobs from '../UX/Buttons/BtnHistoryJobs'
 import AddJob from '../Jobs/AddJob'
@@ -15,8 +15,7 @@ import style from './index.module.css'
 
 function SingleViewCompany() {
   const [activeJobs, setActiveJobs] = React.useState([])
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
-    useModal()
+  const { open, setOpen, handleClose, classes, modalStyle } = useModal()
   const { singleCompany, jobsCompany } = useSelector((state) => state)
   const { name, email, state, img, contactName, description, area, id } =
     singleCompany
@@ -35,7 +34,7 @@ function SingleViewCompany() {
         setActiveJobs(arr)
       }
     })
-  }, [dispatch, create])
+  }, [dispatch, create, id])
 
   return (
     <div>

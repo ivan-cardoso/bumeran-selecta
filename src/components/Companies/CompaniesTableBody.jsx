@@ -17,7 +17,7 @@ import useModal from '../Jobs/useModal'
 import UpdateCompaniesForm from './UpdateCompaniesForm'
 
 function CompaniesTableBody({ companies, setShowTable }) {
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
+  const { open, setOpen, handleClose, classes, modalStyle } =
     useModal()
 
   const [updateInfo, setUpdateInfo] = useState('')

@@ -9,6 +9,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import React, { useEffect } from 'react'
+import styles from './index.module.css'
 //import s from './index.module.css'
 import ImageUpload from './ImageUpload'
 import { useSelector, useDispatch } from 'react-redux'
@@ -17,7 +18,7 @@ import { getAllAditionalData } from '../../store/aditionalData/actions'
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiFormControl-root': {
-      width: '80%',
+      width: '90%',
       margin: theme.spacing(1),
     },
     input: {
@@ -33,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
-  const classes = useStyles();
 
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
   }, [dispatch]);
 
   const { aditionalData } = useSelector((state) => state);
-  const { areas,  seniorities, states } = aditionalData;
+  const { areas, seniorities, states } = aditionalData;
   const countryArr = ["Argentina"];
 
   const handleInputChange = (e) => {
@@ -263,13 +264,16 @@ const RecruiterForm = ({ handleClose,  handleSubmit, values, setValues }) => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              className={styles.formControlDescription}
               variant="outlined"
               label="Bio"
+              rows={4}
+              multiline
               name="bio"
               required
               value={values.bio}
               autoComplete="disabled"
-            />{" "}
+            />
           </Grid>
 
           <Grid item xs={3}></Grid>

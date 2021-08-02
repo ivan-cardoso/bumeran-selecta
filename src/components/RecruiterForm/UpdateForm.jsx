@@ -12,8 +12,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ImageUpload from './ImageUpload'
 import { getAllAditionalData } from '../../store/aditionalData/actions'
-//import BtnCancelEdit from '../UX/Buttons/BtnCancelEdit'
-//import BtnConfirmRecruiter from '../UX/Buttons/BtnConfirmRecruiter'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +28,6 @@ const UpdateForm = ({
   setValues,
   handleInputChange,
   handleSubmit,
-  setShowTable,
   handleClose,
 }) => {
   const classes = useStyles();
@@ -41,7 +39,7 @@ const UpdateForm = ({
   //const history = useHistory()
 
   const { aditionalData } = useSelector((state) => state);
-  const { areas,  seniorities, states } = aditionalData;
+  const { areas, seniorities, states } = aditionalData;
   const countryArr = ["Argentina"];
 
 

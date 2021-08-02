@@ -145,3 +145,7 @@
   vertical-align: middle;
   text-decoration: underline;
 }
+
+.formControlDescription {
+  width: 93%;
+}

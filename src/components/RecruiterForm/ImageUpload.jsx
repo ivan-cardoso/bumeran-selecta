@@ -3,12 +3,14 @@ import firebase from '../../utils/firebase'
 import FileUploader from 'react-firebase-file-uploader'
 
 function ImageUpload({ setValues, values }) {
+
   const [data, setData] = useState({
     avatar: '',
     isUploading: false,
     progress: 0,
     avatarURL: values.img || '',
   })
+
   const handleUploadStart = () =>
     setData((current) => ({ ...current, isUploading: true, progress: 0 }))
 

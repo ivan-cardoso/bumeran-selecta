@@ -38,7 +38,7 @@ function RecruiterTableBody({
       .then(() => message.success("usuario eliminado"));
   };
 
-  //const [confirmDelete, setConfirmDelete] = useState(false); no se utiliza
+  // const [confirmDelete, setConfirmDelete] = useState(false); No se esta utilizando
 
   const history = useHistory();
   const dispatch = useDispatch();

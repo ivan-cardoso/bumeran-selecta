@@ -48,7 +48,6 @@ export default function Companies() {
           handleInputChange={handleInputChange}
         />
       </div>
-
       <InputSearch />
 
       <Paper className={classes.pageContent}>

@@ -13,7 +13,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllJobs } from '../../store/jobs/jobs'
 import {getSingleJob} from "../../store/jobs/getSingleJob"
 
-function Card({ selectedJob, setOpenRecruiter}) {
+//setReclutadorAsignado
+function Card({ selectedJob, setOpenRecruiter }) {
+
   const { id, area, seniority } = selectedJob
   const [recruiters, setRecruiters] = useState([])
   const [activeSelection, setActiveSelection] = useState({})
@@ -92,7 +94,6 @@ function Card({ selectedJob, setOpenRecruiter}) {
       <div className={s.divcontainer}>
         <div  className={s.cardSection}>
 
-        
         {recruiters.map((selectedRecruiter, index) => {
           const { porcentajeMatch, recruiter } = selectedRecruiter
 

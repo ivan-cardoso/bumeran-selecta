@@ -3,7 +3,6 @@ import axios from "axios";
 import { Redirect, useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Backdrop } from "@material-ui/core";
-import { closeJob } from "../../store/jobs/jobs";
 import style from "./index.module.css";
 import SimpleRating from "../RecruiterSingleView/RatingView";
 import BTN from "../UX/Buttons/BtnGoBack";
@@ -12,7 +11,6 @@ import { ImLocation } from "react-icons/im";
 import { MdTimer } from "react-icons/md";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
-import { getOneSingleCompany } from "../../store/companies/singleCompany";
 import { getSingleJob } from "../../store/jobs/getSingleJob";
 import { message } from "antd";
 import ModalRatingClose from "../ModalRatingClose/Index";
@@ -27,12 +25,8 @@ const JobSingleView = () => {
   const {
     open,
     setOpen,
-    handleOpen,
-    handleClose,
     classes,
     modalStyle,
-    openUpdate,
-    setOpenUpdate,
   } = useModal()
 
   const handleSetClose = (job) => {

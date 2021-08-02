@@ -12,10 +12,9 @@ import {
 let dayDict = {}
 
 export default function ChartHistoric() {
-
   const [historicData, setHistoricData] = useState([])
 
-  //const [values, setValues] = useState([]) este estado no se está utilizando
+ // const [values, setValues] = useState([]) No se esta utilizando
 
   useEffect(() => {
     const arrayOfDates = []
@@ -38,6 +37,7 @@ export default function ChartHistoric() {
           const [day, /* rest */] = other.split('T')
           const returnValue = `${day}/${month}`
           dayDict[returnValue] = parseInt(record.total)
+          
         })
 
         const ArrayOfResultsForVisualiation = arrayOfDates.map((value) => {

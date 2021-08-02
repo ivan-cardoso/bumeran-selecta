@@ -12,7 +12,8 @@ import useModal from "../Jobs/useModal";
 export default function AddCompany({ values, setValues, handleInputChange }) {
   const clases = useStyles();
   const dispatch = useDispatch()
-  const { open, handleOpen, handleClose, classes, modalStyle } = useModal();
+  const { open, handleOpen, handleClose, classes, modalStyle } =
+    useModal();
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -40,6 +41,7 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
   }
 
   return (
+    
     <Paper className={clases.pageContent}>
       <Grid item xs={6}></Grid>
       

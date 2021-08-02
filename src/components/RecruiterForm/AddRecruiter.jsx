@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const Recruiter = ({ setRecruiters }) => {
   const clases = useStyles();
   const dispatch = useDispatch()
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
-    useModal();
+  const { open, handleOpen, handleClose, classes, modalStyle } = useModal();
 
   const initialFormValues = {
     name: null,

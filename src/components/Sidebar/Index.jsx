@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-//import s from './sidebar.css'
+// import * as FaIcons from 'react-icons/fa'
+import s from './sidebar.css'  // No entiendo como se esta utilizando si en el Wrng aparece que no. (Christian)
 import * as IoIcons from 'react-icons/io'
 import { MdWork } from 'react-icons/md'
 import { AiFillHome } from 'react-icons/ai'

@@ -1,37 +1,39 @@
 import React from 'react'
-//import { getAllJobs, getJobsSearch } from '../../store/jobs/jobs'
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
+import useStyles from './FilteredStyle'
+
 
 const FilteredArea = ({
   values,
   selectedValue,
-  setValues,
   title,
   name,
   handleAreaChange,
 }) => {
+  const classes = useStyles()
   
- 
   return (
     <>
       <FormControl
         variant='outlined'
         className='optionControl'
-        style={{ width: 150 , margin : "0 15px"}}
+        style={{ width: 150 , margin : "0 6px"}}
       >
         <InputLabel id='demo-simple-select-outlined-label'>{title}</InputLabel>
+
         <Select
+          className={classes.select}
           name={name}
           value={selectedValue}
           label={title}
           onChange={(e) => handleAreaChange(e)}
-          style={{ height: '100%' }}
+          style={{ height: '100%'}}
         >
           {values &&
             values.map((item) => {
               const { name } = item
               return (
-                <MenuItem key={name} value={name}>
+                <MenuItem key={name} value={name} >
                   {name}
                 </MenuItem>
               )

@@ -11,6 +11,7 @@ import {
 import useStyles from "./style";
 import { getAllAditionalData } from "../../store/aditionalData/actions";
 import styles from "../Jobs/index.module.css";
+//import s from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import ImageUpload from "../RecruiterForm/ImageUpload";
 
