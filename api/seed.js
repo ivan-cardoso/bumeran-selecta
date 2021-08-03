@@ -894,10 +894,9 @@ users.map((user) => {
         img: user.img,
       })
         .then((userCreated) => {
-          return Roles.findOne({ where: { name: user.role } }).then((roles) => {
-            console.log(roles)
+          return Roles.findOne({ where: { name: user.role } }).then((roles) =>
             roles.addUser(userCreated)
-          })
+          )
         })
         .then(() => console.log('usuario creado'))
     })
