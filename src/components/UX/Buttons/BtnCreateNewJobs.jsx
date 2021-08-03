@@ -10,17 +10,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const BtnCreateNewJobs = ({ name, onClick }) => {
-  const classes = useStyles()
+const BtnCreateNewJobs = ({ disabled,  name, onClick }) => {
+  const classes = useStyles();
 
   return (
-    
     <div className={classes.root}>
-      <Button variant='contained' color='primary' onClick={onClick}>
+      <Button
+        disabled={disabled}
+        variant="contained"
+        color="primary"
+        onClick={onClick}
+      >
         {name}
       </Button>
     </div>
-  )
-}
+  );
+};
 
 export default BtnCreateNewJobs

@@ -18,7 +18,7 @@ import useModal from "./useModal";
 import ModalRecomendation from '../Recomendations/Index'
 
 const JobSingleView = () => {
-  const { singleJob } = useSelector((state) => state)
+  const { singleJob, user } = useSelector((state) => state);
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -150,6 +150,7 @@ const JobSingleView = () => {
             <div className={style.btnSingleJobContainer}>
               {singleJob.isOpen !== "cerrada" && (
                 <Button
+                  disabled={user.roleId === 4 || user.roleId === 1}
                   color="primary"
                   variant="contained"
                   onClick={() => handleSetClose(singleJob)}
@@ -160,6 +161,7 @@ const JobSingleView = () => {
 
               {singleJob.isOpen === "abierta" && (
                 <Button
+                  disabled={user.roleId === 4 || user.roleId === 1}
                   color="primary"
                   variant="contained"
                   onClick={() => {
@@ -209,6 +211,7 @@ const JobSingleView = () => {
                   {singleJob.isOpen !== "cerrada" && (
                     <div className={style.singleBtnRecruiter}>
                       <BTN
+                        disabled={user.roleId === 4 || user.roleId === 1}
                         name="Eliminar"
                         onClick={() => handleDeleteAssing(singleJob)}
                       />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { createJob, getAllJobs } from '../../store/jobs/jobs'
 //import { getAllJobsByCompany } from '../../store/companies/jobsCompany'
 import {
@@ -18,14 +18,8 @@ const AddJob = ({ setCreate }) => {
   const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
     useModal()
 
-  //Traditional settings
+        const { user } = useSelector((state) => state);
 
-  /* const handleShowForm = () => {
-    document.getElementById('createJobForm').style.display =
-      document.getElementById('createJobForm').style.display === 'none'
-        ? 'block'
-        : 'none'
-  } */
 
   //FORM
   const initialValues = {
@@ -70,9 +64,7 @@ const AddJob = ({ setCreate }) => {
           dispatch(singleCompany({}))
           if (setCreate) setCreate(true)
           setOpen(false)
-          message.success('Búsqueda creada correctamente')
-          // dispatch(getCompanies());
-          // setValues(initialFormValues);
+          message.success("Búsqueda creada correctamente");
         }
       })
     } else {
@@ -84,15 +76,16 @@ const AddJob = ({ setCreate }) => {
     <>
       <div style={{ marginLeft: 300, marginTop: 20 }}>
         <BtnCreateNewJobs
+          disabled={user.roleId === 4}
           onClick={handleOpen}
-          name='Crear búsqueda'
+          name="Crear búsqueda"
         ></BtnCreateNewJobs>
       </div>
 
       <Modal
         open={open}
         onClose={() => {
-          handleClose()
+          handleClose();
         }}
         className={classes.modal}
         closeAfterTransition
@@ -111,7 +104,7 @@ const AddJob = ({ setCreate }) => {
         </Fade>
       </Modal>
     </>
-  )
+  );
 }
 
 export default AddJob

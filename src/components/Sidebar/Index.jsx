@@ -5,6 +5,7 @@ import s from './sidebar.css'  // No entiendo como se esta utilizando si en el W
 import * as IoIcons from 'react-icons/io'
 import { MdWork } from 'react-icons/md'
 import { AiFillHome } from 'react-icons/ai'
+import { FaUserAlt } from 'react-icons/fa'
 
 const Sidebar = () => {
   const SidebarData = [
@@ -30,6 +31,12 @@ const Sidebar = () => {
       title: 'Busquedas',
       path: '/jobs',
       icon: <MdWork />,
+      cName: 'nav-text',
+    },
+    {
+      title: 'Usuarios',
+      path: '/users',
+      icon: <FaUserAlt />,
       cName: 'nav-text',
     },
   ]

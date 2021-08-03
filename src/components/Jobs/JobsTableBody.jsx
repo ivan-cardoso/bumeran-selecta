@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {  useDispatch } from 'react-redux'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   TableBody,
   TableRow,
@@ -7,60 +7,56 @@ import {
   Modal,
   Fade,
   Backdrop,
-} from '@material-ui/core'
-import EditIcon from '@material-ui/icons/Edit'
+} from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
 //import DeleteIcon from '@material-ui/icons/Delete'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import PersonAddIcon from '@material-ui/icons/PersonAdd'
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 //import { getAllJobs, deleteJob } from '../../store/jobs/jobs'
 import { getSingleJob } from "../../store/jobs/getSingleJob";
-import ModalRecomendation from '../Recomendations/Index'
+import ModalRecomendation from "../Recomendations/Index";
 import styles from "../RecruiterForm/index.module.css";
 
-import useModal from './useModal'
+import useModal from "./useModal";
 //import JobsForm from './JobsForm'
-import UpdateJob from './UpdateJob'
-import { useHistory } from 'react-router-dom'
+import UpdateJob from "./UpdateJob";
+import { useHistory } from "react-router-dom";
 
 //setShowTable, setUpdateInfo
 
 const JobsTableBody = ({ jobs }) => {
-  const {
-    open,
-    setOpen,
-    handleClose,
-    classes,
-    modalStyle,
-  } = useModal()
+  const { open, setOpen, handleClose, classes, modalStyle } = useModal();
 
-  const [openRecruiter, setOpenRecruiter] = useState(false)
-  const dispatch = useDispatch()
+  const [openRecruiter, setOpenRecruiter] = useState(false);
+  const dispatch = useDispatch();
 
-  const history = useHistory()
+  const history = useHistory();
 
   /* const handleDelete = (id) => {   No se esta utilizando 
     dispatch(deleteJob(id))
     dispatch(getAllJobs())
   } */
 
-  const [jobValues, setJobValues] = useState()
+  const { user } = useSelector((state) => state);
+
+  const [jobValues, setJobValues] = useState();
   const [selectedJob, setSelectedJob] = useState({
-    area: '',
-    seniority: '',
-    id: '',
-  })
+    area: "",
+    seniority: "",
+    id: "",
+  });
   const handleUpdateJob = (job) => {
-    setJobValues(job)
-    setOpen(true)
-  }
+    setJobValues(job);
+    setOpen(true);
+  };
   const assignRecruiter = () => {
-    setOpenRecruiter(true)
-  }
+    setOpenRecruiter(true);
+  };
 
   const handleSingleJob = (job) => {
     dispatch(getSingleJob(job));
-    history.push(`/jobs/${job.id}`)
-  }
+    history.push(`/jobs/${job.id}`);
+  };
 
   // React.useEffect(() => {
   //   dispatch(getAllJobs());
@@ -70,8 +66,6 @@ const JobsTableBody = ({ jobs }) => {
     <TableBody>
       {jobs
         ? jobs.map((job) => {
-
-          
             return (
               <TableRow>
                 <TableCell align="center">{job.title}</TableCell>
@@ -88,8 +82,12 @@ const JobsTableBody = ({ jobs }) => {
 
                 <TableCell align="center">
                   <button
-                    className={job.isOpen !== "cerrada" && styles.editButton}
-                    disabled={job.isOpen === "cerrada"}
+                    className={
+                      job.isOpen === "cerrada" || user.roleId === 4
+                        ? null
+                        : styles.editButton
+                    }
+                    disabled={job.isOpen === "cerrada" || user.roleId === 4}
                     onClick={() => {
                       handleUpdateJob(job);
                     }}
@@ -107,8 +105,14 @@ const JobsTableBody = ({ jobs }) => {
                 </TableCell>
                 <TableCell align="right">
                   <button
-                    className={!job.recruiterId && styles.assignRecruiterButton}
-                    disabled={job.recruiterId}
+                    className={
+                      job.recruiterId || user.roleId === 4 || user.roleId === 1
+                        ? null
+                        : styles.assignRecruiterButton
+                    }
+                    disabled={
+                      job.recruiterId || user.roleId === 4 || user.roleId === 1
+                    }
                     onClick={() => {
                       setSelectedJob({
                         area: job.area.name,
@@ -130,7 +134,7 @@ const JobsTableBody = ({ jobs }) => {
       <Modal
         open={open}
         onClose={() => {
-          handleClose()
+          handleClose();
         }}
         className={classes.modal}
         closeAfterTransition
@@ -156,7 +160,7 @@ const JobsTableBody = ({ jobs }) => {
         modalStyle={modalStyle}
       />
     </TableBody>
-  )
-}
+  );
+};
 
-export default JobsTableBody
+export default JobsTableBody;

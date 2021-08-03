@@ -16,7 +16,16 @@ function PrivateRoute({
         <Route {...children} render={(props) => <Component {...props} />} />
       );
     }
-    return <Redirect to="login" />;
+    if (isAuthenticated === false) {
+      return <Redirect to="login" />;
+    }
+    else {
+      return (
+        <div className={styles.circularProgress}>
+          <CircularProgress disableShrink />
+        </div>
+      );
+    }
   } else {
     // return <h1 style={{ marginLeft: "40%", fontSize: 70 }}>loading...</h1>;
     return (

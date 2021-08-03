@@ -10,12 +10,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BtnGoBack = ({ name, onClick, style }) => {
+const BtnGoBack = ({ disabled, name, onClick, style }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Button
+        disabled={disabled}
         style={style}
         variant="contained"
         color="primary"

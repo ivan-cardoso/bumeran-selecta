@@ -1,21 +1,20 @@
-import React, { useState } from 'react'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableRow from '@material-ui/core/TableRow'
-import EditIcon from '@material-ui/icons/Edit'
-import DeleteIcon from '@material-ui/icons/Delete'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import axios from 'axios'
+import React, { useState } from "react";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import axios from "axios";
 import { Modal, Fade, Backdrop } from "@material-ui/core";
-import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { singleRecruiter } from '../../store/recruiter/actions'
-import { Popconfirm, message } from 'antd'
-import styles from './index.module.css'
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { singleRecruiter } from "../../store/recruiter/actions";
+import { Popconfirm, message } from "antd";
+import styles from "./index.module.css";
 import useModal from "../Jobs/useModal";
 import UpdateForm from "./UpdateForm";
 import RatingView from "../RecruiterSingleView/RatingView";
-
 
 function RecruiterTableBody({
   recruiters,
@@ -23,8 +22,7 @@ function RecruiterTableBody({
   setShowTable,
   handleSubmit,
 }) {
-  const { open, setOpen, handleClose, classes, modalStyle } =
-    useModal();
+  const { open, setOpen, handleClose, classes, modalStyle } = useModal();
   const handleDelete = (id) => {
     axios
       .delete(`/api/recruiters/${id}`)
@@ -39,6 +37,8 @@ function RecruiterTableBody({
   };
 
   // const [confirmDelete, setConfirmDelete] = useState(false); No se esta utilizando
+
+  const { user } = useSelector((state) => state);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -93,7 +93,8 @@ function RecruiterTableBody({
                 <TableCell align="right">
                   {
                     <button
-                      className={styles.editButton}
+                      disabled={user.roleId === 4}
+                      className={user.roleId === 4 ? null : styles.editButton}
                       onClick={() => {
                         handleUpdateRecruiter(recruiter);
                       }}
@@ -110,7 +111,12 @@ function RecruiterTableBody({
                     okText="confirmar"
                     cancelText="cancelar"
                   >
-                    <button className={styles.deleteButton}>
+                    <button
+                      disabled={user.roleId !== 3}
+                      className={
+                        user.roleId === 3 ? styles.deleteButton : null
+                      }
+                    >
                       <DeleteIcon />
                     </button>
                   </Popconfirm>
@@ -155,4 +161,4 @@ function RecruiterTableBody({
   );
 }
 
-export default RecruiterTableBody
+export default RecruiterTableBody;

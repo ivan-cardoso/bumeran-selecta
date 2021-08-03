@@ -17,6 +17,8 @@ import { userCookie } from './store/user/user'
 import PrivateRoute from './routes/PrivateRoute'
 import CompaniesSingleView from './components/CompaniesSingleView/CompaniesSingleView'
 import Sidebar from './components/Sidebar/Index'
+import User from './components/Users/Index'
+import axios from 'axios'
 
 function App() {
   const [isAuthenticated, setisAuthenticated] = useState('')
@@ -26,10 +28,20 @@ function App() {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((userCred) => {
       if (userCred) {
-        dispatch(userCookie(userCred))
-        setisAuthenticated(true)
-      } else setisAuthenticated(false)
-      setIsLoading(false)
+        axios
+          .get(`/api/user/${userCred.uid}`)
+          .then((res) => res.data)
+          .then((user) => {
+            dispatch(userCookie(user));
+          })
+          .then(() => {
+            setIsLoading(false);
+            setisAuthenticated(true);
+          });
+      } else {
+        setIsLoading(false);
+        setisAuthenticated(false);
+      }
     })
   }, [dispatch])
 
@@ -41,6 +53,7 @@ function App() {
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route path='/forgotpassword' component={ForgotPass} />
+        <Route path='/users' component={User} />
         <PrivateRoute
           exact
           path='/jobs'

@@ -60,14 +60,14 @@ const JobsForm = ({ values, handleChange, handleSubmit, handleClose }) => {
   //     dispatch(createJob(inputValues)).then((res) => console.log(res.data))
   // }
 
+  if (singleCompany.id) values.companyId = singleCompany.id;
   useEffect(() => {
-    values.companyId = singleCompany.id;
     dispatch(getAllAditionalData());
     dispatch(getCompanies());
-  }, [dispatch, singleCompany, values]);
+  }, [dispatch]);
+  
 
   return (
-    
     <>
       {aditionalData.areas ? (
         <>

@@ -7,11 +7,27 @@ const initialState = ''
 export const UserRegister = createAsyncThunk(
   'UserRegister',
   (user, thunkAPI) => {
-    return axios
-      .post('/api/auth/register', user)
-      .then((res) => res.data)
-      .then((user) => user)
-      .catch((err) => console.log(err))
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then((userCredential) => {
+        const userFirebase = userCredential.user
+        return axios
+          .post('/api/user/register', {
+            userFirebase,
+            role: user.role,
+            name: user.name,
+            surname: user.surname,
+          })
+          .then((res) => res.data)
+          .then((user) => user)
+          .catch((err) => console.log(err))
+      })
+      .catch((error) => {
+        var errorMessage = error.message
+        console.log(errorMessage)
+        return errorMessage
+      })
   }
 )
 
@@ -22,7 +38,10 @@ export const UserLogin = createAsyncThunk('UserLogin', (user, thunkAPI) => {
     .then((userCredentials) => {
       const { photoURL, refreshToken, displayName, email, uid } =
         userCredentials.user
-      return { photoURL, refreshToken, displayName, email, uid }
+      return axios
+        .get(`/api/user/${uid}`)
+        .then((res) => res.data)
+        .then((user) => user)
     })
     .catch((error) => null)
 })
@@ -40,14 +59,13 @@ export const UserLogout = createAsyncThunk('UserLogout', () => {
 })
 
 export const userCookie = createAction('userCookie', (user) => {
-  const { photoURL, refreshToken, displayName, email, uid } = user
-  return { payload: { photoURL, refreshToken, displayName, email, uid } }
+  // const { photoURL, refreshToken, displayName, email, uid, roles } = user
+  return { payload: user }
 })
 
 export const userReducer = createReducer(initialState, {
   [UserRegister.fulfilled]: (state, action) => action.payload,
   [UserLogin.fulfilled]: (state, action) => action.payload,
-  [UserLogin.rejected]: (state, action) => '',
   [UserLogout.fulfilled]: (state, action) => action.payload,
   [userCookie]: (state, action) => action.payload,
 })

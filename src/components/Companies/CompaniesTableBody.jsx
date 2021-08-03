@@ -8,7 +8,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import axios from 'axios'
 import { Modal, Fade, Backdrop } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import styles from '../RecruiterForm/index.module.css'
 import { Popconfirm, message } from 'antd'
 import { getCompanies } from "../../store/companies/companies";
@@ -28,6 +28,8 @@ function CompaniesTableBody({ companies, setShowTable }) {
       [name]: value,
     })
   }
+
+      const { user } = useSelector((state) => state);
 
   const dispatch = useDispatch()
 
@@ -56,16 +58,17 @@ function CompaniesTableBody({ companies, setShowTable }) {
 
             return (
               <TableRow key={id}>
-                <TableCell align='center'>{name}</TableCell>
-                <TableCell align='center'>{email}</TableCell>
-                <TableCell align='center'>
+                <TableCell align="center">{name}</TableCell>
+                <TableCell align="center">{email}</TableCell>
+                <TableCell align="center">
                   {state ? state.name : null}
                 </TableCell>
-                <TableCell align='center'>{area ? area.name : null}</TableCell>
-                <TableCell align='left'>
+                <TableCell align="center">{area ? area.name : null}</TableCell>
+                <TableCell align="left">
                   {
                     <button
-                      className={styles.editButton}
+                      disabled={user.roleId === 4}
+                      className={user.roleId === 4 ? null : styles.editButton}
                       onClick={() => {
                         handleUpdateCompany(company);
                       }}
@@ -74,19 +77,22 @@ function CompaniesTableBody({ companies, setShowTable }) {
                     </button>
                   }
                 </TableCell>
-                <TableCell align='right'>
+                <TableCell align="right">
                   <Popconfirm
                     title={`¿estas seguro que deseas eliminar esta compañia?`}
                     onConfirm={() => handleDelete(id)}
-                    okText='confirmar'
-                    cancelText='cancelar'
+                    okText="confirmar"
+                    cancelText="cancelar"
                   >
-                    <button className={styles.deleteButton}>
+                    <button
+                      disabled={user.roleId !== 3}
+                      className={user.roleId === 3 ? styles.deleteButton : null}
+                    >
                       <DeleteIcon />
                     </button>
                   </Popconfirm>
                 </TableCell>
-                <TableCell align='right'>
+                <TableCell align="right">
                   <button
                     className={styles.singleViewButton}
                     onClick={() => handleSingleView(company)}
@@ -95,7 +101,7 @@ function CompaniesTableBody({ companies, setShowTable }) {
                   </button>
                 </TableCell>
               </TableRow>
-            )
+            );
           })
         : null}
 

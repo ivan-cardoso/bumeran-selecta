@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Paper, Button, Modal, Fade, Backdrop } from "@material-ui/core";
 import useStyles from './style'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import AddCompaniesForm from './AddCompaniesForm'
 import styles from '../RecruiterForm/index.module.css'
 import { createCompany, getCompanies } from '../../store/companies/companies'
@@ -14,6 +14,8 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
   const dispatch = useDispatch()
   const { open, handleOpen, handleClose, classes, modalStyle } =
     useModal();
+
+    const { user } = useSelector((state) => state);
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -41,20 +43,20 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
   }
 
   return (
-    
     <Paper className={clases.pageContent}>
       <Grid item xs={6}></Grid>
-      
-        <Button
-          onClick={handleOpen}
-          variant="contained"
-          color="primary"
-          label="Add"
-          className={styles.addButton}
-        >
-          Agregar Empresa
-        </Button>
-      
+
+      <Button
+        disabled={user.roleId === 4}
+        onClick={handleOpen}
+        variant="contained"
+        color="primary"
+        label="Add"
+        className={styles.addButton}
+      >
+        Agregar Empresa
+      </Button>
+
       <Modal
         open={open}
         onClose={() => {
