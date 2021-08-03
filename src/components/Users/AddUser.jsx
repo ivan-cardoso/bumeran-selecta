@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { Grid, Paper, Button, Modal, Fade, Backdrop } from '@material-ui/core'
 import useStyles from '../Companies/style'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AddUserForm from './AddUserForm'
 import styles from '../RecruiterForm/index.module.css'
 import axios from 'axios'
 import { message, Alert } from 'antd'
 import useModal from '../Jobs/useModal'
+import { getAll } from '../../store/allUsers/allusers'
 export default function AddCompany({ values, setValues, handleInputChange }) {
   const clases = useStyles()
   const dispatch = useDispatch()
   const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
     useModal()
   const [warning, setWarning] = useState('')
+  const { role } = useSelector((state) => state.user)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -29,20 +31,16 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
           type='warning'
         />
       )
-    if (
-      values.name !== null &&
-      values.surname !== null &&
-      values.email !== null &&
-      values.password !== null
-    ) {
+    if (values.name && values.surname && values.email && values.password) {
       return axios
         .post('/api/user/register', values)
         .then((res) => res.data)
         .then((user) => {
-          if (user) {
+          if (user.id) {
             message.success('usuario Agregado con exito!')
-
             handleClose()
+            dispatch(getAll())
+            setValues('')
           } else {
             setWarning(<Alert message='Email ya existente' type='warning' />)
           }
@@ -62,6 +60,7 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
         variant='contained'
         color='primary'
         label='Add'
+        disabled={role.name === 'auditor'}
         className={styles.addButton}
       >
         Agregar Usuario

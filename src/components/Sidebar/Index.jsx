@@ -6,8 +6,10 @@ import * as IoIcons from 'react-icons/io'
 import { MdWork } from 'react-icons/md'
 import { AiFillHome } from 'react-icons/ai'
 import { FaUserAlt } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 
 const Sidebar = () => {
+  const user = useSelector((state) => state.user)
   const SidebarData = [
     {
       title: 'Home',
@@ -41,24 +43,6 @@ const Sidebar = () => {
     },
   ]
   return (
-    // <div className='div-icon'>
-    //   <div className='sidebarContainer'>
-    //     {SidebarData?.map((item, index) => {
-    //       return (
-    //         <div key={index} className='sidebarDiv'>
-    //           <div key={index} className={item.cName}>
-    //             <h1 className='navbaricon'> {item.icon}</h1>
-    //           </div>
-    //           <div className='sidebarDiv'>
-    //             <Link to={item.path}>
-    //               <h1 className='navbartext'>{item.title}</h1>
-    //             </Link>
-    //           </div>
-    //         </div>
-    //       )
-    //     })}
-    //   </div>
-    // </div>
     <div className='container'>
       {SidebarData?.map((item, index) => {
         return (

@@ -12,8 +12,42 @@ const {
   Users,
 } = require('./db/models/index')
 
-const firebase = require('./firebase')
+const { firebase, admin } = require('./firebase')
 
+const users = [
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/naventp5.appspot.com/o/images%2Fa69a8746-be59-4718-bfe6-95a239687b4a.jpg?alt=media&token=e9253650-70b7-44ca-b20d-25641215435',
+    name: 'Juan',
+    surname: 'Usuario',
+    email: 'juanusuario@gmail.com',
+    password: 'juanusuario',
+    role: 'usuario',
+  },
+  {
+    name: 'Admin',
+    surname: 'Navent',
+    img: 'https://firebasestorage.googleapis.com/v0/b/naventp5.appspot.com/o/images%2Fa69a8746-be59-4718-bfe6-95a239687b4a.jpg?alt=media&token=e9253650-70b7-44ca-b20d-25641215435e',
+    email: 'plataforma5navent@gmail.com',
+    password: 'P5Navent5',
+    role: 'admin',
+  },
+  {
+    name: 'Pablo',
+    surname: 'Auditor',
+    img: 'https://firebasestorage.googleapis.com/v0/b/naventp5.appspot.com/o/images%2Fa69a8746-be59-4718-bfe6-95a239687b4a.jpg?alt=media&token=e9253650-70b7-44ca-b20d-25641215435e',
+    email: 'pabloauditor@gmail.com',
+    password: 'pabloauditor',
+    role: 'auditor',
+  },
+  {
+    name: 'Antonio',
+    surname: 'Operador',
+    img: 'https://firebasestorage.googleapis.com/v0/b/naventp5.appspot.com/o/images%2Fa69a8746-be59-4718-bfe6-95a239687b4a.jpg?alt=media&token=e9253650-70b7-44ca-b20d-25641215435e',
+    email: 'antoniooperador@gmail.com',
+    password: 'antoniooperador',
+    role: 'operador',
+  },
+]
 const roles = ['operador', 'usuario', 'admin', 'auditor']
 
 const seniorities = ['Trainee', 'Junior', 'Semi-Senior', 'Senior', 'Manager']
@@ -847,20 +881,25 @@ jobs.map((job, index) => {
 })
 
 //loguear admin
-firebase
-  .auth()
-  .signInWithEmailAndPassword('plataforma5navent@gmail.com', 'P5Navent5')
-  .then((userCredentials) => {
-    return Users.create({
-      ...userCredentials.user,
-      name: 'Admin',
-      surname: 'Navent',
-    })
-      .then((user) => {
-        return Roles.findOne({ where: { name: 'admin' } }).then((roles) =>
-          roles.addUser(user)
-        )
+
+users.map((user) => {
+  admin
+    .auth()
+    .getUserByEmail(user.email)
+    .then((userCredentials) => {
+      return Users.create({
+        ...userCredentials,
+        name: user.name,
+        surname: user.surname,
+        img: user.img,
       })
-      .then(() => console.log('admin creado'))
-  })
-  .catch((error) => console.log('error', error))
+        .then((userCreated) => {
+          return Roles.findOne({ where: { name: user.role } }).then((roles) => {
+            console.log(roles)
+            roles.addUser(userCreated)
+          })
+        })
+        .then(() => console.log('usuario creado'))
+    })
+    .catch((error) => console.log('error', error))
+})

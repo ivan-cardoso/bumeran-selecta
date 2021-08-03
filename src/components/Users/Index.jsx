@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAll } from '../../store/allUsers/allusers'
+import { getAllAditionalData } from '../../store/aditionalData/actions'
 import useStyles from '../Companies/style'
 import { Paper } from '@material-ui/core'
 import UsersTable from './UsersTable'
@@ -23,6 +24,7 @@ export default function Users() {
 
   React.useEffect(() => {
     dispatch(getAll())
+    dispatch(getAllAditionalData())
   }, [dispatch])
 
   return (
