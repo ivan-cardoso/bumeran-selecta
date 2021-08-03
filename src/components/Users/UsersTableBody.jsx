@@ -8,17 +8,19 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import axios from 'axios'
 import { Modal, Fade, Backdrop } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from '../RecruiterForm/index.module.css'
 import { Popconfirm, message } from 'antd'
 import { getAll } from '../../store/allUsers/allusers'
 // import { singleCompany } from '../../store/companies/singleCompany'
 import useModal from '../Jobs/useModal'
-// import UpdateUserForm from './UpdateUserForm'
+import UpdateUserForm from './UpdateUserForm'
 
 function UsersTableBody({ allUsers, setShowTable }) {
   const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
     useModal()
+
+  const user = useSelector((state) => state.user)
 
   const [updateInfo, setUpdateInfo] = useState('')
 
@@ -34,8 +36,8 @@ function UsersTableBody({ allUsers, setShowTable }) {
   const dispatch = useDispatch()
 
   const handleDelete = (uid) => {
-    axios.delete(`/api/user/delete/${uid}`).then((res) => {
-      message.success('usuario eliminada')
+    axios.delete(`/api/user/delete/${uid}`).then(() => {
+      message.success('usuario eliminado con exito!')
       dispatch(getAll())
     })
   }
@@ -47,8 +49,8 @@ function UsersTableBody({ allUsers, setShowTable }) {
   return (
     <TableBody>
       {allUsers
-        ? allUsers.map((user) => {
-            const { name, surname, email, role, id, uid } = user
+        ? allUsers.map((userMap) => {
+            const { name, surname, email, role, id, uid } = userMap
 
             return (
               <TableRow key={id}>
@@ -60,30 +62,35 @@ function UsersTableBody({ allUsers, setShowTable }) {
                   {
                     <button
                       className={styles.editButton}
-                      disabled={role.name === 'admin'}
+                      disabled={
+                        user.role.name !== 'admin' || role.name === 'admin'
+                      }
                       onClick={() => {
-                        handleUpdateUser(user)
+                        handleUpdateUser(userMap)
                       }}
                     >
                       <EditIcon />
                     </button>
                   }
                 </TableCell>
-                <TableCell align='center'>
-                  <Popconfirm
-                    title={`¿estas seguro que deseas eliminar este usuario?`}
-                    onConfirm={() => handleDelete(uid)}
-                    okText='confirmar'
-                    cancelText='cancelar'
-                  >
-                    <button
-                      className={styles.deleteButton}
-                      disabled={role.name === 'admin'}
+                {role.name !== 'admin' && (
+                  <TableCell align='center'>
+                    <Popconfirm
+                      disabled={user.role.name === 'auditor'}
+                      title={`¿estas seguro que deseas eliminar este usuario?`}
+                      onConfirm={() => handleDelete(uid)}
+                      okText='confirmar'
+                      cancelText='cancelar'
                     >
-                      <DeleteIcon />
-                    </button>
-                  </Popconfirm>
-                </TableCell>
+                      <button
+                        className={styles.deleteButton}
+                        disabled={user.role.name === 'auditor'}
+                      >
+                        <DeleteIcon />
+                      </button>
+                    </Popconfirm>
+                  </TableCell>
+                )}
               </TableRow>
             )
           })
@@ -101,13 +108,13 @@ function UsersTableBody({ allUsers, setShowTable }) {
       >
         <Fade in={open}>
           <div style={modalStyle} className={classes.paper}>
-            {/* <UpdateUserForm
+            <UpdateUserForm
               values={updateInfo}
               setValues={setUpdateInfo}
               handleInputChange={handleInputChangeUpdate}
               setShowTable={setShowTable}
               handleClose={handleClose}
-            /> */}
+            />
           </div>
         </Fade>
       </Modal>

@@ -110,12 +110,11 @@ function RecruiterTableBody({
                     onCancel={() => message.error("cancelado")}
                     okText="confirmar"
                     cancelText="cancelar"
+                    disabled={user.roleId !== 3}
                   >
                     <button
                       disabled={user.roleId !== 3}
-                      className={
-                        user.roleId === 3 ? styles.deleteButton : null
-                      }
+                      className={user.roleId === 3 ? styles.deleteButton : null}
                     >
                       <DeleteIcon />
                     </button>

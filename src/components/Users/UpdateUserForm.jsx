@@ -8,13 +8,14 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core'
-import useStyles from './style'
+import useStyles from '../Companies/style'
 import styles from '../Jobs/index.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import ImageUpload from '../RecruiterForm/ImageUpload'
 import { message } from 'antd'
-// import { getCompanies, updateCompany } from '../../store/companies/companies'
-
+import { UserUpdate } from '../../store/user/user'
+import { getAll } from '../../store/allUsers/allusers'
+import axios from 'axios'
 export default function UpdateUserForm({
   values,
   setValues,
@@ -25,8 +26,9 @@ export default function UpdateUserForm({
 }) {
   const dispatch = useDispatch()
 
+  const { roles } = useSelector((state) => state.aditionalData)
+
   const classes = useStyles()
-  const { aditionalData } = useSelector((state) => state)
 
   const handleSubmitUpdate = (e) => {
     e.preventDefault()
@@ -36,12 +38,16 @@ export default function UpdateUserForm({
       values.email !== null &&
       values.role.name !== null
     ) {
-      dispatch(updateCompany(values)).then((value) => {
-        message.success('Company added')
-        // dispatch(getCompanies()).then(() => handleClose())
-
-        //setValues(initialFormValues);
-      })
+      axios
+        .put(`/api/user/update/${values.uid}`, values)
+        .then((res) => res.data)
+        .then((data) => console.log(data))
+        .then(() => dispatch(getAll()))
+        .then(() => {
+          message.success('Usuario Actualizado con Exito')
+          handleClose()
+          setValues('')
+        })
     } else {
       message.warning('Complete los campos')
     }
@@ -49,16 +55,12 @@ export default function UpdateUserForm({
 
   return (
     <>
-      <form
-        onChange={(e) => handleInputChange(e)}
-        className={classes.root}
-        onSubmit={handleSubmit}
-      >
+      <form onChange={(e) => handleInputChange(e)} className={classes.root}>
         <Grid item xs={8}>
           <ImageUpload setValues={setValues} values={values} />
         </Grid>
         <Grid container spacing={12}>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <TextField
               variant='outlined'
               label='Nombre'
@@ -67,99 +69,40 @@ export default function UpdateUserForm({
               autoComplete='disabled'
             />
           </Grid>
-          <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
-                Provincia
-              </InputLabel>
-              <Select
-                name='stateId'
-                required
-                label='Provincia'
-                value={values.stateId}
-                onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
-              >
-                <MenuItem
-                  className={styles.menuItemSelect}
-                  value={values.stateId}
-                  disable
-                >
-                  <em>Seleccione provincia</em>
-                </MenuItem>
-                {/* {states
-                  ? states.map((state) => {
-                      return <MenuItem value={state.id}>{state.name}</MenuItem>
-                    })
-                  : null} */}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
-            <FormControl variant='outlined' className={classes.formControl}>
-              <InputLabel id='demo-simple-select-outlined-label'>
-                Area
-              </InputLabel>
-              <Select
-                name='areaId'
-                required
-                label='Area'
-                value={values.areaId}
-                onChange={(e) => handleInputChange(e)}
-                autoComplete='disabled'
-              >
-                <MenuItem
-                  className={styles.menuItemSelect}
-                  value={values.areaId}
-                  disable
-                >
-                  <em>Seleccione su area</em>
-                </MenuItem>
-                {/* {areas
-                  ? areas.map((area) => {
-                      return <MenuItem value={area.id}>{area.name}</MenuItem>
-                    })
-                  : null} */}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <TextField
               variant='outlined'
-              label='Email'
-              type='email'
-              name='email'
-              value={values.email}
+              label='Apellido'
+              name='surname'
+              value={values.surname}
               autoComplete='disabled'
             />
           </Grid>
-          <Grid item xs={4}>
-            <TextField
-              variant='outlined'
-              label='Nombre del contacto'
-              name='contactName'
-              value={values.contactName}
-              autoComplete='disabled'
-            />
-          </Grid>
+
           <Grid item xs={12}>
-            <TextField
-              variant='outlined'
-              label='Descripción'
-              name='description'
-              multiline
-              row={4}
-              value={values.description}
-              autoComplete='disabled'
-              className={styles.formControlDescription}
-            />
+            <FormControl variant='outlined' className={classes.formControl}>
+              <InputLabel id='demo-simple-select-outlined-label'>
+                Rol
+              </InputLabel>
+              <Select
+                name='roleId'
+                required
+                label='Rol'
+                // defaultValue={values.role.name}
+                value={values.roleId}
+                onChange={(e) => handleInputChange(e)}
+                autoComplete='disabled'
+              >
+                {roles
+                  ? roles.map((role) => {
+                      if (role.name !== 'admin')
+                        return <MenuItem value={role.id}>{role.name}</MenuItem>
+                    })
+                  : null}
+              </Select>
+            </FormControl>
           </Grid>
-          <input
-            style={{ display: 'none' }}
-            id='contained-button-file'
-            type='file'
-          />
-          <Grid item xs={3}></Grid>
+
           <Grid item xs={4}>
             <Button
               type='submit'

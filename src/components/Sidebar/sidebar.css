@@ -1,89 +1,3 @@
-/* div {
-  transition: width 1s;
-}
-
-.sidebarContainer {
-  bottom: 0;
-  position: absolute;
-  background-color: black;
-  z-index: 0;
-  display: flex;
-  width: 50px;
-  height: 100%;
-  color: white;
-  text-align: center;
-  font-size: medium;
-  flex-wrap: wrap;
-  overflow: hidden;
-  position: fixed;
-  justify-content: left;
-}
-
-.sidebarContainer:hover {
-  width: 230px;
-  background-color: #3f51b5;
-}
-.sidebarDiv {
-  display: flex;
-  height: 25%;
-  flex-direction: row;
-}
-
-.container {
-  font-size: 18px;
-}
-.hideSidebar {
-  display: none;
-}
-
-.navbartext {
-  color: white;
-  font-size: 2.5vh;
-  padding-right: 10px;
-  height: 100px;
-}
-
-.iconImage {
-  color: #0a26ee;
-  margin-left: 0px;
-  height: 30px;
-  width: 30px;
-}
-
-.navbartext:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.div-icon {
-  height: 100%;
-  position: absolute;
-}
-.nav-text {
-  padding-left: 0px;
-  padding-right: 5px;
-  padding-top: 50%;
-  font-size: 20px;
-  padding-bottom: 100px;
-  justify-content: flex-start;
-  align-self: center;
-}
-
-.sidebarDiv {
-  align-self: center;
-  align-content: start;
-}
-
-.navbaricon {
-  color: white;
-  padding-right: 5px;
-  /* max-height: 5px;
-  height: 100px;
-}
-.navbaricon:hover {
-  transition: cubic-bezier(0.165, 0.84, 0.44, 1);
-} */
-
 div {
   transition: width 1s;
 }
@@ -95,7 +9,7 @@ div {
   margin-bottom: 300px;
   height: 100%;
   position: fixed;
-  width: 50px;
+  width: 35px;
   background-color: black;
   overflow: hidden;
   display: flex;
@@ -104,13 +18,13 @@ div {
 }
 
 .container:hover {
-  width: 370px;
+  width: 240px;
   background-color: #1890ff;
 }
 .diviconoytitulo {
   display: flex;
   flex-direction: row;
-  font-size: 20px;
+  font-size: 14px;
   color: white;
 }
 

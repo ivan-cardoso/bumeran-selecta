@@ -15,6 +15,7 @@ import firebase from 'firebase'
 import { useDispatch } from 'react-redux'
 import { userCookie } from './store/user/user'
 import PrivateRoute from './routes/PrivateRoute'
+import AdminRoute from './routes/AdminRoute'
 import CompaniesSingleView from './components/CompaniesSingleView/CompaniesSingleView'
 import Sidebar from './components/Sidebar/Index'
 import User from './components/Users/Index'
@@ -22,6 +23,7 @@ import axios from 'axios'
 
 function App() {
   const [isAuthenticated, setisAuthenticated] = useState('')
+  const [role, setRole] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
   const dispatch = useDispatch()
@@ -32,7 +34,9 @@ function App() {
           .get(`/api/user/${userCred.uid}`)
           .then((res) => res.data)
           .then((user) => {
-            dispatch(userCookie(user));
+            dispatch(userCookie(user))
+            setisAuthenticated(true)
+            setRole(user.role.name)
           })
           .then(() => {
             setIsLoading(false);
@@ -53,7 +57,13 @@ function App() {
         <Route exact path='/home' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route path='/forgotpassword' component={ForgotPass} />
-        <Route path='/users' component={User} />
+        <AdminRoute
+          path='/users'
+          isAuthenticated={isAuthenticated}
+          isLoading={isLoading}
+          role={role}
+          component={User}
+        />
         <PrivateRoute
           exact
           path='/jobs'

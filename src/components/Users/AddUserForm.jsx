@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import ImageUpload from '../RecruiterForm/ImageUpload'
 import { getAllAditionalData } from '../../store/aditionalData/actions'
 
-export default function AddCompaniesForm({
+export default function AddUserForm({
   values,
   setValues,
   handleInputChange,

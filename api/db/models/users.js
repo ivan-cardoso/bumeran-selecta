@@ -11,7 +11,7 @@ Users.init(
     surname: { type: S.STRING },
     uid: { type: S.STRING },
     refreshToken: { type: S.STRING },
-    photoURL: { type: S.STRING },
+    img: { type: S.STRING },
     email: { type: S.STRING },
   },
   { sequelize: db, timestamps: false, modelName: 'users' }

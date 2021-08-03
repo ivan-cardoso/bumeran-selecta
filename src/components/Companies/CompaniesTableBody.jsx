@@ -83,6 +83,7 @@ function CompaniesTableBody({ companies, setShowTable }) {
                     onConfirm={() => handleDelete(id)}
                     okText="confirmar"
                     cancelText="cancelar"
+                    disabled={user.roleId !== 3}
                   >
                     <button
                       disabled={user.roleId !== 3}
