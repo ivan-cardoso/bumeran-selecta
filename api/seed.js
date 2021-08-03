@@ -895,8 +895,8 @@ users.map((user) => {
       })
         .then((userCreated) => {
           return Roles.findOne({ where: { name: user.role } }).then((roles) => {
-            roles.addUser(userCreated);
-          });
+            roles.addUser(userCreated)
+          })
         })
         .then(() => console.log('usuario creado'))
     })
