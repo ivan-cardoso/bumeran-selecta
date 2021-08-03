@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Fade, Backdrop } from '@material-ui/core'
+import { Modal, Fade } from '@material-ui/core'
 import Card from './Card'
 function Index({
   selectedJob,

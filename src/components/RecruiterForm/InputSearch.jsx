@@ -1,7 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
-import axios from 'axios'
-import { getAllRecruiters } from './recruiterTableData'
 import styles from './index.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRecruiterSearch } from '../../store/recruiter/actions'

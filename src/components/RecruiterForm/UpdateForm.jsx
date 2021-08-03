@@ -6,19 +6,13 @@ import {
   FormControl,
   InputLabel,
   Select,
-  Input,
   MenuItem,
-  useTheme,
 } from '@material-ui/core'
-import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ImageUpload from './ImageUpload'
-
 import { getAllAditionalData } from '../../store/aditionalData/actions'
 
-import BtnConfirmRecruiter from '../UX/Buttons/BtnConfirmRecruiter'
-import BtnCancelEdit from '../UX/Buttons/BtnCancelEdit'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +28,6 @@ const UpdateForm = ({
   setValues,
   handleInputChange,
   handleSubmit,
-  setShowTable,
   handleClose,
 }) => {
   const classes = useStyles();
@@ -46,7 +39,7 @@ const UpdateForm = ({
   //const history = useHistory()
 
   const { aditionalData } = useSelector((state) => state);
-  const { areas, modalities, seniorities, states, type } = aditionalData;
+  const { areas, seniorities, states } = aditionalData;
   const countryArr = ["Argentina"];
 
 
@@ -154,7 +147,7 @@ const UpdateForm = ({
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area;
+                    const { name } = area;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -175,7 +168,7 @@ const UpdateForm = ({
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area;
+                    const { name } = area;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -196,7 +189,7 @@ const UpdateForm = ({
               >
                 {areas &&
                   areas.map((area) => {
-                    const { name, id } = area;
+                    const { name } = area;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -217,7 +210,7 @@ const UpdateForm = ({
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority;
+                    const { name } = seniority;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -238,7 +231,7 @@ const UpdateForm = ({
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority;
+                    const { name } = seniority;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>
@@ -259,7 +252,7 @@ const UpdateForm = ({
               >
                 {seniorities &&
                   seniorities.map((seniority) => {
-                    const { name, id } = seniority;
+                    const { name } = seniority;
                     return <MenuItem value={name}>{name}</MenuItem>;
                   })}
               </Select>

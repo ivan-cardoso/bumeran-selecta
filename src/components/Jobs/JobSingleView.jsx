@@ -3,7 +3,6 @@ import axios from "axios";
 import { Redirect, useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Backdrop } from "@material-ui/core";
-import { closeJob } from "../../store/jobs/jobs";
 import style from "./index.module.css";
 import SimpleRating from "../RecruiterSingleView/RatingView";
 import BTN from "../UX/Buttons/BtnGoBack";
@@ -12,7 +11,6 @@ import { ImLocation } from "react-icons/im";
 import { MdTimer } from "react-icons/md";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
-import { getOneSingleCompany } from "../../store/companies/singleCompany";
 import { getSingleJob } from "../../store/jobs/getSingleJob";
 import { message } from "antd";
 import ModalRatingClose from "../ModalRatingClose/Index";
@@ -27,17 +25,17 @@ const JobSingleView = () => {
   const {
     open,
     setOpen,
-    handleOpen,
-    handleClose,
     classes,
     modalStyle,
-    openUpdate,
-    setOpenUpdate,
   } = useModal()
 
   const handleSetClose = (job) => {
     setOpen(true)
   }
+
+  const handleViewCompany = (company) => {
+    history.push(`/companies/${company.id}`);
+  };
 
   const handleViewRecruiter = (recruiter) => {
     dispatch(singleRecruiter(recruiter))
@@ -78,9 +76,8 @@ const JobSingleView = () => {
   return (
     <>
     <div className={style.singleJob} >
-    <div className={style.jobDetailsSection}>
-
-      <div className={style.jobDetailsContainer}>
+      <div className={style.jobDetailsSection}>
+        <div className={style.jobDetailsContainer}>
 
         <div className={style.companyJobDetailsContainer} >
 
@@ -88,6 +85,7 @@ const JobSingleView = () => {
             <div className={style.singleCompanyImg}>
               <Link to={`/companies/${company.id}`}>
                 <img
+                  onClick={() => handleViewCompany(company)}
                   className={style.singleImg}
                   src={singleJob.company.img}
                   alt=""
@@ -157,41 +155,6 @@ const JobSingleView = () => {
               {singleJob.description}
             </span>
           </div>
-          {/* <div className={style.singleJobCloseJob}>
-            <h3> Puesto: {singleJob.title}</h3>
-            <h3> Empresa: {singleJob.company.name}</h3>
-            <h3> País: {singleJob.country}</h3>
-            <h3> Estado: {singleJob.isOpen}</h3>
-
-            <div className={style.btnSingleJobContainer}>
-              {singleJob.isOpen !== "cerrada" && (
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={() => handleSetClose(singleJob)}
-                >
-                  Cerrar búsqueda
-                </Button>
-              )}
-
-              {singleJob.isOpen === "abierta" && (
-                <Button
-                  color="primary"
-                  variant="contained"
-                  onClick={() => {
-                    setSelectedJob({
-                      area: singleJob.area.name,
-                      seniority: singleJob.seniority.name,
-                      id: singleJob.id,
-                    });
-                    assignRecruiter();
-                  }}
-                >
-                  Asignar reclutador
-                </Button>
-              )}
-            </div>
-          </div> */}
         </div>
       
         </div>
@@ -203,10 +166,12 @@ const JobSingleView = () => {
               <div className={style.infoRecruiter}>
                 <div  className={style.recruiterNameContainer}>
                 <h2>Reclutador/a </h2>
-                  <BTN
-                      name="Eliminar"
-                      onClick={() => handleDeleteAssing(singleJob)}
-                      />
+                  {singleJob.isOpen !== "cerrada" ? 
+                    <BTN
+                    name="Eliminar"
+                    onClick={() => handleDeleteAssing(singleJob)}
+                    /> : null
+                  }
                 </div>
                 <h3 onClick={() => handleViewRecruiter(recruiter)} >
                   {recruiter.name} {recruiter.surname}
@@ -224,23 +189,6 @@ const JobSingleView = () => {
                     {singleJob.candidates !== null && <h4>Candidatos presentados: {singleJob.candidates}</h4>}
                   </div>
                 </div>
-
-                {/* <div className={style.btnRecruiterContainer}>
-                  <div className={style.singleBtnRecruiter}>
-                    <BTN
-                      name="Perfil"
-                      onClick={() => handleViewRecruiter(recruiter)}
-                    />
-                  </div>
-                  {singleJob.isOpen !== "cerrada" && (
-                    <div className={style.singleBtnRecruiter}>
-                      <BTN
-                        name="Eliminar"
-                        onClick={() => handleDeleteAssing(singleJob)}
-                      />
-                    </div>
-                  )}
-                </div> */}
                 </div>
             </>
           ) : (

@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {makeStyles} from "@material-ui/core";
-import JobsForm from './JobsForm';
-import { message } from "antd";
-import styles from "./index.module.css"
+
 
 export default function useModal(){
 

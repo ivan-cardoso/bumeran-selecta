@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import AddRecruiter from './AddRecruiter'
 import { Paper, makeStyles } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
 import DenseTable from './RecruiterTable'
 import { getAllRecruiters, recruitersColums } from './recruiterTableData'
 import InputSearch from './InputSearch'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getAllAditionalData } from '../../store/aditionalData/actions'
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +30,7 @@ const Recruiter = () => {
   useEffect(() => {
     getAllRecruiters().then((recruiters) => setRecruiters(recruiters))
     dispatch(getAllAditionalData())
-  }, [])
+  }, [dispatch])
 
   return (
     <>

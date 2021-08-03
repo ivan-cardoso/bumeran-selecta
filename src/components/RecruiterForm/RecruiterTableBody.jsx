@@ -23,7 +23,7 @@ function RecruiterTableBody({
   setShowTable,
   handleSubmit,
 }) {
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
+  const { open, setOpen, handleClose, classes, modalStyle } =
     useModal();
   const handleDelete = (id) => {
     axios
@@ -37,7 +37,8 @@ function RecruiterTableBody({
       })
       .then(() => message.success("usuario eliminado"));
   };
-  const [confirmDelete, setConfirmDelete] = useState(false);
+
+  // const [confirmDelete, setConfirmDelete] = useState(false); No se esta utilizando
 
   const history = useHistory();
   const dispatch = useDispatch();

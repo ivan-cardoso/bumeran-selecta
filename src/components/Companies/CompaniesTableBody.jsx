@@ -11,13 +11,12 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import styles from '../RecruiterForm/index.module.css'
 import { Popconfirm, message } from 'antd'
-import { getCompanies } from '../../store/companies/companies'
-import { singleCompany } from '../../store/companies/singleCompany'
+import { getCompanies } from "../../store/companies/companies";
 import useModal from '../Jobs/useModal'
 import UpdateCompaniesForm from './UpdateCompaniesForm'
 
 function CompaniesTableBody({ companies, setShowTable }) {
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
+  const { open, setOpen, handleClose, classes, modalStyle } =
     useModal()
 
   const [updateInfo, setUpdateInfo] = useState('')
@@ -46,9 +45,7 @@ function CompaniesTableBody({ companies, setShowTable }) {
   const history = useHistory()
 
   const handleSingleView = (company) => {
-    //sacar despues!!!
-    dispatch(singleCompany(company))
-    history.push(`/companies/${company.id}`)
+    history.push(`/companies/${company.id}`);
   }
 
   return (

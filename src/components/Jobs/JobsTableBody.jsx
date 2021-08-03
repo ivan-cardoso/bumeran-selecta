@@ -7,14 +7,12 @@ import {
   Modal,
   Fade,
   Backdrop,
-  Grid,
-  Button,
 } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit'
-import DeleteIcon from '@material-ui/icons/Delete'
+//import DeleteIcon from '@material-ui/icons/Delete'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import PersonAddIcon from '@material-ui/icons/PersonAdd'
-import { getAllJobs, deleteJob } from '../../store/jobs/jobs'
+//import { getAllJobs, deleteJob } from '../../store/jobs/jobs'
 import { getSingleJob } from "../../store/jobs/getSingleJob";
 import ModalRecomendation from '../Recomendations/Index'
 import styles from "../RecruiterForm/index.module.css";
@@ -22,7 +20,7 @@ import { TiDelete } from "react-icons/ti";
 import {FaRegUserCircle} from "react-icons/fa"
 
 import useModal from './useModal'
-import JobsForm from './JobsForm'
+//import JobsForm from './JobsForm'
 import UpdateJob from './UpdateJob'
 import { useHistory } from 'react-router-dom'
 
@@ -32,12 +30,9 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
   const {
     open,
     setOpen,
-    handleOpen,
     handleClose,
     classes,
     modalStyle,
-    openUpdate,
-    setOpenUpdate,
   } = useModal()
 
   const [openRecruiter, setOpenRecruiter] = useState(false)
@@ -45,10 +40,10 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
 
   const history = useHistory()
 
-  const handleDelete = (id) => {
+  /* const handleDelete = (id) => {   No se esta utilizando 
     dispatch(deleteJob(id))
     dispatch(getAllJobs())
-  }
+  } */
 
   const [jobValues, setJobValues] = useState()
   const [selectedJob, setSelectedJob] = useState({
@@ -73,6 +68,9 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
     dispatch(singleRecruiter(recruiter))
     history.push(`/recruiters/${recruiter.id}`)
   }
+  const handleViewCompany = (company) => {
+    history.push(`/companies/${company.id}`);
+  };
   // React.useEffect(() => {
   //   dispatch(getAllJobs());
   // }, [ openRecruiter]);
@@ -89,8 +87,13 @@ const JobsTableBody = ({ jobs, setShowTable, setUpdateInfo }) => {
                   <div className={styles.recruiterImgContainer}>
                     {job.company.img ? 
                       <>
-                        <img src={job.company.img} alt={job.company.img} className={styles.companyImg} />
-                      </> : <h4 className={styles.imgNotFound} ><FaRegUserCircle/></h4>}
+                        <img src={job.company.img}
+                          alt={job.company.img}
+                          className={styles.companyImg}
+                          onClick={() => handleViewCompany(job.company)}
+                         />
+                      </> 
+                      : <h4 className={styles.imgNotFound} ><FaRegUserCircle/></h4>}
                   </div>
                 </TableCell>
                 <TableCell align="center">{job.title}</TableCell>

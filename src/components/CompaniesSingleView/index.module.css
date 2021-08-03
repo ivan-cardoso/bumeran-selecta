@@ -67,3 +67,13 @@
     color: rgb(68, 68, 68);
     white-space: pre-line;
 }
+
+.jobsCompanyContent{
+    display: flex;
+    justify-content: space-between;
+}
+
+.circularProgress{
+display:flex;
+justify-content: center;
+}

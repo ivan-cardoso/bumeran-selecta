@@ -4,7 +4,6 @@ import useStyles from './style'
 import { useDispatch } from 'react-redux'
 import AddCompaniesForm from './AddCompaniesForm'
 import styles from '../RecruiterForm/index.module.css'
-import { useState } from 'react'
 import { createCompany, getCompanies } from '../../store/companies/companies'
 import { message } from 'antd'
 import useModal from "../Jobs/useModal";
@@ -13,7 +12,7 @@ import useModal from "../Jobs/useModal";
 export default function AddCompany({ values, setValues, handleInputChange }) {
   const clases = useStyles();
   const dispatch = useDispatch()
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
+  const { open, handleOpen, handleClose, classes, modalStyle } =
     useModal();
 
   const handleSubmit = (e) => {
@@ -42,6 +41,7 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
   }
 
   return (
+    
     <Paper className={clases.pageContent}>
       <Grid item xs={6}></Grid>
       
