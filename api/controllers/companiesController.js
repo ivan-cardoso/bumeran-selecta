@@ -102,14 +102,36 @@ const companiesController = {
       next(err)
     }
   },
+  async getAllJobsByRecruiterId(req, res, next) {
+    try {
+      const jobs = await Jobs.findAll({
+        where: { recruiterId: req.params.id },
+        include: { all: true },
+      })
+      res.status(200).json(jobs)
+    } catch (err) {
+      next(err)
+    }
+  },
+  async getAllJobsAssignedByRecruiterId(req, res, next) {
+    try {
+      const jobs = await Jobs.findAll({
+        where: { recruiterId: req.params.id, isOpen: 'asignada' },
+        include: { all: true },
+      })
+      res.status(200).json(jobs)
+    } catch (err) {
+      next(err)
+    }
+  },
 
   async getSingleCompany(req, res, next) {
     try {
-      const singleJob = await Companies.findOne({
+      const singleCompany = await Companies.findOne({
         where: { id: req.params.id },
         include: { all: true },
       })
-      res.status(200).json(singleJob)
+      res.status(200).json(singleCompany)
     } catch (err) {
       next(err)
     }

@@ -8,7 +8,7 @@ import Jobs from './components/Jobs/Jobs'
 import JobSingleView from './components/Jobs/JobSingleView'
 import Recruiter from './components/RecruiterForm/Recruiter'
 import SingleView from './components/RecruiterSingleView/SingleView'
-import Footer from './components/Footer/Index'
+//import Footer from './components/Footer/Index'
 import ForgotPass from './components/ForgottenPassword/Index'
 import Companies from './components/Companies/Companies'
 import firebase from 'firebase'
@@ -31,15 +31,21 @@ function App() {
     firebase.auth().onAuthStateChanged((userCred) => {
       if (userCred) {
         axios
-          .get(`api/user/${userCred.uid}`)
+          .get(`/api/user/${userCred.uid}`)
           .then((res) => res.data)
           .then((user) => {
             dispatch(userCookie(user))
             setisAuthenticated(true)
             setRole(user.role.name)
           })
-      } else setisAuthenticated(false)
-      setIsLoading(false)
+          .then(() => {
+            setIsLoading(false);
+            setisAuthenticated(true);
+          });
+      } else {
+        setIsLoading(false);
+        setisAuthenticated(false);
+      }
     })
   }, [dispatch])
 

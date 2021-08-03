@@ -12,16 +12,17 @@
 }
 
 .jobDetailsSection {
-  margin: 4rem 5rem;
   display: flex;
   flex-direction: column;
+  width: 70%;
 }
 
 .jobDetailsContainer {
   display: flex;
+  height: 25rem;
 }
 .singleCompanyImg {
-  margin-right: 4rem;
+  margin-right: 1rem;
   box-shadow: 2px 2px 10px 1px #cecccc;
   width: 200px;
   height: 150px;
@@ -29,6 +30,7 @@
 .singleImg {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 .singleJobDetails {
   background-color: rgb(253, 248, 255);
@@ -36,6 +38,7 @@
   width: 100%;
   border-radius: 15px;
   box-shadow: 2px 2px 10px 1px #cecccc;
+  height: 100%;
 }
 .singleJobDetails h3 {
   margin-bottom: 0;
@@ -47,28 +50,30 @@
 }
 
 .singleJobTitle {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-right: 1rem;
 }
 
 .singleJobData {
   background-color: rgb(244, 250, 255);
-  /* width:66%; */
   padding: 1rem 2rem;
-  margin: 3rem 0;
   box-shadow: 2px 2px 10px 1px #cecccc;
   border-radius: 15px;
+  height: 58%;
+  margin-top: 1rem;
 }
 
 .singleJobDescriptionContainer {
   display: flex;
+  margin-top: 1rem;
 }
 .singleJobDescription {
-  width: 66%;
   background-color: rgb(244, 250, 255);
   padding: 1rem 2rem;
   box-shadow: 2px 2px 10px 1px #cecccc;
   border-radius: 15px;
+  width: 100%;
+  min-height: 14rem;
 }
 
 .singleJobDescriptionText {
@@ -94,28 +99,26 @@
 }
 
 .asignRecruiter{
-    /* margin-left: 3rem; */
-    width: 33%;
+    width: 30%;
     background-color: rgb(244, 250, 255);
-    padding: 2rem;
+    padding: 1rem;
     box-shadow: 2px 2px 10px 1px #cecccc; 
     border-radius: 15px;
-    height: 25rem;
+    height: 80vh;
     position: sticky;
+    top: 3rem;
     display:flex;
-    flex-direction: row;
-    /* justify-content: space-evenly; */
-    margin-top: 3rem ;
-    align-self: flex-end;
+    flex-direction: column;
+    margin-left: 1rem;
 }
 .detailsRecruiterContainer{
     display: flex;
 }
 
 .detailsRecruiterContainer h4{
-    margin-left: 1.2rem;
+    margin-left: .3rem;
     color: #242323;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -123,23 +126,38 @@
 .infoRecruiter{
     display:flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
 }
 .infoRecruiter h2{
     color: #242323;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 500;
+    width: fit-content;
 }
 
 .infoRecruiter h3{
     color: #363535;
     font-size: 1.5rem;
     font-weight: 400;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.infoRecruiter h3:hover{
+  color : #783b52;
 }
 
 .detailsRecruiterImg{
-    width: 10rem;
+    width: 9rem;
     border-radius: 10px;
+    height: 8rem;
+    cursor: pointer;
+    transition: all .5s ease;
+    border: 2px solid transparent;
+}
+
+.detailsRecruiterImg:hover{
+  border: 2px solid #967683;
+  transition: all .5s ease;
 }
 
 .btnRecruiterContainer{
@@ -158,9 +176,88 @@
 }
 
 .btnSingleJobContainer{
-    width: 50%;
     display: flex;
     flex-direction: column;
-    height: 6rem;
-    justify-content: space-around;
+}
+
+.imgDetailsContainer{
+  display: flex;
+  height: 38%;
+}
+
+.companyJobDetailsContainer{
+  width: 100%;
+}
+
+.ratingRecruiterContainer{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.closeJobContainer{
+  background-color: #d8497e;
+  padding: .3rem;
+  box-shadow: 2px 2px 10px 1px #cecccc;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 33%;
+  margin-top: 2rem;
+  align-self: center;
+  width: 96%;
+  align-items: center;
+  transition: all .8s ease;
+}
+
+.closeJobContainer h3{
+  font-size: 1.2rem;
+  color: rgb(255, 255, 255);
+}
+
+.singleJobLocation{
+  display: flex;
+  margin: .25rem 0 ;
+}
+.singleJobLocation p{
+  margin: 0;
+}
+
+.singleJob{
+  display: flex;
+  margin: 4rem 1rem 4rem 4rem;
+}
+
+.recruiterNameContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recruiterNameContainer h2{
+  margin: 0;
+}
+
+.jobIsOpen{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.jobIsOpen h3{
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.jobIsOpen h5{
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: white;
+  margin: 0;
+}
+
+.noRecruiter{
+  font-size: 1.3rem;
+  color: #363535;
+  align-self:center ;
 }

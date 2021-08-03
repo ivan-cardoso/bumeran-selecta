@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import {
   CircularProgress,
   Grid,
@@ -8,12 +8,10 @@ import {
   FormControl,
   InputLabel,
   Select,
-  Input,
   MenuItem,
-  useTheme,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { createJob, getAllJobs } from "../../store/jobs/jobs";
+//import { createJob, getAllJobs } from "../../store/jobs/jobs";
 import { getCompanies } from "../../store/companies/companies";
 import { getAllAditionalData } from "../../store/aditionalData/actions";
 import styles from "./index.module.css";
@@ -39,7 +37,7 @@ const JobsForm = ({ values, handleChange, handleSubmit, handleClose }) => {
 
   //Ejemplo
   const classes = useStyles();
-  const theme = useTheme();
+  //const theme = useTheme();   No se está utilizandoo
 
   // const [inputValues, setInputValues] = useState({})
   const dispatch = useDispatch();
@@ -62,11 +60,11 @@ const JobsForm = ({ values, handleChange, handleSubmit, handleClose }) => {
   //     dispatch(createJob(inputValues)).then((res) => console.log(res.data))
   // }
 
+  if(singleCompany.id) values.companyId = singleCompany.id;
   useEffect(() => {
-    values.companyId = singleCompany.id;
     dispatch(getAllAditionalData());
     dispatch(getCompanies());
-  }, [dispatch, singleCompany]);
+  }, [dispatch]);
 
   return (
     <>

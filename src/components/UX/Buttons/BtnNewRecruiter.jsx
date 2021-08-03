@@ -10,21 +10,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const BtnNewRecruiter = ({ name, onClick }) => {
-  const classes = useStyles()
+const BtnNewRecruiter = ({ name, onClick, disabled }) => {
+  const classes = useStyles();
 
   return (
-    
     <div className={classes.root}>
-      <Button 
-       style={{}}
-       variant='contained'
-       color='primary'
-       onClick={onClick}>
+      <Button
+        disabled={disabled}
+        style={{}}
+        variant="contained"
+        color="primary"
+        onClick={onClick}
+      >
         {name}
       </Button>
     </div>
-  )
-}
+  );
+};
 
 export default BtnNewRecruiter

@@ -8,20 +8,19 @@ import {
   FormControl,
   InputLabel,
   Select,
-  Input,
   MenuItem,
-  useTheme,
 } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { createJob, getAllJobs, updateJob } from '../../store/jobs/jobs'
+import { getAllJobs, updateJob } from '../../store/jobs/jobs'
 import { getCompanies } from '../../store/companies/companies'
 import { getAllAditionalData } from '../../store/aditionalData/actions'
 import styles from './index.module.css'
-import useModal from './useModal'
 import { message } from 'antd'
 
 const UpdateJob = ({ job, handleClose }) => {
-  const { setOpen, setOpenUpdate } = useModal()
+
+
+   // const { setOpen, setOpenUpdate } = useModal() Este modal no se está utilizando
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,8 +76,6 @@ const UpdateJob = ({ job, handleClose }) => {
       }
     })
   }
-
-  const theme = useTheme()
 
   const countryArr = ['Argentina']
 

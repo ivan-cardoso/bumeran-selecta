@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { createRec } from '../../store/recruiter/actions'
 import RecruiterForm from './RecruiterForm'
 import {
@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const Recruiter = ({ setRecruiters }) => {
   const clases = useStyles();
   const dispatch = useDispatch()
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
-    useModal();
+  const { open, handleOpen, handleClose, classes, modalStyle } = useModal();
 
   const initialFormValues = {
     name: null,
@@ -47,10 +46,10 @@ const Recruiter = ({ setRecruiters }) => {
     seniority3: null,
   };
   const [values, setValues] = useState(initialFormValues)
+  const { user } = useSelector((state) => state);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(values);
+    e.preventDefault();
     dispatch(createRec(values))
       .then((recruiterCreated) => {
         if (recruiterCreated.payload.bio) {
@@ -80,16 +79,15 @@ const Recruiter = ({ setRecruiters }) => {
 
   return (
     <>
-
       <Paper className={clases.pageContent}>
         <Grid item xs={6}></Grid>
-        
+
         <div className={s.divAddBtn}>
           <BtnNewRecuiter
+            disabled={user.roleId === 4}
             onClick={() => handleOpen()}
             label="Add"
             name="Agregar Nuevo Reclutador"
-
           ></BtnNewRecuiter>
         </div>
         <Modal

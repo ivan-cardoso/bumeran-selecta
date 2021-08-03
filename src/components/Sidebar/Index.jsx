@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import * as FaIcons from 'react-icons/fa'
-import s from './sidebar.css'
+// import * as FaIcons from 'react-icons/fa'
+import s from './sidebar.css'  // No entiendo como se esta utilizando si en el Wrng aparece que no. (Christian)
 import * as IoIcons from 'react-icons/io'
 import { MdWork } from 'react-icons/md'
 import { AiFillHome } from 'react-icons/ai'
@@ -58,13 +58,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
-
-// <div key={index} className={item.cName}>
-//       //   <Link to={item.path}>
-//       //     <h1 className='icon-container'>
-//       //       {item.icon}
-//       //       <span className={s.names}>{item.title}</span>
-//       //     </h1>
-//       //   </Link>
-//       // </div>
+export default Sidebar;

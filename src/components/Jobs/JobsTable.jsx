@@ -10,7 +10,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import jobsColums from './JobsData'
 import JobsTableBody from './JobsTableBody'
-import { useSelector } from 'react-redux'
+
 
 const JobsTable = ({ jobs }) => {
   const useStyles = makeStyles({
@@ -40,9 +40,10 @@ const JobsTable = ({ jobs }) => {
                   </TableCell>
                 )
               })}
-              <TableCell align='center'>Editar</TableCell>
+
+              {/* <TableCell align='center'>Editar</TableCell>
               <TableCell align='center'>Ver mas</TableCell>
-              <TableCell align='center'>Asignar</TableCell>
+              <TableCell align='center'>Asignar</TableCell> */}
             </TableRow>
           </TableHead>
 

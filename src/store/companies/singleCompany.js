@@ -7,12 +7,12 @@ export const getOneSingleCompany = createAsyncThunk(
   'getOneSingleCompany',
   (id) => {
     return axios
-      .get(`/api/companies/jobs/${id}`)
+      .get(`/api/companies/singlecompany/${id}`)
       .then((res) => res.data)
       .then((values) => values)
       .catch((err) => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   }
 )
 
