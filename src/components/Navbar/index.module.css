@@ -63,9 +63,32 @@ h4 {
 
 .buttonChangePassword {
   text-align: center;
-  margin-top: 35px;
   background: #e90066;
   border-radius: 8px;
   color: white;
   border: #e90066;
+  cursor: pointer;
+}
+
+.buttonEdit{
+  cursor: pointer;
+  text-align: center;
+  width: 30%;
+  background: #1900ff;
+  border-radius: 8px;
+  color: white;
+  border: #1900ff;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-around;
+}
+
+.inputs{
+  padding: 10px;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
 }
