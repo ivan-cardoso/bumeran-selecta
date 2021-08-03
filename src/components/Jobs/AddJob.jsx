@@ -75,7 +75,7 @@ const AddJob = ({ setCreate }) => {
     <>
       <div style={{ marginLeft: 300, marginTop: 20 }}>
         <BtnCreateNewJobs
-          disabled={user.roleId === 4}
+          disabled={user.role.name === "auditor"}
           onClick={handleOpen}
           name="Crear búsqueda"
         ></BtnCreateNewJobs>

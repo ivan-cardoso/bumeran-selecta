@@ -38,7 +38,7 @@ function RecruiterTableBody({
 
   // const [confirmDelete, setConfirmDelete] = useState(false); No se esta utilizando
 
-  const { user } = useSelector((state) => state);
+  const { role } = useSelector((state) => state.user);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -93,8 +93,10 @@ function RecruiterTableBody({
                 <TableCell align="right">
                   {
                     <button
-                      disabled={user.roleId === 4}
-                      className={user.roleId === 4 ? null : styles.editButton}
+                      disabled={role.name === "auditor"}
+                      className={
+                        role.name === "auditor" ? null : styles.editButton
+                      }
                       onClick={() => {
                         handleUpdateRecruiter(recruiter);
                       }}
@@ -110,11 +112,13 @@ function RecruiterTableBody({
                     onCancel={() => message.error("cancelado")}
                     okText="confirmar"
                     cancelText="cancelar"
-                    disabled={user.roleId !== 3}
+                    disabled={role.name !== "admin"}
                   >
                     <button
-                      disabled={user.roleId !== 3}
-                      className={user.roleId === 3 ? styles.deleteButton : null}
+                      disabled={role.name !== "admin"}
+                      className={
+                        role.name === "admin" ? styles.deleteButton : null
+                      }
                     >
                       <DeleteIcon />
                     </button>

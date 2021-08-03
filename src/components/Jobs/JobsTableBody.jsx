@@ -120,11 +120,11 @@ const JobsTableBody = ({ jobs }) => {
                 <TableCell align="center" style={{padding:"4px"}}>
                   <button
                     className={
-                      job.isOpen === "cerrada" || user.roleId === 4
+                      job.isOpen === "cerrada" || user.role.name === 'auditor'
                         ? null
                         : styles.editButton
                     }
-                    disabled={job.isOpen === "cerrada" || user.roleId === 4}
+                    disabled={job.isOpen === "cerrada" || user.role.name === 'auditor'}
                     onClick={() => {
                       handleUpdateJob(job);
                     }}
@@ -144,12 +144,12 @@ const JobsTableBody = ({ jobs }) => {
                 <TableCell align="center" style={{padding:"4px"}}>
                   <button
                     className={
-                      job.recruiterId || user.roleId === 4 || user.roleId === 1
+                      job.recruiterId || user.role.name === 'auditor' || user.role.name === 'operador'
                         ? null
                         : styles.assignRecruiterButton
                     }
                     disabled={
-                      job.recruiterId || user.roleId === 4 || user.roleId === 1
+                      job.recruiterId || user.role.name === 'auditor' || user.role.name === 'operador'
                     }
                     onClick={() => {
                       setSelectedJob({

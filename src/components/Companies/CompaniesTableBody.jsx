@@ -67,8 +67,8 @@ function CompaniesTableBody({ companies, setShowTable }) {
                 <TableCell align="left">
                   {
                     <button
-                      disabled={user.roleId === 4}
-                      className={user.roleId === 4 ? null : styles.editButton}
+                      disabled={user.role.name === 'auditor'}
+                      className={user.role.name === 'auditor' ? null : styles.editButton}
                       onClick={() => {
                         handleUpdateCompany(company);
                       }}
@@ -83,11 +83,11 @@ function CompaniesTableBody({ companies, setShowTable }) {
                     onConfirm={() => handleDelete(id)}
                     okText="confirmar"
                     cancelText="cancelar"
-                    disabled={user.roleId !== 3}
+                    disabled={user.role.name !== 'admin'}
                   >
                     <button
-                      disabled={user.roleId !== 3}
-                      className={user.roleId === 3 ? styles.deleteButton : null}
+                      disabled={user.role.name !== 'admin'}
+                      className={user.role.name === 'admin' ? styles.deleteButton : null}
                     >
                       <DeleteIcon />
                     </button>

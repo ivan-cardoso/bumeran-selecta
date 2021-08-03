@@ -84,7 +84,7 @@ const Recruiter = ({ setRecruiters }) => {
 
         <div className={s.divAddBtn}>
           <BtnNewRecuiter
-            disabled={user.roleId === 4}
+            disabled={user.role.name === "auditor"}
             onClick={() => handleOpen()}
             label="Add"
             name="Agregar Nuevo Reclutador"

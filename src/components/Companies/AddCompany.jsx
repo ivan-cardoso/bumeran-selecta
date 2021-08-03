@@ -47,7 +47,7 @@ export default function AddCompany({ values, setValues, handleInputChange }) {
       <Grid item xs={6}></Grid>
 
       <Button
-        disabled={user.roleId === 4}
+        disabled={user.role.name === "auditor"}
         onClick={handleOpen}
         variant="contained"
         color="primary"
