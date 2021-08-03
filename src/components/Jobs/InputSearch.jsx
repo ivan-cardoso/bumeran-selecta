@@ -15,10 +15,12 @@ export default function InputSearch() {
     area: '',
     seniority: '',
     isOpen: null,
+    country : ""
   })
   const [selectedArea, setSelectedArea] = useState('')
   const [isOpen, setIsOpen] = useState('')
   const [selectedSeniority, setSelectedSeniority] = useState('')
+  const [selectedCountry, setSelectedCountry] = useState("")
 
   const handleInputChange = async (e) => {
     const { value, name } = e.target
@@ -26,6 +28,7 @@ export default function InputSearch() {
     if (name === 'area') setSelectedArea(value)
     if (name === 'isOpen') setIsOpen(value)
     if (name === 'seniority') setSelectedSeniority(value)
+    if (name == "country" ) setSelectedCountry(value)
 
     await setValues({ ...values, [name]: value })
     const inputValues = { ...values, [name]: value }
@@ -81,6 +84,15 @@ export default function InputSearch() {
             setValues={setValues}
             handleAreaChange={handleInputChange}
           />
+
+          <FilteredArea
+            selectedValue={selectedCountry}
+            name='country'
+            title='País'
+            values={[{name : "Argentina"}]}
+            setValues={setValues}
+            handleAreaChange={handleInputChange}
+          />
         </div>
         <div className={styles.filterOptionContainer}>
           {selectedArea && (
@@ -105,6 +117,14 @@ export default function InputSearch() {
               onClick={() => clearFilter(setSelectedSeniority, 'seniority')}
             >
               {selectedSeniority} <TiDelete className={styles.deleteicon} />
+            </p>
+          )}
+          {selectedCountry && (
+            <p
+              className={styles.filterOption}
+              onClick={() => clearFilter(setSelectedCountry, 'country')}
+            >
+              {selectedCountry} <TiDelete className={styles.deleteicon} />
             </p>
           )}
         </div>

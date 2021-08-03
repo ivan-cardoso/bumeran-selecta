@@ -43,7 +43,6 @@ const AddJob = ({ setCreate }) => {
       ...values,
       [name]: value,
     })
-    console.log(values)
   }
 
   const handleSubmit = (e) => {
