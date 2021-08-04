@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { PieChart, Pie, Cell, Legend } from 'recharts'
+import React, { useEffect, useState, PureComponent } from 'react'
+import {
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  BarChart,
+  Bar,
+  Legend,
+} from 'recharts'
+
+// import { PieChart, Pie, Cell, Legend } from 'recharts'
 import axios from 'axios'
 import s from './index.module.css'
 
 function ChartbyArea() {
   const [areas, setAreas] = useState([])
+  const [legend, setLegend] = useState([])
 
   useEffect(() => {
     axios
@@ -21,76 +32,57 @@ function ChartbyArea() {
       })
   }, [])
 
-  const colors = [
-    "#242331",
-    "#3C312F",
-    "#533E2D",
-    "#90A45E",
-    "#A27035",
-    "#AD7E40",
-    "#B88B4A",
-    "#CBAB64",
-    "#CBAB64",
-    "#DDCA7D",
-    "#A83264",
-    "#A88159",
-    "#a5cfb0",
-    "#6364d6",
-  ];
-  const RADIAN = Math.PI / 180
+  class CustomizedAxisTick extends PureComponent {
+    render() {
+      const { x, y, stroke, payload } = this.props
 
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    index,
-  }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.6
-    const x = cx + radius * Math.cos(-midAngle * RADIAN)
-    const y = cy + radius * Math.sin(-midAngle * RADIAN)
-
-    return (
-      <text
-        x={x}
-        y={y}
-        fill='white'
-        textAnchor={x > cx ? 'start' : 'end'}
-        dominantBaseline='central'
-      >
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    )
+      return (
+        <g transform={`translate(${x},${y})`}>
+          <text
+            fontSize='10px'
+            x={0}
+            y={0}
+            dy={16}
+            textAnchor='end'
+            fill='#666'
+            transform='rotate(-30)'
+          >
+            {payload.value}
+          </text>
+        </g>
+      )
+    }
   }
+
   return (
     <div className={s.contenedor}>
       <div className={s.title}>
         <h1>Busquedas por Area</h1>
       </div>
       <div className={s.graficos}>
-        <PieChart width={600} height={200}>
-          <Legend
-            cy='20%'
-            layout='vertical'
-            align='left'
-            verticalAlign='middle'
+        <BarChart
+          width={900}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+          height={250}
+          data={areas}
+        >
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis
+            dataKey='name'
+            height={130}
+            tick={<CustomizedAxisTick />}
+            interval={0}
           />
-          <Pie
-            data={areas}
-            cx='55%'
-            // cy='20%'
-            dataKey='value'
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={100}
-          >
-            {areas.map((areas, index) => (
-              <Cell key={areas.areaId} fill={colors[index]} />
-            ))}
-          </Pie>
-        </PieChart>
+
+          <YAxis />
+          <Tooltip />
+          <Bar dataKey='value' fill='#8884d8' />
+        </BarChart>
       </div>
     </div>
   )

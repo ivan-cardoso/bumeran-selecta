@@ -22,17 +22,20 @@ function ChartBySeniority() {
   }, [])
 
   const colors = [
-    '#848C8E',
-    '#646E73',
-    '#435058',
+    '#242331',
+    '#3C312F',
+    '#533E2D',
     '#90A45E',
-    'DCF763',
-    'CED78D',
-    'BFB7B6',
-    'CCC6C4',
-    'D8D5D2',
-    'F1F2EE',
-    'FFF',
+    '#A27035',
+    '#AD7E40',
+    '#B88B4A',
+    '#CBAB64',
+    '#CBAB64',
+    '#DDCA7D',
+    '#A83264',
+    '#A88159',
+    '#a5cfb0',
+    '#6364d6',
   ]
   const RADIAN = Math.PI / 180
 
@@ -76,7 +79,7 @@ function ChartBySeniority() {
           />
           <Pie
             data={areas}
-            cx='55%'
+            cx='40%'
             // cy='20%'
             dataKey='value'
             labelLine={false}
