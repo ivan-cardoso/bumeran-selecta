@@ -58,7 +58,6 @@ function RecruiterTableBody({
     });
   };
   const handleSingleView = (recruiter) => {
-    dispatch(singleRecruiter(recruiter));
     history.push(`/recruiters/${recruiter.id}`);
   };
   return (

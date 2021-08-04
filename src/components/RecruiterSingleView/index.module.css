@@ -85,8 +85,7 @@
   box-shadow: 2px 2px 10px 1px #cecccc;
 }
 
-/* width: 25%;
-    background-color: rgb(253, 248, 255);
-    padding: 1rem;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px 1px #cecccc;  */
+.circularProgress{
+  display: flex;
+  justify-content: center;
+}

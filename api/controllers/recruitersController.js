@@ -173,6 +173,18 @@ const recruitersController = {
     })
       .then((data) => res.status(200).json(data))
       .catch((err) => next(err));
+  },
+
+  async findOne(req, res, next) {
+    try {
+      const recruiter = await Recruiters.findOne({
+        where: { id: req.params.id },
+        include: { all: true },
+      });
+      res.status(200).json(recruiter);
+    } catch (err) {
+      next(err);
+    }
   }
 }
 
