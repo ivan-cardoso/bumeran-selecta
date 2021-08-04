@@ -6,7 +6,6 @@ import { Button, Backdrop } from "@material-ui/core";
 import style from "./index.module.css";
 import SimpleRating from "../RecruiterSingleView/RatingView";
 import BTN from "../UX/Buttons/BtnGoBack";
-import { singleRecruiter } from "../../store/recruiter/actions";
 import { ImLocation } from "react-icons/im";
 import { MdTimer } from "react-icons/md";
 import { BsFillPersonLinesFill } from "react-icons/bs";
@@ -38,9 +37,8 @@ const JobSingleView = () => {
   };
 
   const handleViewRecruiter = (recruiter) => {
-    dispatch(singleRecruiter(recruiter))
-    history.push(`/recruiters/${recruiter.id}`)
-  }
+    history.push(`/recruiters/${recruiter.id}`);
+  };
 
   const handleDeleteAssing = (Job) => {
     axios

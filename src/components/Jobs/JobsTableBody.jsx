@@ -24,7 +24,6 @@ import useModal from "./useModal";
 import UpdateJob from "./UpdateJob";
 import { useHistory } from "react-router-dom";
 
-import { singleRecruiter } from "../../store/recruiter/actions";
 
 const JobsTableBody = ({ jobs }) => {
   const { open, setOpen, handleClose, classes, modalStyle } = useModal();
@@ -61,9 +60,8 @@ const JobsTableBody = ({ jobs }) => {
   };
 
   const handleViewRecruiter = (recruiter) => {
-    dispatch(singleRecruiter(recruiter))
-    history.push(`/recruiters/${recruiter.id}`)
-  }
+    history.push(`/recruiters/${recruiter.id}`);
+  };
   const handleViewCompany = (company) => {
     history.push(`/companies/${company.id}`);
   };
