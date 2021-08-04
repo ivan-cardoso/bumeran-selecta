@@ -24,6 +24,7 @@ export default function DenseTable({
   setValues,
   setSelectedArea,
   setSelectedSeniority,
+  setActive,
 }) {
   const classes = useStyles();
   const [showTable, setShowTable] = useState(true);
@@ -43,8 +44,8 @@ export default function DenseTable({
     seniority1: null,
     seniority2: null,
     seniority3: null,
-  }
-  const [updateValues, setUpdateValues] = useState(initialFormValues)
+  };
+  const [updateValues, setUpdateValues] = useState(initialFormValues);
 
   const handleSubmit = (e, updateValues) => {
     e.preventDefault();
@@ -52,16 +53,16 @@ export default function DenseTable({
       .put(`/api/recruiters/${updateValues.id}`, updateValues)
       .then((res) => res.data)
       .then((data) => {
-        if (data) message.success('usuario modificado con exito')
-        setUpdateValues(initialFormValues)
+        if (data) message.success("usuario modificado con exito");
+        setUpdateValues(initialFormValues);
         setValues({
-          search: '',
-          area1: '',
-          seniority1: '',
-        })
-        setSelectedSeniority('')
-        setSelectedArea('')
-        getAllRecruiters().then((recruiters) => setRecruiters(recruiters))
+          search: "",
+          area1: "",
+          seniority1: "",
+        });
+        setSelectedSeniority("");
+        setSelectedArea("");
+        getAllRecruiters().then((recruiters) => setRecruiters(recruiters));
       })
       .catch(() => message.error("error, por favor intente mas tarde"));
   };
@@ -93,6 +94,7 @@ export default function DenseTable({
               setShowTable={setShowTable}
               setUpdateInfo={setUpdateInfo}
               handleSubmit={handleSubmit}
+              setActive={setActive}
             />
           </Table>
         </TableContainer>

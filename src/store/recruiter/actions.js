@@ -12,8 +12,7 @@ export const createRec = createAsyncThunk('CREATE_REC', (recruiter) => {
 export const singleRecruiter = createAction('singleRecruiter')
 
 export const getAllRecruiters = createAsyncThunk("GET_ALL_RECRUITERS", () => {
-  return axios.get('/api/recruiters')
-  .then((res) => res.data)
+  return axios.get("/api/recruiters").then((res) => res.data);
 })
 
 export const getRecruiterSearch = createAsyncThunk("GET_RECRUITER_SEARCH", (values)=>{
@@ -26,8 +25,9 @@ export const getRecruiterSearch = createAsyncThunk("GET_RECRUITER_SEARCH", (valu
 const recruiterReducer = createReducer([], {
   [createRec.fulfilled]: (state, action) => action.payload,
   [singleRecruiter]: (state, action) => action.payload,
-  [getRecruiterSearch.fulfilled] : (state, action) => action.payload
-})
+  [getAllRecruiters.fulfilled]: (state, action) => action.payload,
+  [getRecruiterSearch.fulfilled]: (state, action) => action.payload,
+});
 
 export default recruiterReducer
 

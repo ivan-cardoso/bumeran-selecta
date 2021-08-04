@@ -11,7 +11,7 @@ router.get(
   companiesController.getAllJobsAssignedByRecruiterId
 )
 router.put('/:id', companiesController.updateByPk)
-router.delete('/:id', companiesController.destroyCompaniesByPk)
+router.put("/active/:id", companiesController.destroyCompaniesByPk);
 router.post('/', companiesController.findOrCreateCompanies)
 router.get('/', companiesController.findAll)
 

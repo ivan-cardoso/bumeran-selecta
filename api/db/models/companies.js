@@ -15,13 +15,14 @@ Companies.init(
     },
     contactName: {
       type: S.STRING,
-      allowNull:  false,
+      allowNull: false,
     },
     img: { type: S.TEXT },
     description: {
       type: S.TEXT,
       allowNull: false,
     },
+    active: { type: S.BOOLEAN, defaultValue: true },
   },
   { sequelize: db, timestamps: false, modelName: "companies" }
 );

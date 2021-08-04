@@ -7,51 +7,60 @@ const companiesController = {
     try {
       const companies = await Companies.findAll({
         include: [{ model: States }, { model: Areas }],
-      })
-      res.status(200).json(companies)
+        
+        where:  {  active:  true  },
+      });
+      res.status(200).json(companies);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
   async findOrCreateCompanies(req, res, next) {
     try {
       const { name, stateId, email, contactName, img, description, areaId } =
-        req.body
+        req.body;
 
       const [companies, created] = await Companies.findOrCreate({
         where: { name, email },
         defaults: { stateId, contactName, img, description, areaId },
-      })
-      if (created) res.status(201).json(companies)
-      else res.sendStatus(500)
+      });
+      if (created) res.status(201).json(companies);
+      else res.sendStatus(500);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
   async updateByPk(req, res, next) {
     try {
       const { name, stateId, email, contactName, img, description, areaId } =
-        req.body
+        req.body;
 
       const [update, companies] = await Companies.update(
         { name, stateId, email, contactName, img, description, areaId },
         { where: { id: req.params.id }, returning: true }
-      )
+      );
 
-      res.status(200).json(companies)
+      res.status(200).json(companies);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
   async destroyCompaniesByPk(req, res, next) {
     try {
-      await Companies.destroy({ where: { id: req.params.id } })
-      res.sendStatus(200)
+      await Companies.update(
+        {
+          active: false,
+        },
+        { where: { id: req.params.id } }
+      );
+      res.sendStatus(200);
+      // await Companies.destroy({ where: { id: req.params.id } });
+      // res.sendStatus(200);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
@@ -84,10 +93,10 @@ const companiesController = {
 
           //fin incluir modelos
         ],
-      })
-      res.status(200).json(companies)
+      });
+      res.status(200).json(companies);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
@@ -96,10 +105,10 @@ const companiesController = {
       const jobs = await Jobs.findAll({
         where: { companyId: req.params.id },
         include: { all: true },
-      })
-      res.status(200).json(jobs)
+      });
+      res.status(200).json(jobs);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
   async getAllJobsByRecruiterId(req, res, next) {
@@ -107,21 +116,21 @@ const companiesController = {
       const jobs = await Jobs.findAll({
         where: { recruiterId: req.params.id },
         include: { all: true },
-      })
-      res.status(200).json(jobs)
+      });
+      res.status(200).json(jobs);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
   async getAllJobsAssignedByRecruiterId(req, res, next) {
     try {
       const jobs = await Jobs.findAll({
-        where: { recruiterId: req.params.id, isOpen: 'asignada' },
+        where: { recruiterId: req.params.id, isOpen: "asignada" },
         include: { all: true },
-      })
-      res.status(200).json(jobs)
+      });
+      res.status(200).json(jobs);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
@@ -130,12 +139,12 @@ const companiesController = {
       const singleCompany = await Companies.findOne({
         where: { id: req.params.id },
         include: { all: true },
-      })
-      res.status(200).json(singleCompany)
+      });
+      res.status(200).json(singleCompany);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
-}
+};
 
 module.exports = companiesController

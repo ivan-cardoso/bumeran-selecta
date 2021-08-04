@@ -12,6 +12,6 @@ router.get("/:id", recruitersController.findOne);
 router.post("/filter", recruitersController.findAllBySearch)
 router.post('/', recruitersController.findOrCreateRecruiter)
 router.put('/:id', recruitersController.updateByPk)
-router.delete('/:id', recruitersController.destroyRecrutierByPk)
+router.put("/active/:id", recruitersController.destroyRecrutierByPk);
 
 module.exports = router

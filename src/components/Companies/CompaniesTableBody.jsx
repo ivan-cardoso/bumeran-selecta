@@ -34,10 +34,10 @@ function CompaniesTableBody({ companies, setShowTable }) {
   const dispatch = useDispatch()
 
   const handleDelete = (id) => {
-    axios.delete(`/api/companies/${id}`).then((res) => {
-      message.success('Compañia eliminada')
-      dispatch(getCompanies())
-    })
+    axios.put(`/api/companies/active/${id}`).then((res) => {
+      message.success("Compañia eliminada");
+      dispatch(getCompanies());
+    });
   }
   const handleUpdateCompany = (company) => {
     setUpdateInfo(company)

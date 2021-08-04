@@ -21,17 +21,30 @@ function RecruiterTableBody({
   setRecruiters,
   setShowTable,
   handleSubmit,
+  setActive,
 }) {
   const { open, setOpen, handleClose, classes, modalStyle } = useModal();
-  const handleDelete = (id) => {
+  // const updateActive = (id) => {
+  //   axios
+  //     .delete(`/api/recruiters/${id}`)
+  //     .then((res) => res.data)
+  //     .then((recruiterDestroyed) => {
+  //       const recruitersWithoutElimiated = recruiters.filter(
+  //         (recruiter) => recruiter.id !== recruiterDestroyed.id
+  //       );
+  //       setRecruiters(recruitersWithoutElimiated);
+  //     })
+  //     .then(() => message.success("usuario eliminado"));
+  // };
+  const updateActive = (id) => {
     axios
-      .delete(`/api/recruiters/${id}`)
+      .put(`/api/recruiters/active/${id}`)
       .then((res) => res.data)
-      .then((recruiterDestroyed) => {
+      .then((recruiterDisabled) => {
         const recruitersWithoutElimiated = recruiters.filter(
-          (recruiter) => recruiter.id !== recruiterDestroyed.id
+          (recruiter) => recruiter.id !== recruiterDisabled.id
         );
-        setRecruiters(recruitersWithoutElimiated);
+        setActive(recruitersWithoutElimiated);
       })
       .then(() => message.success("usuario eliminado"));
   };
@@ -78,21 +91,24 @@ function RecruiterTableBody({
             return (
               <TableRow key={id}>
                 <TableCell align="center">
-                  <div 
+                  <div
                     className={styles.recruiterImgContainer}
                     onClick={() => handleSingleView(recruiter)}
                   >
-                    {recruiter.img ? 
+                    {recruiter.img ? (
                       <>
-                        <img src={recruiter.img}
+                        <img
+                          src={recruiter.img}
                           alt={name}
                           className={styles.recruiterImg}
-                          
-                         />
-                      </> 
-                      : <img src="https://static.thenounproject.com/png/3674270-200.png"
-                          className={styles.recruiterImg}
-                        />}
+                        />
+                      </>
+                    ) : (
+                      <img
+                        src="https://static.thenounproject.com/png/3674270-200.png"
+                        className={styles.recruiterImg}
+                      />
+                    )}
                   </div>
                 </TableCell>
                 <TableCell align="center">{name}</TableCell>
@@ -107,7 +123,7 @@ function RecruiterTableBody({
                 </TableCell>
                 <TableCell align="center">{favoriteArea1}</TableCell>
                 <TableCell align="center">{seniority1}</TableCell>
-                <TableCell align="right" style={{padding:"4px"}}>
+                <TableCell align="right" style={{ padding: "4px" }}>
                   {
                     <button
                       disabled={role.name === "auditor"}
@@ -122,10 +138,10 @@ function RecruiterTableBody({
                     </button>
                   }
                 </TableCell>
-                <TableCell align="right" style={{padding:"4px"}}>
+                <TableCell align="right" style={{ padding: "4px" }}>
                   <Popconfirm
                     title={`¿estas seguro que deseas eliminar el usuario ${email} ?`}
-                    onConfirm={() => handleDelete(id)}
+                    onConfirm={() => updateActive(id)}
                     onCancel={() => message.error("cancelado")}
                     okText="confirmar"
                     cancelText="cancelar"
@@ -141,7 +157,7 @@ function RecruiterTableBody({
                     </button>
                   </Popconfirm>
                 </TableCell>
-                <TableCell align="right" style={{padding:"4px"}}>
+                <TableCell align="right" style={{ padding: "4px" }}>
                   <button
                     className={styles.singleViewButton}
                     onClick={() => handleSingleView(recruiter)}
