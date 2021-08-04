@@ -13,7 +13,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 //import { getAllJobs, deleteJob } from '../../store/jobs/jobs'
-import { getSingleJob } from "../../store/jobs/getSingleJob";
+import { getSingleJob, getOneSingleJob } from "../../store/jobs/getSingleJob";
 import ModalRecomendation from "../Recomendations/Index";
 import styles from "../RecruiterForm/index.module.css";
 import { TiDelete } from "react-icons/ti";
@@ -56,7 +56,8 @@ const JobsTableBody = ({ jobs }) => {
   };
 
   const handleSingleJob = (job) => {
-    dispatch(getSingleJob(job));
+    // dispatch(getSingleJob(job));
+    dispatch(getOneSingleJob(job.id)).then((job)=> console.log("GETONE-TABLEBODY",job))
     history.push(`/jobs/${job.id}`);
   };
 
