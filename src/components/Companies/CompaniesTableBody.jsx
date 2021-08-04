@@ -58,13 +58,28 @@ function CompaniesTableBody({ companies, setShowTable }) {
 
             return (
               <TableRow key={id}>
+                <TableCell align="center">
+                  <div className={styles.recruiterImgContainer}>
+                    {company.img ? 
+                      <>
+                        <img src={company.img}
+                          alt={company.img}
+                          className={styles.companyImg}
+                          onClick={() => handleSingleView(company)}
+                         />
+                      </> 
+                      : <img src="https://static.thenounproject.com/png/3674270-200.png"
+                          className={styles.companyImg}
+                        />}
+                  </div>
+                </TableCell>
                 <TableCell align="center">{name}</TableCell>
                 <TableCell align="center">{email}</TableCell>
                 <TableCell align="center">
                   {state ? state.name : null}
                 </TableCell>
                 <TableCell align="center">{area ? area.name : null}</TableCell>
-                <TableCell align="left">
+                <TableCell align="center" style={{padding:"4px"}}>
                   {
                     <button
                       disabled={user.roleId === 4}
@@ -77,7 +92,7 @@ function CompaniesTableBody({ companies, setShowTable }) {
                     </button>
                   }
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="center" style={{padding:"4px"}}>
                   <Popconfirm
                     title={`¿estas seguro que deseas eliminar esta compañia?`}
                     onConfirm={() => handleDelete(id)}
@@ -93,7 +108,7 @@ function CompaniesTableBody({ companies, setShowTable }) {
                     </button>
                   </Popconfirm>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="center" style={{padding:"4px"}}>
                   <button
                     className={styles.singleViewButton}
                     onClick={() => handleSingleView(company)}

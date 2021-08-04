@@ -87,7 +87,9 @@ const JobsTableBody = ({ jobs }) => {
                           onClick={() => handleViewCompany(job.company)}
                          />
                       </> 
-                      : <h4 className={styles.imgNotFound} ><FaRegUserCircle/></h4>}
+                      : <img src="https://static.thenounproject.com/png/3674270-200.png"
+                          className={styles.companyImg}
+                        />}
                   </div>
                 </TableCell>
                 <TableCell align="center">{job.title}</TableCell>
@@ -107,13 +109,38 @@ const JobsTableBody = ({ jobs }) => {
                     <div className={styles.recruiterImgContainer} 
                     onClick={() => handleViewRecruiter(job.recruiter)}>
                       {job.recruiter.img ? 
-                        <>
                           <img src={job.recruiter.img} alt={job.recruiter.name} className={styles.recruiterImg} />
-                        </> : <h4 className={styles.imgNotFound} ><FaRegUserCircle/></h4>}
+                        : 
+                          <img src="https://static.thenounproject.com/png/3674270-200.png"
+                            className={styles.recruiterImg}
+                          />}
                       {job.recruiter.name}
                     </div>
                     </>
-                   : <h4 className={styles.noRecruiterIcon}  ><TiDelete/></h4>}
+                  //  <h4 className={styles.noRecruiterIcon}  ><TiDelete/></h4>
+                  : 
+                   <button
+                    className={
+                      job.recruiterId || user.roleId === 4 || user.roleId === 1
+                        ? null
+                        : styles.assignRecruiterButton
+                    }
+                    disabled={
+                      job.recruiterId || user.roleId === 4 || user.roleId === 1
+                    }
+                    onClick={() => {
+                      setSelectedJob({
+                        area: job.area.name,
+                        seniority: job.seniority.name,
+                        id: job.id,
+                      });
+
+                      assignRecruiter();
+                    }}
+                  >
+                    <PersonAddIcon />
+                  </button>
+                   }
                    
                 </TableCell>
 
@@ -141,7 +168,7 @@ const JobsTableBody = ({ jobs }) => {
                     <VisibilityIcon />
                   </button>
                 </TableCell>
-                <TableCell align="center" style={{padding:"4px"}}>
+                {/* <TableCell align="center" style={{padding:"4px"}}>
                   <button
                     className={
                       job.recruiterId || user.roleId === 4 || user.roleId === 1
@@ -163,7 +190,7 @@ const JobsTableBody = ({ jobs }) => {
                   >
                     <PersonAddIcon />
                   </button>
-                </TableCell>
+                </TableCell> */}
 
               </TableRow>
             );

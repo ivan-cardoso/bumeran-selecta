@@ -6,11 +6,15 @@ import { message } from "antd";
 import { useDispatch } from "react-redux";
 import { getSingleJob } from "../../store/jobs/getSingleJob";
 import s from "./index.module.css";
+import {
+  Grid,
+  TextField,
+} from "@material-ui/core";
 
 const Card = ({ setOpen, singleJob }) => {
   const { id, name, surname, img } = singleJob.recruiter;
   const [rating, setRating] = useState(0);
-  const [valueInput, setValueInput] = useState(0);
+  const [valueInput, setValueInput] = useState({candidates : 0, recruiterComment : ""});
   const dispatch = useDispatch();
 
   const handleConfirmRating = () => {
@@ -21,8 +25,9 @@ const Card = ({ setOpen, singleJob }) => {
         .put(`/api/jobs/ratingrecruiter`, {
           recruiterId: id,
           rating: rating,
-          candidates: valueInput,
+          candidates: valueInput.candidates,
           jobId: singleJob.id,
+          recruiterComment : valueInput.recruiterComment,
         })
         .then((res) => res.data)
         .then((data) => {
@@ -35,8 +40,8 @@ const Card = ({ setOpen, singleJob }) => {
   };
 
   const onChangeInput = (e) => {
-    let { value } = e.target;
-    setValueInput(value);
+    let { value, name } = e.target;
+    setValueInput({...value, [name] : value});
   };
   return (
     <>
@@ -59,10 +64,29 @@ const Card = ({ setOpen, singleJob }) => {
                   type="number"
                   onChange={onChangeInput}
                   defaultValue={0}
+                  name="candidates"
                 />
               </div>
             </div>
           </div>
+
+          <div className={s.commentContainer}>
+              <h3>Comentario sobre el reclutador (opcional)</h3>
+              
+                <TextField
+                  label="Comentario"
+                  multiline
+                  rows={3}
+                  variant="outlined"
+                  className={s.commentInput}
+                  autoComplete="disabled"
+                  onChange={onChangeInput}
+                  defaultValue={""}
+                  name="recruiterComment"
+                />
+              
+          </div>
+
         </div>
 
         <div className={s.btnContainer}>

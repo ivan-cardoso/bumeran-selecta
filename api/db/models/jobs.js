@@ -38,6 +38,10 @@ Jobs.init(
     candidates: {
       type: S.DOUBLE,
     },
+    recruiterComment : {
+      type : S.TEXT,
+      defaultValue : ""
+    }
   },
   { sequelize: db, modelName: "jobs" }
 );

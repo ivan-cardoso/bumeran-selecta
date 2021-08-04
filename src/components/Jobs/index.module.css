@@ -104,7 +104,7 @@
     padding: 1rem;
     box-shadow: 2px 2px 10px 1px #cecccc; 
     border-radius: 15px;
-    height: 80vh;
+    max-height: 88vh;
     position: sticky;
     top: 3rem;
     display:flex;
@@ -197,13 +197,13 @@
 
 .closeJobContainer{
   background-color: #d8497e;
-  padding: .3rem;
+  padding: 1.5rem;
   box-shadow: 2px 2px 10px 1px #cecccc;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 33%;
+  min-height: 8rem;
   margin-top: 2rem;
   align-self: center;
   width: 96%;
@@ -261,3 +261,19 @@
   color: #363535;
   align-self:center ;
 }
+.commentRecruiterContainer{
+  margin-top: 1rem;
+}
+.commentRecruiterTitle{
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+  color: #363535;
+}
+
+.commentRecruiter{
+  margin: 0;
+  font-size: 1.2rem;
+  color: #5c5b5b;
+}
+
