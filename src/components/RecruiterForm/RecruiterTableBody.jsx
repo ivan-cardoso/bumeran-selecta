@@ -78,6 +78,24 @@ function RecruiterTableBody({
             } = recruiter;
             return (
               <TableRow key={id}>
+                <TableCell align="center">
+                  <div 
+                    className={styles.recruiterImgContainer}
+                    onClick={() => handleSingleView(recruiter)}
+                  >
+                    {recruiter.img ? 
+                      <>
+                        <img src={recruiter.img}
+                          alt={name}
+                          className={styles.recruiterImg}
+                          
+                         />
+                      </> 
+                      : <img src="https://static.thenounproject.com/png/3674270-200.png"
+                          className={styles.recruiterImg}
+                        />}
+                  </div>
+                </TableCell>
                 <TableCell align="center">{name}</TableCell>
                 <TableCell align="center">{surname}</TableCell>
                 <TableCell align="center">{email}</TableCell>
@@ -90,7 +108,7 @@ function RecruiterTableBody({
                 </TableCell>
                 <TableCell align="center">{favoriteArea1}</TableCell>
                 <TableCell align="center">{seniority1}</TableCell>
-                <TableCell align="right">
+                <TableCell align="right" style={{padding:"4px"}}>
                   {
                     <button
                       disabled={role.name === "auditor"}
@@ -105,7 +123,7 @@ function RecruiterTableBody({
                     </button>
                   }
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="right" style={{padding:"4px"}}>
                   <Popconfirm
                     title={`¿estas seguro que deseas eliminar el usuario ${email} ?`}
                     onConfirm={() => handleDelete(id)}
@@ -124,7 +142,7 @@ function RecruiterTableBody({
                     </button>
                   </Popconfirm>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="right" style={{padding:"4px"}}>
                   <button
                     className={styles.singleViewButton}
                     onClick={() => handleSingleView(recruiter)}

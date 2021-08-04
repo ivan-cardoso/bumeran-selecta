@@ -21,7 +21,7 @@
     flex-direction: column;
     margin-left: 2rem;
 }
-.detailsContainer h4{
+.detailsContainer h3{
     margin: 0;
     padding: 0;
     color: rgb(36, 35, 35);
@@ -30,7 +30,8 @@
 }
 
 .cardImg{
-    width: 30%;
+    width: 20%;
+    height: 100%;
     border-radius: 15px;
 }
 
@@ -51,11 +52,21 @@
 }
 
 .candidatesContainer{
-    margin-top: 1.4rem;
+    margin-top: .4rem;
 }
 
 .starLabels{
     font-size: 1rem;
     color : #ff5fa2;
     font-weight: 600;
+}
+
+.commentContainer{
+    width: 100%;
+    margin-top: 1.3rem;
+}
+
+.commentInput{
+    width: 100%;
+    border-radius: 12px;
 }

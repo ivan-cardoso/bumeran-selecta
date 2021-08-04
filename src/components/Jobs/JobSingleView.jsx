@@ -189,7 +189,23 @@ const JobSingleView = () => {
                     )}
                   </div>
                 </div>
-              </div>
+                
+                {singleJob.isOpen === "cerrada" && (
+                    <div className={style.commentRecruiterContainer}>
+                    {singleJob.recruiterComment ?  
+                      <>
+                        <h4 className={style.commentRecruiterTitle}>
+                          Comentario sobre el reclutador :
+                        </h4>
+                        <p className={style.commentRecruiter}>{singleJob.recruiterComment}</p>
+                      </>
+                    : <p className={style.commentRecruiter}>
+                        No hay comentarios sobre el reclutador
+                      </p>}
+                  </div>
+                )}
+
+                </div>
             </>
           ) : (
             <h2 className={style.noRecruiter}>No existe recruta asignado</h2>

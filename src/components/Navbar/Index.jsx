@@ -202,7 +202,7 @@ const NavBar = () => {
               </h3>
               <h3>
                 <h3 className={s.stylePersonalInfo}>Rol</h3>
-                <span>{values.id && values.role.name} </span>
+                <span>{user && user.role.name} </span>
               </h3>
               <div className={s.buttons}>
                 {edit ? (

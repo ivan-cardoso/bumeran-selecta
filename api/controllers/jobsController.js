@@ -325,13 +325,14 @@ const deleteAssignRecruiter = async (req, res, next) => {
 }
 
 const ratingRecruiter = async (req, res, next) => {
-  const { recruiterId, rating, candidates, jobId } = req.body
+  const { recruiterId, rating, candidates, jobId, recruiterComment } = req.body
 
   try {
     const job = await Jobs.findByPk(jobId)
     job.isOpen = 'cerrada'
     job.candidates = candidates
     job.ratingRecruiter = rating
+    job.recruiterComment = recruiterComment
     if (job.recruiterId) {
       await job.removeSearchFromRecruiter(job.recruiterId)
     }
