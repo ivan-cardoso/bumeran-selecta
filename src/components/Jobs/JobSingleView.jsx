@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Redirect, useHistory, Link } from "react-router-dom";
+import { Redirect, useHistory, Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Backdrop } from "@material-ui/core";
 import style from "./index.module.css";
@@ -10,7 +10,7 @@ import { ImLocation } from "react-icons/im";
 import { MdTimer } from "react-icons/md";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
-import { getSingleJob } from "../../store/jobs/getSingleJob";
+import { getSingleJob, getOneSingleJob } from "../../store/jobs/getSingleJob";
 import { message } from "antd";
 import ModalRatingClose from "../ModalRatingClose/Index";
 import useModal from "./useModal";
@@ -50,9 +50,11 @@ const JobSingleView = () => {
       });
   };
 
-  
+  const params = useParams()
 
-  React.useEffect(() => {}, [singleJob])
+  React.useEffect(() => {
+    dispatch(getOneSingleJob(params.id));
+  }, [dispatch]);
 
   const { recruiter } = singleJob
 
@@ -69,10 +71,12 @@ const JobSingleView = () => {
   const [reclutadorAsignado, setReclutadorAsignado] = useState(false)
   const { company } = singleJob
 
-  React.useEffect(() => {}, [singleJob, reclutadorAsignado]);
+  // React.useEffect(() => {}, [singleJob, reclutadorAsignado]);
 
   return (
     <>
+    {singleJob.id ? (
+      <>
       <div className={style.singleJob}>
         <div className={style.jobDetailsSection}>
           <div className={style.jobDetailsContainer}>
@@ -297,6 +301,8 @@ const JobSingleView = () => {
 
         {/* TypeError: Cannot read property 'type' of undefined */}
       </div>
+      </>
+      ) : <p>...</p>}
     </>
   );
 }
