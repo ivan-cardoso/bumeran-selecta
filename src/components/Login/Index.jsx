@@ -44,8 +44,8 @@ const Login = () => {
     else {
       setIsLoading(true)
       dispatch(UserLogin(user))
-        .then((user) => {
-          if (user.type === 'UserLogin/fulfilled') history.push('/')
+        .then((response) => {
+          if (response.payload) history.push('/')
           else {
             setErrorMessage({
               type: 'password',
@@ -66,7 +66,7 @@ const Login = () => {
           errorMessage={errorMessage}
           isLoading={isLoading}
         />
-        <button onClick={() => history.goBack()}>Go back</button>
+        <button onClick={() => history.goBack()}>atras</button>
       </div>
     </>
   )

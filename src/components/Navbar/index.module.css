@@ -47,3 +47,48 @@ h4 {
   color: red;
   padding: 10px;
 }
+
+.profileUser {
+  text-align: center;
+}
+
+.stylePersonalInfo {
+  text-decoration: underline;
+  padding: 8px;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 40px;
+  border-radius: 10px;
+}
+
+.buttonChangePassword {
+  text-align: center;
+  background: #e90066;
+  border-radius: 8px;
+  color: white;
+  border: #e90066;
+  cursor: pointer;
+}
+
+.buttonEdit{
+  cursor: pointer;
+  text-align: center;
+  width: 30%;
+  background: #1900ff;
+  border-radius: 8px;
+  color: white;
+  border: #1900ff;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-around;
+}
+
+.inputs{
+  padding: 10px;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}

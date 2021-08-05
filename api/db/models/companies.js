@@ -3,28 +3,28 @@ const db = require('../db')
 
 class Companies extends S.Model{ }
 
-Companies.init({
-
+Companies.init(
+  {
     name: {
-        type: S.STRING,
-        allowNull:false
-    },
-    address: {
-        type: S.STRING,
-        allowNull:false
+      type: S.STRING,
+      allowNull: false,
     },
     email: {
-        type: S.STRING,
-        allowNull:false
+      type: S.STRING,
+      allowNull: false,
     },
-    img: { type: S.STRING },
-    
-    bio: {
-        type: S.TEXT,
-        allowNull: false
+    contactName: {
+      type: S.STRING,
+      allowNull: false,
     },
-    
-
-}, { sequelize: db, timestamps: false, modelName: 'companies' })
+    img: { type: S.TEXT },
+    description: {
+      type: S.TEXT,
+      allowNull: false,
+    },
+    active: { type: S.BOOLEAN, defaultValue: true },
+  },
+  { sequelize: db, timestamps: false, modelName: "companies" }
+);
 
 module.exports = Companies;

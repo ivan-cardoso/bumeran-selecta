@@ -9,6 +9,11 @@
   background-color: blue;
 }
 
+.all {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .inputSearchContainer {
   display: flex;
   justify-content: center;
@@ -16,9 +21,179 @@
 }
 
 .inputSearch {
+  height: 55px;
   padding: 6px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 2px solid black;
   outline: none;
-  width: 300px;
+  width: 500px;
+  border: 1px solid black;
+}
+
+.open-mesage {
+  /* The default, as in, you get this without defining anything */
+  transition-timing-function: ease;
+
+  /* Also the same as */
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.remove-mesage {
+  /* This timing applies on the way IN */
+  transition-timing-function: ease-out;
+
+  /* A litttttle slower on the way in */
+  transition: 0.25s;
+
+  /* Move into place */
+  transform: translateY(0);
+}
+.editButton {
+  background-color: white;
+  border-radius: 5px;
+  transition: ease-in 0.3s;
+}
+.editButton:hover {
+  background-color: #3f51b5;
+  color: white;
+  transition: ease-out 0.3s;
+  cursor: pointer;
+}
+.deleteButton {
+  background-color: white;
+  border-radius: 5px;
+  transition: ease-in 0.3s;
+}
+.deleteButton:hover {
+  background-color: #bf616a;
+  color: white;
+  transition: ease-out 0.3s;
+  cursor: pointer;
+}
+
+.assignRecruiterButton{
+  background-color: white;
+  border-radius: 5px;
+  transition: ease-in 0.3s;
+}
+
+.assignRecruiterButton:hover{
+  background-color: rgb(13, 157, 240);
+  color: white;
+  transition: ease-out 0.3s;
+  cursor: pointer;
+}
+
+.singleViewButton {
+  background-color: white;
+  border-radius: 5px;
+  transition: ease-in 0.3s;
+}
+.singleViewButton:hover {
+  background-color: black;
+  color: white;
+  transition: ease-out 0.3s;
+  cursor: pointer;
+}
+
+.filterContainer {
+  margin-left: 40%;
+  display: flex;
+}
+
+.removeBtn {
+  font-size: 25px;
+  color: rgb(68, 68, 213);
+
+  vertical-align: middle;
+}
+.selectedFilter {
+  font-size: 18px;
+  color: rgb(68, 68, 213);
+  text-decoration: underline;
+  font-style: italic;
+  margin-left: 40px;
+}
+
+.selectedFilter:hover {
+  cursor: pointer;
+}
+
+.divAddBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.filterOptionContainer {
+  display: flex;
+  margin: 0 auto;
+  width: 500px;
+  justify-content: space-around;
+}
+
+.filterOption {
+  font-size: 1.5vh;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.deleteicon {
+  font-size: 22px;
+  vertical-align: middle;
+  text-decoration: underline;
+}
+
+.generalBtn{
+  padding: 0;
+}
+.recruiterImgContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.recruiterImg{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid #8a61bf;
+  transition: all .5s ease;
+}
+.recruiterImg:hover{
+  border: 3px solid rgb(59, 124, 161);
+  transition: all .5s ease;
+}
+
+.companyImg{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 3px solid #3e474e80;
+  transition: all .5s ease;
+}
+.companyImg:hover{
+  border: 3px solid #8a61bf;
+  transition: all .5s ease;
+}
+
+.noRecruiterIcon{
+  font-size: 45px;
+  margin: 0;
+  padding: 0;
+  color: #74204e;
+}
+
+.imgNotFound{
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
+  color: #8a61bf;
+}
+.formControlDescription {
+  width: 93%;
 }

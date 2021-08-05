@@ -1,0 +1,72 @@
+.cardContainer{
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px 2px #ceccce; 
+}
+.cardContainer:hover{
+    background-color: rgb(243, 240, 255);
+}
+
+.topContainer{
+    display: flex;
+}
+.recruiterName{
+    color: rgb(36, 35, 35);
+    font-size:1.7rem;
+}
+
+.detailsContainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+}
+.detailsContainer h3{
+    margin: 0;
+    padding: 0;
+    color: rgb(36, 35, 35);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.cardImg{
+    width: 20%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.candidatesInput{
+    height: 2.2rem;
+    width: 35%;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.singleBtn{
+    margin:  1rem;
+}
+
+.candidatesContainer{
+    margin-top: .4rem;
+}
+
+.starLabels{
+    font-size: 1rem;
+    color : #ff5fa2;
+    font-weight: 600;
+}
+
+.commentContainer{
+    width: 100%;
+    margin-top: 1.3rem;
+}
+
+.commentInput{
+    width: 100%;
+    border-radius: 12px;
+}

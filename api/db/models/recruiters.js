@@ -25,11 +25,6 @@ Recruiters.init(
       allowNull: false,
     },
 
-    state: {
-      type: S.STRING,
-      allowNull: false,
-    },
-
     bio: {
       type: S.TEXT,
       allowNull: false,
@@ -55,12 +50,15 @@ Recruiters.init(
       type: S.STRING,
       allowNull: false,
     },
-
     seniority2: { type: S.STRING },
-
     seniority3: { type: S.STRING },
+    activeSearch: { type: S.INTEGER, defaultValue: 0 },
+    active: { type: S.BOOLEAN, defaultValue: true },
   },
-  { sequelize: db, timestamps: false, modelName: 'recruiters' }
-)
+  { sequelize: db, timestamps: false, modelName: "recruiters" }
+);
+
+//
+// Recruiters.prototype.addSearch()
 
 module.exports = Recruiters

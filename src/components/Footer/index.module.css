@@ -1,12 +1,39 @@
-.imagen {
-  width: 15%;
-  height: 90%;
-}
-
-.footer {
-  height: 10%;
-  background-color: cornflowerblue;
+.container {
+  background:#3f51b5;
   display: flex;
+  justify-content: space-around;
+  color: white;
+}
+.logo {
+  width: 20%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+}
+.logo img {
+  width: 50%;
+}
+.slogan {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slogan h1 {
+  color: white;
+}
+.social {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.social h3 {
+  color: white;
+}
+.icons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
 }

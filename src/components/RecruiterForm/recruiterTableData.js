@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 export const recruitersColums = [
+  "",
   'Nombre',
   'Apellido',
   'email',
@@ -9,9 +10,6 @@ export const recruitersColums = [
   'Rating',
   'Area Favorita',
   'Seniority',
-  'edit',
-  'delete',
-  'ver mas',
 ]
 
 export const getAllRecruiters = () => {
