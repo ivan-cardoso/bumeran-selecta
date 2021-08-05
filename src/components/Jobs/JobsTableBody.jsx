@@ -33,11 +33,6 @@ const JobsTableBody = ({ jobs }) => {
 
   const history = useHistory();
 
-  /* const handleDelete = (id) => {   No se esta utilizando 
-    dispatch(deleteJob(id))
-    dispatch(getAllJobs())
-  } */
-
   const { user } = useSelector((state) => state);
 
   const [jobValues, setJobValues] = useState();
@@ -55,8 +50,9 @@ const JobsTableBody = ({ jobs }) => {
   };
 
   const handleSingleJob = (job) => {
-    // dispatch(getSingleJob(job));
-    dispatch(getOneSingleJob(job.id)).then((job)=> console.log("GETONE-TABLEBODY",job))
+    dispatch(getOneSingleJob(job.id)).then((job) =>
+      console.log("GETONE-TABLEBODY", job)
+    );
     history.push(`/jobs/${job.id}`);
   };
 
@@ -66,9 +62,6 @@ const JobsTableBody = ({ jobs }) => {
   const handleViewCompany = (company) => {
     history.push(`/companies/${company.id}`);
   };
-  // React.useEffect(() => {
-  //   dispatch(getAllJobs());
-  // }, [ openRecruiter]);
 
   return (
     <TableBody>

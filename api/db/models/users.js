@@ -17,20 +17,9 @@ Users.init(
   { sequelize: db, timestamps: false, modelName: 'users' }
 )
 
-//  photoURL, refreshToken, displayName, uid
-
-// Users.addHook("beforeCreate", async (user) => {
-//     const salt = await bcrypt.genSalt(10);
-//     user.salt = salt;
-//     user.password = await user.hashPassword(user.password);
-// });
-
-// Users.prototype.hashPassword = async function (password) {
-//     return bcrypt.hash(password, this.salt);
-// };
-
-// Users.prototype.validatePassword = function (password) {
-//     return this.password === this.hashPassword(password);
-// };
-
+Users.addHook("beforeCreate", (user) => {
+  return (user.img = user.img
+    ? user.img
+    : "https://static.thenounproject.com/png/3674270-200.png");
+});
 module.exports = Users
