@@ -160,7 +160,7 @@ const UpdateForm = ({
               </InputLabel>
               <Select
                 name="favoriteArea2"
-                required
+                
                 defaultValue={values.favoriteArea2}
                 label="Favourite Area"
                 onChange={(e) => handleInputChange(e)}
@@ -181,7 +181,7 @@ const UpdateForm = ({
               </InputLabel>
               <Select
                 name="favoriteArea3"
-                required
+                
                 defaultValue={values.favoriteArea3}
                 label="Favourite Area"
                 onChange={(e) => handleInputChange(e)}
@@ -223,7 +223,7 @@ const UpdateForm = ({
               </InputLabel>
               <Select
                 name="seniority2"
-                required
+                
                 label="Seniority"
                 defaultValue={values.seniority2}
                 onChange={(e) => handleInputChange(e)}
@@ -244,7 +244,7 @@ const UpdateForm = ({
               </InputLabel>
               <Select
                 name="seniority3"
-                required
+                
                 defaultValue={values.seniority3}
                 label="Seniority"
                 onChange={(e) => handleInputChange(e)}

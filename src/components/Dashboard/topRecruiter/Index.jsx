@@ -15,7 +15,7 @@ function TopRecruiter() {
   }, [])
   return (
     <div className={s.contenedor}>
-      <h1 className={s.title}>Top 3 Recruiters</h1>
+      <h1 className={s.title}>Top 3 Reclutas</h1>
       {top3.map((recruiter, index) => (
         <div className={s.content} key={recruiter.id}>
           <div className={s.bestRecruiter}>
