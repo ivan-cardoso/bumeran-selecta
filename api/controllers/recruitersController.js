@@ -5,10 +5,10 @@ const { Op, where } = require('sequelize')
 const recruitersController = {
   async findAll(req, res, next) {
     try {
-      const recrutiers = await Recruiters.findAll({ include: { all: true } });
-      res.status(200).json(recrutiers)
+      const recrutiers = await Recruiters.findAll({ where:{active:true}, include: { all: true } });
+      res.status(200).json(recrutiers);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
@@ -96,17 +96,19 @@ const recruitersController = {
         { where: { id: req.params.id }, returning: true }
       );
 
-      res.status(200).json(recrutier)
+      res.status(200).json(recrutier);
     } catch (err) {
-      next(err)
+      next(err);
     }
   },
 
-  async destroyRecrutierByPk(req, res, next) {
+async destroyRecrutierByPk(req, res, next) {
     try {
-      const destroyedUser = await Recruiters.findByPk(req.params.id)
-      await Recruiters.destroy({ where: { id: req.params.id } })
-      res.status(200).send(destroyedUser)
+      await Recruiters.update({
+        active: false
+      }, { where: { id: req.params.id } })
+      res.sendStatus(200)
+
     } catch (err) {
       next(err)
     }
@@ -115,6 +117,7 @@ const recruitersController = {
     try {
       const recruiters = await Recruiters.findAll({
         where: {
+          active: true,
           [Op.or]: [
             {
               name: {
@@ -133,24 +136,25 @@ const recruitersController = {
             },
           ],
         },
-      })
-      res.status(200).json(recruiters)
+      });
+      res.status(200).json(recruiters);
     } catch (err) {
-      return next(err)
+      return next(err);
     }
   },
   getTopThreeRecruiters(req, res) {
-    Recruiters.findAll({ order: [['rating', 'DESC']], limit: 3 })
+    Recruiters.findAll({ order: [["rating", "DESC"]], limit: 3 })
       .then((recruiters) => res.status(200).send(recruiters))
       .catch((err) => {
-        console.log(err)
-        res.status(500).send(err)
-      })
+        console.log(err);
+        res.status(500).send(err);
+      });
   },
 
-  findAllBySearch(req, res, next){
+  findAllBySearch(req, res, next) {
     Recruiters.findAll({
       where: {
+        active: true,
         [Op.and]: [
           {
             name: {
@@ -173,7 +177,19 @@ const recruitersController = {
     })
       .then((data) => res.status(200).json(data))
       .catch((err) => next(err));
-  }
-}
+  },
+
+  async findOne(req, res, next) {
+    try {
+      const recruiter = await Recruiters.findOne({
+        where: { id: req.params.id },
+        include: { all: true },
+      });
+      res.status(200).json(recruiter);
+    } catch (err) {
+      next(err);
+    }
+  },
+};
 
 module.exports = recruitersController

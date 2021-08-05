@@ -74,6 +74,7 @@ function BusquedasActivas() {
       <div className={s.title}>
         <h1>Detalle por estado</h1>
       </div>
+      <h3 style={{ marginLeft: '20px' }}>Total Busquedas: {total}</h3>
       <div className={s.graficos}>
         <PieChart width={300} height={200}>
           <Legend
@@ -101,20 +102,5 @@ function BusquedasActivas() {
     </div>
   )
 }
-
-// return (
-//   <div className={s.contenedor}>
-//     <h1 className={s.title}>Total Busquedas</h1>
-//     {openedJobs.map((job, index) => (
-//       <div className={s.isOpenContainer} key={index}>
-//         <h2 className={s.info}>
-//           {job.isOpen}s: <span>{job.value}</span>
-//         </h2>
-//       </div>
-//     ))}
-//     <h2 className={s.total}>Total: {total}</h2>
-//   </div>
-// )
-// }
 
 export default BusquedasActivas

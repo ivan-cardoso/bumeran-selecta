@@ -11,8 +11,7 @@ import { getAll } from '../../store/allUsers/allusers'
 export default function AddCompany({ values, setValues, handleInputChange }) {
   const clases = useStyles()
   const dispatch = useDispatch()
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
-    useModal()
+  const { open, handleOpen, handleClose, classes, modalStyle } = useModal()
   const [warning, setWarning] = useState('')
   const { role } = useSelector((state) => state.user)
 

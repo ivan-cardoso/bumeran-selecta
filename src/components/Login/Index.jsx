@@ -66,7 +66,6 @@ const Login = () => {
           errorMessage={errorMessage}
           isLoading={isLoading}
         />
-        <button onClick={() => history.goBack()}>atras</button>
       </div>
     </>
   )

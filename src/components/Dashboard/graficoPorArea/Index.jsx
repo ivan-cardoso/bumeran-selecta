@@ -1,13 +1,5 @@
 import React, { useEffect, useState, PureComponent } from 'react'
-import {
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  BarChart,
-  Bar,
-  Legend,
-} from 'recharts'
+import { XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar } from 'recharts'
 
 // import { PieChart, Pie, Cell, Legend } from 'recharts'
 import axios from 'axios'
@@ -15,7 +7,6 @@ import s from './index.module.css'
 
 function ChartbyArea() {
   const [areas, setAreas] = useState([])
-  const [legend, setLegend] = useState([])
 
   useEffect(() => {
     axios
@@ -34,7 +25,7 @@ function ChartbyArea() {
 
   class CustomizedAxisTick extends PureComponent {
     render() {
-      const { x, y, stroke, payload } = this.props
+      const { x, y, payload } = this.props
 
       return (
         <g transform={`translate(${x},${y})`}>

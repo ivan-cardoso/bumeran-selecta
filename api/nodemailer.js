@@ -14,18 +14,6 @@ let transporter = nodemailer.createTransport({
   },
 })
 
-// .container {
-//       background-color: red;
-//     }
-//     .title {
-//       font-size: 1rem;
-//     }
-//     h2 {
-//       font-size: 0.9rem;
-//     }
-//     span {
-//       font-weight: 400;
-//     }
 async function AssignRecruiter(recruiter, job) {
   try {
     // send mail with defined transport object

@@ -1,15 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import * as FaIcons from 'react-icons/fa'
-import s from './sidebar.css'  // No entiendo como se esta utilizando si en el Wrng aparece que no. (Christian)
 import * as IoIcons from 'react-icons/io'
 import { MdWork } from 'react-icons/md'
 import { AiFillHome } from 'react-icons/ai'
 import { FaUserAlt } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
+import './sidebar.css'
 
 const Sidebar = () => {
-  const user = useSelector((state) => state.user)
   const SidebarData = [
     {
       title: 'Home',
@@ -58,4 +55,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar;
+export default Sidebar

@@ -9,11 +9,9 @@ import {
   MenuItem,
 } from '@material-ui/core'
 import useStyles from '../Companies/style'
-import styles from '../Jobs/index.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import ImageUpload from '../RecruiterForm/ImageUpload'
 import { message } from 'antd'
-import { UserUpdate } from '../../store/user/user'
 import { getAll } from '../../store/allUsers/allusers'
 import axios from 'axios'
 export default function UpdateUserForm({

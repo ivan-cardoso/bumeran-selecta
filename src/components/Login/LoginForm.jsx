@@ -40,7 +40,9 @@ function LoginForm({ handleChange, handleSubmit, errorMessage, isLoading }) {
             </p>
           </div>
           {!isLoading ? (
-            <button type='submit'> Ingresar </button>
+            <button className={styles.loginbtn} type='submit'>
+              Ingresar
+            </button>
           ) : (
             <CircularProgress />
           )}

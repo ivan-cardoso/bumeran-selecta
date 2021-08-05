@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Modal, Fade, Backdrop, CircularProgress } from '@material-ui/core'
+import { useDispatch, useSelector } from "react-redux";
+import { Modal, Fade, Backdrop, CircularProgress } from "@material-ui/core";
 import BtnHistoryJobs from '../UX/Buttons/BtnHistoryJobs'
 import { useHistory, useParams } from 'react-router-dom'
 import styles from './index.module.css'
@@ -10,27 +10,31 @@ import RecruiterActiveTable from '../CompaniesSingleView/JobsActiveTable'
 import axios from 'axios'
 import useModal from '../Jobs/useModal'
 import style from '../Companies/index.module.css'
+import { getSingleRecruiter } from "../../store/recruiter/singleRecruiter";
 
 function SingleView() {
   const { open, setOpen, handleClose, classes, modalStyle } = useModal()
 
   const history = useHistory()
+  const dispatch = useDispatch();
   const params = useParams()
-  const { recruiter } = useSelector((state) => state)
+  const { singleRecruiter } = useSelector((state) => state);
   const [data, setData] = useState([])
   const [activeData, setActiveData] = useState([])
 
+  console.log(params.id);
   useEffect(() => {
+    dispatch(getSingleRecruiter(params.id));
     axios
       .get(`/api/companies/recruiters/${params.id}`)
       .then((res) => res.data)
-      .then((values) => setData(values))
+      .then((values) => setData(values));
 
     axios
       .get(`/api/companies/recruiters/active/${params.id}`)
       .then((res) => res.data)
-      .then((values) => setActiveData(values))
-  }, [params.id])
+      .then((values) => setActiveData(values));
+  }, [params.id, dispatch]);
 
   const {
     name,
@@ -47,12 +51,13 @@ function SingleView() {
     seniority1,
     seniority2,
     seniority3,
-  } = recruiter
+  } = singleRecruiter;
 
   return (
     <div>
-      {recruiter.id ? (
+      {singleRecruiter.id ? (
         <div className={styles.container}>
+          {!singleRecruiter.active && < h2 className={styles.inactive}>Recluta inactivo</h2>}
           <div className={styles.picture}>
             <h2>
               <SimpleRating rating={rating} />
@@ -104,11 +109,10 @@ function SingleView() {
               </p>
             </div>
           </div>
-
           <Modal
             open={open}
             onClose={() => {
-              handleClose()
+              handleClose();
             }}
             className={classes.modal}
             closeAfterTransition
@@ -125,7 +129,9 @@ function SingleView() {
           </Modal>
         </div>
       ) : (
-        history.push('/recruiters')
+        <div className={style.circularProgress}>
+          <CircularProgress disableShrink />
+        </div>
       )}
       <div className={styles.busquedascontainer}>
         <h2>Total de Busquedas Activas: {activeData.length}</h2>
@@ -134,16 +140,16 @@ function SingleView() {
       <div className={styles.btn}>
         <BtnHistoryJobs
           onClick={() => setOpen(true)}
-          name='Historial de busquedas'
+          name="Historial de busquedas"
         ></BtnHistoryJobs>
         <BtnGoBack
           className={styles.goBack}
           onClick={history.goBack}
-          name='Atras'
+          name="Atras"
         ></BtnGoBack>
       </div>
     </div>
-  )
+  );
 }
 
 export default SingleView

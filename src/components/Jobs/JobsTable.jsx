@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   TableContainer,
   Table,
@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import jobsColums from './JobsData'
 import JobsTableBody from './JobsTableBody'
 
-
 const JobsTable = ({ jobs }) => {
   const useStyles = makeStyles({
     table: {
@@ -19,9 +18,6 @@ const JobsTable = ({ jobs }) => {
     },
   })
   const classes = useStyles()
-
-  const [showTable, setShowTable] = useState(true)
-  const [updateInfo, setUpdateInfo] = useState('')
 
   return (
     <>
@@ -47,11 +43,7 @@ const JobsTable = ({ jobs }) => {
             </TableRow>
           </TableHead>
 
-          <JobsTableBody
-            jobs={jobs}
-            setShowTable={setShowTable}
-            setUpdateInfo={setUpdateInfo}
-          />
+          <JobsTableBody jobs={jobs} />
         </Table>
       </TableContainer>
     </>

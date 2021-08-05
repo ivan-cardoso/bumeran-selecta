@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   table: {
     minWidth: 600,
   },
-});
+})
 
 export default function DenseTable({
   recruiters,
@@ -24,36 +24,18 @@ export default function DenseTable({
   setValues,
   setSelectedArea,
   setSelectedSeniority,
+  setActive,
 }) {
-  const classes = useStyles();
-  const [showTable, setShowTable] = useState(true);
-  const [updateInfo, setUpdateInfo] = useState("");
-
-  const initialFormValues = {
-    name: null,
-    surname: null,
-    email: null,
-    country: null,
-    stateId: null,
-    bio: null,
-    img: null,
-    favoriteArea1: null,
-    favoriteArea2: null,
-    favoriteArea3: null,
-    seniority1: null,
-    seniority2: null,
-    seniority3: null,
-  }
-  const [updateValues, setUpdateValues] = useState(initialFormValues)
+  const classes = useStyles()
+  const [showTable, setShowTable] = useState(true)
 
   const handleSubmit = (e, updateValues) => {
-    e.preventDefault();
+    e.preventDefault()
     return axios
       .put(`/api/recruiters/${updateValues.id}`, updateValues)
       .then((res) => res.data)
       .then((data) => {
         if (data) message.success('usuario modificado con exito')
-        setUpdateValues(initialFormValues)
         setValues({
           search: '',
           area1: '',
@@ -63,8 +45,8 @@ export default function DenseTable({
         setSelectedArea('')
         getAllRecruiters().then((recruiters) => setRecruiters(recruiters))
       })
-      .catch(() => message.error("error, por favor intente mas tarde"));
-  };
+      .catch(() => message.error('error, por favor intente mas tarde'))
+  }
 
   return (
     <>
@@ -72,17 +54,17 @@ export default function DenseTable({
         <TableContainer component={Paper}>
           <Table
             className={classes.table}
-            size="small"
-            aria-label="a dense table"
+            size='small'
+            aria-label='a dense table'
           >
             <TableHead>
               <TableRow>
                 {recruitersColums.map((column, index) => {
                   return (
-                    <TableCell key={index} align="center">
+                    <TableCell key={index} align='center'>
                       {column}
                     </TableCell>
-                  );
+                  )
                 })}
               </TableRow>
             </TableHead>
@@ -91,12 +73,12 @@ export default function DenseTable({
               recruiters={recruiters}
               setRecruiters={setRecruiters}
               setShowTable={setShowTable}
-              setUpdateInfo={setUpdateInfo}
               handleSubmit={handleSubmit}
+              setActive={setActive}
             />
           </Table>
         </TableContainer>
       ) : null}
     </>
-  );
+  )
 }

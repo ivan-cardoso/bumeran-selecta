@@ -15,12 +15,12 @@ export default function InputSearch() {
     area: '',
     seniority: '',
     isOpen: null,
-    country : ""
+    country: '',
   })
   const [selectedArea, setSelectedArea] = useState('')
   const [isOpen, setIsOpen] = useState('')
   const [selectedSeniority, setSelectedSeniority] = useState('')
-  const [selectedCountry, setSelectedCountry] = useState("")
+  const [selectedCountry, setSelectedCountry] = useState('')
 
   const handleInputChange = async (e) => {
     const { value, name } = e.target
@@ -28,7 +28,7 @@ export default function InputSearch() {
     if (name === 'area') setSelectedArea(value)
     if (name === 'isOpen') setIsOpen(value)
     if (name === 'seniority') setSelectedSeniority(value)
-    if (name == "country" ) setSelectedCountry(value)
+    if (name === 'country') setSelectedCountry(value)
 
     await setValues({ ...values, [name]: value })
     const inputValues = { ...values, [name]: value }
@@ -89,7 +89,7 @@ export default function InputSearch() {
             selectedValue={selectedCountry}
             name='country'
             title='País'
-            values={[{name : "Argentina"}]}
+            values={[{ name: 'Argentina' }]}
             setValues={setValues}
             handleAreaChange={handleInputChange}
           />

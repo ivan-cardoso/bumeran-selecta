@@ -36,8 +36,7 @@ export const UserLogin = createAsyncThunk('UserLogin', (user, thunkAPI) => {
     .auth()
     .signInWithEmailAndPassword(user.email, user.password)
     .then((userCredentials) => {
-      const { photoURL, refreshToken, displayName, email, uid } =
-        userCredentials.user
+      const { uid } = userCredentials.user
       return axios
         .get(`/api/user/${uid}`)
         .then((res) => res.data)

@@ -4,21 +4,17 @@ import TableCell from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
-import VisibilityIcon from '@material-ui/icons/Visibility'
 import axios from 'axios'
 import { Modal, Fade, Backdrop } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from '../RecruiterForm/index.module.css'
 import { Popconfirm, message } from 'antd'
 import { getAll } from '../../store/allUsers/allusers'
-// import { singleCompany } from '../../store/companies/singleCompany'
 import useModal from '../Jobs/useModal'
 import UpdateUserForm from './UpdateUserForm'
 
 function UsersTableBody({ allUsers, setShowTable }) {
-  const { open, setOpen, handleOpen, handleClose, classes, modalStyle } =
-    useModal()
+  const { open, setOpen, handleClose, classes, modalStyle } = useModal()
 
   const user = useSelector((state) => state.user)
 
@@ -31,7 +27,6 @@ function UsersTableBody({ allUsers, setShowTable }) {
       [name]: value,
     })
   }
-  const history = useHistory()
 
   const dispatch = useDispatch()
 

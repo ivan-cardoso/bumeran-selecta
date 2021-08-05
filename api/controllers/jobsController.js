@@ -4,8 +4,7 @@ const {
   Seniority,
   Companies,
   Recruiters,
-  States,
-} = require('../db/models/index')
+} = require("../db/models/index");
 
 const recomendationAlgo = require('../../src/utils/AlgortimoRecomendacion/index')
 const { Op } = require('sequelize')
@@ -51,7 +50,7 @@ const getOpenedJobs = (req, res) => {
 }
 
 const getOneJob = (req, res) => {
-  Jobs.findByPk(req.params.id)
+  Jobs.findByPk(req.params.id, {include : {all : true}})
     .then((data) => res.status(200).send(data))
     .catch((err) => {
       console.log(err)

@@ -6,7 +6,7 @@ import { message } from 'antd'
 import { useDispatch } from 'react-redux'
 import { getSingleJob } from '../../store/jobs/getSingleJob'
 import s from './index.module.css'
-import { Grid, TextField } from '@material-ui/core'
+import { TextField } from '@material-ui/core'
 
 const Card = ({ setOpen, singleJob }) => {
   const { id, name, surname, img, email } = singleJob.recruiter

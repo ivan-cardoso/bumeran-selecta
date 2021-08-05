@@ -8,16 +8,15 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import axios from 'axios'
 import { Modal, Fade, Backdrop } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux'
 import styles from '../RecruiterForm/index.module.css'
 import { Popconfirm, message } from 'antd'
-import { getCompanies } from "../../store/companies/companies";
+import { getCompanies } from '../../store/companies/companies'
 import useModal from '../Jobs/useModal'
 import UpdateCompaniesForm from './UpdateCompaniesForm'
 
 function CompaniesTableBody({ companies, setShowTable }) {
-  const { open, setOpen, handleClose, classes, modalStyle } =
-    useModal()
+  const { open, setOpen, handleClose, classes, modalStyle } = useModal()
 
   const [updateInfo, setUpdateInfo] = useState('')
 
@@ -29,12 +28,12 @@ function CompaniesTableBody({ companies, setShowTable }) {
     })
   }
 
-      const { user } = useSelector((state) => state);
+  const { user } = useSelector((state) => state)
 
   const dispatch = useDispatch()
 
   const handleDelete = (id) => {
-    axios.delete(`/api/companies/${id}`).then((res) => {
+    axios.put(`/api/companies/active/${id}`).then((res) => {
       message.success('Compañia eliminada')
       dispatch(getCompanies())
     })
@@ -47,7 +46,7 @@ function CompaniesTableBody({ companies, setShowTable }) {
   const history = useHistory()
 
   const handleSingleView = (company) => {
-    history.push(`/companies/${company.id}`);
+    history.push(`/companies/${company.id}`)
   }
 
   return (
@@ -58,57 +57,66 @@ function CompaniesTableBody({ companies, setShowTable }) {
 
             return (
               <TableRow key={id}>
-                <TableCell align="center">
+                <TableCell align='center'>
                   <div className={styles.recruiterImgContainer}>
-                    {company.img ? 
+                    {company.img ? (
                       <>
-                        <img src={company.img}
+                        <img
+                          src={company.img}
                           alt={company.img}
                           className={styles.companyImg}
                           onClick={() => handleSingleView(company)}
-                         />
-                      </> 
-                      : <img src="https://static.thenounproject.com/png/3674270-200.png"
-                          className={styles.companyImg}
-                        />}
+                        />
+                      </>
+                    ) : (
+                      <img
+                        src='https://static.thenounproject.com/png/3674270-200.png'
+                        alt='Imagen no encontrada'
+                        className={styles.companyImg}
+                      />
+                    )}
                   </div>
                 </TableCell>
-                <TableCell align="center">{name}</TableCell>
-                <TableCell align="center">{email}</TableCell>
-                <TableCell align="center">
+                <TableCell align='center'>{name}</TableCell>
+                <TableCell align='center'>{email}</TableCell>
+                <TableCell align='center'>
                   {state ? state.name : null}
                 </TableCell>
-                <TableCell align="center">{area ? area.name : null}</TableCell>
-                <TableCell align="center" style={{padding:"4px"}}>
+                <TableCell align='center'>{area ? area.name : null}</TableCell>
+                <TableCell align='center' style={{ padding: '4px' }}>
                   {
                     <button
                       disabled={user.role.name === 'auditor'}
-                      className={user.role.name === 'auditor' ? null : styles.editButton}
+                      className={
+                        user.role.name === 'auditor' ? null : styles.editButton
+                      }
                       onClick={() => {
-                        handleUpdateCompany(company);
+                        handleUpdateCompany(company)
                       }}
                     >
                       <EditIcon />
                     </button>
                   }
                 </TableCell>
-                <TableCell align="center" style={{padding:"4px"}}>
+                <TableCell align='center' style={{ padding: '4px' }}>
                   <Popconfirm
                     title={`¿estas seguro que deseas eliminar esta compañia?`}
                     onConfirm={() => handleDelete(id)}
-                    okText="confirmar"
-                    cancelText="cancelar"
+                    okText='confirmar'
+                    cancelText='cancelar'
                     disabled={user.role.name !== 'admin'}
                   >
                     <button
                       disabled={user.role.name !== 'admin'}
-                      className={user.role.name === 'admin' ? styles.deleteButton : null}
+                      className={
+                        user.role.name === 'admin' ? styles.deleteButton : null
+                      }
                     >
                       <DeleteIcon />
                     </button>
                   </Popconfirm>
                 </TableCell>
-                <TableCell align="center" style={{padding:"4px"}}>
+                <TableCell align='center' style={{ padding: '4px' }}>
                   <button
                     className={styles.singleViewButton}
                     onClick={() => handleSingleView(company)}
@@ -117,7 +125,7 @@ function CompaniesTableBody({ companies, setShowTable }) {
                   </button>
                 </TableCell>
               </TableRow>
-            );
+            )
           })
         : null}
 

@@ -1,5 +1,4 @@
 body {
-  /* background-image: url(https://colorate.azurewebsites.net/SwatchColor/3E43BB); */
   margin: 0;
   height: 50vh;
 }
@@ -9,11 +8,10 @@ form button {
   padding: 15px;
   margin-top: 30px;
   border-radius: 5px;
-  background-color: #D9005C;
+  background-color: #d9005c;
   border-radius: 8px;
   color: white;
   border: none;
-
 }
 
 .loginCard {
@@ -21,7 +19,7 @@ form button {
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 110vh;
 }
 
 .loginCard h1 {
@@ -40,7 +38,6 @@ form button {
   text-align: center;
   font-size: medium;
   border-radius: 20px;
-
 }
 
 .loginInput {
@@ -60,12 +57,14 @@ form button {
   margin: 0 auto;
 }
 
-.backgroundColor  {
+.backgroundColor {
   background-color: blue;
 }
 
-.backgroundImage  {
+.backgroundImage {
   background-image: url(https://colorate.azurewebsites.net/SwatchColor/3E43BB);
   margin: 0;
 }
 
+.loginbtn {
+}

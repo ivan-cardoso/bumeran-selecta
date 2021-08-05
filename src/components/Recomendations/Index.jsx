@@ -12,7 +12,6 @@ function Index({
   ClassNamePaper,
   modalStyle,
   setOpenRecruiter,
-  setReclutadorAsignado
 }) {
   return (
     <div>
@@ -33,7 +32,6 @@ function Index({
             <Card
               selectedJob={selectedJob}
               setOpenRecruiter={setOpenRecruiter}
-              setReclutadorAsignado={setReclutadorAsignado}
             />
           </div>
         </Fade>

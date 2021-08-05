@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   TableBody,
   TableRow,
@@ -7,69 +7,54 @@ import {
   Modal,
   Fade,
   Backdrop,
-} from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
-//import DeleteIcon from '@material-ui/icons/Delete'
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
-//import { getAllJobs, deleteJob } from '../../store/jobs/jobs'
-import { getSingleJob } from "../../store/jobs/getSingleJob";
-import ModalRecomendation from "../Recomendations/Index";
-import styles from "../RecruiterForm/index.module.css";
-import { TiDelete } from "react-icons/ti";
-import {FaRegUserCircle} from "react-icons/fa"
-
-import useModal from "./useModal";
-//import JobsForm from './JobsForm'
-import UpdateJob from "./UpdateJob";
-import { useHistory } from "react-router-dom";
-
-import { singleRecruiter } from "../../store/recruiter/actions";
+} from '@material-ui/core'
+import EditIcon from '@material-ui/icons/Edit'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import PersonAddIcon from '@material-ui/icons/PersonAdd'
+import { getOneSingleJob } from '../../store/jobs/getSingleJob'
+import ModalRecomendation from '../Recomendations/Index'
+import styles from '../RecruiterForm/index.module.css'
+import useModal from './useModal'
+import UpdateJob from './UpdateJob'
+import { useHistory } from 'react-router-dom'
 
 const JobsTableBody = ({ jobs }) => {
-  const { open, setOpen, handleClose, classes, modalStyle } = useModal();
+  const { open, setOpen, handleClose, classes, modalStyle } = useModal()
 
-  const [openRecruiter, setOpenRecruiter] = useState(false);
-  const dispatch = useDispatch();
+  const [openRecruiter, setOpenRecruiter] = useState(false)
+  const dispatch = useDispatch()
 
-  const history = useHistory();
+  const history = useHistory()
 
-  /* const handleDelete = (id) => {   No se esta utilizando 
-    dispatch(deleteJob(id))
-    dispatch(getAllJobs())
-  } */
+  const { user } = useSelector((state) => state)
 
-  const { user } = useSelector((state) => state);
-
-  const [jobValues, setJobValues] = useState();
+  const [jobValues, setJobValues] = useState()
   const [selectedJob, setSelectedJob] = useState({
-    area: "",
-    seniority: "",
-    id: "",
-  });
+    area: '',
+    seniority: '',
+    id: '',
+  })
   const handleUpdateJob = (job) => {
-    setJobValues(job);
-    setOpen(true);
-  };
+    setJobValues(job)
+    setOpen(true)
+  }
   const assignRecruiter = () => {
-    setOpenRecruiter(true);
-  };
+    setOpenRecruiter(true)
+  }
 
   const handleSingleJob = (job) => {
-    dispatch(getSingleJob(job));
-    history.push(`/jobs/${job.id}`);
-  };
+    dispatch(getOneSingleJob(job.id)).then((job) =>
+      console.log('GETONE-TABLEBODY', job)
+    )
+    history.push(`/jobs/${job.id}`)
+  }
 
   const handleViewRecruiter = (recruiter) => {
-    dispatch(singleRecruiter(recruiter))
     history.push(`/recruiters/${recruiter.id}`)
   }
   const handleViewCompany = (company) => {
-    history.push(`/companies/${company.id}`);
-  };
-  // React.useEffect(() => {
-  //   dispatch(getAllJobs());
-  // }, [ openRecruiter]);
+    history.push(`/companies/${company.id}`)
+  }
 
   return (
     <TableBody>
@@ -77,91 +62,109 @@ const JobsTableBody = ({ jobs }) => {
         ? jobs.map((job) => {
             return (
               <TableRow>
-                <TableCell align="center">
+                <TableCell align='center'>
                   <div className={styles.recruiterImgContainer}>
-                    {job.company.img ? 
+                    {job.company.img ? (
                       <>
-                        <img src={job.company.img}
+                        <img
+                          src={job.company.img}
                           alt={job.company.img}
                           className={styles.companyImg}
                           onClick={() => handleViewCompany(job.company)}
-                         />
-                      </> 
-                      : <img src="https://static.thenounproject.com/png/3674270-200.png"
-                          className={styles.companyImg}
-                        />}
+                        />
+                      </>
+                    ) : (
+                      <img
+                        src='https://static.thenounproject.com/png/3674270-200.png'
+                        className={styles.companyImg}
+                        alt='Imagen no encontrada'
+                      />
+                    )}
                   </div>
                 </TableCell>
-                <TableCell align="center">{job.title}</TableCell>
-                <TableCell align="center">{job.company.name}</TableCell>
-                <TableCell align="center">{job.area.name}</TableCell>
-                <TableCell align="center">{job.seniority.name}</TableCell>
-                <TableCell align="center">{job.typeemloyed.name}</TableCell>
+                <TableCell align='center'>{job.title}</TableCell>
+                <TableCell align='center'>{job.company.name}</TableCell>
+                <TableCell align='center'>{job.area.name}</TableCell>
+                <TableCell align='center'>{job.seniority.name}</TableCell>
+                <TableCell align='center'>{job.typeemloyed.name}</TableCell>
 
-                <TableCell align="center">{job.modality.name}</TableCell>
-                
-                <TableCell align="center">{job.state.name}</TableCell>
-                <TableCell align="center">{job.salary}</TableCell>
-                <TableCell align="center">{job.isOpen}</TableCell>
-                <TableCell align="center" style={{padding:"4px"}}>
-                  {job.recruiterId ?
+                <TableCell align='center'>{job.modality.name}</TableCell>
+
+                <TableCell align='center'>{job.state.name}</TableCell>
+                <TableCell align='center'>{job.salary}</TableCell>
+                <TableCell align='center'>{job.isOpen}</TableCell>
+                <TableCell align='center' style={{ padding: '4px' }}>
+                  {job.recruiterId ? (
                     <>
-                    <div className={styles.recruiterImgContainer} 
-                    onClick={() => handleViewRecruiter(job.recruiter)}>
-                      {job.recruiter.img ? 
-                          <img src={job.recruiter.img} alt={job.recruiter.name} className={styles.recruiterImg} />
-                        : 
-                          <img src="https://static.thenounproject.com/png/3674270-200.png"
+                      <div
+                        className={styles.recruiterImgContainer}
+                        onClick={() => handleViewRecruiter(job.recruiter)}
+                      >
+                        {job.recruiter.img ? (
+                          <img
+                            src={job.recruiter.img}
+                            alt={job.recruiter.name}
                             className={styles.recruiterImg}
-                          />}
-                      {job.recruiter.name}
-                    </div>
+                          />
+                        ) : (
+                          <img
+                            src='https://static.thenounproject.com/png/3674270-200.png'
+                            className={styles.recruiterImg}
+                            alt='Imagen no encontrada'
+                          />
+                        )}
+                        {job.recruiter.name}
+                      </div>
                     </>
-                  //  <h4 className={styles.noRecruiterIcon}  ><TiDelete/></h4>
-                  : 
-                   <button
-                    className={
-                      job.recruiterId || user.roleId === 4 || user.roleId === 1
-                        ? null
-                        : styles.assignRecruiterButton
-                    }
-                    disabled={
-                      job.recruiterId || user.roleId === 4 || user.roleId === 1
-                    }
-                    onClick={() => {
-                      setSelectedJob({
-                        area: job.area.name,
-                        seniority: job.seniority.name,
-                        id: job.id,
-                      });
+                  ) : (
+                    //  <h4 className={styles.noRecruiterIcon}  ><TiDelete/></h4>
+                    <button
+                      className={
+                        job.recruiterId ||
+                        user.roleId === 4 ||
+                        user.roleId === 1
+                          ? null
+                          : styles.assignRecruiterButton
+                      }
+                      disabled={
+                        job.recruiterId ||
+                        user.roleId === 4 ||
+                        user.roleId === 1
+                      }
+                      onClick={() => {
+                        setSelectedJob({
+                          area: job.area.name,
+                          seniority: job.seniority.name,
+                          id: job.id,
+                        })
 
-                      assignRecruiter();
-                    }}
-                  >
-                    <PersonAddIcon />
-                  </button>
-                   }
-                   
+                        assignRecruiter()
+                      }}
+                    >
+                      <PersonAddIcon />
+                    </button>
+                  )}
                 </TableCell>
 
-                <TableCell align="center" style={{padding:"4px"}}>
+                <TableCell align='center' style={{ padding: '4px' }}>
                   <button
                     className={
-                      job.isOpen === "cerrada" || user.role.name === 'auditor'
+                      job.isOpen === 'cerrada' || user.role.name === 'auditor'
                         ? null
                         : styles.editButton
                     }
-                    disabled={job.isOpen === "cerrada" || user.role.name === 'auditor'}
+                    disabled={
+                      job.isOpen === 'cerrada' || user.role.name === 'auditor'
+                    }
                     onClick={() => {
-                      handleUpdateJob(job);
+                      handleUpdateJob(job)
                     }}
                   >
                     <EditIcon />
                   </button>
                 </TableCell>
-                <TableCell align="center" style={{padding:"4px"}}>
+                <TableCell align='center' style={{ padding: '4px' }}>
                   <button
-                    
                     className={styles.singleViewButton}
                     onClick={() => handleSingleJob(job)}
                   >
@@ -191,16 +194,15 @@ const JobsTableBody = ({ jobs }) => {
                     <PersonAddIcon />
                   </button>
                 </TableCell> */}
-
               </TableRow>
-            );
+            )
           })
         : null}
 
       <Modal
         open={open}
         onClose={() => {
-          handleClose();
+          handleClose()
         }}
         className={classes.modal}
         closeAfterTransition
@@ -226,7 +228,7 @@ const JobsTableBody = ({ jobs }) => {
         modalStyle={modalStyle}
       />
     </TableBody>
-  );
-};
+  )
+}
 
-export default JobsTableBody;
+export default JobsTableBody
