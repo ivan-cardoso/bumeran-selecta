@@ -54,22 +54,22 @@ const ForgotPass = () => {
     <div className={styles.backgroundImage}>
       {!showConfirmation ? (
         <div className={styles.loginCard}>
-          <h1 color='white'>Change your Password</h1>
+          <h1 style={{     color:     "white"     }}>Restablecer contraseña</h1>
           <form
             onChange={handleChange}
             onSubmit={handleSubmit}
             className={styles.loginform}
           >
             <div className={styles.forgotPassInput}>
-              <label text-align='center'> Por favor ingrese su mail</label>
-              <input type='email' placeholder='email' name='email' />
-              {errorMessage.type === 'email' && (
-                <Alert message={errorMessage.mensaje} type='error' />
+              <label text-align="center"> Por favor ingrese su mail</label>
+              <input type="email" placeholder="email" name="email" />
+              {errorMessage.type === "email" && (
+                <Alert message={errorMessage.mensaje} type="error" />
               )}
             </div>
 
             <div style={{ width: 400 }}>
-              {!isLoading ? <Btn name='confirmar' /> : <CircularProgress />}
+              {!isLoading ? <Btn name="confirmar" /> : <CircularProgress />}
             </div>
           </form>
         </div>
@@ -79,14 +79,14 @@ const ForgotPass = () => {
             <h1>e-mail enviado con exito </h1>
             <h2> por favor verifique su correo no deseado </h2>
             <BtnGoBack
-              name='Ir a iniciar sesion'
-              onClick={() => history.push('/login')}
+              name="Ir a iniciar sesion"
+              onClick={() => history.push("/login")}
             />
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export default ForgotPass
