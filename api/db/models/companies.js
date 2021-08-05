@@ -27,4 +27,10 @@ Companies.init(
   { sequelize: db, timestamps: false, modelName: "companies" }
 );
 
+Companies.addHook("beforeCreate", (company) => {
+  return (company.img = company.img
+    ? company.img
+    : "https://static.thenounproject.com/png/3674270-200.png");
+});
+
 module.exports = Companies;

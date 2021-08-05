@@ -30,7 +30,9 @@ Recruiters.init(
       allowNull: false,
     },
 
-    img: { type: S.STRING },
+    img: {
+      type: S.STRING,
+    },
 
     rating: {
       type: S.DOUBLE,
@@ -59,6 +61,10 @@ Recruiters.init(
 );
 
 //
-// Recruiters.prototype.addSearch()
+Recruiters.addHook("beforeCreate", (recruiter) => {
+  return (recruiter.img = recruiter.img
+    ? recruiter.img
+    : "https://static.thenounproject.com/png/3674270-200.png");
+});
 
 module.exports = Recruiters

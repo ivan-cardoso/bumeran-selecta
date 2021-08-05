@@ -854,31 +854,35 @@ companies.map((Company) => {
   Companies.create(Company).then((Company) => console.log('Company creada: '))
 })
 
-jobs.map((job, index) => {
-  Jobs.create(job)
-    .then((jobCreated) => {
-      let random = Math.random() * recruiters.length
-      if (index > 2 && index <= 5) {
-        Recruiters.findByPk(Math.ceil(random)).then((user) => {
-          user.addJob(jobCreated)
-          jobCreated.isOpen = 'cerrada'
-          jobCreated.ratingRecruiter = Math.ceil(Math.random() * 5)
-          jobCreated.save()
-        })
-      }
-      if (index > 5) {
-        let random = Math.random() * recruiters.length
-        Recruiters.findByPk(Math.ceil(random)).then((user) => {
-          user.addJob(jobCreated)
-          jobCreated.isOpen = 'asignada'
-          jobCreated.save()
-        })
-      }
-    })
-    .then(() => {
-      console.log('job creado')
-    })
-})
+setTimeout(() => {
+  jobs.map((job, index) => {
+    Jobs.create(job)
+      .then((jobCreated) => {
+        let random = Math.random() * recruiters.length;
+        if (index > 2 && index <= 5) {
+          Recruiters.findByPk(Math.ceil(random)).then((user) => {
+            user.addJob(jobCreated);
+            jobCreated.isOpen = "cerrada";
+            jobCreated.ratingRecruiter = Math.ceil(Math.random() * 5);
+            jobCreated.save();
+          });
+        }
+        if (index > 5) {
+          let random = Math.random() * recruiters.length;
+          Recruiters.findByPk(Math.ceil(random)).then((user) => {
+            user.addJob(jobCreated);
+            jobCreated.isOpen = "asignada";
+            jobCreated.save();
+          });
+        }
+      })
+      .then(() => {
+        console.log("job creado");
+      });
+  });
+}, 500);
+
+
 
 //loguear admin
 
