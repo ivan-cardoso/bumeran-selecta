@@ -4,11 +4,12 @@ const {
   Seniority,
   Companies,
   Recruiters,
-  States,
-} = require('../db/models/index')
+} = require("../db/models/index");
 
 const recomendationAlgo = require('../../src/utils/AlgortimoRecomendacion/index')
 const { Op } = require('sequelize')
+
+const { AssignRecruiter, CloseJobSendEmail } = require('../nodemailer')
 
 const sequelize = require('sequelize')
 
@@ -239,7 +240,7 @@ const findAllBySearch = async (req, res, next) => {
   if (!req.body.isOpen) {
     isOpenFiltered = ['abierta', 'cerrada', 'asignada']
   } else isOpenFiltered = [req.body.isOpen]
-  
+
   try {
     const jobs = await Jobs.findAll({
       where: {
@@ -298,7 +299,7 @@ const assignRecruiter = async (req, res, next) => {
     jobFounded.isOpen = 'asignada'
     await jobFounded.save()
     await recruiterAdded.addJob(jobFounded)
-
+    await AssignRecruiter(recruiterAdded, jobFounded)
     res.status(200).json(recruiterAdded)
   } catch (err) {
     next(err)
@@ -325,7 +326,18 @@ const deleteAssignRecruiter = async (req, res, next) => {
 }
 
 const ratingRecruiter = async (req, res, next) => {
-  const { recruiterId, rating, candidates, jobId, recruiterComment } = req.body
+  const {
+    recruiterId,
+    rating,
+    candidates,
+    jobId,
+    recruiterComment,
+    email,
+    name,
+    surname,
+    title,
+    company,
+  } = req.body
 
   try {
     const job = await Jobs.findByPk(jobId)
@@ -337,7 +349,16 @@ const ratingRecruiter = async (req, res, next) => {
       await job.removeSearchFromRecruiter(job.recruiterId)
     }
     await job.save()
-
+    console.log(job) //mail, rating, nombre del recluta, comentario
+    CloseJobSendEmail(
+      rating,
+      email,
+      name,
+      surname,
+      recruiterComment,
+      title,
+      company
+    )
     const jobsByRecruiter = await Jobs.findAll({
       where: { recruiterId },
       attributes: [
@@ -350,11 +371,11 @@ const ratingRecruiter = async (req, res, next) => {
       raw: true,
     })
 
-    const recruiter = await Recruiters.findByPk(recruiterId);
+    const recruiter = await Recruiters.findByPk(recruiterId)
     recruiter.rating =
-      jobsByRecruiter[0].total / parseInt(jobsByRecruiter[0].cantidad);
+      jobsByRecruiter[0].total / parseInt(jobsByRecruiter[0].cantidad)
     await recruiter.save()
-    res.status(200).json({ job, recruiter });
+    res.status(200).json({ job, recruiter })
   } catch (err) {
     next(err)
   }

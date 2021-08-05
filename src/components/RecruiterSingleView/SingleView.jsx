@@ -57,6 +57,7 @@ function SingleView() {
     <div>
       {singleRecruiter.id ? (
         <div className={styles.container}>
+          {!singleRecruiter.active && < h2 className={styles.inactive}>Recluta inactivo</h2>}
           <div className={styles.picture}>
             <h2>
               <SimpleRating rating={rating} />
@@ -108,7 +109,6 @@ function SingleView() {
               </p>
             </div>
           </div>
-
           <Modal
             open={open}
             onClose={() => {

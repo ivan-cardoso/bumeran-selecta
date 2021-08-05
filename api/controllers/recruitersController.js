@@ -102,15 +102,6 @@ const recruitersController = {
     }
   },
 
-  // async destroyRecrutierByPk(req, res, next) {
-  //   try {
-  //     const destroyedUser = await Recruiters.findByPk(req.params.id)
-  //     await Recruiters.destroy({ where: { id: req.params.id } })
-  //     res.status(200).send(destroyedUser)
-  //   } catch (err) {
-  //     next(err)
-  //   }
-  // },
 async destroyRecrutierByPk(req, res, next) {
     try {
       await Recruiters.update({
@@ -126,6 +117,7 @@ async destroyRecrutierByPk(req, res, next) {
     try {
       const recruiters = await Recruiters.findAll({
         where: {
+          active: true,
           [Op.or]: [
             {
               name: {
@@ -162,6 +154,7 @@ async destroyRecrutierByPk(req, res, next) {
   findAllBySearch(req, res, next) {
     Recruiters.findAll({
       where: {
+        active: true,
         [Op.and]: [
           {
             name: {

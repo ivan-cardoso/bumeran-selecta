@@ -1,6 +1,5 @@
 const { Op } = require('sequelize')
-const { Companies, Areas, States, Jobs } = require('../db/models')
-const { findByPk } = require('../db/models/recruiters')
+const { Companies, Areas, States, Jobs } = require("../db/models");
 
 const companiesController = {
   async findAll(req, res, next) {
@@ -57,8 +56,6 @@ const companiesController = {
         { where: { id: req.params.id } }
       );
       res.sendStatus(200);
-      // await Companies.destroy({ where: { id: req.params.id } });
-      // res.sendStatus(200);
     } catch (err) {
       next(err);
     }
@@ -68,6 +65,7 @@ const companiesController = {
     try {
       const companies = await Companies.findAll({
         where: {
+          active: true,
           [Op.or]: [
             {
               name: {

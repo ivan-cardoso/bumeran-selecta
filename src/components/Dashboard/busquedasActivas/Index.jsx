@@ -12,10 +12,15 @@ function BusquedasActivas() {
       .then((res) => res.data)
       .then((jobs) => {
         if (jobs) {
-          const formatedJobs = jobs.detailed.map((job) => ({
-            name: job.isOpen,
-            value: parseInt(job.value),
-          }))
+          const formatedJobs = jobs.detailed.reduce((acum, job) => {
+            if (job.isOpen !== 'cerrada') {
+              acum.push({
+                name: job.isOpen,
+                value: parseInt(job.value),
+              })
+            }
+            return acum
+          }, [])
           setOpenedJobs(formatedJobs)
           setTotal(jobs.total)
         }
@@ -72,16 +77,16 @@ function BusquedasActivas() {
       <div className={s.graficos}>
         <PieChart width={300} height={200}>
           <Legend
-            cx='45%'
+            cx='35%'
             // cy='10%'
             height={1}
-            width={350}
+            width={300}
             align='center'
             verticalAlign='bottom'
           />
           <Pie
             data={openedJobs}
-            cx='55%'
+            cx='45%'
             dataKey='value'
             labelLine={false}
             label={renderCustomizedLabel}
