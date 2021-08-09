@@ -18,7 +18,6 @@ app.use(cookieParser())
 app.use(express.json())
 
 //Routers
-
 app.use(volleyball)
 app.use('/api', require('./routes'))
 

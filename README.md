@@ -9,7 +9,7 @@ Se utilizó ***SCRUM*** como metodología para el trabajo en equipo.
  - **Gestionar** búsquedas,  reclutadores y empresas.
  - **Mostrar** por cada empleo los mejores reclutadores de acuerdo a su área de trabajo, reputación y país.
  - **Asignar** el reclutador a un empleo y calificarlo por su desempeño.
- - **Manejo** de acciones y permisos segun diferentes usuarios.
+ - **Manejar** acciones y permisos según diferentes roles de los usuarios.
 
 ## *Tecnologías utilizadas:*
  - **`React Js`**
